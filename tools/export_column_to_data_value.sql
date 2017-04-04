@@ -1,4 +1,19 @@
 /*
+* Misc queries
+*/
+SELECT id FROM units WHERE name = 'Cluster1';
+
+SELECT Cluster_1_1.col_1, Cluster_1_1.col_2 FROM Cluster_1_1;
+
+INSERT INTO unit_keys
+	(unit_id, name, log_no)
+SELECT 3, name, log_no FROM unit_keys WHERE unit_id = 1;
+
+SELECT * FROM unit_keys WHERE unit_id IN (SELECT id FROM units WHERE name LIKE 'Cluster%');
+
+SELECT * FROM unit_data;
+
+/*
 * Manually add each field for each unit.
 */
 INSERT INTO unit_data
