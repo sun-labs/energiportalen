@@ -1,4 +1,16 @@
-# energiportalen
+# Energiportalen
+
+### Requirements
+- MySQL installed
+ - Port: 8889
+- A database with the following specification
+ - Name: energiportalen
+ - Tables: units, unit_keys, unit_data
+ - User: energiportalen
+- User with information
+ - Username: energiportalen
+ - Host: %
+ - Pass: ***REMOVED***
 
 ### Trello
 https://trello.com/b/WsRPCMmn/mvp
