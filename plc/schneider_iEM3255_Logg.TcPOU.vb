@@ -35,7 +35,7 @@ END_VAR
 	sFileName:= sFileName1, 
 	nDayOfWeek:= Main_loggning.fbTime.systemTime.wDayOfWeek,
 	sColumn1TimeStamp:= Main_loggning.systemTime, 
-	sColumn2:= REAL_TO_STRING(GVL_MQ41.F15_AS3_MQ41_I1), 
+	sColumn2:= REAL_TO_STRING(GVL_MQ41.F15_AS3_MQ41_I1), ' Fastighet 15 _ Husnamn _ MQ41 (schneider) _ Ström 
 	sColumn3:= REAL_TO_STRING(GVL_MQ41.F15_AS3_MQ41_I2), 
 	sColumn4:= REAL_TO_STRING(GVL_MQ41.F15_AS3_MQ41_I3), 
 	sColumn5:= REAL_TO_STRING(GVL_MQ41.F15_AS3_MQ41_U1_U2), 
