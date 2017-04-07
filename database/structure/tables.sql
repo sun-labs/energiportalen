@@ -1,12 +1,5 @@
-/*
-* DATABASE INIT
-*/
-CREATE DATABASE energiportalen CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE energiportalen;
+USE energiportalen; -- set database to energiportalen
 
-/*
-* TABLES INIT
-*/
 CREATE TABLE `units` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
