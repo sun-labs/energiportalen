@@ -1,0 +1,58 @@
+@media screen and (max-width: 500px) {
+  /*TODO universal backgrounds div ?*/
+  .section1 .background {
+    position: fixed;
+    top: 15em;
+    left:0;
+    background-color: #26AE60;
+
+    border-top-left-radius: 24em;
+    border-top-right-radius: 24em;
+
+    z-index: -1;
+    margin-left: -50%;
+
+    width: 200%;
+    height: 100%;
+  }
+
+  .section1 .logo, .section1 button, .section1 .textContent {
+    position: relative;
+    display: block;
+    margin: auto;
+  }
+  .section1 .textContent {
+    margin-top: 2em;
+  }
+
+  .section1 .logo {
+    margin-top: 10em;
+  }
+
+  .section1 button {
+    margin-top: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 80%;
+  }
+
+  .section1 .downButton {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2em;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .section1 .background {
+    top: 13em;
+  }
+  .section1 .logo {
+    margin-top: 8.1em;
+  }
+  .section1 .downButton {
+    bottom: 1.5em;
+  }
+}

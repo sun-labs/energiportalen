@@ -1,6 +1,4 @@
 button {
-  background-color: #333333;
-
   border: none;
   border-radius: 3.125em;
   
@@ -12,39 +10,44 @@ button {
   font-size: 1.5em;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 500px) {
   button {
     background-color: #333333;
     color: #F2C94C;
 
-    height: 3.125em;
-    width: 9.25em;
+    height: 2.5em;
+    width: 8em;
+
+    font-size: 1.7em;
   }
 
-  .firstSection {
-    position: relative;
+  .textContent {
+    margin-top: 2em;
+    text-align: center;
   }
 
-  /*TODO universal backgrounds div ?*/
-  .firstSection .background {
-    background-color: #26AE60;
-
-    border-top-left-radius: 24em;
-    border-top-right-radius: 24em;
-    
-
-    margin-left: -50%;
-    width: 200%;
-    margin-top: 10em;
-    height: 507px;
+  .textContent h2, .textContent p {
+    font-weight: lighter;
+  }
+  
+  .textContent h2 {
+    color: white;
+    margin-bottom: 0.2em;
   }
 
-  .App .firstSection img {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    margin-top: -5em;
+  .textContent p {
+    color: black;
+    margin-top: 0;
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  button {
+    height: 2em;
+    width: 7.5em;
+    font-size: 1.5em;
   }
 }
 
