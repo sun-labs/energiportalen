@@ -17,7 +17,7 @@ const Section1 = () => {
 
     <img src={downButton} alt="Down Button" className="downButton"/>
 
-    <div className="background">hello</div>
+    <div className="hill"></div>
   </div>
   );
 }

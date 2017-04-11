@@ -1,3 +1,10 @@
+.App {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden !important; 
+}
+
 button {
   border: none;
   border-radius: 3.125em;
@@ -49,8 +56,4 @@ button {
     width: 7.5em;
     font-size: 1.5em;
   }
-}
-
-.App {
-  overflow-x: hidden !important;
 }
