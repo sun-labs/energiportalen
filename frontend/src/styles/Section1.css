@@ -63,15 +63,3 @@
     margin: 0 auto;
   }
 }
-
-@media screen and (max-width: 340px) {
-  .section1 .background {
-    top: 13em;
-  }
-  .section1 .logo {
-    margin-top: 8.1em;
-  }
-  .section1 .downButton {
-    bottom: 1.5em;
-  }
-}

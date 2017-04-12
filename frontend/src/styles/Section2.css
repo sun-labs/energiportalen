@@ -45,15 +45,3 @@
 
 
 }
-
-@media screen and (max-width: 340px) {
-
-  .section2 .textContent{
-    position: relative;
-    display: block;
-    margin: auto;
-    z-index: 2;
-    margin-top: 25%;
-  }
-
-}
