@@ -3,6 +3,7 @@ import '../styles/App.css';
 
 import NavBar from './NavBar';
 import Section1 from './Section1';
+import Section2 from './Section2';
 
 class App extends Component {
   render() {
@@ -10,6 +11,7 @@ class App extends Component {
       <div className="App">
         <NavBar/>
         <Section1/>
+        <Section2/>
       </div>
     );
   }

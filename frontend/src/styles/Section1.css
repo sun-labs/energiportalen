@@ -2,6 +2,8 @@
   /*TODO universal backgrounds div ?*/
 
   .section1 {
+    position: relative;
+
     overflow-x: hidden !important;
     overflow-y: hidden !important; 
      
@@ -17,17 +19,22 @@
     left:0;
     background-color: #26AE60;
 
-    border-top-left-radius: 24em 5em;
-    border-top-right-radius: 24em 5em;
+    border-top-left-radius: 24em;
+    border-top-right-radius: 24em;
 
     z-index: 0;
+
     overflow-y: hidden !important;     
 
-    width: 100%;
+    margin-left: -50%;
+    width: 200%;
     height: 65%;
   }
 
-  .section1 .logo, .section1 button, .section1 .textContent, .section1 .downButton {
+  .section1 .logo, 
+  .section1 button, 
+  .section1 .textContent, 
+  .section1 .downButton {
     position: relative;
     display: block;
     margin: auto;

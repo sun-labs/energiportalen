@@ -1,0 +1,59 @@
+
+
+@media screen and (max-width: 500px) {
+
+  .section2{
+    position: relative;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important; 
+
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .section2 .background{
+      position: absolute;
+      top: 0%;
+      left:0;
+      background-color: #2F80ED;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+  }
+
+  .section2 .header{
+    position: absolute;
+    top: 0%;
+    left:0;
+    width: 100%;
+    height: 35%;
+    background: linear-gradient( #26AE60, #2F80ED);
+    z-index: 1
+
+  }
+
+  .section2 .textContent{
+    position: absolute;
+    display: block;
+    margin: auto;
+    z-index: 2;
+    margin-top: 35%;
+
+  }
+
+
+}
+
+@media screen and (max-width: 340px) {
+
+  .section2 .textContent{
+    position: relative;
+    display: block;
+    margin: auto;
+    z-index: 2;
+    margin-top: 25%;
+  }
+
+}
