@@ -1,6 +1,8 @@
 import React from 'react';
+import '../styles/Section.css';
 import '../styles/Section1.css';
 import '../styles/Section2.css';
+import '../styles/Section3.css';
 
 import { TYPE, SELFENCLOSING, SUBELEMENTS, CONTENT } from '../types';
 
@@ -54,7 +56,7 @@ const renderItem = (item) => {
 
 const Section = ({ subElements, className }) => {
   return (        
-    <div className={className ? className : ''}>
+    <div className={`section ${className ? className : ''}`}>
 
       {subElements ? subElements.map((item) => {
         return(renderItem(item));
