@@ -1,28 +1,29 @@
-
 @media screen and (max-width: 500px) {
 
   .section2 {
-    position: relative;
-    overflow-x: hidden !important;
-    overflow-y: hidden !important; 
+    height: 150%;
+  }
 
-    padding: 0;
-    margin: 0;
-    height: 100%;
+  .section2 .background {
+    position: absolute;
+    top: 0%;
+    left:0;
+    background-color: #2F80ED;
     width: 100%;
+    height: 50%;
+    z-index: 0;
   }
 
-  .section2 .background{
-      position: absolute;
-      top: 0%;
-      left:0;
-      background-color: #2F80ED;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
+  .section2 .bigSun {
+    z-index: 5;
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 100%;
+    padding-top: 80%;
   }
 
-  .section2 .header{
+  .section2 .header {
     position: absolute;
     top: 0%;
     left:0;
@@ -30,15 +31,13 @@
     height: 35%;
     background: linear-gradient( #26AE60, #2F80ED);
     z-index: 1
-
   }
 
-  .section2 .textContent{
+  .section2 .textContent {
     position: absolute;
     display: block;
     margin: auto;
     z-index: 2;
     margin-top: 35%;
-
   }
 }
