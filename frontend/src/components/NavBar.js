@@ -9,7 +9,7 @@ const NavBar = () => {
         <h2>sun is shining for lemons</h2>
       </div>
       <div className="sign-wrap">
-        <input type="text" name="email" placeholder="Email" />
+        <input type="email" name="email" placeholder="e-mail" />
         <input type="password" name="password" placeholder="password" />
         <button>SIGN IN</button>
       </div>
