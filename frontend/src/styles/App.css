@@ -28,21 +28,21 @@ button {
     font-size: 1.7em;
   }
 
-  .textContent {
+  .text-content {
     margin-top: 2em;
     text-align: center;
   }
 
-  .textContent h2, .textContent p {
+  .text-content h2, .text-content p {
     font-weight: lighter;
   }
   
-  .textContent h2 {
+  .text-content h2 {
     color: white;
     margin-bottom: 0.2em;
   }
 
-  .textContent p {
+  .text-content p {
     color: black;
     margin-top: 0;
     margin-left: 1em;
