@@ -24,7 +24,8 @@
     outline: none;
   }
 
-.navbar input[name="email"], .navbar input[name="password"]{
+.navbar input[name="email"], 
+.navbar input[name="password"] {
     margin-right: 2em;
     margin-top: 16px;
     background-color: white;
@@ -36,7 +37,8 @@
     outline: none;
 
 }
-  .navbar .logo-wrap , .navbar .sign-wrap {
+  .navbar .logo-wrap, 
+  .navbar .sign-wrap {
     display: inline-block;
 
   }
@@ -52,7 +54,8 @@
     width: 300px;
   }
 
-  .navbar .logo-wrap h1, .navbar .logo-wrap h2{
+  .navbar .logo-wrap h1, 
+  .navbar .logo-wrap h2{
     margin-bottom: 0px;
     margin-top: 0px;
   }
@@ -87,7 +90,9 @@
     outline: none;
   }
 
-  .navbar input[name="email"], .navbar input[name="password"] , .navbar .logo-wrap {
+  .navbar input[name="email"], 
+  .navbar input[name="password"] , 
+  .navbar .logo-wrap {
     display: none;
     outline: none;
 

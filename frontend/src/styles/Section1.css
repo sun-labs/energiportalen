@@ -20,7 +20,7 @@
 
   .section1 .logo, 
   .section1 button, 
-  .section1 .textContent, 
+  .section1 .text-content, 
   .section1 .downButton {
     position: relative;
     display: block;
