@@ -1,22 +1,17 @@
 html,
 body {
-  padding: 0;
   margin: 0;
-  height: 100%;
-  width: 100%;
+  padding: 0;
 }
+
 
 body {
   font-family: 'Seravek', sans-serif;
+  background-color: red;
 }
 
 #root {
   width: 100%;
-  height: 100%;
-}
-
-body {
-  background-color: red;
 }
 
 button {

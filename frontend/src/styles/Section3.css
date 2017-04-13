@@ -1,5 +1,6 @@
 .section3 {
   background-color: white;
+  top: 200%;
 }
 
 @media screen and (max-width: 740px) {

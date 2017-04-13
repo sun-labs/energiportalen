@@ -1,6 +1,7 @@
 
 .section1 {
     background-color: #33B5FF;
+    top: 0%;
 }
 
 @media screen and (max-width: 500px) {
