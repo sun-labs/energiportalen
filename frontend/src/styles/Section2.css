@@ -9,4 +9,20 @@
     background: linear-gradient( #26AE60, #2F80ED);
   }
 
+  .section2 .clouds {
+    z-index: 0;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    opacity: 0.25;
+    height: 250px;
+    background-image: url('../imgs/mobile-clouds-section2.png');
+    background-repeat: repeat-x;
+    background-size: 400px auto;
+    -webkit-animation-name: MOVE-CLOUDS;
+    -webkit-animation-duration: 25s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+  }
+
 }

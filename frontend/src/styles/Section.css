@@ -23,3 +23,12 @@
     z-index: 1;
     margin-top: 8em;
   }
+
+  @-webkit-keyframes MOVE-CLOUDS {
+    from {
+        background-position: 0px top;
+    }
+    to { 
+        background-position: -400px top;
+    }
+}

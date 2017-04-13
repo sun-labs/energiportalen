@@ -5,12 +5,17 @@ import { H2, IMG, BUTTON, DIV, P } from '../types';
 import logo from '../imgs/logo.png';
 import downButton from '../imgs/downButton.png';
 import bigSun from '../imgs/bigSun.png';
-import lulLogo from '../imgs/luLogo.png';
-import euLogo from '../imgs/euLogo.png';
 
 const placeholder = 'Data, right at your fingertips. Lorem Kasper Lirre Bacon. Lorem ipsum Lirre Bacon. Lorem ipsum Kasper Bacon. Lorem ipsum Kasper Lirre . Lorem ipsum Kasper Lirre Bacon. ';
 
 export const section1 = () => {
+
+  const clouds = {
+    type: DIV,
+    selfEnclosing: false,
+    className: 'clouds'
+  };
+
   const topLogo = {
     type: IMG,
     selfEnclosing: true,
@@ -58,12 +63,19 @@ export const section1 = () => {
   };
 
   return {
-    subElements: [topLogo, createAccBtn, textContent, downBtn, hill],
+    subElements: [clouds, topLogo, createAccBtn, textContent, downBtn, hill],
     className: 'section1',
   };
 }
 
 export const section2 = () => {
+
+  const clouds = {
+    type: DIV,
+    selfEnclosing: false,
+    className: 'clouds',
+  };
+
   const header = {
     type: DIV,
     selfEnclosing: false,
@@ -90,12 +102,13 @@ export const section2 = () => {
 
 
   return {
-    subElements: [header, textContent],
+    subElements: [header, clouds, textContent],
     className: 'section2',
   };
 }
 
 export const section3 = () => {
+  
   const header = {
     type: DIV,
     selfEnclosing: false,
@@ -113,7 +126,7 @@ export const section3 = () => {
   const textContent = {
     type: DIV,
     selfEnclosing: false,
-    className: 'textContent',
+    className: 'text-content',
     subElements: [
       {
         type: H2,
@@ -142,19 +155,21 @@ export const section4 = () => {
   };
 
   const lul = {
-    type: IMG,
-    selfEnclosing: true,
-    id: 'lulLogo',    
-    src: lulLogo,
-    alt: 'LUL logo',
+    type: DIV,
+    selfEnclosing: false,
+    id: 'lulLogo'
   };
 
   const eu = {
-    type: IMG,
-    selfEnclosing: true,
-    id: 'euLogo',    
-    src: euLogo,
-    alt: 'EU logo',
+    type: DIV,
+    selfEnclosing: false,
+    id: 'euLogo'
+  };
+
+  const sunlabs = {
+    type: DIV,
+    selfEnclosing: false,
+    id: 'sunlabsLogo'
   };
 
   const textContent = {
@@ -176,7 +191,7 @@ export const section4 = () => {
   };
 
   return {
-    subElements: [header, textContent, lul, eu],
+    subElements: [header, textContent, lul, eu, sunlabs],
     className: 'section4',
   };
 }
