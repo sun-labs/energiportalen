@@ -1,5 +1,6 @@
 .section4 {
   background-color: white;
+  top: 300%;
 }
 
 @media screen and (max-width: 500px) {
