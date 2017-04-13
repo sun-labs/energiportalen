@@ -1,45 +1,20 @@
-
+.section2 {
+  background-color: #2F80ED;
+  height: 100%;
+}
 
 @media screen and (max-width: 500px) {
 
-  .section2 {
-    height: 150%;
-  }
-
-  .section2 .background {
-    position: absolute;
-    top: 0%;
-    left:0;
-    background-color: #2F80ED;
-    width: 100%;
-    height: 50%;
-    z-index: 0;
-  }
-
   .section2 .bigSun {
-    z-index: 4;
-    position: relative;
+    z-index: 0;
+    position: absolute;
+    top: 290px;
     display: block;
-    margin: auto;
     width: 100%;
-    padding-top: 80%;
   }
 
   .section2 .header {
-    position: absolute;
-    top: 0%;
-    left:0;
-    width: 100%;
-    height: 35%;
     background: linear-gradient( #26AE60, #2F80ED);
-    z-index: 1
   }
 
-  .section2 .textContent {
-    position: absolute;
-    display: block;
-    margin: auto;
-    z-index: 2;
-    margin-top: 35%;
-  }
 }

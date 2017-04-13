@@ -55,14 +55,8 @@ export const section1 = () => {
     className: 'hill',
   };
 
-  const background = {
-    type: DIV,
-    selfEnclosing: false,
-    className: 'background',
-  };
-
   return {
-    subElements: [topLogo, createAccBtn, textContent, downBtn, hill, background],
+    subElements: [topLogo, createAccBtn, textContent, downBtn, hill],
     className: 'section1',
   };
 }
@@ -92,12 +86,6 @@ export const section2 = () => {
     ],
   };
 
-  const background = {
-    type: DIV,
-    selfEnclosing: false,
-    className: 'background',
-  };
-
   const sun = {
     type: IMG,
     selfEnclosing: true,
@@ -107,7 +95,7 @@ export const section2 = () => {
   };
 
   return {
-    subElements: [header, textContent, background, sun],
+    subElements: [header, textContent, sun],
     className: 'section2',
   };
 }
@@ -137,14 +125,8 @@ export const section3 = () => {
     ],
   };
 
-  const background = {
-    type: DIV,
-    selfEnclosing: false,
-    className: 'background',
-  };
-
   return {
-    subElements: [header, textContent, background],
+    subElements: [header, textContent],
     className: 'section3',
   };
 }

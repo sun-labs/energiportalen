@@ -1,30 +1,11 @@
+.section3 {
+  background-color: white;
+}
+
 @media screen and (max-width: 740px) {
-  .section3 .background {
-    position: absolute;
-    top: 0%;
-    left:0;
-    background-color: #FFFFFF;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-  }
 
   .section3 .header {
-    position: absolute;
-    top: 0%;
-    left:0;
-    width: 100%;
-    height: 40%;
-    background: linear-gradient( #ECBD33, #FFFFFF);
-    z-index: 1
-  }
-
-  .section3 .textContent {
-    position: absolute;
-    display: block;
-    margin: auto;
-    z-index: 2;
-    margin-top: 75%;
+    background: linear-gradient( #F2C94C, white);
   }
 
   .section3 .textContent h2 {
