@@ -3,6 +3,7 @@ import '../styles/Section.css';
 import '../styles/Section1.css';
 import '../styles/Section2.css';
 import '../styles/Section3.css';
+import '../styles/Section4.css'
 
 import { TYPE, SELFENCLOSING, SUBELEMENTS, CONTENT } from '../types';
 

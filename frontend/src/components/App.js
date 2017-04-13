@@ -7,7 +7,7 @@ import '../styles/App.css';
 import NavBar from './NavBar';
 import Section from './Section';
 
-import { section1, section2, section3 } from '../assets/Sections';
+import { section1, section2, section3, section4 } from '../assets/Sections';
 
 class App extends Component {
   render() {
@@ -16,7 +16,8 @@ class App extends Component {
         <NavBar/>
          <Section {...section1()} />
          <Section {...section2()} />
-         <Section {...section3()} />         
+         <Section {...section3()} />
+         <Section {...section4()} />            
       </div>
     );
   }

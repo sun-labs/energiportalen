@@ -2,13 +2,25 @@
   background-color: white;
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 500px) {
 
   .section3 .header {
-    background: linear-gradient( #F2C94C, white);
+    background: linear-gradient( #2F80ED, white);
+  }
+
+  .section3 .bigSun {
+    z-index: 0;
+    position: absolute;
+    top: 20px;
+    display: block;
+    width: 100%;
+  }
+
+  .section3 .textContent{
+    margin-top: 215px;
   }
 
   .section3 .textContent h2 {
-    color: #2D9CDB;
+    color: white;
   }
 }

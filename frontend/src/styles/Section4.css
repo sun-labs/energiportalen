@@ -1,0 +1,32 @@
+.section4 {
+  background-color: white;
+}
+
+@media screen and (max-width: 500px) {
+
+  .section4 .header {
+    background: linear-gradient( #F2C94C, white);
+  }
+
+  .section4 h2{
+    margin-top: 100px;
+    color: #2D9CDB;
+  }
+
+  #eu-logo {
+    z-index: 0;
+    position: absolute;
+    top: 150px;
+    display: block;
+    width: 100%;
+  }
+
+  #lul-logo {
+    z-index: 0;
+    position: absolute;
+    top: 300px;
+    display: block;
+    width: 100%;
+  }
+
+}
