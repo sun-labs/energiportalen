@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 
 var dbConnection = {
-  host: '130.238.95.115',
+  host: 'localhost',
   port: '8889',
   user: 'kasper',
   password: '***REMOVED***',
