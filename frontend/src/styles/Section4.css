@@ -9,25 +9,61 @@
     background: linear-gradient( #F2C94C, white);
   }
 
-  .section4 h2{
-    margin-top: 100px;
+  .section4 h2 {
+    margin-top: 2em;
     color: #2D9CDB;
   }
 
-  #eu-logo {
-    z-index: 0;
-    position: absolute;
-    top: 150px;
-    display: block;
-    width: 100%;
+  .section4 .text-content {
+    padding-bottom: 25px;
   }
 
-  #lul-logo {
+  #euLogo,
+  #lulLogo,
+  #sunlabsLogo {
     z-index: 0;
-    position: absolute;
-    top: 300px;
     display: block;
     width: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    
+  }
+
+  #euLogo {
+    background-image: url('../imgs/euLogo.png');
+    background-size: auto 90%;
+    height: 75px;
+    margin-bottom: 25px;
+  }
+
+  #lulLogo {
+    background-image: url('../imgs/luLogo.png');
+    background-size: auto 90%;
+    height: 75px;
+  }
+
+#sunlabsLogo {
+    height: 75px;
+    z-index: 1;
+    background-color: rgba(255,255,255,0.15);
+    margin: 0 auto;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    width: 90%;
+    margin: 0 auto;
+    background-image: url('../imgs/sunlabs-logo-text.png');
+    background-size: 200px auto;
+  }
+
+  #sunlabsLogo-fixed {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    height: 20px;
+    z-index: 1;
+    background-color: rgba(255,255,255,0.15);
+    margin: 0 auto;
+    background-image: url('../imgs/sunlabs-logo-text.png');
+    background-size: 75px auto;
   }
 
 }

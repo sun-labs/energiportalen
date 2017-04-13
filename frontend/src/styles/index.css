@@ -10,10 +10,6 @@ body {
   background-color: red;
 }
 
-#root {
-  width: 100%;
-}
-
 button {
   outline: none;
 }
