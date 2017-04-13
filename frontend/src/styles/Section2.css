@@ -1,6 +1,6 @@
 .section2 {
   background-color: #2F80ED;
-  height: 100%;
+  top: 100%;
 }
 
 @media screen and (max-width: 500px) {

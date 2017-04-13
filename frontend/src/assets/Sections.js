@@ -28,7 +28,7 @@ export const section1 = () => {
   const textContent = {
     type: DIV,
     selfEnclosing: false,
-    className: 'textContent',
+    className: 'text-content',
     subElements: [
       {
         type: H2,
@@ -73,7 +73,7 @@ export const section2 = () => {
   const textContent = {
     type: DIV,
     selfEnclosing: false,
-    className: 'textContent',
+    className: 'text-content',
     subElements: [
       {
         type: H2,
@@ -160,7 +160,7 @@ export const section4 = () => {
   const textContent = {
     type: DIV,
     selfEnclosing: false,
-    className: 'textContent',
+    className: 'text-content',
     subElements: [
       {
         type: H2,

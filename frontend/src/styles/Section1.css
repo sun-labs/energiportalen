@@ -1,6 +1,7 @@
 
 .section1 {
     background-color: #33B5FF;
+    top: 0%;
 }
 
 @media screen and (max-width: 500px) {
@@ -19,7 +20,7 @@
 
   .section1 .logo, 
   .section1 button, 
-  .section1 .textContent, 
+  .section1 .text-content, 
   .section1 .downButton {
     position: relative;
     display: block;
