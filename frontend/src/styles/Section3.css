@@ -1,4 +1,4 @@
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 740px) {
   .section3 .background {
     position: absolute;
     top: 0%;
@@ -14,8 +14,8 @@
     top: 0%;
     left:0;
     width: 100%;
-    height: 35%;
-    background: linear-gradient( #F2C94C, #FFFFFF);
+    height: 40%;
+    background: linear-gradient( #ECBD33, #FFFFFF);
     z-index: 1
   }
 

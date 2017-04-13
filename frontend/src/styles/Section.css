@@ -1,7 +1,5 @@
-@media screen and (max-width: 500px) {
-  /*TODO universal backgrounds div ?*/
-
   .section {
+    background-color: #33B5FF;
     position: relative;
 
     overflow-x: hidden !important;
@@ -12,4 +10,3 @@
     height: 100%;
     width: 100%;
   }
-}

@@ -1,3 +1,5 @@
+
+
 @media screen and (max-width: 500px) {
 
   .section2 {
@@ -15,7 +17,7 @@
   }
 
   .section2 .bigSun {
-    z-index: 5;
+    z-index: 4;
     position: relative;
     display: block;
     margin: auto;
