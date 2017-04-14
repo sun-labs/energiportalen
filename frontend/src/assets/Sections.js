@@ -1,5 +1,5 @@
 // TYPE IMPORTS
-import { H2, IMG, BUTTON, DIV, P } from '../types';
+import { H2, IMG, BUTTON, DIV, P, H1, INPUT} from '../types';
 
 // IMG IMPORTS
 import logo from '../imgs/logo.png';
@@ -16,18 +16,50 @@ export const section1 = () => {
     className: 'clouds'
   };
 
+  const createWrap = {
+    type: DIV,
+    selfEnclosing: false,
+    className: 'creat-wrap',
+    subElements: [
+      {
+        type: H1,
+        selfEnclosing: false,
+        content: 'SIGN UP',
+      },
+      {
+        type: H2,
+        selfEnclosing: false,
+        content: 'It\'s free and will always be',
+      },
+      {
+        // TODO - add two type so we get <input type="email" .... \> etc 
+        type: INPUT,
+        selfEnclosing: true,
+        name: 'email',
+        placeholder: 'e-mail',
+      },
+      {
+        // TODO - add two type so we get <input type="password" .... \> etc 
+        type: INPUT,
+        selfEnclosing: true,
+        name: 'password',
+        placeholder: 'password',
+      },
+      {
+      type: BUTTON,
+      selfEnclosing: false,
+      content: 'CREATE ACCOUNT',
+  },
+    ],
+  };
+
+
   const topLogo = {
     type: IMG,
     selfEnclosing: true,
     className: 'logo',    
     src: logo,
     alt: 'Sun Labs logo',
-  };
-
-  const createAccBtn = {
-    type: BUTTON,
-    selfEnclosing: false,
-    content: 'CREATE ACCOUNT',
   };
 
   const textContent = {
@@ -63,7 +95,7 @@ export const section1 = () => {
   };
 
   return {
-    subElements: [clouds, topLogo, createAccBtn, textContent, downBtn, hill],
+    subElements: [clouds, topLogo, createWrap, textContent, downBtn, hill],
     className: 'section1',
   };
 }

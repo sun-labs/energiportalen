@@ -3,11 +3,11 @@
   top: 300%;
 }
 
-@media screen and (max-width: 500px) {
-
-  .section4 .header {
+.section4 .header {
     background: linear-gradient( #F2C94C, white);
-  }
+}
+
+@media screen and (max-width: 500px) {
 
   .section4 h2 {
     margin-top: 2em;
