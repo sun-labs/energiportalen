@@ -4,8 +4,6 @@ import Section, { placeholder } from './Section.js';
 
 import '../styles/Section3.css';
 
-import bigSun from '../imgs/bigSun.png';
-
 class Section3 extends Component {
 
   render() {
