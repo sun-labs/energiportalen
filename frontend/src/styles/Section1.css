@@ -52,6 +52,10 @@
     margin-top: 25em;
   }
 
+  #mobile-btn-create-account {
+    display: none;
+  }
+
   .section1 .clouds {
       top: 60px;
       height: 250px;
@@ -97,8 +101,8 @@
     margin-top: 10px;
   }
 
-  .section1 input[name="email"], 
-  .section1 input[name="password"] {
+  .section1 input[type="email"], 
+  .section1 input[type="password"] {
       margin-top: 1em;
       background-color: white;
       border-radius: 20px;
@@ -134,8 +138,8 @@
     background-image: url('../imgs/mobile-clouds-section1.png');
   }
 
+  #mobile-btn-create-account,
   .section1 .logo, 
-  .section1 button, 
   .section1 .text-content {
     position: relative;
     display: block;
@@ -148,7 +152,7 @@
     padding-top: 100px;
   }
 
-  .section1 button {
+  #mobile-btn-create-account {
     margin-top: 2em;
     padding-left: 1em;
     padding-right: 1em;

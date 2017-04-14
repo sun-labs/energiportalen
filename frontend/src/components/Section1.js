@@ -1,27 +1,40 @@
 
-import React from 'react';
+import React, { Component } from 'react';
+import Section from './Section.js';
 
-// IMG IMPORTS
 import logo from '../imgs/logo.png';
 import downButton from '../imgs/downButton.png';
-import bigSun from '../imgs/bigSun.png';
+
+import '../styles/Section1.css';
 
 const placeholder = 'Data, right at your fingertips. Lorem Kasper Lirre Bacon. Lorem ipsum Lirre Bacon. Lorem ipsum Kasper Bacon. Lorem ipsum Kasper Lirre . Lorem ipsum Kasper Lirre Bacon. ';
 
-export const section1 = () => {
+class Section1 extends Component {
 
-  return(
-    <div className="section section1">
-      <div className="clouds"></div>
-      <img className="logo" src={{ logo }} alt="Sun Labs Logo" />
-      <button>CREATE ACCOUNT</button>
-      <div className="text-content">
-        <h2>What is energiportalen?</h2>
-        <p>{{ placeholder }}</p>  
-      </div>
-      <img className="downButton" src={{ downButton }} alt="Down Button" />
-      <div className="hill"></div>
-    </div>
-  );
+  render() {
+    return(
+      <Section className="section1">
+        <div className="clouds"></div>
+        <img className="logo" src={ logo } alt="Sun Labs Logo" />
+        <div className="creat-wrap">
+          <h1>SIGN UP</h1>
+          <h2>It's free and will always be</h2>
+          <input type="email" placeholder="e-mail" name="email" />
+          <input type="password" placeholder="password" name="password" />
+          <input type="password" placeholder="verify password" name="password-verify" />
+          <button>CREATE ACCOUNT</button>
+        </div>
+        <button id="mobile-btn-create-account">CREATE ACCOUNT</button>
+        <div className="text-content">
+          <h2>What is energiportalen?</h2>
+          <p>{ placeholder }</p>  
+        </div>
+        <img className="downButton" src={ downButton } alt="Down Button" />
+        <div className="hill"></div>
+      </Section>
+    );
+  }
 
 }
+
+export default Section1;
