@@ -15,11 +15,11 @@
     height: 250px;
     background-image: url('../imgs/mobile-clouds-section2.png');
     background-repeat: repeat-x;
-    background-size: 400px auto;
-    -webkit-animation-name: MOVE-CLOUDS;
-    -webkit-animation-duration: 25s;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-iteration-count: infinite;
+    background-size: 300px auto;
+    animation-name: MOVE-CLOUDS-2;
+    animation-duration: 15s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
 @media screen and (min-width: 501px) {
@@ -34,7 +34,7 @@
 
 
   .section2 .clouds {
-    top: 65%;
+    top: 50%;
     height: 250px;
   }
 
