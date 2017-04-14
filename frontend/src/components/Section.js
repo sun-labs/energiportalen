@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import '../styles/Section.css';
 
+const placeholder = 'Data, right at your fingertips. Lorem Kasper Lirre Bacon. Lorem ipsum Lirre Bacon. Lorem ipsum Kasper Bacon. Lorem ipsum Kasper Lirre . Lorem ipsum Kasper Lirre Bacon. ';
+
 class Section extends Component {
 
   render() {
@@ -17,4 +19,5 @@ class Section extends Component {
 
 }
 
+export { placeholder };
 export default Section;
