@@ -24,11 +24,20 @@
     margin-top: 8em;
   }
 
-  @-webkit-keyframes MOVE-CLOUDS {
+  @keyframes MOVE-CLOUDS {
     from {
         background-position: 0px top;
     }
     to { 
         background-position: -400px top;
+    }
+  }
+
+  @keyframes MOVE-CLOUDS-2 {
+    from {
+        background-position: 0px top;
+    }
+    to { 
+        background-position: -300px top;
     }
   }
