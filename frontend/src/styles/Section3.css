@@ -1,44 +1,20 @@
 .section3 {
-  background-color: #ffffff;
   top: 200%;
-}
-.section3 .header {
-    background: linear-gradient( #2F80ED, white);
-}
-
-.section3 .bigSun {
-    z-index: 0;
-    position: absolute;
-    display: block;
+  background-image: url('../imgs/bigSun.png');
+  background-position: top center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-color: #2F80ED;
 }
 
 @media screen and (min-width: 501px) {
-
-  .section3 .bigSun{
-    top: 0px;
-    width:100%;
+  .section3 .text-content {
+    margin-top: 300px;
   }
-
-  .section3 .text-content{
-    margin-top: 500px;
-  }
-
 }
 
-
-
 @media screen and (max-width: 500px) {
-
-  .section3 .bigSun {
-    top: 20px;
-    width: 100%;
-  }
-
-  .section3 .text-content{
+  .section3 .text-content {
     margin-top: 215px;
-  }
-
-  .section3 .text-content h2 {
-    color: white;
   }
 }

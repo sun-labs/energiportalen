@@ -20,7 +20,7 @@
 
 .navbar input[name="email"], 
 .navbar input[name="password"] {
-    margin-right: 2em;
+    margin-right: 1em;
     background-color: white;
     border-radius: 20px;
     border: none;
