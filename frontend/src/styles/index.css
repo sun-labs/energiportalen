@@ -13,3 +13,16 @@ body {
 button {
   outline: none;
 }
+
+button:hover {
+  cursor: pointer;
+}
+
+button:active {
+  box-shadow: none;
+}
+
+input {
+  font-size: 16px;
+  font-weight: lighter;
+}
