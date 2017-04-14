@@ -29,25 +29,67 @@
     -webkit-animation-iteration-count: infinite;
 }
 
+
 @media screen and (min-width: 501px) {
 
   .section1 .clouds {
-    top: 60px;
-    height: 250px;
-    background-image: url('../imgs/mobile-clouds-section1.png');
-  }
+      top: 60px;
+      height: 250px;
+      background-image: url('../imgs/mobile-clouds-section1.png');
+    }
 
   .section1 .hill {
-    top: 250px;
-    left: -65%;
-    border-top-left-radius: 100%;
-    border-top-right-radius: 100%;
+      top: 250px;
+      left: -65%;
+      border-top-left-radius: 100%;
+      border-top-right-radius: 100%;
   }
 
   .section1 .logo {
-    position: absolute;
-    top: 170px;
-    left: 15%;
+      position: absolute;
+      top: 170px;
+      left: 15%;
+  }
+
+  .section1 .downButton {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      z-index: 1;
+      bottom: 4em;
+  }
+
+  .section1 .creat-wrap{
+    margin-right: 5em;
+    margin-top: 15em;
+    position: relative;
+    float: right;
+    z-index: 1;
+  }
+
+  .section1 button{
+    margin-top: 10px;
+  }
+
+  .section1 input[name="email"], 
+  .section1 input[name="password"] {
+      margin-top: 1em;
+      background-color: white;
+      border-radius: 20px;
+      border: none;
+      padding: 10px 15px;
+      width: 230px;
+      display: block;
+      outline: none;
+  }
+
+  .section1 h1, .section1 h2{
+      margin-top: 0px;
+      margin-bottom: 10px;
+      font-weight: lighter;
+      color: white;
+
   }
 
 }
@@ -86,13 +128,21 @@
     padding-left: 1em;
     padding-right: 1em;
     width: 80%;
+
   }
 
   .section1 .downButton {
     position: absolute;
-    bottom: 2em;
     left: 0;
     right: 0;
     margin: 0 auto;
+    z-index: 1;
+    bottom: 2em;
+  }
+
+  .section1 .creat-wrap h1, 
+  .section1 .creat-wrap h2,
+  .section1 .creat-wrap input{
+    display: none;
   }
 }

@@ -3,16 +3,13 @@
   top: 100%;
 }
 
-@media screen and (max-width: 500px) {
-
-  .section2 .header {
+.section2 .header {
     background: linear-gradient( #26AE60, #2F80ED);
-  }
+}
 
-  .section2 .clouds {
+.section2 .clouds {
     z-index: 0;
     position: absolute;
-    top: 50%;
     width: 100%;
     opacity: 0.25;
     height: 250px;
@@ -23,6 +20,22 @@
     -webkit-animation-duration: 25s;
     -webkit-animation-timing-function: linear;
     -webkit-animation-iteration-count: infinite;
+}
+
+@media screen and (min-width: 501px) {
+  
+  .section2 .clouds{
+  top: 45%;
+  height: 400px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+
+
+  .section2 .clouds {
+    top: 65%;
+    height: 250px;
   }
 
 }
