@@ -15,7 +15,6 @@ class Section3 extends Component {
           <h2>What is energiportalen?</h2>
           <p>{ placeholder }</p>  
         </div>
-        <img className="bigSun" src={ bigSun } alt="Big Sun" />
       </Section>
     );
   }
