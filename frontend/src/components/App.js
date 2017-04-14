@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 
 // STYLE IMPORTS
 import '../styles/App.css';
-import '../styles/Section2.css';
-import '../styles/Section3.css';
-import '../styles/Section4.css';
 
 // COMPONENT IMPORTS
 import NavBar from './NavBar';
