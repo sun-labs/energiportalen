@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class FormGeneric extends Component {
+const FormGeneric = ({ className, onChange, onSubmit, children }) => {
 
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(e);
   }
 
-  handleChange(e) {
+  const handleChange = (e) => {
     console.log(e.target.value);
   }
 
@@ -19,17 +19,17 @@ class FormGeneric extends Component {
   *   converts to 
   *   <input type="text" onchange="handleChange" />
   */
-  renderChildren(children) {
+  const renderChildren = (children) => {
     return React.Children.map(children, (child) => {
       // does the current element contain an array of subelements? recursive call.
       if(child.props && child.props.children && typeof child.props.children === 'object') {
         return React.cloneElement(child, {
-          children: this.renderChildren(child.props.children)
+          children: renderChildren(child.props.children)
         });
       // is the element of type input? add onChange listener
       } else if(child.type === 'input') {
         return React.cloneElement(child, {
-          onChange: this.props.onChange ? this.props.onChange : this.handleChange
+          onChange: onChange ? onChange : handleChange
         });
       // nothing, just return without modifying
       } else {
@@ -38,16 +38,11 @@ class FormGeneric extends Component {
     });
   }
 
-  render() {
-    const className = this.props.className ? this.props.className : undefined;
-    const handleSubmit = this.props.onSubmit ? this.props.onSubmit : this.handleSubmit;
-    return(
-        <form className={ className } onSubmit={ handleSubmit }>
-          { this.renderChildren(this.props.children) }
-        </form>
-    );
-  }
-
+  return(
+    <form className={ className ? className : '' } onSubmit={ onSubmit ? onSubmit : handleSubmit }>
+      { children ? renderChildren(children) : '' }
+    </form>
+  );
 }
 
 export default FormGeneric;

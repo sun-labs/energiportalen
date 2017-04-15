@@ -1,3 +1,10 @@
+/* SECTIONS */
+.sections {
+  margin: 0;
+  padding: 0;
+}
+
+/* SECTION 1 */
 
 .section1 {
     background-color: #33B5FF;
@@ -169,4 +176,177 @@
   .section1 .creat-wrap input{
     display: none;
   }
+}
+
+/* SECTION 2 */
+
+.section2 {
+  background-color: #2F80ED;
+  top: 100%;
+}
+
+.section2 .header {
+    background: linear-gradient( #26AE60, #2F80ED);
+}
+
+.section2 .clouds {
+    z-index: 0;
+    position: absolute;
+    width: 100%;
+    opacity: 0.25;
+    height: 250px;
+    background-image: url('../imgs/mobile-clouds-section2.png');
+    background-repeat: repeat-x;
+    background-size: 300px auto;
+    animation-name: MOVE-CLOUDS-2;
+    animation-duration: 15s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@media screen and (min-width: 501px) {
+  .section2 .text-content {
+    margin-top: 5em;
+  }
+  .section2 .clouds{
+    top: 45%;
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .section2 .clouds {
+    top: 50%;
+    height: 250px;
+  }
+}
+
+/* SECTION 3 */
+
+.section3 {
+  top: 200%;
+  background-image: url('../imgs/bigSun.png');
+  background-position: top center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-color: #2F80ED;
+}
+
+@media screen and (min-width: 501px) {
+  .section3 .text-content {
+    margin-top: 300px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .section3 .text-content {
+    margin-top: 215px;
+  }
+}
+
+/* SECTION 4 */
+
+.section4 {
+  background-color: white;
+  top: 300%;
+}
+
+.section4 .header {
+    background: linear-gradient( #F2C94C, white);
+}
+
+.section4 h2 {
+  color: #2D9CDB;
+}
+
+#euLogo {
+  background-image: url('../imgs/euLogo.png');
+}
+
+#lulLogo {
+  background-image: url('../imgs/luLogo.png');
+}
+
+#sunlabsLogo {
+  background-image: url('../imgs/sunlabs-logo-black-text.png');
+}
+
+#euLogo,
+#lulLogo,
+#sunlabsLogo {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 501px) {
+
+  .section4 .text-content {
+    padding-bottom: 2.5em;
+  }
+
+  #euLogo {
+    background-size: auto 90%;
+    height: 75px;
+    margin-bottom: 25px;
+  }
+
+  #lulLogo {
+    background-size: auto 90%;
+    height: 75px;
+  }
+
+#sunlabsLogo {
+    height: 75px;
+    margin: 0 auto;
+    width: 100%;
+    background-size: 200px auto;
+  }
+}
+
+@media screen and (max-width: 500px) {
+
+  .section4 h2 {
+    margin-top: 2em;
+  }
+
+  .section4 .text-content {
+    padding-bottom: 25px;
+  }
+
+  #euLogo {
+    background-size: auto 90%;
+    height: 75px;
+    margin-bottom: 25px;
+  }
+
+  #lulLogo {
+    background-size: auto 90%;
+    height: 75px;
+  }
+
+#sunlabsLogo {
+    height: 75px;
+    z-index: 1;
+    margin: 0 auto;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    width: 90%;
+    margin: 0 auto;
+    background-size: 200px auto;
+  }
+
+  #sunlabsLogo-fixed {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    height: 20px;
+    z-index: 1;
+    background-color: rgba(255,255,255,0.15);
+    margin: 0 auto;
+    background-size: 75px auto;
+  }
+
 }
