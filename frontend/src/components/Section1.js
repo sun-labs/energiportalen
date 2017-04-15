@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
-import Section, { placeholder, title } from './Section.js';
+import Section from './Section';
+import TextContent from './TextContent';
 
 import logo from '../imgs/logo.png';
 import downButton from '../imgs/downButton.png';
@@ -23,10 +24,7 @@ class Section1 extends Component {
           <button>CREATE ACCOUNT</button>
         </form>
         <button id="mobile-btn-create-account">CREATE ACCOUNT</button>
-        <div className="text-content">
-          <h2>{ title }</h2>
-          <p>{ placeholder }</p>  
-        </div>
+        <TextContent />
         <img className="downButton" src={ downButton } alt="Down Button" />
         <div className="hill"></div>
       </Section>
