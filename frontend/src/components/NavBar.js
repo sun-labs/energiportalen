@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FormAuth from './FormAuth';
 
 import '../styles/NavBar.css';
 
@@ -12,7 +13,7 @@ class NavBar extends Component {
           <h2>solar energy beautifully visualised</h2>
         </div>
         <button id="mobile-btn-sign">SIGN IN</button>
-        <form className="sign-wrap" action="#" method="GET">
+        <FormAuth className="sign-wrap">
           <div className="placeholder-wrap">
             <p>e-mail</p>
             <input type="email" name="email" />
@@ -22,7 +23,7 @@ class NavBar extends Component {
             <input type="password" name="password" />
           </div>
           <button>SIGN IN</button>
-        </form>
+        </FormAuth>
       </div>
     )
   }
