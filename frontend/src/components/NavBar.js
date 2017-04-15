@@ -15,16 +15,16 @@ const NavBar = () => {
       <FormAuth className="sign-wrap">
         <div className="placeholder-wrap">
           <p>e-mail</p>
-          <input type="email" name="email" />
+          <input type="email" name="email" tabIndex="1"/>
         </div>
         <div className="placeholder-wrap">
           <p>password <a href={ API_FORGOT_PASSWORD }>forgot?</a></p>
-          <input type="password" name="password" />
+          <input type="password" name="password" tabIndex="2"/>
         </div>
-        <button>SIGN IN</button>
+        <button tabIndex="3">SIGN IN</button>
       </FormAuth>
     </div>
-  )
+  );
 }
 
 export default NavBar;

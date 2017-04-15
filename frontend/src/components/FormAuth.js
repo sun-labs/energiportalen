@@ -1,17 +1,16 @@
 import React from 'react';
 import { API_AUTH } from '../assets/APIRoutes';
+import FormGeneric from './FormGeneric';
 
 const FormAuth = ({ className, children }) => {
 
   const handleSubmit = (e) => {
-    // TODO send ajax request to backend
     e.preventDefault();
-    console.log(API_AUTH);
+    console.log(`[AUTH] ${API_AUTH}`);
   }
 
   const handleChange = (e) => {
-    // TODO store in state
-    console.log(e.target.value);
+    console.log(`[AUTH][${e.target.name.toUpperCase()}] ${e.target.value}`);
   }
 
   /*
@@ -42,9 +41,9 @@ const FormAuth = ({ className, children }) => {
   }
 
   return (
-    <form className={ className ? className : '' } onSubmit={ handleSubmit }>
+    <FormGeneric className={ className ? className : '' } onSubmit={ handleSubmit } onChange={ handleChange }>
       { children ? renderChildren(children) : '' }
-    </form>
+    </FormGeneric>
   );
 }
 

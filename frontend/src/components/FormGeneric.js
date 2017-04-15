@@ -1,17 +1,14 @@
 import React from 'react';
-import { API_SIGNUP } from '../assets/APIRoutes';
-import FormGeneric from './FormGeneric';
 
-const FormSignUp = ({ className, children }) => {
+const FormGeneric = ({ className, onChange, onSubmit, children }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`[SIGN] ${API_SIGNUP}`);
+    console.log(e);
   }
 
   const handleChange = (e) => {
-    // TODO store in state
-    console.log(`[SIGN][${e.target.name.toUpperCase()}] ${e.target.value}`);
+    console.log(e.target.value);
   }
 
   /*
@@ -27,12 +24,12 @@ const FormSignUp = ({ className, children }) => {
       // does the current element contain an array of subelements? recursive call.
       if(child.props && child.props.children && typeof child.props.children === 'object') {
         return React.cloneElement(child, {
-          children: this.renderChildren(child.props.children)
+          children: renderChildren(child.props.children)
         });
       // is the element of type input? add onChange listener
       } else if(child.type === 'input') {
         return React.cloneElement(child, {
-          onChange: handleChange
+          onChange: onChange ? onChange : handleChange
         });
       // nothing, just return without modifying
       } else {
@@ -41,12 +38,11 @@ const FormSignUp = ({ className, children }) => {
     });
   }
 
-  return (
-    <FormGeneric className={ className ? className : '' } onSubmit={ handleSubmit } onChange={ handleChange }>
-      { children ? children : '' }
-    </FormGeneric>
+  return(
+    <form className={ className ? className : '' } onSubmit={ onSubmit ? onSubmit : handleSubmit }>
+      { children ? renderChildren(children) : '' }
+    </form>
   );
 }
 
-export default FormSignUp;
-
+export default FormGeneric;
