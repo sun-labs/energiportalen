@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import Section, { placeholder } from './Section.js';
+import Section, { placeholder, title } from './Section.js';
 
 import '../styles/Section2.css';
 
@@ -11,7 +11,7 @@ class Section2 extends Component {
       <Section className="section2">
         <div className="clouds"></div>
         <div className="text-content">
-          <h2>What is energiportalen?</h2>
+          <h2>{ title }</h2>
           <p>{ placeholder }</p>  
         </div>
       </Section>

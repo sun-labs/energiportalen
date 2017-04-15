@@ -1,3 +1,17 @@
+/*
+* APP SPECIFIC CSS
+*/
+
+body {
+  font-family: 'Seravek', sans-serif;
+  background-color: red;
+}
+
+input {
+  font-size: 16px;
+  font-weight: lighter;
+}
+
 .App {
   padding: 0;
   margin: 0;
@@ -5,14 +19,23 @@
   overflow-x: hidden !important; 
 }
 
+#logo {
+  background-image: url('../imgs/sunlabs-logo-white-text.png');
+  background-repeat: no-repeat;
+}
+
 button {
-  border: none;
-  padding: 0;
-  margin: 0;
-  font: inherit;
   font-weight: bold;
   font-size: 1.5em;
-  outline: none;
+}
+
+input[type="email"], 
+input[type="password"] {
+    background-color: white;
+    border-radius: 20px;
+    border: none;
+    padding: 10px 15px;
+    width: 175px;
 }
 
 .placeholder-wrap {
@@ -23,7 +46,7 @@ button {
 .placeholder-wrap p {
   opacity: 0.9;
   font-size: 0.7em;
-  margin: 0 0 0.5em 0;
+  margin: 0 0 0.25em 0;
 }
 
 .placeholder-wrap a {
@@ -36,7 +59,7 @@ button {
     background-color: #F2C94C;
     font-size: 1.7em;
     border-radius: 20px;
-    padding: 10px 20px;
+    padding: 10px 20px !important;
     box-shadow: 0px 5px 10px rgba(0,0,0,0.15);
   }
 }
@@ -48,7 +71,6 @@ button {
     border-radius: 3.125em;
     height: 2.5em;
     width: 8em;
-
     font-size: 1.7em;
   }
 }

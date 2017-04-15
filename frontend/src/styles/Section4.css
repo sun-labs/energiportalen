@@ -20,7 +20,7 @@
 }
 
 #sunlabsLogo {
-  background-image: url('../imgs/sunlabs-logo-text.png');
+  background-image: url('../imgs/sunlabs-logo-black-text.png');
 }
 
 #euLogo,
@@ -98,7 +98,6 @@
     z-index: 1;
     background-color: rgba(255,255,255,0.15);
     margin: 0 auto;
-    background-image: url('../imgs/sunlabs-logo-text.png');
     background-size: 75px auto;
   }
 

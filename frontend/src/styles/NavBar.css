@@ -1,39 +1,71 @@
-@media screen and (min-width: 501px){
-
 .navbar {
-    margin: 0;
+  z-index: 100;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.logo-wrap {
+  user-select: none;
+}
+
+.logo-wrap h2 {
+  font-size: 0.9em;
+  font-weight: lighter;
+}
+
+#logo {
+  background-position: left 10px;
+  height: 35px;
+  background-size: 150px auto;
+  margin-bottom: 1px;
+}
+
+/* Inbetween mobile and desktop */
+@media screen and (min-width: 501px) and (max-width: 850px) {
+  .navbar {
+    background: linear-gradient(rgba(0,0,0,0.25), transparent) !important;
+  }
+  #mobile-btn-sign {
+    display: block !important;
+    float: right;
+    background-color: #333333;
+    color: #F2C94C;
+  }
+  .navbar .logo-wrap h2 {
+    color: white !important;
+  }
+  .navbar .sign-wrap {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 501px) {
+
+  .navbar {
+    box-sizing: border-box;
     width: 100%;
     padding: 1em;
-    position: fixed;
-    box-sizing: border-box;
-    left: 0;
-    top: 0;
-    z-index: 100;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-}
+  }
 
+  #mobile-btn-sign {
+    display: none;
+  }
 
-.navbar button {
+  .navbar button {
     display: inline-block;
-}
+  }
 
-.navbar input[name="email"], 
-.navbar input[name="password"] {
+  .navbar .placeholder-wrap {
     margin-right: 1em;
-    background-color: white;
-    border-radius: 20px;
-    border: none;
-    padding: 10px 15px;
-    width: 175px;
-    display: inline-block;
-    outline: none;
-}
+  }
 
   .navbar .logo-wrap, 
   .navbar .sign-wrap {
     display: inline-block;
-
   }
 
   .navbar .sign-wrap{
@@ -51,8 +83,6 @@
   }
 
   .navbar .logo-wrap h2{
-    font-weight: lighter;
-    font-size: 1em;
     color: #CFCFCF;
   }
 
@@ -66,13 +96,9 @@
 
 @media screen and (max-width: 500px) {
   .navbar {
-    margin: 0;
     padding: 0;
-    width: 100%;
-    position: fixed;
-    z-index: 10;
   }
-  .navbar button {
+  #mobile-btn-sign {
     float: right;
     margin-right: -2em;
     margin-top: 1em;
@@ -80,11 +106,9 @@
     outline: none;
   }
 
-  .navbar input[name="email"], 
-  .navbar input[name="password"] , 
+  .navbar .sign-wrap,
   .navbar .logo-wrap {
     display: none;
-    outline: none;
-
   }
+
 }

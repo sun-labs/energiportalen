@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import Section, { placeholder } from './Section.js';
+import Section, { placeholder, title } from './Section.js';
 
 import logo from '../imgs/logo.png';
 import downButton from '../imgs/downButton.png';
@@ -24,7 +24,7 @@ class Section1 extends Component {
         </form>
         <button id="mobile-btn-create-account">CREATE ACCOUNT</button>
         <div className="text-content">
-          <h2>What is energiportalen?</h2>
+          <h2>{ title }</h2>
           <p>{ placeholder }</p>  
         </div>
         <img className="downButton" src={ downButton } alt="Down Button" />

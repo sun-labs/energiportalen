@@ -8,17 +8,18 @@ class NavBar extends Component {
     return (
       <div className="navbar">
         <div className="logo-wrap">
-          <h1>ENERGIPORTALEN.</h1>
-          <h2>sun is shining for lemons</h2>
+          <div id="logo"></div>
+          <h2>solar energy beautifully visualised</h2>
         </div>
-        <form action="#" method="GET" className="sign-wrap">
+        <button id="mobile-btn-sign">SIGN IN</button>
+        <form className="sign-wrap" action="#" method="GET">
           <div className="placeholder-wrap">
             <p>e-mail</p>
-            <input type="email" name="email" placeholder="e-mail" />
+            <input type="email" name="email" />
           </div>
           <div className="placeholder-wrap">
             <p>password <a href="#">forgot?</a></p>
-            <input type="password" name="password" placeholder="password" />
+            <input type="password" name="password" />
           </div>
           <button>SIGN IN</button>
         </form>

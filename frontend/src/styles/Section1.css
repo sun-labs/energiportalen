@@ -29,6 +29,17 @@
     animation-iteration-count: infinite;
 }
 
+/* Inbetween mobile and desktop */
+@media screen and (min-width: 501px) and (max-width: 850px) {
+  .section1 .creat-wrap {
+    margin-right: 2em !important;
+  }
+  .section1 .logo {
+    top: 170px !important;
+    width: auto !important;
+  }
+}
+
 @media screen and (max-height: 549px) {
   .section1 .downButton {
     display: none !important;
@@ -101,16 +112,10 @@
     margin-top: 10px;
   }
 
-  .section1 input[type="email"], 
-  .section1 input[type="password"] {
+  .creat-wrap input {
       margin-top: 1em;
-      background-color: white;
-      border-radius: 20px;
-      border: none;
-      padding: 10px 15px;
       width: 230px;
       display: block;
-      outline: none;
   }
 
   .section1 h1, 
@@ -119,7 +124,6 @@
       margin-bottom: 10px;
       font-weight: lighter;
       color: white;
-
   }
 
 }
