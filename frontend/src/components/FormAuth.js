@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { API_AUTH } from '../assets/APIRoutes';
 
-class FormAuth extends Component {
+const FormAuth = ({ className, children }) => {
 
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     // TODO send ajax request to backend
     e.preventDefault();
     console.log(API_AUTH);
   }
 
-  handleChange(e) {
+  const handleChange = (e) => {
     // TODO store in state
     console.log(e.target.value);
   }
@@ -22,17 +22,17 @@ class FormAuth extends Component {
   *   converts to 
   *   <input type="text" onchange="handleChange" />
   */
-  renderChildren(children) {
+  const renderChildren = (children) => {
     return React.Children.map(children, (child) => {
       // does the current element contain an array of subelements? recursive call.
       if(child.props && child.props.children && typeof child.props.children === 'object') {
         return React.cloneElement(child, {
-          children: this.renderChildren(child.props.children)
+          children: renderChildren(child.props.children)
         });
       // is the element of type input? add onChange listener
       } else if(child.type === 'input') {
         return React.cloneElement(child, {
-          onChange: this.handleChange
+          onChange: handleChange
         });
       // nothing, just return without modifying
       } else {
@@ -41,15 +41,11 @@ class FormAuth extends Component {
     });
   }
 
-  render() {
-    const className = this.props.className ? this.props.className : undefined;
-    return(
-        <form className={ className } onSubmit={ this.handleSubmit }>
-          { this.renderChildren(this.props.children) }
-        </form>
-    );
-  }
-
+  return (
+    <form className={ className ? className : '' } onSubmit={ handleSubmit }>
+      { children ? renderChildren(children) : '' }
+    </form>
+  );
 }
 
 export default FormAuth;

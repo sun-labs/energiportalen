@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { API_SIGNUP } from '../assets/APIRoutes';
 
-class FormSignUp extends Component {
+const FormSignUp = ({ className, children }) => {
 
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     // TODO send ajax request to backend
     e.preventDefault();
     console.log(API_SIGNUP);
   }
 
-  handleChange(e) {
+  const handleChange = (e) => {
     // TODO store in state
     console.log(e.target.value);
   }
@@ -22,7 +22,7 @@ class FormSignUp extends Component {
   *   converts to 
   *   <input type="text" onchange="handleChange" />
   */
-  renderChildren(children) {
+  const renderChildren = (children) => {
     return React.Children.map(children, (child) => {
       // does the current element contain an array of subelements? recursive call.
       if(child.props && child.props.children && typeof child.props.children === 'object') {
@@ -32,7 +32,7 @@ class FormSignUp extends Component {
       // is the element of type input? add onChange listener
       } else if(child.type === 'input') {
         return React.cloneElement(child, {
-          onChange: this.handleChange
+          onChange: handleChange
         });
       // nothing, just return without modifying
       } else {
@@ -41,14 +41,11 @@ class FormSignUp extends Component {
     });
   }
 
-  render() {
-    const className = this.props.className ? this.props.className : undefined;
-    return(
-      <form className={ className } onSubmit={ this.handleSubmit }>
-        { this.renderChildren(this.props.children) }
-      </form>
-    );
-  }
+  return (
+    <form className={ className ? className : '' } onSubmit={ handleSubmit }>
+      { children ? renderChildren(children) : '' }
+    </form>
+  );
 
 }
 
