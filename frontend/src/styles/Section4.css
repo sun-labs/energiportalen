@@ -26,7 +26,8 @@
 #euLogo,
 #lulLogo,
 #sunlabsLogo {
-  z-index: 0;
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
   background-position: center center;

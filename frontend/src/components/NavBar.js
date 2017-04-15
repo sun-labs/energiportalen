@@ -11,11 +11,17 @@ class NavBar extends Component {
           <h1>ENERGIPORTALEN.</h1>
           <h2>sun is shining for lemons</h2>
         </div>
-        <div className="sign-wrap">
-          <input type="email" name="email" placeholder="e-mail" />
-          <input type="password" name="password" placeholder="password" />
+        <form action="#" method="GET" className="sign-wrap">
+          <div className="placeholder-wrap">
+            <p>e-mail</p>
+            <input type="email" name="email" placeholder="e-mail" />
+          </div>
+          <div className="placeholder-wrap">
+            <p>password <a href="#">forgot?</a></p>
+            <input type="password" name="password" placeholder="password" />
+          </div>
           <button>SIGN IN</button>
-        </div>
+        </form>
       </div>
     )
   }

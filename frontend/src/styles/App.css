@@ -15,33 +15,22 @@ button {
   outline: none;
 }
 
-  .text-content {
-    text-align: center;
-    margin: 0 auto;
-  }
+.placeholder-wrap {
+  display: inline-block;
+  font-weight: lighter;
+}
 
-  .text-content h2, 
-  .text-content p {
-    font-weight: lighter;
-  }
-  
-  .text-content h2 {
-    color: white;
-    margin-bottom: 0.2em;
-  }
+.placeholder-wrap p {
+  opacity: 0.9;
+  font-size: 0.7em;
+  margin: 0 0 0.5em 0;
+}
 
-  .text-content p {
-    color: black;
-    margin-top: 0;
-    margin-left: 1em;
-    margin-right: 1em;
-  }
+.placeholder-wrap a {
+  color: #F2C94C;
+}
 
 @media screen and (min-width: 501px) {
-  .text-content {
-    margin: 0 auto;
-    width: 500px;
-  }
   button {
     color: #333333;
     background-color: #F2C94C;
@@ -61,27 +50,6 @@ button {
     width: 8em;
 
     font-size: 1.7em;
-  }
-
-  .text-content {
-    margin-top: 2em;
-    text-align: center;
-  }
-
-  .text-content h2, .text-content p {
-    font-weight: lighter;
-  }
-  
-  .text-content h2 {
-    color: white;
-    margin-bottom: 0.2em;
-  }
-
-  .text-content p {
-    color: black;
-    margin-top: 0;
-    margin-left: 1em;
-    margin-right: 1em;
   }
 }
 
