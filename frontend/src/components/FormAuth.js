@@ -5,6 +5,7 @@ class FormAuth extends Component {
 
   handleSubmit(e) {
     // TODO send ajax request to backend
+    e.preventDefault();
     console.log(API_AUTH);
   }
 

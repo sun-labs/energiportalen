@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FormAuth from './FormAuth';
+import { API_FORGOT_PASSWORD } from '../assets/APIRoutes.js';
 
 import '../styles/NavBar.css';
 
@@ -19,7 +20,7 @@ class NavBar extends Component {
             <input type="email" name="email" />
           </div>
           <div className="placeholder-wrap">
-            <p>password <a href="#">forgot?</a></p>
+            <p>password <a href={ API_FORGOT_PASSWORD }>forgot?</a></p>
             <input type="password" name="password" />
           </div>
           <button>SIGN IN</button>
