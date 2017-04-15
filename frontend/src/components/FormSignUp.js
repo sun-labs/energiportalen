@@ -5,7 +5,6 @@ import FormGeneric from './FormGeneric';
 class FormSignUp extends Component {
 
   handleSubmit(e) {
-    // TODO send ajax request to backend
     e.preventDefault();
     console.log(`[SIGN] ${API_SIGNUP}`);
   }
