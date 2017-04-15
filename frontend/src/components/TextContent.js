@@ -1,5 +1,5 @@
 import React from 'react';
-import { ph_title, ph_body } from './Section';
+import { ph_title, ph_body } from './Sections';
 
 import '../styles/Section.css';
 

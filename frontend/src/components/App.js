@@ -7,20 +7,11 @@ import '../styles/App.css';
 import NavBar from './NavBar';
 import Sections from './Sections';
 
-// import Section1 from './Section1';
-// import Section2 from './Section2';
-// import Section3 from './Section3';
-// import Section4 from './Section4';
-
 const App = () => {
   return (
     <div className="App">
       <NavBar/>
       <Sections/>
-      {/*<Section1 />
-      <Section2 />
-      <Section3 />
-      <Section4 />*/}
     </div>
   );
 }
