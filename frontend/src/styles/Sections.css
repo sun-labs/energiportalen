@@ -213,7 +213,7 @@
 
 @media screen and (min-width: 501px) {
   .section2 .text-content {
-    margin-top: 5em;
+    margin-top: 10em;
   }
   .section2 .clouds{
     top: 45%;
@@ -243,15 +243,20 @@
   background-color: #2F80ED;
 }
 
+.section3 .text-content {
+  position: absolute;
+}
+
 @media screen and (min-width: 501px) {
   .section3 .text-content {
-    margin-top: 300px;
+    bottom: 2em;
+    left: 12.5%;
   }
 }
 
 @media screen and (max-width: 500px) {
   .section3 .text-content {
-    margin-top: 215px;
+    top: 8em;
   }
 }
 
