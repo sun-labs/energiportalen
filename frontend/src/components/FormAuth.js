@@ -1,50 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
+
 import { API_AUTH } from '../assets/APIRoutes';
 import FormGeneric from './FormGeneric';
 
-const FormAuth = ({ className, children }) => {
+class FormAuth extends Component {
 
-  const handleSubmit = (e) => {
+  constructor() {
+    super();
+    this.state = {
+      email: '',
+      password: ''
+    };
+  }
+
+  handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`[AUTH] ${API_AUTH}`);
-  }
-
-  const handleChange = (e) => {
-    console.log(`[AUTH][${e.target.name.toUpperCase()}] ${e.target.value}`);
-  }
-
-  /*
-  * Bind each input-child passed into this component to the
-  *  function that handles changes and stores state.
-  * Ex: 
-  *   <input type="text" /> 
-  *   converts to 
-  *   <input type="text" onchange="handleChange" />
-  */
-  const renderChildren = (children) => {
-    return React.Children.map(children, (child) => {
-      // does the current element contain an array of subelements? recursive call.
-      if(child.props && child.props.children && typeof child.props.children === 'object') {
-        return React.cloneElement(child, {
-          children: renderChildren(child.props.children)
-        });
-      // is the element of type input? add onChange listener
-      } else if(child.type === 'input') {
-        return React.cloneElement(child, {
-          onChange: handleChange
-        });
-      // nothing, just return without modifying
-      } else {
-        return child;
-      }
+    axios.post(API_AUTH, this.state).then((value) => {
+      console.log(value);
     });
   }
 
-  return (
-    <FormGeneric className={ className ? className : '' } onSubmit={ handleSubmit } onChange={ handleChange }>
-      { children ? renderChildren(children) : '' }
-    </FormGeneric>
-  );
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  render() {
+    let { className, children } = this.props;
+    return (
+      <FormGeneric className={ className ? className : '' } onSubmit={ this.handleSubmit.bind(this) } onChange={ this.handleChange.bind(this) }>
+        { children }
+      </FormGeneric>
+    );
+  }
+
 }
 
 export default FormAuth;

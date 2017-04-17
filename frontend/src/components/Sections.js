@@ -43,7 +43,7 @@ class Section1 extends Component {
             </div>
             <div className="placeholder-wrap">
               <p>verify password</p>
-              <input type="password" name="password-verify" placeholder="verify password" tabIndex="6" />
+              <input type="password" name="passwordVerify" placeholder="verify password" tabIndex="6" />
             </div>
             <button>CREATE ACCOUNT</button>
           </FormSignUp>
@@ -57,9 +57,9 @@ class Section1 extends Component {
   render() {
     return (
       <Section className="section1">
-        {this.renderPopup()}
+        { this.renderPopup() }
         <div className="clouds"></div>
-        <img className="logo" src={logo} alt="Sun Labs Logo" />
+        <img className="logo" src={ logo } alt="Sun Labs Logo" />
         <FormSignUp className="creat-wrap">
           <h1>SIGN UP</h1>
           <h2>It's free and will always be</h2>
@@ -73,13 +73,13 @@ class Section1 extends Component {
           </div>
           <div className="placeholder-wrap">
             <p>verify password</p>
-            <input type="password" name="password-verify" placeholder="verify password" tabIndex="6" />
+            <input type="password" name="passwordVerify" placeholder="verify password" tabIndex="6" />
           </div>
           <button tabIndex="7">CREATE ACCOUNT</button>
         </FormSignUp>
-        <button id="mobile-btn-create-account" onClick={this.togglePopup.bind(this)}>CREATE ACCOUNT</button>
+        <button id="mobile-btn-create-account" onClick={ this.togglePopup.bind(this) }>CREATE ACCOUNT</button>
         <TextContent />
-        <img className="downButton" src={downButton} alt="Down Button" />
+        <img className="downButton" src={ downButton } alt="Down Button" />
         <div className="hill"></div>
       </Section>
     );
