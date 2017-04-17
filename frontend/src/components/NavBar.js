@@ -17,8 +17,9 @@ class NavBar extends Component {
   renderPopup() {
     if(this.state.popupVisible) {
       return (
-        <Popup className="popup-auth">
+        <Popup className="popup-auth" onClose={ this.togglePopup.bind(this) }>
           <FormAuth className="wrap-auth">
+            <h1>Sign in</h1>
             <div className="placeholder-wrap">
               <p>e-mail</p>
               <input type="email" name="email" tabIndex="1" />
@@ -36,7 +37,7 @@ class NavBar extends Component {
     }
   }
 
-  handleSigninClick(e) {
+  togglePopup(e) {
     this.setState({
       popupVisible: !this.state.popupVisible
     });
@@ -50,7 +51,7 @@ class NavBar extends Component {
           <div id="logo"></div>
           <h2>solar energy beautifully visualised</h2>
         </div>
-        <button id="mobile-btn-sign" onClick={this.handleSigninClick.bind(this)}>SIGN IN</button>
+        <button id="mobile-btn-sign" onClick={this.togglePopup.bind(this)}>SIGN IN</button>
         <FormAuth className="sign-wrap">
           <div className="placeholder-wrap">
             <p>e-mail</p>

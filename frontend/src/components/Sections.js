@@ -21,20 +21,30 @@ class Section1 extends Component {
     };
   }
 
-  handleClickSignup(e) {
+  togglePopup(e) {
     this.setState({
       popupVisible: !this.state.popupVisible
     });
   }
 
   renderPopup() {
-    if(this.state.popupVisible) {
+    if (this.state.popupVisible) {
       return (
-        <Popup className="popup-signup">
+        <Popup className="popup-signup" onClose={this.togglePopup.bind(this)}>
           <FormSignUp className="wrap-signup">
-            <input type="email" placeholder="e-mail" name="email" />
-            <input type="password" placeholder="password" name="password" />
-            <input type="password" placeholder="verify password" name="password-verify" />
+            <h1>SIGN UP</h1>
+            <div className="placeholder-wrap">
+              <p>e-mail</p>
+              <input type="email" name="email" placeholder="e-mail" tabIndex="4" />
+            </div>
+            <div className="placeholder-wrap">
+              <p>password</p>
+              <input type="password" name="password" placeholder="password" tabIndex="5" />
+            </div>
+            <div className="placeholder-wrap">
+              <p>verify password</p>
+              <input type="password" name="password-verify" placeholder="verify password" tabIndex="6" />
+            </div>
             <button>CREATE ACCOUNT</button>
           </FormSignUp>
         </Popup>
@@ -47,20 +57,29 @@ class Section1 extends Component {
   render() {
     return (
       <Section className="section1">
-        { this.renderPopup() }
+        {this.renderPopup()}
         <div className="clouds"></div>
-        <img className="logo" src={ logo } alt="Sun Labs Logo" />
+        <img className="logo" src={logo} alt="Sun Labs Logo" />
         <FormSignUp className="creat-wrap">
           <h1>SIGN UP</h1>
           <h2>It's free and will always be</h2>
-          <input type="email" placeholder="e-mail" name="email" />
-          <input type="password" placeholder="password" name="password" />
-          <input type="password" placeholder="verify password" name="password-verify" />
-          <button>CREATE ACCOUNT</button>
+          <div className="placeholder-wrap">
+            <p>e-mail</p>
+            <input type="email" name="email" placeholder="e-mail" tabIndex="4" />
+          </div>
+          <div className="placeholder-wrap">
+            <p>password</p>
+            <input type="password" name="password" placeholder="password" tabIndex="5" />
+          </div>
+          <div className="placeholder-wrap">
+            <p>verify password</p>
+            <input type="password" name="password-verify" placeholder="verify password" tabIndex="6" />
+          </div>
+          <button tabIndex="7">CREATE ACCOUNT</button>
         </FormSignUp>
-        <button id="mobile-btn-create-account" onClick={ this.handleClickSignup.bind(this) }>CREATE ACCOUNT</button>
+        <button id="mobile-btn-create-account" onClick={this.togglePopup.bind(this)}>CREATE ACCOUNT</button>
         <TextContent />
-        <img className="downButton" src={ downButton } alt="Down Button" />
+        <img className="downButton" src={downButton} alt="Down Button" />
         <div className="hill"></div>
       </Section>
     );
@@ -69,7 +88,7 @@ class Section1 extends Component {
 }
 
 const Section2 = () => {
-  return(
+  return (
     <Section className="section2">
       <TextContent />
       <div className="clouds"></div>
@@ -78,15 +97,15 @@ const Section2 = () => {
 }
 
 const Section3 = () => {
-  return(
+  return (
     <Section className="section3">
-        <TextContent />
+      <TextContent />
     </Section>
   )
 }
 
 const Section4 = () => {
-  return(
+  return (
     <Section className="section4">
       <TextContent />
       <div id="lulLogo"></div>
@@ -103,7 +122,7 @@ const Sections = () => {
       <Section2 />
       <Section3 />
       <Section4 />
-    </div>    
+    </div>
   );
 }
 

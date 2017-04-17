@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import '../styles/Popup.css';
 
-const Popup = ({ className, children }) => {
-  var popupClass = className ? className : '';
-  return (
-    <div className={`popup-bg ${popupClass}`}>
-      <div className={`popup`}>
-      { children ? children : '' }
+class Popup extends Component {
+
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+  }
+
+  render() {
+    var popupClass = this.props.className ? this.props.className : '';
+    var onClick = this.props.onClose ? this.props.onClose : this.handleClick;
+    var { children } = this.props;
+    return (
+      <div className={`popup-bg ${popupClass}`}>
+        <div className={`popup`}>
+          <div className="close" onClick={ onClick.bind(this) }>x</div>
+          {children ? children : ''}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+
 }
 
 export default Popup;
