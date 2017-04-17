@@ -65,7 +65,9 @@
 }
 
 @media screen and (min-width: 501px) {
-
+  .section1 .popup-signup {
+    display: none;
+  }
   .section1 .text-content {
     margin-top: 27em;
   }
@@ -94,7 +96,7 @@
       width: 350px;
   }
 
-  .section1 .creat-wrap{
+  .section1 .creat-wrap {
     margin-right: 5em;
     margin-top: 7em;
     position: relative;
@@ -119,9 +121,8 @@
     margin-top: 10px;
   }
 
-  .creat-wrap input {
-      margin-top: 1em;
-      width: 230px;
+  .creat-wrap .placeholder-wrap {
+      margin-top: 0.5em;
       display: block;
   }
 
@@ -165,10 +166,6 @@
 
   #mobile-btn-create-account {
     margin-top: 2em;
-    padding-left: 1em;
-    padding-right: 1em;
-    width: 80%;
-
   }
   
   .section1 .creat-wrap {

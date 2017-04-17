@@ -27,6 +27,10 @@
   .navbar {
     background: linear-gradient(rgba(0,0,0,0.25), transparent) !important;
   }
+  .navbar .popup-auth {
+    display: block !important;
+    margin: -1em;
+  }
   #mobile-btn-sign {
     display: block !important;
     float: right;
@@ -49,6 +53,10 @@
     padding: 1em;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
+  }
+
+  .navbar .popup-auth {
+    display: none;
   }
 
   #mobile-btn-sign {
@@ -101,8 +109,8 @@
   #mobile-btn-sign {
     float: right;
     margin-right: -2em;
+    padding-right: 2.5em;
     margin-top: 1em;
-    text-indent: -1em;
     outline: none;
   }
 
