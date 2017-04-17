@@ -170,10 +170,8 @@
     width: 80%;
 
   }
-
-  .section1 .creat-wrap h1, 
-  .section1 .creat-wrap h2,
-  .section1 .creat-wrap input{
+  
+  .section1 .creat-wrap {
     display: none;
   }
 }
