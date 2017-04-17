@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import FormAuth from './FormAuth';
 import Popup from './Popup';
-import { API_FORGOT_PASSWORD } from '../assets/APIRoutes';
 
 import '../styles/NavBar.css';
 
@@ -18,18 +17,8 @@ class NavBar extends Component {
     if(this.state.popupVisible) {
       return (
         <Popup className="popup-auth" onClose={ this.togglePopup.bind(this) }>
-          <FormAuth className="wrap-auth">
-            <h1>Sign in</h1>
-            <div className="placeholder-wrap">
-              <p>e-mail</p>
-              <input type="email" name="email" tabIndex="1" />
-            </div>
-            <div className="placeholder-wrap">
-              <p>password <a href={API_FORGOT_PASSWORD}>forgot?</a></p>
-              <input type="password" name="password" tabIndex="2" />
-            </div>
-            <button tabIndex="3">SIGN IN</button>
-          </FormAuth>
+          <h1>Sign in</h1>
+          <FormAuth className="wrap-auth" />
         </Popup>
       );
     } else {
@@ -52,17 +41,7 @@ class NavBar extends Component {
           <h2>solar energy beautifully visualised</h2>
         </div>
         <button id="mobile-btn-sign" onClick={this.togglePopup.bind(this)}>SIGN IN</button>
-        <FormAuth className="sign-wrap">
-          <div className="placeholder-wrap">
-            <p>e-mail</p>
-            <input type="email" name="email" tabIndex="1" />
-          </div>
-          <div className="placeholder-wrap">
-            <p>password <a href={API_FORGOT_PASSWORD}>forgot?</a></p>
-            <input type="password" name="password" tabIndex="2" />
-          </div>
-          <button tabIndex="3">SIGN IN</button>
-        </FormAuth>
+        <FormAuth className="sign-wrap" />
       </div>
     );
   }

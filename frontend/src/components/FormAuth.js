@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { API_AUTH } from '../assets/APIRoutes';
-import FormGeneric from './FormGeneric';
+import { API_AUTH, API_FORGOT_PASSWORD } from '../assets/APIRoutes';
 
 class FormAuth extends Component {
 
@@ -28,11 +27,19 @@ class FormAuth extends Component {
   }
 
   render() {
-    let { className, children } = this.props;
+    let { className } = this.props;
     return (
-      <FormGeneric className={ className ? className : '' } onSubmit={ this.handleSubmit.bind(this) } onChange={ this.handleChange.bind(this) }>
-        { children }
-      </FormGeneric>
+      <form className={ className ? className : '' } onSubmit={ this.handleSubmit.bind(this) }>
+        <div className="placeholder-wrap">
+          <p>e-mail</p>
+          <input type="email" name="email" tabIndex="1" />
+        </div>
+        <div className="placeholder-wrap">
+          <p>password <a href={ API_FORGOT_PASSWORD }>forgot?</a></p>
+          <input type="password" name="password" tabIndex="2" />
+        </div>
+        <button tabIndex="3">SIGN IN</button>
+      </form>
     );
   }
 

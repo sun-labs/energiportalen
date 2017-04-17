@@ -31,22 +31,8 @@ class Section1 extends Component {
     if (this.state.popupVisible) {
       return (
         <Popup className="popup-signup" onClose={this.togglePopup.bind(this)}>
-          <FormSignUp className="wrap-signup">
-            <h1>SIGN UP</h1>
-            <div className="placeholder-wrap">
-              <p>e-mail</p>
-              <input type="email" name="email" placeholder="e-mail" tabIndex="4" />
-            </div>
-            <div className="placeholder-wrap">
-              <p>password</p>
-              <input type="password" name="password" placeholder="password" tabIndex="5" />
-            </div>
-            <div className="placeholder-wrap">
-              <p>verify password</p>
-              <input type="password" name="passwordVerify" placeholder="verify password" tabIndex="6" />
-            </div>
-            <button>CREATE ACCOUNT</button>
-          </FormSignUp>
+          <h1>SIGN UP</h1>
+          <FormSignUp className="wrap-signup" />
         </Popup>
       );
     } else {
@@ -60,26 +46,13 @@ class Section1 extends Component {
         { this.renderPopup() }
         <div className="clouds"></div>
         <img className="logo" src={ logo } alt="Sun Labs Logo" />
-        <FormSignUp className="creat-wrap">
+        <div className="creat-wrap">
           <h1>SIGN UP</h1>
           <h2>It's free and will always be</h2>
-          <div className="placeholder-wrap">
-            <p>e-mail</p>
-            <input type="email" name="email" placeholder="e-mail" tabIndex="4" />
-          </div>
-          <div className="placeholder-wrap">
-            <p>password</p>
-            <input type="password" name="password" placeholder="password" tabIndex="5" />
-          </div>
-          <div className="placeholder-wrap">
-            <p>verify password</p>
-            <input type="password" name="passwordVerify" placeholder="verify password" tabIndex="6" />
-          </div>
-          <button tabIndex="7">CREATE ACCOUNT</button>
-        </FormSignUp>
+          <FormSignUp />
+        </div>
         <button id="mobile-btn-create-account" onClick={ this.togglePopup.bind(this) }>CREATE ACCOUNT</button>
-        <TextContent title="What is Sun Labs?" body="Sun Labs dramatically improves the most important aspects of the Sun Energy experience. It introduces advanced visualisation and cloud first experience. Immersive statistics. The brightest, most colorful way to visualize energy data. And it looks every bit as powerful as it is. This is Sun Labs.
-" />
+        <TextContent title="What is Sun Labs?" body="Sun Labs dramatically improves the most important aspects of the Sun Energy experience. It introduces advanced visualisation and cloud first experience. Immersive statistics. The brightest, most colorful way to visualize energy data. And it looks every bit as powerful as it is. This is Sun Labs." />
         <img className="downButton" src={downButton} alt="Down Button" />
         <div className="hill"></div>
       </Section>
@@ -91,8 +64,7 @@ class Section1 extends Component {
 const Section2 = () => {
   return (
     <Section className="section2">
-      <TextContent title="About." body="As all of Earth’s creatures live in the same home, understanding the importance of sharing has never been more vital. Identify a local solar plant, share ideas for ways to live in balance as a global community.
-" />
+      <TextContent title="About." body="As all of Earth’s creatures live in the same home, understanding the importance of sharing has never been more vital. Identify a local solar plant, share ideas for ways to live in balance as a global community." />
       <div className="clouds"></div>
     </Section>
   )
@@ -101,8 +73,7 @@ const Section2 = () => {
 const Section3 = () => {
   return (
     <Section className="section3">
-      <TextContent title="Made by students." body="With a vision that learning about the environment is the first step to preserving it. We wanted to create a platform to make the knowledge about solar energy accessible for everyone, to help people explore, understand, and celebrate the world around them. Like lessons that leave the world a better place.
-" />
+      <TextContent title="Made by students." body="With a vision that learning about the environment is the first step to preserving it. We wanted to create a platform to make the knowledge about solar energy accessible for everyone, to help people explore, understand, and celebrate the world around them. Like lessons that leave the world a better place." />
     </Section>
   )
 }
@@ -110,8 +81,7 @@ const Section3 = () => {
 const Section4 = () => {
   return (
     <Section className="section4">
-      <TextContent title="Partnership." body="We’re partnered up with public corporations and experts in global warming. It’s really about empowering every person on earth to achieve more. Connecting everyone with their and others energy data. Creating new dimensions of understanding.
-" />
+      <TextContent title="Partnership." body="We’re partnered up with public corporations and experts in global warming. It’s really about empowering every person on earth to achieve more. Connecting everyone with their and others energy data. Creating new dimensions of understanding." />
       <div id="lulLogo"></div>
       <div id="euLogo"></div>
       <div id="sunlabsLogo"></div>
