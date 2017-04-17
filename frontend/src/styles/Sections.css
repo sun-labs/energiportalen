@@ -173,6 +173,18 @@
   }
 }
 
+@media screen and (max-width: 325px) {
+
+   #mobile-btn-create-account{
+    margin-top: 0.5em;
+   }
+
+   .downButton {
+     display: none !important;
+   }
+
+}
+
 /* SECTION 2 */
 
 .section2 {
@@ -213,6 +225,10 @@
   .section2 .clouds {
     top: 50%;
     height: 250px;
+  }
+
+  .section2 .text-content {
+    margin-top: 8em;
   }
 }
 
@@ -304,11 +320,12 @@
 
 @media screen and (max-width: 500px) {
 
-  .section4 h2 {
-    margin-top: 2em;
+  .section4 .text-content h2 {
+    color: black;
   }
 
   .section4 .text-content {
+    margin-top: 8em;
     padding-bottom: 25px;
   }
 
