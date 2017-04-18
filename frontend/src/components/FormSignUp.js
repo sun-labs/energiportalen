@@ -52,7 +52,7 @@ class FormSignUp extends Component {
           <p>verify password</p>
           <input onChange={ this.handleChange.bind(this) } value={ this.state.passwordVerify } type="password" name="passwordVerify" placeholder="verify password" tabIndex="6" />
         </div>
-        <button>CREATE ACCOUNT</button>
+        <button tabIndex="7">CREATE ACCOUNT</button>
       </form>
     );
   }
