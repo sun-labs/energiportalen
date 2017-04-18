@@ -72,11 +72,12 @@
   }
 
   p.terms{
-  color: white;
+  font-size: 10px;
   opacity: 0.7;
+  color: white;
   font-weight: lighter;
   }
-  
+
 }
 
 @media screen and (max-width: 500px) {
@@ -104,6 +105,7 @@
   }
 
   p.terms{
+  font-size: 10px;
   color: black;
   opacity: 0.7;
   font-weight: lighter;
