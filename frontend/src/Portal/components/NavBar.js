@@ -9,9 +9,9 @@ import '../styles/NavBar.css';
 const NavBar = () => {
   return (
     <div className="navbar-portal">
-      <p className="edit-btn">EDIT</p>
+      <p className="edit-btn" onClick={() => alert('EDIT')}>EDIT</p>
       <img className="logo" src={ logo } alt="Sun Labs Logo" />
-      <p className="profile-btn">PROFILE</p>
+      <p className="profile-btn" onClick={() => alert('PROFILE')}>PROFILE</p>
     </div>
   );
 }
