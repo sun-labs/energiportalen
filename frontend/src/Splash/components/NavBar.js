@@ -40,7 +40,7 @@ class NavBar extends Component {
         {this.renderPopup()}
         <div className="logo-wrap">
           <div id="logo"></div>
-          <h2>solar energy beautifully visualised</h2>
+          <h2>solar energy beautifully visualized</h2>
         </div>
         <button id="mobile-btn-sign" onClick={ this.togglePopup }>SIGN IN</button>
         <FormAuth showError={ this.props.showError } className="sign-wrap" />
