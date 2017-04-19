@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import { API_SIGNUP } from '../assets/APIRoutes';
+import '../styles/Section.css';
 
 class FormSignUp extends Component {
 
@@ -57,7 +58,8 @@ class FormSignUp extends Component {
           <p>verify password</p>
           <input onChange={ this.handleChange } value={ this.state.passwordVerify } type="password" name="passwordVerify" placeholder="verify password" tabIndex="6" />
         </div>
-        <button>CREATE ACCOUNT</button>
+        <button tabIndex="7" >CREATE ACCOUNT</button>
+        <p className="terms" >By clicking “sign up” you agree to our <a href="https://www.sunlabs.se">terms and agreements</a>.</p>
       </form>
     );
   }
