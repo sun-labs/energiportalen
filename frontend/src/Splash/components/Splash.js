@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // STYLE IMPORTS
-import '../styles/App.css';
+import '../styles/Splash.css';
 
 // COMPONENT IMPORTS
 import NavBar from './NavBar';

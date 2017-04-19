@@ -1,4 +1,4 @@
-.navbar {
+.navbar-splash {
   z-index: 100;
   position: fixed;
   left: 0;
@@ -24,10 +24,10 @@
 
 /* Inbetween mobile and desktop */
 @media screen and (min-width: 501px) and (max-width: 850px) {
-  .navbar {
+  .navbar-splash {
     background: linear-gradient(rgba(0,0,0,0.25), transparent) !important;
   }
-  .navbar .popup-auth {
+  .navbar-splash .popup-auth {
     display: block !important;
     margin: -1em;
   }
@@ -37,17 +37,17 @@
     background-color: #333333;
     color: #F2C94C;
   }
-  .navbar .logo-wrap h2 {
+  .navbar-splash .logo-wrap h2 {
     color: white !important;
   }
-  .navbar .sign-wrap {
+  .navbar-splash .sign-wrap {
     display: none !important;
   }
 }
 
 @media screen and (min-width: 501px) {
 
-  .navbar {
+  .navbar-splash {
     box-sizing: border-box;
     width: 100%;
     padding: 1em;
@@ -55,7 +55,7 @@
     color: white;
   }
 
-  .navbar .popup-auth {
+  .navbar-splash .popup-auth {
     display: none;
   }
 
@@ -63,38 +63,38 @@
     display: none;
   }
 
-  .navbar button {
+  .navbar-splash button {
     display: inline-block;
   }
 
-  .navbar .placeholder-wrap {
+  .navbar-splash .placeholder-wrap {
     margin-right: 1em;
   }
 
-  .navbar .logo-wrap, 
-  .navbar .sign-wrap {
+  .navbar-splash .logo-wrap, 
+  .navbar-splash .sign-wrap {
     display: inline-block;
   }
 
-  .navbar .sign-wrap{
+  .navbar-splash .sign-wrap{
     float: right;
   }
 
-  .navbar .logo-wrap{
+  .navbar-splash .logo-wrap{
     float: left;
   }
 
-  .navbar .logo-wrap h1, 
-  .navbar .logo-wrap h2{
+  .navbar-splash .logo-wrap h1, 
+  .navbar-splash .logo-wrap h2{
     margin-bottom: 0px;
     margin-top: 0px;
   }
 
-  .navbar .logo-wrap h2{
+  .navbar-splash .logo-wrap h2{
     color: #CFCFCF;
   }
 
-  .navbar .logo-wrap h1{
+  .navbar-splash .logo-wrap h1{
     font-weight: normal;
     font-size: 1.5em;
     letter-spacing: 1px;
@@ -103,7 +103,7 @@
 }
 
 @media screen and (max-width: 500px) {
-  .navbar {
+  .navbar-splash {
     padding: 0;
   }
   #mobile-btn-sign {
@@ -114,8 +114,8 @@
     outline: none;
   }
 
-  .navbar .sign-wrap,
-  .navbar .logo-wrap {
+  .navbar-splash .sign-wrap,
+  .navbar-splash .logo-wrap {
     display: none;
   }
 

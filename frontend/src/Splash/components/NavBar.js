@@ -36,7 +36,7 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div className="navbar">
+      <div className="navbar-splash">
         {this.renderPopup()}
         <div className="logo-wrap">
           <div id="logo"></div>
