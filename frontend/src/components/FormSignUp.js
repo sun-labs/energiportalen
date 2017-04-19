@@ -25,7 +25,7 @@ class FormSignUp extends Component {
         console.log(value);
       });
     } else {
-      // UX for passwords dont match.
+      this.props.showError('passwords don\'t match', 'This is only to help you not to get locked out of your account.');
     }
   }
 
