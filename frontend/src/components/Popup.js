@@ -8,7 +8,7 @@ class Popup extends Component {
     super();
     this.state = {};
 
-    this.onClick = this.onClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(e) {
