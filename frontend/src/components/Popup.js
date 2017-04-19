@@ -7,6 +7,8 @@ class Popup extends Component {
   constructor() {
     super();
     this.state = {};
+
+    this.onClick = this.onClick.bind(this);
   }
 
   handleClick(e) {
@@ -20,7 +22,7 @@ class Popup extends Component {
     return (
       <div className={`popup-bg ${popupClass}`}>
         <div className={`popup`}>
-          <div className="close" onClick={ onClick.bind(this) }>x</div>
+          <div className="close" onClick={ onClick }>x</div>
           {children ? children : ''}
         </div>
       </div>
