@@ -1,10 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-import './styles/index.css';
+import Splash from './Splash/components/Splash';
+import Portal from './Portal/components/Portal';
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+import './index.css';
+
+const router = (
+    <Router>
+        <div>
+            <Switch>
+                <Route exact path="/" component={ Splash }></Route>
+                <Route path="/portal" component={ Portal }></Route>
+                <Route component={ Splash } />
+            </Switch>
+        </div>
+    </Router>
 );
+
+ReactDOM.render(router, document.getElementById('root'));

@@ -79,7 +79,7 @@
   .section1 .clouds {
       top: 60px;
       height: 250px;
-      background-image: url('../imgs/mobile-clouds-section1.png');
+      background-image: url('../../imgs/mobile-clouds-section1.png');
     }
 
   .section1 .hill {
@@ -147,7 +147,7 @@
 
   .section1 .clouds {
     height: 250px;
-    background-image: url('../imgs/mobile-clouds-section1.png');
+    background-image: url('../../imgs/mobile-clouds-section1.png');
   }
 
   #mobile-btn-create-account,
@@ -202,7 +202,7 @@
     width: 100%;
     opacity: 0.25;
     height: 250px;
-    background-image: url('../imgs/mobile-clouds-section2.png');
+    background-image: url('../../imgs/mobile-clouds-section2.png');
     background-repeat: repeat-x;
     background-size: 300px auto;
     animation-name: MOVE-CLOUDS-2;
@@ -236,7 +236,7 @@
 
 .section3 {
   top: 200%;
-  background-image: url('../imgs/bigSun.png');
+  background-image: url('../../imgs/bigSun.png');
   background-position: top center;
   background-size: 100% auto;
   background-repeat: no-repeat;
@@ -276,15 +276,15 @@
 }
 
 #euLogo {
-  background-image: url('../imgs/euLogo.png');
+  background-image: url('../../imgs/euLogo.png');
 }
 
 #lulLogo {
-  background-image: url('../imgs/luLogo.png');
+  background-image: url('../../imgs/luLogo.png');
 }
 
 #sunlabsLogo {
-  background-image: url('../imgs/sunlabs-logo-black-text.png');
+  background-image: url('../../imgs/sunlabs-logo-black-text.png');
 }
 
 #euLogo,

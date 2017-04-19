@@ -6,8 +6,8 @@ import Popup from './Popup';
 
 import '../styles/Sections.css';
 
-import logo from '../imgs/logo.png';
-import downButton from '../imgs/downButton.png';
+import logo from '../../imgs/logo.png';
+import downButton from '../../imgs/downButton.png';
 
 const ph_title = 'What is Sun Labs?';
 const ph_body = 'Data, right at your fingertips. Lorem Kasper Lirre Bacon. Lorem ipsum Lirre Bacon. Lorem ipsum Kasper Bacon. Lorem ipsum Kasper Lirre . Lorem ipsum Kasper Lirre Bacon. ';

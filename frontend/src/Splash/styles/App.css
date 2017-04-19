@@ -49,7 +49,7 @@ input {
 }
 
 #logo {
-  background-image: url('../imgs/sunlabs-logo-white-text.png');
+  background-image: url('../../imgs/sunlabs-logo-white-text.png');
   background-repeat: no-repeat;
 }
 
