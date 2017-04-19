@@ -19,6 +19,9 @@ class Section1 extends Component {
     this.state = {
       popupVisible: false
     };
+
+    this.togglePopup = this.togglePopup.bind(this);
+    this.renderPopup = this.renderPopup.bind(this);
   }
 
   togglePopup(e) {
@@ -30,7 +33,7 @@ class Section1 extends Component {
   renderPopup() {
     if (this.state.popupVisible) {
       return (
-        <Popup className="popup-signup" onClose={this.togglePopup.bind(this)}>
+        <Popup className="popup-signup" onClose={this.togglePopup}>
           <h1>SIGN UP</h1>
           <FormSignUp showError={ this.props.showError } className="wrap-signup" />
         </Popup>
@@ -51,7 +54,7 @@ class Section1 extends Component {
           <h2>It's free and will always be</h2>
           <FormSignUp showError={ this.props.showError } />
         </div>
-        <button id="mobile-btn-create-account" onClick={ this.togglePopup.bind(this) }>CREATE ACCOUNT</button>
+        <button id="mobile-btn-create-account" onClick={ this.togglePopup }>CREATE ACCOUNT</button>
         <TextContent title="What is Sun Labs?" body="Sun Labs dramatically improves the most important aspects of the Sun Energy experience. It introduces advanced visualisation and cloud first experience. Immersive statistics. The brightest, most colorful way to visualize energy data. And it looks every bit as powerful as it is. This is Sun Labs." />
         <img className="downButton" src={downButton} alt="Down Button" />
         <div className="hill"></div>

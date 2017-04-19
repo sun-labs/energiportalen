@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import { API_SIGNUP } from '../assets/APIRoutes';
+import '../styles/Section.css';
 
 class FormSignUp extends Component {
 
@@ -12,6 +13,11 @@ class FormSignUp extends Component {
       password: '',
       passwordVerify: ''
     };
+
+    this.passwordsMatch = this.passwordsMatch.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    
   }
 
   passwordsMatch() {
@@ -39,20 +45,21 @@ class FormSignUp extends Component {
   render() {
     let { className } = this.props;
     return (
-      <form className={ className ? className : '' } onSubmit={ this.handleSubmit.bind(this) }>
+      <form className={ className ? className : '' } onSubmit={ this.handleSubmit }>
         <div className="placeholder-wrap">
           <p>e-mail</p>
-          <input onChange={ this.handleChange.bind(this) } value={ this.state.email } type="email" name="email" placeholder="e-mail" tabIndex="4" />
+          <input onChange={ this.handleChange } value={ this.state.email } type="email" name="email" placeholder="e-mail" tabIndex="4" />
         </div>
         <div className="placeholder-wrap">
           <p>password</p>
-          <input onChange={ this.handleChange.bind(this) } value={ this.state.password } type="password" name="password" placeholder="password" tabIndex="5" />
+          <input onChange={ this.handleChange } value={ this.state.password } type="password" name="password" placeholder="password" tabIndex="5" />
         </div>
         <div className="placeholder-wrap">
           <p>verify password</p>
-          <input onChange={ this.handleChange.bind(this) } value={ this.state.passwordVerify } type="password" name="passwordVerify" placeholder="verify password" tabIndex="6" />
+          <input onChange={ this.handleChange } value={ this.state.passwordVerify } type="password" name="passwordVerify" placeholder="verify password" tabIndex="6" />
         </div>
-        <button>CREATE ACCOUNT</button>
+        <button tabIndex="7" >CREATE ACCOUNT</button>
+        <p className="terms" >By clicking “sign up” you agree to our <a href="https://www.sunlabs.se">terms and agreements</a>.</p>
       </form>
     );
   }

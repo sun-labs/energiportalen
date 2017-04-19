@@ -11,6 +11,8 @@ class FormAuth extends Component {
       email: '',
       password: ''
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit = (e) => {
@@ -27,9 +29,9 @@ class FormAuth extends Component {
   }
 
   render() {
-    let { className } = this.props;
+    const { className } = this.props;
     return (
-      <form className={ className ? className : '' } onSubmit={ this.handleSubmit.bind(this) }>
+      <form className={ className ? className : '' } onSubmit={ this.handleSubmit }>
         <div className="placeholder-wrap">
           <p>e-mail</p>
           <input type="email" name="email" tabIndex="1" />
