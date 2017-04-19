@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { API_SIGNUP } from '../assets/APIRoutes';
+import { API_SIGNUP, URL_TERMS } from '../assets/APIRoutes';
 import '../styles/Section.css';
 
 class FormSignUp extends Component {
@@ -27,8 +27,13 @@ class FormSignUp extends Component {
   handleSubmit(e) {
     e.preventDefault();
     if(this.passwordsMatch()) {
-      axios.post(API_SIGNUP, this.state).then((value) => {
+      axios.post(API_SIGNUP, this.state)
+      .then((value) => {
+        // TODO what is returned after sign up? Store a token? Redirect to login?
         console.log(value);
+      })
+      .catch((error) => {
+        this.props.showError('Error Received', error.toString());
       });
     } else {
       this.props.showError('passwords don\'t match', 'This is only to help you not to get locked out of your account.');
@@ -48,18 +53,18 @@ class FormSignUp extends Component {
       <form className={ className ? className : '' } onSubmit={ this.handleSubmit }>
         <div className="placeholder-wrap">
           <p>e-mail</p>
-          <input onChange={ this.handleChange } value={ this.state.email } type="email" name="email" placeholder="e-mail" tabIndex="4" />
+          <input onChange={ this.handleChange } value={ this.state.email } type="email" name="email" placeholder="e-mail" tabIndex="4" required/>
         </div>
         <div className="placeholder-wrap">
           <p>password</p>
-          <input onChange={ this.handleChange } value={ this.state.password } type="password" name="password" placeholder="password" tabIndex="5" />
+          <input onChange={ this.handleChange } value={ this.state.password } type="password" name="password" placeholder="password" tabIndex="5" required/>
         </div>
         <div className="placeholder-wrap">
           <p>verify password</p>
-          <input onChange={ this.handleChange } value={ this.state.passwordVerify } type="password" name="passwordVerify" placeholder="verify password" tabIndex="6" />
+          <input onChange={ this.handleChange } value={ this.state.passwordVerify } type="password" name="passwordVerify" placeholder="verify password" tabIndex="6" required/>
         </div>
         <button tabIndex="7" >CREATE ACCOUNT</button>
-        <p className="terms" >By clicking “sign up” you agree to our <a href="https://www.sunlabs.se">terms and agreements</a>.</p>
+        <p className="terms" >By clicking “sign up” you agree to our <a href={ URL_TERMS }>terms and agreements</a>.</p>
       </form>
     );
   }
