@@ -1,9 +1,9 @@
-.navbar-portal {
+.top-navbar-portal {
   color: #219653;
 }
 
 @media screen and (max-width: 500px) {
-  .navbar-portal {
+  .top-navbar-portal {
     background: #FFFFFF;
     opacity: 1.00;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
@@ -15,24 +15,24 @@
     width: 100%;
   }
 
-  .navbar-portal .profile-btn,
-  .navbar-portal .edit-btn,
-  .navbar-portal .logo {
+  .top-navbar-portal .profile-btn,
+  .top-navbar-portal .edit-btn,
+  .top-navbar-portal .logo {
     display: inline-block;
     font-size: 1.5em;
   }
 
-  .navbar-portal .profile-btn {
-    padding-left: 1em;
+  .top-navbar-portal .profile-btn {
+    margin-left: 1em;
     float: left;
   }
 
-  .navbar-portal .edit-btn {
-    padding-right: 1em;
+  .top-navbar-portal .edit-btn {
+    margin-right: 1em;
     float: right;
   }
 
-  .navbar-portal .logo {
+  .top-navbar-portal .logo {
     width: 4.5em;
     position: absolute;
     left: 0;

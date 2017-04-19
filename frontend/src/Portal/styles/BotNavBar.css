@@ -1,0 +1,35 @@
+.bot-navbar-portal {
+  color: #219653;
+}
+
+@media screen and (max-width: 500px) {
+  .bot-navbar-portal {
+    background: #FFFFFF;
+    opacity: 1.00;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
+    z-index: 100;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+    display: inline-block;
+    text-align: center;
+  }
+
+  .bot-navbar-portal .icon {
+    display: inline-block;
+    font-size: 1em;
+  }
+
+  .bot-navbar-portal .dashboard {
+    margin-left: 1em;
+    float: left;
+  }
+
+  .bot-navbar-portal .search {
+    margin-right: 1em;
+    float: right;
+  }
+}

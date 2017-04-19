@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 import '../styles/Portal.css';
 
 // COMPONENT IMPORTS
-import NavBar from './NavBar';
+import TopNavBar from './TopNavBar';
+import BotNavBar from './BotNavBar';
 import AddBlock from './AddBlock';
 import Block from './Block';
 
@@ -13,12 +14,14 @@ class Portal extends Component {
   render() {
     return (
       <div id="Portal">
-        <NavBar />
+        <TopNavBar />
 
         <div className="content">
           <AddBlock/>
           <Block/>
         </div>
+
+        <BotNavBar/>
       </div>
     );
   }

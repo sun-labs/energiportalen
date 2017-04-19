@@ -2,13 +2,13 @@ import React from 'react';
 
 import logo from '../../imgs/logo.png';
 
-import '../styles/NavBar.css';
+import '../styles/TopNavBar.css';
 
 // NOTE maybe make a generic navbar to use for both portal & splash
 
-const NavBar = () => {
+const TopNavBar = () => {
   return (
-    <div className="navbar-portal">
+    <div className="top-navbar-portal">
       <p className="edit-btn" onClick={() => alert('EDIT')}>EDIT</p>
       <img className="logo" src={ logo } alt="Sun Labs Logo" />
       <p className="profile-btn" onClick={() => alert('PROFILE')}>PROFILE</p>
@@ -16,4 +16,4 @@ const NavBar = () => {
   );
 }
 
-export default NavBar;
+export default TopNavBar;
