@@ -1,15 +1,5 @@
 @media screen and (max-width: 500px) {
-  .add-block {
-    margin-left: 1em;
-    margin-right: 1em;
-
-    position: relative;
-
-    display: block;
-    text-align: center;
+  #Portal .content .add-block {
     border: 1px dashed #BFBFBF;
-    border-radius: 5px;
-    padding: 1em;
-    font-size: 1.5em;
   }
 }

@@ -1,6 +1,18 @@
 @media screen and (max-width: 500px) {
   #Portal .content {
-    margin-top: 6em;
+    margin: 6em 1em 0em 1em;
+  }
+
+  #Portal .block {
+    position: relative;
+    margin-bottom: 0.75em;
+
+    display: block;
+    text-align: center;
+    border: 1px solid #6FCF97;
+    border-radius: 5px;
+    padding: 1em;
+    font-size: 1.5em;
   }
 
 }

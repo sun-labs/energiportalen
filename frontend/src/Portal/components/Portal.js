@@ -6,6 +6,7 @@ import '../styles/Portal.css';
 // COMPONENT IMPORTS
 import NavBar from './NavBar';
 import AddBlock from './AddBlock';
+import Block from './Block';
 
 class Portal extends Component {
 
@@ -16,6 +17,7 @@ class Portal extends Component {
 
         <div className="content">
           <AddBlock/>
+          <Block/>
         </div>
       </div>
     );
