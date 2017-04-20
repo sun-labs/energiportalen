@@ -17,13 +17,14 @@
     left: 0;
     top: 0;
     width: 100%;
+    font-weight: lighter;
   }
 
   .top-navbar-portal .profile-btn,
   .top-navbar-portal .edit-btn,
   .top-navbar-portal .logo {
     display: inline-block;
-    font-size: 1.5em;
+    font-size: 1.25em;
   }
 
   .top-navbar-portal .profile-btn {
