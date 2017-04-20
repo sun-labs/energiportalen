@@ -89,3 +89,67 @@ WHERE ud.unit_id = (
 
 -- Cluster1, Cluster2, Cluster3, Schneider, Vader
 -- Cluster1 => [ 1, 2, 3, 4, 5, 6, 7, 8 ];
+
+/*
+* Convert unit_data to database with a resolution of one minute per data point
+*/
+INSERT INTO unit_data_minute (
+    unit_id, 
+    unit_key, 
+    value_avg,
+    value_sum,
+    value_count, 
+    timestamp
+)
+SELECT 
+	unit_id, 
+	unit_key, 
+	ROUND(AVG(value)) as value_avg, 
+	ROUND(SUM(value)) as value_sum, 
+    COUNT(value) as value_count,
+	DATE_FORMAT(timestamp, '%Y-%m-%d %H:%i:00') as new_timestamp
+FROM unit_data
+GROUP BY 
+    new_timestamp, 
+    unit_key, 
+    unit_id;
+
+-- DELETE FROM unit_data_minute;
+
+INSERT INTO unit_data_hour
+	(unit_id, 
+    unit_key, 
+    value, 
+    timestamp)
+SELECT 
+	unit_id, 
+	unit_key, 
+	ROUND(AVG(value)) as value_avg, 
+	SUM(value) as value_sum, 
+	DATE_FORMAT(timestamp, '%Y-%m-%d %H:00:00') as new_timestamp
+FROM unit_data_minute 
+GROUP BY 
+    new_timestamp, 
+    unit_key, 
+    unit_id;
+
+-- DELETE FROM unit_data_hour;
+
+INSERT INTO unit_data_day
+	(unit_id, 
+    unit_key, 
+    value, 
+    timestamp)
+SELECT 
+	unit_id, 
+	unit_key, 
+	ROUND(AVG(value)) as value_avg, 
+	SUM(value) as value_sum, 
+	DATE_FORMAT(timestamp, '%Y-%m-%d 00:00:00') as new_timestamp
+FROM unit_data_hour 
+GROUP BY 
+    new_timestamp, 
+    unit_key, 
+    unit_id;
+
+-- DELETE FROM unit_data_day;
