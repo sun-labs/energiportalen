@@ -89,3 +89,24 @@ WHERE ud.unit_id = (
 
 -- Cluster1, Cluster2, Cluster3, Schneider, Vader
 -- Cluster1 => [ 1, 2, 3, 4, 5, 6, 7, 8 ];
+
+/*
+* Convert unit_data to database with a resolution of one minute per data point
+*/
+INSERT INTO unit_data_minute
+	(unit_id, 
+    unit_key, 
+    value, 
+    timestamp)
+SELECT 
+	unit_id, 
+	unit_key, 
+	ROUND(AVG(value)) as value, 
+	DATE_FORMAT(timestamp, '%Y-%m-%d %H:%i:00') as new_timestamp
+FROM unit_data as ud 
+GROUP BY 
+    new_timestamp, 
+    unit_key, 
+    unit_id;
+
+DELETE FROM unit_data_minute;

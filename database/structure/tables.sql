@@ -26,3 +26,25 @@ CREATE TABLE `unit_data` (
   FOREIGN KEY (`unit_id`) REFERENCES units(id),
   FOREIGN KEY (`unit_key`) REFERENCES unit_keys(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `unit_data_minute` (
+  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT,
+  `unit_id` int(11) unsigned NOT NULL,
+  `unit_key` int(11) unsigned NOT NULL,
+  `value` float NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`unit_id`) REFERENCES units(id),
+  FOREIGN KEY (`unit_key`) REFERENCES unit_keys(id)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `unit_data_hour` (
+  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT,
+  `unit_id` int(11) unsigned NOT NULL,
+  `unit_key` int(11) unsigned NOT NULL,
+  `value` float NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`unit_id`) REFERENCES units(id),
+  FOREIGN KEY (`unit_key`) REFERENCES unit_keys(id)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
