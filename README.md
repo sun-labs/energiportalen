@@ -5,7 +5,7 @@
  - Port: 8889
 - A database with the following specification
  - Name: energiportalen
- - Tables: units, unit_keys, unit_data
+ - Tables: `units`, `unit_data`, `unit_keys`, `unit_data_minute`, `unit_data_hour`, `unit_data_day`
  - User: energiportalen
 - User with information
  - Username: energiportalen

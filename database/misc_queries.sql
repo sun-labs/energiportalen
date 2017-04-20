@@ -87,6 +87,16 @@ WHERE ud.unit_id = (
 	SELECT id FROM units WHERE name = 'Cluster3'
 );
 
+
+/*
+* Get 24 hour data for a unit and a key.
+*/
+SELECT value_avg 
+FROM unit_data_hour as udh
+WHERE udh.unit_id = ? AND udh.unit_key = ?
+ORDER BY udh.timestamp
+LIMIT 24;
+
 -- Cluster1, Cluster2, Cluster3, Schneider, Vader
 -- Cluster1 => [ 1, 2, 3, 4, 5, 6, 7, 8 ];
 
