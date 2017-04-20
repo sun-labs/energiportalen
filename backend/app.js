@@ -1,7 +1,9 @@
 import express from 'express';
+import cors from 'cors';
 import apiRouter from './apiRouter';
 const app = express();
 
+app.use(cors());
 app.use('/1', apiRouter);
 
 app.get('/', (req, res) => {

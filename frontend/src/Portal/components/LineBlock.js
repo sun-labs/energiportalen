@@ -1,5 +1,6 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
+import axios from 'axios';
 
 import '../styles/LineBlock.css';
 
@@ -126,6 +127,15 @@ const LineBlock = (props) => {
     setDataColors(data, defaultConfig), 
     labels
   );
+
+
+  axios.get('http://localhost:4000/1/units/4/85')
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+  });
 
   return (
     <div className="block line-block">
