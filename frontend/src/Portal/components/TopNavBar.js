@@ -1,7 +1,5 @@
 import React from 'react';
 
-import logo from '../../imgs/logo.png';
-
 import '../styles/TopNavBar.css';
 
 // NOTE maybe make a generic navbar to use for both portal & splash

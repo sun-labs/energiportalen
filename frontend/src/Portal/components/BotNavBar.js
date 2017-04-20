@@ -2,8 +2,6 @@ import React from 'react';
 
 import '../styles/BotNavBar.css';
 
-import logo from '../../imgs/logo.png';
-
 // NOTE maybe make a generic navbar to use for both portal & splash
 
 const BotNavBar = () => {
