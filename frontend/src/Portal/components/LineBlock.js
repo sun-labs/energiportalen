@@ -35,8 +35,25 @@ let op = {
   },
 }
 
+const cutArray = (length, array) => {
+  let ret = [];
+
+  for (let i = 0; i < length; i++) {
+    ret[i] = array[i];
+  }
+  return ret;
+}
+
 const Block = ({ options = op, data = [65, 59, 80, 81, 56, 55, 40], labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'] }) => {
-  // TODO make sure labels & data have the same length
+  
+  if (data.length > labels.length) {
+    alert('Label length less than Data length');
+    data = cutArray(labels.length, data);
+
+  } else if (labels.length > data.length) {
+    alert('Data length less than Label length');
+    labels = cutArray(data.length, labels);
+  }
 
   return (
     <div className="block line-block">
