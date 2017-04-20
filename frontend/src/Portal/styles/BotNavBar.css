@@ -13,7 +13,6 @@
     left: 0;
     bottom: 0;
     width: 100%;
-
     display: inline-block;
     text-align: center;
   }
@@ -21,15 +20,8 @@
   .bot-navbar-portal .icon {
     display: inline-block;
     font-size: 1em;
+    width: 33%;
+    padding: 1em 0;
   }
 
-  .bot-navbar-portal .dashboard {
-    margin-left: 1em;
-    float: left;
-  }
-
-  .bot-navbar-portal .search {
-    margin-right: 1em;
-    float: right;
-  }
 }

@@ -10,7 +10,6 @@ const TopNavBar = () => {
   return (
     <div className="top-navbar-portal">
       <p className="edit-btn" onClick={() => alert('EDIT')}>EDIT</p>
-      <img className="logo" src={ logo } alt="Sun Labs Logo" />
       <p className="profile-btn" onClick={() => alert('PROFILE')}>PROFILE</p>
     </div>
   );

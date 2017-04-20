@@ -8,11 +8,13 @@ import logo from '../../imgs/logo.png';
 
 const BotNavBar = () => {
   return (
-    <div className="bot-navbar-portal">
-      <p className="dashboard icon" onClick={() => alert('DASHBOARD')}>DASHBOARD</p>
-      <p className="locations icon" onClick={() => alert('LOCATION')}>LOCATION</p>      
-      <p className="search icon" onClick={() => alert('SEARCH')}>SEARCH</p>
-    </div>
+    <nav className="bot-navbar-portal">
+      <ul>
+        <li className="dashboard icon">DASHBOARD</li>
+        <li className="locations icon">LOCATION</li>
+        <li className="search icon">SEARCH</li>
+      </ul>
+    </nav>
   );
 }
 
