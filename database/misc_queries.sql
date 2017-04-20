@@ -103,10 +103,28 @@ SELECT
 	unit_key, 
 	ROUND(AVG(value)) as value, 
 	DATE_FORMAT(timestamp, '%Y-%m-%d %H:%i:00') as new_timestamp
-FROM unit_data as ud 
+FROM unit_data
 GROUP BY 
     new_timestamp, 
     unit_key, 
     unit_id;
 
-DELETE FROM unit_data_minute;
+-- DELETE FROM unit_data_minute;
+
+INSERT INTO unit_data_hour
+	(unit_id, 
+    unit_key, 
+    value, 
+    timestamp)
+SELECT 
+	unit_id, 
+	unit_key, 
+	ROUND(AVG(value)) as value, 
+	DATE_FORMAT(timestamp, '%Y-%m-%d %H:00:00') as new_timestamp
+FROM unit_data_minute 
+GROUP BY 
+    new_timestamp, 
+    unit_key, 
+    unit_id;
+
+-- DELETE FROM unit_data_hour;
