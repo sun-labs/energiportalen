@@ -7,7 +7,7 @@ import '../styles/Portal.css';
 import TopNavBar from './TopNavBar';
 import BotNavBar from './BotNavBar';
 import AddBlock from './AddBlock';
-import Block from './Block';
+import LineBlock from './LineBlock';
 
 class Portal extends Component {
 
@@ -18,7 +18,7 @@ class Portal extends Component {
 
         <div className="content">
           <AddBlock/>
-          <Block/>
+          <LineBlock/>
         </div>
 
         <BotNavBar/>

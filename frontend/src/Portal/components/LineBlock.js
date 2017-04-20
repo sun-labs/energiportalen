@@ -1,6 +1,7 @@
 import React from 'react';
+import { Line } from 'react-chartjs-2';
 
-import '../styles/Block.css';
+import '../styles/LineBlock.css';
 
 const Block = (props) => {
   return (
