@@ -1,4 +1,5 @@
 ## Requirements
+* `npm install`
 * No***REMOVED***n `npm install -g no***REMOVED***n`
 * Webpack `npm install -g webpack`
 
