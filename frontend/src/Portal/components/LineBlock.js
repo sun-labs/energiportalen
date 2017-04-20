@@ -101,7 +101,9 @@ const setDataColors = (dataList, config) => {
   });
 }
 
-const Block = ({ options = defaultOptions, data = datas, labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'] }) => {
+// NOTE data sent to block must be a list with lists of data
+// aka [[1, 2, 3, 4], [1, 2, 3, 4, 6]]
+const LineBlock = ({ options = defaultOptions, data = [datas[0]], labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'] }) => {
 
   const datasets = setArrayLengths(
     setDataColors(data, defaultConfig), 
@@ -129,4 +131,4 @@ const Block = ({ options = defaultOptions, data = datas, labels = ['January', 'F
   );
 }
 
-export default Block;
+export default LineBlock;
