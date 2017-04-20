@@ -116,16 +116,20 @@ GROUP BY
 
 -- DELETE FROM unit_data_minute;
 
-INSERT INTO unit_data_hour
-	(unit_id, 
+INSERT INTO unit_data_hour (
+    unit_id, 
     unit_key, 
-    value, 
-    timestamp)
+    value_avg,
+    value_sum,
+    value_count, 
+    timestamp
+)
 SELECT 
 	unit_id, 
 	unit_key, 
-	ROUND(AVG(value)) as value_avg, 
-	SUM(value) as value_sum, 
+	ROUND(AVG(value_avg)) as value_avg, 
+	ROUND(SUM(value_sum)) as value_sum, 
+    COUNT(value_sum) as value_count,
 	DATE_FORMAT(timestamp, '%Y-%m-%d %H:00:00') as new_timestamp
 FROM unit_data_minute 
 GROUP BY 
@@ -135,16 +139,20 @@ GROUP BY
 
 -- DELETE FROM unit_data_hour;
 
-INSERT INTO unit_data_day
-	(unit_id, 
+INSERT INTO unit_data_day (
+    unit_id, 
     unit_key, 
-    value, 
-    timestamp)
+    value_avg,
+    value_sum,
+    value_count, 
+    timestamp
+)
 SELECT 
 	unit_id, 
 	unit_key, 
-	ROUND(AVG(value)) as value_avg, 
-	SUM(value) as value_sum, 
+	ROUND(AVG(value_avg)) as value_avg, 
+	ROUND(SUM(value_sum)) as value_sum, 
+    COUNT(value_sum) as value_count,
 	DATE_FORMAT(timestamp, '%Y-%m-%d 00:00:00') as new_timestamp
 FROM unit_data_hour 
 GROUP BY 
