@@ -1,13 +1,14 @@
 {
-  "name": "server",
-  "version": "1.0.0",
+  "name": "sun-labs-api",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js",
+    "webpack": "webpack --watch",
+    "start": "no***REMOVED***n build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Sun Labs Nordic",
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.2",
