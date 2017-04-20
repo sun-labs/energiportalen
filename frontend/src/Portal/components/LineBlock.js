@@ -50,7 +50,13 @@ const data3 = {
   data: [25, 59, 40, 15, 100]
 }
 
-const datas = [data1, data2, data3];
+const ph_Data = [data1, data2, data3];
+
+const ph_Labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
+const ph_Title = 'TITLE';
+const ph_Location = 'LOCATION';
+const ph_TimeSpan = '24h';
 
 const setArrayLengths = (datasets, labels) => {
 
@@ -103,7 +109,18 @@ const setDataColors = (dataList, config) => {
 
 // NOTE data sent to block must be a list with lists of data
 // aka [[1, 2, 3, 4], [1, 2, 3, 4, 6]]
-const LineBlock = ({ options = defaultOptions, data = [datas[0]], labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'] }) => {
+// const LineBlock = ({ options = defaultOptions, data = [datas[0]], labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'] }) => {
+// const LineBlock = ({ options = defaultOptions, data = [defaultData[0]], labels = defaultLabels }) => {
+const LineBlock = (props) => {
+
+  const {
+    options = defaultOptions, 
+    data = [ph_Data[0]], 
+    labels = ph_Labels,
+    title = ph_Title,
+    location = ph_Location,
+    timeSpan = ph_TimeSpan
+  } = props;
 
   const datasets = setArrayLengths(
     setDataColors(data, defaultConfig), 
@@ -115,11 +132,11 @@ const LineBlock = ({ options = defaultOptions, data = [datas[0]], labels = ['Jan
       {/*You could have some data right here, not there, here, at Sun Labs, and you could have it beautifully visualized*/}
 
       <div className="header">
-        <span className="time-span">TIME SPAN</span>
+        <span className="time-span">{timeSpan}</span>
 
         <span className="title-location">
-          <h3 className="title">TITLE</h3>
-          <p className="location">LOCATION</p>
+          <h3 className="title">{title}</h3>
+          <p className="location">{location}</p>
         </span>
         
         <span className="edit">EDIT</span>

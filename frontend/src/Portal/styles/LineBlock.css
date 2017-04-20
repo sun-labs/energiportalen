@@ -4,7 +4,7 @@
   }
 
   .line-block .chart {
-    padding: 0.5em;
+    padding: 8px;
   }
 
   .line-block .header {
@@ -17,21 +17,25 @@
   .line-block .header span {
     display: inline-block;
     padding: 0;
-    margin: 0 0.25em 0 0;
-    line-height: 70px;
-  }
-
-  .line-block .header span {
+    margin: 0 4px 0 0;
     float: left;
   }
 
-  .line-block .header span:first-child,
-  .line-block .header span:last-child {
-    padding-left: 0.5em;
+  .line-block .header .edit {
+    float: right;
+    margin-right: 20px;
+    line-height: 70px;   
   }
 
-  .line-block .header span:last-child {
-    float: right;
+  .line-block .header .time-span {
+    margin: 10px 10px 0 10px;
+    background-color: #F2C94C;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 18px;
+    height: 50px;
+    width: 50px;
   }
 
   .line-block .header .title-location {
