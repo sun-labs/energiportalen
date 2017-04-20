@@ -3,7 +3,19 @@ import { Line } from 'react-chartjs-2';
 
 import '../styles/LineBlock.css';
 
-let datasets = {
+let defaultOptions = {
+  legend: {
+    display: false,
+  },
+  scales: {
+    xAxes: [{
+      display: false
+    }]
+  },
+}
+
+const defaultConfig = {
+  type: 'line',
   fill: false,
   lineTension: 0.1,
   backgroundColor: '#4bc0c0',
@@ -20,40 +32,81 @@ let datasets = {
   pointHoverBorderColor: '#dcdcdc',
   pointHoverBorderWidth: 2,
   pointRadius: 1,
-  pointHitRadius: 10,
-  data: []
+  pointHitRadius: 10
 };
 
-let op = {
-  legend: {
-    display: false,
-  },
-  scales: {
-    xAxes: [{
-      display: false
-    }]
-  },
+const data1 = {
+  label: 'foo',
+  data: [65, 59, 80, 81, 56, 55]
 }
 
-const cutArray = (length, array) => {
-  let ret = [];
-
-  for (let i = 0; i < length; i++) {
-    ret[i] = array[i];
-  }
-  return ret;
+const data2 = {
+  label: 'bar',
+  data: [35, 49, 70, 31, 27, 83, 123, 27, 83]
 }
 
-const Block = ({ options = op, data = [65, 59, 80, 81, 56, 55, 40], labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'] }) => {
+const data3 = {
+  label: 'baz',
+  data: [25, 59, 40, 15, 100]
+}
 
-  if (data.length > labels.length) {
-    alert('Label length less than Data length');
-    data = cutArray(labels.length, data);
+const datas = [data1, data2, data3];
 
-  } else if (labels.length > data.length) {
-    alert('Data length less than Label length');
-    labels = cutArray(data.length, labels);
+const setArrayLengths = (datasets, labels) => {
+
+  const max = datasets.reduce((acc, val) => {
+    if (acc.data.length > val.data.length) {
+      return acc;
+    } else {
+      return val;
+    }
+  }).data.length;
+
+  if (max < labels.length) {
+    return { 
+      datasets,
+      labels: labels.slice(0, max)
+    };
   }
+  else if (max > labels.length) {
+    return {
+      labels,
+      datasets: datasets.map(item => ({
+        ...item,
+        data: item.data.slice(0, labels.length)
+      }))
+    };
+  }
+
+  return { 
+    labels, 
+    datasets
+  };
+}
+
+const setDataColors = (dataList, config) => {
+
+  // NOTE, make sure we have more colors than datasets
+  const colors = ['#4bc0c0', '#F2C94C', '#EB5757'];
+
+  return dataList.map((item, i = dataList.indexOf(item)) => {
+    return {
+      ...item, 
+      ...config,
+      backgroundColor: colors[i],
+      borderColor: colors[i],
+      pointBorderColor: colors[i],
+      pointHoverBackgroundColor: colors[i]
+    }
+  });
+}
+
+const Block = ({ options = defaultOptions, data = datas, labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'] }) => {
+
+  const datasets = setArrayLengths(
+    setDataColors(data, defaultConfig), 
+    labels
+  );
 
   return (
     <div className="block line-block">
@@ -70,7 +123,7 @@ const Block = ({ options = op, data = [65, 59, 80, 81, 56, 55, 40], labels = ['J
         <span className="edit">EDIT</span>
       </div>
       <div className="chart">
-        <Line className="line-chart" data={{ labels, datasets: [{ ...datasets, data}] }} options={options} />
+        <Line className="line-chart" data={datasets} options={options} />        
       </div>
     </div>
   );
