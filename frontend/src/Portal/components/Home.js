@@ -30,8 +30,8 @@ class Home extends Component {
         .then((res) => {
 
           this.setState({
-            data: [ ...this.state.data, { data: res.data.data, label: 'what is it'} ],
-            timestamps: [ ...this.state.timestamps, res.data.timestamps ],
+            data: [ ...this.state.data, { data: res.data.data.splice(1, res.data.data.length), label: 'what is it'} ],
+            timestamps: [ ...this.state.timestamps, res.data.timestamps.splice(1, res.data.timestamps.length) ],
             title: [ ...this.state.title, 'data' ],
             location: [ ...this.state.location, 'Akademiska sjukhuset' ]
           })
