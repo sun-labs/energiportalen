@@ -45,7 +45,7 @@ const cutArray = (length, array) => {
 }
 
 const Block = ({ options = op, data = [65, 59, 80, 81, 56, 55, 40], labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'] }) => {
-  
+
   if (data.length > labels.length) {
     alert('Label length less than Data length');
     data = cutArray(labels.length, data);
@@ -58,7 +58,20 @@ const Block = ({ options = op, data = [65, 59, 80, 81, 56, 55, 40], labels = ['J
   return (
     <div className="block line-block">
       {/*You could have some data right here, not there, here, at Sun Labs, and you could have it beautifully visualized*/}
-      <Line className="line-chart" data={{ labels, datasets: [{ ...datasets, data}] }} options={options} />
+
+      <div className="header">
+        <span className="time-span">TIME SPAN</span>
+
+        <span className="title-location">
+          <h3 className="title">TITLE</h3>
+          <p className="location">LOCATION</p>
+        </span>
+        
+        <span className="edit">EDIT</span>
+      </div>
+      <div className="chart">
+        <Line className="line-chart" data={{ labels, datasets: [{ ...datasets, data}] }} options={options} />
+      </div>
     </div>
   );
 }
