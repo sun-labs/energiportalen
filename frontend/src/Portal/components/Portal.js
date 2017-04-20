@@ -19,6 +19,10 @@ class Portal extends Component {
         <div className="content">
           <AddBlock/>
           <LineBlock/>
+          <LineBlock/>
+          <LineBlock/>
+          <LineBlock/>
+          <LineBlock/>
         </div>
 
         <BotNavBar/>
