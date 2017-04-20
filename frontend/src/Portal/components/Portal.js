@@ -1,30 +1,24 @@
 import React, { Component } from 'react';
-
-// STYLE IMPORTS
-import '../styles/Portal.css';
+import { Route, Switch } from 'react-router-dom';
 
 // COMPONENT IMPORTS
+import Home from './Home';
+import AddBlock from './AddBlock';
 import TopNavBar from './TopNavBar';
 import BotNavBar from './BotNavBar';
-import AddBlock from './AddBlock';
-import LineBlock from './LineBlock';
+
+export const ROOT = '/portal';
 
 class Portal extends Component {
-
   render() {
+    
     return (
-      <div id="Portal">
+      <div id="portal">
         <TopNavBar />
-
-        <div className="content">
-          <AddBlock/>
-          <LineBlock/>
-          <LineBlock/>
-          <LineBlock/>
-          <LineBlock/>
-          <LineBlock/>
-        </div>
-
+          <Switch>
+            <Route path={`${ROOT}/addblock`} component={ AddBlock } />   
+            <Route component={ Home } />
+          </Switch>
         <BotNavBar/>
       </div>
     );
@@ -33,5 +27,3 @@ class Portal extends Component {
 }
 
 export default Portal;
-
-

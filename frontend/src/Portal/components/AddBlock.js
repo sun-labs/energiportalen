@@ -4,7 +4,7 @@ import '../styles/AddBlock.css';
 
 const AddBlock = () => {
   return (
-    <div className="add-block block" onClick={() => alert('ADD BLOCK')}>+ ADD BLOCK</div>
+    <div id="add-block">HELLO</div>
   );
 }
 

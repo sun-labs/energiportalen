@@ -1,9 +1,9 @@
 @media screen and (max-width: 500px) {
-  #Portal .content {
+  #portal .content {
     margin: 6em 1em 0em 1em;
   }
 
-  #Portal .block {
+  #portal .block {
     position: relative;
     margin-bottom: 0.75em;
 
@@ -14,5 +14,7 @@
     padding: 1em;
     font-size: 1.5em;
   }
-
+  #portal .content .add-block {
+    border: 2px dashed #BFBFBF;
+  }
 }

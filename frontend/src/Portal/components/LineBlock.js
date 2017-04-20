@@ -95,14 +95,14 @@ const setDataColors = (dataList, config) => {
   // NOTE, make sure we have more colors than datasets
   const colors = ['#4bc0c0', '#F2C94C', '#EB5757'];
 
-  return dataList.map((item, i = dataList.indexOf(item)) => {
+  return dataList.map((item, index) => {
     return {
       ...item, 
       ...config,
-      backgroundColor: colors[i],
-      borderColor: colors[i],
-      pointBorderColor: colors[i],
-      pointHoverBackgroundColor: colors[i]
+      backgroundColor: colors[index],
+      borderColor: colors[index],
+      pointBorderColor: colors[index],
+      pointHoverBackgroundColor: colors[index]
     }
   });
 }

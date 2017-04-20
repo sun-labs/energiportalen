@@ -7,8 +7,8 @@ import '../styles/TopNavBar.css';
 const TopNavBar = () => {
   return (
     <div className="top-navbar-portal">
-      <p className="edit-btn" onClick={() => alert('EDIT')}>EDIT</p>
-      <p className="profile-btn" onClick={() => alert('PROFILE')}>PROFILE</p>
+      <p className="edit-btn">EDIT</p>
+      <p className="profile-btn">PROFILE</p>
     </div>
   );
 }
