@@ -113,9 +113,6 @@ const setDataColors = (dataList, config) => {
 // const LineBlock = ({ options = defaultOptions, data = [defaultData[0]], labels = defaultLabels }) => {
 const LineBlock = (props) => {
 
-  console.log(props.data);
-  console.log([ph_Data[0]])
-
   const {
     options = defaultOptions, 
     data = [ph_Data[0]], 
