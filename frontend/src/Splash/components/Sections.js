@@ -50,8 +50,8 @@ class Section1 extends Component {
         <div className="clouds"></div>
         <img className="logo" src={ logo } alt="Sun Labs Logo" />
         <div className="creat-wrap">
-          <h1>SIGN UP</h1>
-          <h2>It's free and will always be</h2>
+          <h1>SIGN UP WITH SUN LABS</h1>
+          <h2>It's free and will always be for Sun Labs</h2>
           <FormSignUp showError={ this.props.showError } />
         </div>
         <button id="mobile-btn-create-account" onClick={ this.togglePopup }>CREATE ACCOUNT</button>
@@ -67,7 +67,7 @@ class Section1 extends Component {
 const Section2 = () => {
   return (
     <Section className="section2">
-      <TextContent title="About." body="As all of Earth’s creatures live in the same home, understanding the importance of sharing has never been more vital. Identify a local solar plant, share ideas for ways to live in balance as a global community." />
+      <TextContent title="About Sun Labs." body="As all of Earth’s creatures live in the same home, understanding the importance of sharing has never been more vital. Identify a local solar plant, share ideas for ways to live in balance as a global community." />
       <div className="clouds"></div>
     </Section>
   )
@@ -76,7 +76,7 @@ const Section2 = () => {
 const Section3 = () => {
   return (
     <Section className="section3">
-      <TextContent title="Made by students." body="With a vision that learning about the environment is the first step to preserving it. We wanted to create a platform to make the knowledge about solar energy accessible for everyone, to help people explore, understand, and celebrate the world around them. Like lessons that leave the world a better place." />
+      <TextContent title="Made by Sun Labs." body="With a vision that learning about the environment is the first step to preserving it. We wanted to create a platform to make the knowledge about solar energy accessible for everyone, to help people explore, understand, and celebrate the world around them. Like lessons that leave the world a better place." />
     </Section>
   )
 }
@@ -84,9 +84,9 @@ const Section3 = () => {
 const Section4 = () => {
   return (
     <Section className="section4">
-      <TextContent title="Partnership." body="We’re partnered up with public corporations and experts in global warming. It’s really about empowering every person on earth to achieve more. Connecting everyone with their and others energy data. Creating new dimensions of understanding." />
-      <div id="lulLogo"></div>
-      <div id="euLogo"></div>
+      <TextContent title="Partnership Sun Labs." body="We’re partnered up with public corporations and experts in global warming. It’s really about empowering every person on earth to achieve more. Connecting everyone with their and others energy data. Creating new dimensions of understanding." />
+      {/*<div id="lulLogo"></div>
+      <div id="euLogo"></div>*/}
       <div id="sunlabsLogo"></div>
     </Section>
   )

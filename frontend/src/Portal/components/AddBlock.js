@@ -4,7 +4,7 @@ import '../styles/AddBlock.css';
 
 const AddBlock = () => {
   return (
-    <div id="add-block">HELLO</div>
+    <div id="add-block">HELLO SUN LABS</div>
   );
 }
 
