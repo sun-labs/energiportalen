@@ -134,10 +134,10 @@ const LineBlock = (props) => {
       <div className="header">
         <span className="time-span">{timeSpan}</span>
 
-        <span className="title-name">
+        <div className="title-name">
           <h3 className="title">{title}</h3>
           <p className="name">{name}</p>
-        </span>
+        </div>
         
         <span className="edit">EDIT</span>
       </div>
