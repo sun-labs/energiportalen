@@ -9,6 +9,7 @@ import '../styles/Home.css';
 
 // COMPONENT IMPORTS
 import LineBlock from './LineBlock';
+import GenInfoBlock from './GenInfoBlock';
 
 class Home extends Component {
   constructor() {
@@ -18,7 +19,7 @@ class Home extends Component {
       data: [],
       timestamps: [],
       title: [],
-      location: []
+      name: []
     }
 
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -34,7 +35,7 @@ class Home extends Component {
     //         data: [ ...this.state.data, { data: res.data.data.splice(1, res.data.data.length), label: 'what is it'} ],
     //         timestamps: [ ...this.state.timestamps, res.data.timestamps.splice(1, res.data.timestamps.length) ],
     //         title: [ ...this.state.title, 'data' ],
-    //         location: [ ...this.state.location, 'Akademiska sjukhuset' ]
+    //         name: [ ...this.state.name, 'Akademiska sjukhuset' ]
     //       })
 
 
@@ -48,7 +49,7 @@ class Home extends Component {
   render(){
     /* ADD THE FOLLOWING TO USE REAL DATABASE DATA */
 
-    // const { data, timestamps, title, location } = this.state;
+    // const { data, timestamps, title, name } = this.state;
 
     // let props = [];
 
@@ -59,7 +60,7 @@ class Home extends Component {
     //       data: [data[i]],
     //       labels: timestamps[i],
     //       title: title[i],
-    //       location: location[i]
+    //       name: name[i]
     //     }
     //   ]
     // }
@@ -75,11 +76,15 @@ class Home extends Component {
             );
           }) 
         }*/}
-
+          <div className="text-block">
+            <h1>blocks <span className="inline-button"> add block + </span></h1>
+            <h2> These are your own personally defined blocks, you may add and remove as you like to customize your dashboard </h2>
+          </div>
+        <GenInfoBlock/>
         <LineBlock/>
         <LineBlock/>
         <LineBlock/>
-        <LineBlock/>        
+        <LineBlock/> 
       </div>
     );
   }
