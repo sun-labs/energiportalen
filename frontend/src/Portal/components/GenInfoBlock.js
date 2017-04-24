@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import '../styles/GenInfoBlock.css';
 
@@ -15,9 +16,11 @@ const GenInfoBlock = ({ name = ph_Name, location = ph_Location }) => {
           <p className="location">{location}</p>
         </span>
         <span className="edit">EDIT</span>
-        
+
       </div>
-      general info
+      <div className="content">
+        <Link to="/">+ add information</Link>
+      </div>
     </div>
   );
 }
