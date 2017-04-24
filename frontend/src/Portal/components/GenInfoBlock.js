@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import '../styles/GenInfoBlock.css';
 
+import TinyInfoBlock from './TinyInfoBlock';
+
 const ph_Name = 'Akademiska sjukhuset';
 const ph_Location = 'Uppsala';
 
@@ -19,6 +21,9 @@ const GenInfoBlock = ({ name = ph_Name, location = ph_Location }) => {
 
       </div>
       <div className="content">
+
+      <TinyInfoBlock/>
+
         <Link to="/">+ add information</Link>
       </div>
     </div>
