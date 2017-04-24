@@ -9,6 +9,7 @@ import '../styles/Home.css';
 
 // COMPONENT IMPORTS
 import LineBlock from './LineBlock';
+import GenInfoBlock from './GenInfoBlock';
 
 class Home extends Component {
   constructor() {
@@ -75,11 +76,11 @@ class Home extends Component {
             );
           }) 
         }*/}
-
+        <GenInfoBlock/>
         <LineBlock/>
         <LineBlock/>
         <LineBlock/>
-        <LineBlock/>        
+        <LineBlock/> 
       </div>
     );
   }
