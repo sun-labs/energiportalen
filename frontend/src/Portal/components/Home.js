@@ -76,6 +76,10 @@ class Home extends Component {
             );
           }) 
         }*/}
+          <div className="text-block">
+            <h1>blocks <span className="inline-button"> add block + </span></h1>
+            <h2> These are your own personally defined blocks, you may add and remove as you like to customize your dashboard </h2>
+          </div>
         <GenInfoBlock/>
         <LineBlock/>
         <LineBlock/>
