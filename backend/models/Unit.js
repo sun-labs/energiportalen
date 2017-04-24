@@ -1,19 +1,9 @@
-import express from 'express';
 import mysql from 'mysql';
-import config from '../config.js';
+import con from './Connection.js';
 
-let unitRouter = express.Router();
+let Unit = {};
 
-let con = mysql.createConnection(config.mysql);
-con.connect((error) => {
-  if(!error) {
-  console.log('sql connected');
-  } else {
-  console.log(error);
-  }
-});
-
-const getUnits = (cb) => {
+Unit.getUnits = (cb) => {
 
   const query = `
     SELECT 
@@ -35,7 +25,7 @@ const getUnits = (cb) => {
 
 };
 
-const getUnitKeys = (unitId, cb) => {
+Unit.getUnitKeys = (unitId, cb) => {
 
   const query = `
     SELECT DISTINCT 
@@ -61,7 +51,7 @@ const getUnitKeys = (unitId, cb) => {
 };
 
 // id = 4, key = 85
-const getUnitDataFromKey = (unitId, unitKeyId, cb) => {
+Unit.getUnitDataFromKey = (unitId, unitKeyId, cb) => {
 
   const query = `
     SELECT 
@@ -96,25 +86,4 @@ const getUnitDataFromKey = (unitId, unitKeyId, cb) => {
 
 };
 
-// get units
-unitRouter.get('/', (req, res) => {
-  getUnits((results, fields) => {
-    res.json(results);
-  });
-});
-
-// get data keys from a unit
-unitRouter.get('/:unitId', (req, res) => {
-  getUnitKeys(req.params.unitId, (results, fields) => {
-    res.json(results);
-  });
-});
-
-// get data from a unit with speicified key
-unitRouter.get('/:unitId/:unitKeyId', (req, res) => {
-  getUnitDataFromKey(req.params.unitId, req.params.unitKeyId, (results, fields) => {
-    res.json(results);
-  });
-});
-
-export default unitRouter;
+export default Unit;

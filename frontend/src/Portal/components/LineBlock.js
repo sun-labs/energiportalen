@@ -55,7 +55,7 @@ const ph_Data = [data1, data2, data3];
 const ph_Labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
 const ph_Title = 'TITLE';
-const ph_Location = 'LOCATION';
+const ph_Name = 'NAME';
 const ph_TimeSpan = '24h';
 
 const setArrayLengths = (datasets, labels) => {
@@ -118,7 +118,7 @@ const LineBlock = (props) => {
     data = [ph_Data[0]], 
     labels = ph_Labels,
     title = ph_Title,
-    location = ph_Location,
+    name = ph_Name,
     timeSpan = ph_TimeSpan
   } = props;
 
@@ -134,9 +134,9 @@ const LineBlock = (props) => {
       <div className="header">
         <span className="time-span">{timeSpan}</span>
 
-        <span className="title-location">
+        <span className="title-name">
           <h3 className="title">{title}</h3>
-          <p className="location">{location}</p>
+          <p className="name">{name}</p>
         </span>
         
         <span className="edit">EDIT</span>
