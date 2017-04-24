@@ -37,16 +37,16 @@
     width: 50px;
   }
 
-  .line-block .header .title-location {
+  .line-block .header .title-name {
     overflow: auto;
     line-height: normal;
     margin-top: 7px;
   }
 
-  .header .title-location .title {
+  .header .title-name .title {
     font-weight: normal;
   }
-  .header .title-location .location {
+  .header .title-name .name {
     font-size: 0.6em;
     color: #808080;
   }

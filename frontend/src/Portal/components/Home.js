@@ -19,7 +19,7 @@ class Home extends Component {
       data: [],
       timestamps: [],
       title: [],
-      location: []
+      name: []
     }
 
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -35,7 +35,7 @@ class Home extends Component {
     //         data: [ ...this.state.data, { data: res.data.data.splice(1, res.data.data.length), label: 'what is it'} ],
     //         timestamps: [ ...this.state.timestamps, res.data.timestamps.splice(1, res.data.timestamps.length) ],
     //         title: [ ...this.state.title, 'data' ],
-    //         location: [ ...this.state.location, 'Akademiska sjukhuset' ]
+    //         name: [ ...this.state.name, 'Akademiska sjukhuset' ]
     //       })
 
 
@@ -49,7 +49,7 @@ class Home extends Component {
   render(){
     /* ADD THE FOLLOWING TO USE REAL DATABASE DATA */
 
-    // const { data, timestamps, title, location } = this.state;
+    // const { data, timestamps, title, name } = this.state;
 
     // let props = [];
 
@@ -60,7 +60,7 @@ class Home extends Component {
     //       data: [data[i]],
     //       labels: timestamps[i],
     //       title: title[i],
-    //       location: location[i]
+    //       name: name[i]
     //     }
     //   ]
     // }
