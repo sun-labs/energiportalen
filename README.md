@@ -7,13 +7,21 @@
 ###A database with the following specification
  - Name: energiportalen
  - Tables: `units`, `unit_data`, `unit_keys`, `unit_data_minute`, `unit_data_hour`, `unit_data_day`
- - 
 
 
 ###User with information
  - Username: energiportalen
  - Host: %
  - Pass: ***REMOVED***
+
+## How to run
+- `npm install` (currently a bit fucked as you need to install in three directories.)
+- `npm run start`
+
+## How to run tests
+- `npm run test`, run frontend and backend tests
+- `npm run test_be`, run backend tests
+- `npm run test_fe`, run frontend tests
 
 ### Trello
 https://trello.com/b/WsRPCMmn/mvp

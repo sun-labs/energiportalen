@@ -5,10 +5,10 @@
   "main": "app.js",
   "scripts": {
     "webpack": "webpack --watch",
-    "start": "no***REMOVED***n build/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "no***REMOVED***n": "no***REMOVED***n build/index.js",
+    "start": "concurrently \"npm run webpack\" \"npm run no***REMOVED***n\""
   },
-  "author": "Sun Labs Nordic",
+  "author": "Sun Labs Nordic Handelsbolag",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.3",

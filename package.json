@@ -1,0 +1,32 @@
+{
+  "name": "energiportalen",
+  "version": "0.0.1",
+  "description": "Visualize production of solar energy",
+  "main": "README.md",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "concurrently": "^3.4.0"
+  },
+  "scripts": {
+    "test_be": "cd tests/; webpack && mocha build/backend.js",
+    "test_fe": "cd tests/; webpack && mocha build/frontend.js",
+    "test": "npm run test_be; npm run test_fe",
+    "server": "cd backend/; npm run start",
+    "client": "cd frontend/; npm run start",
+    "start": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xeloader/energiportalen.git"
+  },
+  "author": "Sun Labs Nordic Handelsbolag",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xeloader/energiportalen/issues"
+  },
+  "homepage": "https://github.com/xeloader/energiportalen#readme"
+}
