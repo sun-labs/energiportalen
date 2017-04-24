@@ -14,13 +14,13 @@ const GenInfoBlock = ({ name = ph_Name, location = ph_Location }) => {
 
       <div className="header">
         <div className="name-location">
-          <h3 className="name">{name}</h3>
+          <h3 className="name">{name} <span className="edit">EDIT</span> </h3>
           <p className="location">{location}</p>
         </div>
-        <span className="edit">EDIT</span>
+        
 
       </div>
-      <div className="content">
+      <div className="content-gen-block">
 
       <TinyInfoBlock/>
 

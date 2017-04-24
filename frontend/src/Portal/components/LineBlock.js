@@ -132,14 +132,12 @@ const LineBlock = (props) => {
       {/*You could have some data right here, not there, here, at Sun Labs, and you could have it beautifully visualized*/}
 
       <div className="header">
-        <span className="time-span">{timeSpan}</span>
+        <p className="time-span">{timeSpan}</p>
 
         <div className="title-name">
-          <h3 className="title">{title}</h3>
+          <h3 className="title">{title} <span className="edit">EDIT</span> </h3>
           <p className="name">{name}</p>
         </div>
-        
-        <span className="edit">EDIT</span>
       </div>
       <div className="chart">
         <Line className="line-chart" data={datasets} options={options} />        

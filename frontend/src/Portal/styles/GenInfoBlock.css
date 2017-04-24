@@ -42,7 +42,6 @@
     margin: 0;
     border-bottom: 2px solid #BDBDBD;
     text-align: left;
-    vertical-align: center;
     height: 70px;
   }
 
@@ -54,11 +53,6 @@
     font-size: 0.6em;
   }
 
-  #portal .gen-info-block .content {
-    padding: 0;
-    margin: 0;
-    overflow: auto;
-  }
 
   .gen-info-block a {
     font-size: 0.6em;
@@ -106,9 +100,7 @@
     color: #219653; 
   }
 
-  #portal .gen-info-block .content {
-    padding: 0;
-    margin: 0;
+  #portal .gen-info-block .content-gen-block {
     overflow: auto;
   }
 
