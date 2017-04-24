@@ -2,8 +2,7 @@
   color: #219653;
 }
 
-@media screen and (max-width: 500px) {
-  .top-navbar-portal {
+.top-navbar-portal {
     background: #FFFFFF;
     opacity: 1.00;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
@@ -17,6 +16,50 @@
     left: 0;
     top: 0;
     width: 100%;
+}
+
+@media screen and (min-width: 501px){
+  .top-navbar-portal{
+    background-position: center left 20px;
+    background-size: 150px auto;
+    font-size: 1.5em;
+    color: black;
+    font-weight: normal;
+  }
+
+  .top-navbar-portal .dash-btn,
+  .top-navbar-portal .facil-btn,
+  .top-navbar-portal .search-btn-desktop{
+    margin-left: 20px;
+    margin-right: 20px;
+    display: inline-block;
+  }
+
+  .top-navbar-portal .dash-btn{
+    padding-left: 200px;
+  }
+
+  .top-navbar-portal .search{
+    float: right;
+    padding-right: 10px;
+
+  }
+
+  .top-navbar-portal .profile-btn,
+  .top-navbar-portal .edit-btn{
+    display: none;
+  }
+
+  p:hover {
+  color: #219653;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  .top-navbar-portal {
+    background-position: center center;
+    background-size: 110px auto;
     font-weight: lighter;
   }
 
@@ -35,6 +78,13 @@
   .top-navbar-portal .edit-btn {
     margin-right: 1em;
     float: right;
+  }
+
+  .top-navbar-portal .dash-btn,
+  .top-navbar-portal .facil-btn,
+  .top-navbar-portal .search-btn-desktop{
+    display: none;
+
   }
 
 }
