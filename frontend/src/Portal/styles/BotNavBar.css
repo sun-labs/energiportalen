@@ -2,19 +2,60 @@
   color: #219653;
 }
 
-@media screen and (max-width: 500px) {
   .bot-navbar-portal {
     background: #FFFFFF;
     opacity: 1.00;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-
     z-index: 100;
     position: fixed;
     left: 0;
-    bottom: 0;
     width: 100%;
+  }
+
+@media screen and (min-width: 501px){
+
+  .bot-navbar-portal {
+      background-image: url('../../imgs/sunlabs-logo-black-text.png');
+      background-position: 10px center;
+      background-repeat: no-repeat;
+      background-size: 150px auto;
+      font-size: 1.5em;
+
+      top: 0;
+      color: black;
+      display: inline-block;
+      padding: 1em 0;  
+  }
+
+  .bot-navbar-portal ul{
+    padding-left: 200px;
+  }
+
+  .bot-navbar-portal li {
     display: inline-block;
+    font-size: 1em;
+    width: 150px;
+    text-align: left;
+    padding: 1em 0;
+    text-transform: uppercase;
+    padding: 10px;
+  }
+
+  .bot-navbar-portal .search.icon{
+    float: right;
+
+  }
+
+  li:hover {
+  color: #219653;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  .bot-navbar-portal {
     text-align: center;
+    bottom: 0;
   }
 
   .bot-navbar-portal .icon {
