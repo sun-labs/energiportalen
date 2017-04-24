@@ -55,7 +55,7 @@ const ph_Data = [data1, data2, data3];
 const ph_Labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
 const ph_Title = 'TITLE';
-const ph_Name = 'LOCATION';
+const ph_Name = 'NAME';
 const ph_TimeSpan = '24h';
 
 const setArrayLengths = (datasets, labels) => {
