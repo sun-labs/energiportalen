@@ -15,5 +15,6 @@
   }
   #portal .content .add-block {
     border: 2px dashed #BFBFBF;
+    padding: 1em;
   }
 }
