@@ -1,7 +1,93 @@
-@media screen and (max-width: 500px) {
-  #portal .gen-info-block {
+#portal .gen-info-block {
+  padding: 0;
+}
+
+.gen-info-block .header span {
+  padding: 0;
+  margin: 0 4px 0 0;
+  float: left;
+}
+  
+.gen-info-block .header .name-location {
+  overflow: auto;
+  line-height: normal;
+}
+
+.gen-info-block .header .name-location .name {
+  font-weight: normal;
+  margin-left: 8px;
+}
+
+.gen-info-block .header .name-location .location {
+  color: #808080;
+  margin-left: 8px;
+}
+
+.gen-info-block .header .edit {
+  float: right;
+  margin-right: 20px;
+}
+
+.gen-info-block a {
+  color: #219653;
+  line-height: 40px;    
+  float: left;
+  margin-left: 5px;
+  }
+
+@media screen and (min-width: 501px){
+
+  .gen-info-block .header {
+    padding: 7px 0 0 0;
+    margin: 0;
+    border-bottom: 2px solid #BDBDBD;
+    text-align: left;
+    vertical-align: center;
+    height: 70px;
+  }
+
+  .gen-info-block .header .name-location .name {
+    font-size: 0.9em;
+  }
+
+  .gen-info-block .header .name-location .location {
+    font-size: 0.6em;
+  }
+
+  #portal .gen-info-block .content {
     padding: 0;
-    border-color: #4F4F4F;
+    margin: 0;
+    overflow: auto;
+  }
+
+  .gen-info-block a {
+    font-size: 0.6em;
+  }
+
+  .line-block .header .edit {
+    float: right;
+    margin-right: 20px;
+    line-height: 70px;   
+  }
+
+  .gen-info-block .header .edit {
+    line-height: 70px;  
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+
+  #portal .gen-info-block {
+  border-color: #4F4F4F;
+  }
+  
+  .gen-info-block .header .name-location .location {
+    font-size: 0.5em;
+  }
+
+  .gen-info-block .header .name-location .name {
+    font-size: 0.7em;
   }
 
   .gen-info-block .header {
@@ -13,34 +99,11 @@
     height: 45px;
   }
 
-  .gen-info-block .header span {
-    padding: 0;
-    margin: 0 4px 0 0;
-    float: left;
-  }
 
-  .gen-info-block .header .name-location {
-    overflow: auto;
-    line-height: normal;
-  }
-
-  .gen-info-block .header .name-location .name {
-    font-weight: normal;
-    font-size: 0.7em;
-    margin-left: 8px;
-  }
-  .gen-info-block .header .name-location .location {
-    font-size: 0.5em;
-    color: #808080;
-    margin-left: 8px;
-  }
 
   .gen-info-block .header .edit {
-    float: right;
-    margin-right: 20px;
-    line-height: 40px;
-    font-size: 0.6em;   
-    color: #219653;
+    font-size: 0.6em;  
+    color: #219653; 
   }
 
   #portal .gen-info-block .content {
@@ -51,9 +114,9 @@
 
   .gen-info-block a {
     font-size: 0.6em;
-    color: #219653;
-    line-height: 40px;    
-    float: left;
-    margin-left: 5px;
+  }
+
+  .gen-info-block .header .edit {
+    line-height: 40px;  
   }
 }
