@@ -10,8 +10,8 @@ import BotNavBar from './BotNavBar';
 export const ROOT = '/portal';
 
 class Portal extends Component {
+  
   render() {
-    
     return (
       <div id="portal">
         <TopNavBar />

@@ -1,0 +1,147 @@
+.blockk {
+  width: 98%;
+  margin: 1%;
+  border-radius: 10px;
+  border: 2px solid black;
+  box-sizing: border-box;
+  overflow: auto;
+  min-width: 300px;
+}
+
+.blockk header {
+  box-sizing: border-box;
+  position: relative;
+  padding: 5px;
+  width: 100%;
+  height: 60px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: gray;
+}
+
+.blockk .description-wrap {
+  float: left;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.blockk .tool-wrap {
+  position: absolute;
+  right: 1em;
+}
+
+.blockk .tool-wrap > .button {
+  line-height: 50px;
+  text-transform: uppercase;
+  color: #219653;
+}
+
+.blockk .time-wrap {
+  float: left;
+}
+
+.blockk .time-wrap > .value {
+  width: 40px;
+  line-height: 40px;
+  margin: 5px 0 0 5px;
+  background-color: gray;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 0.875em;
+  color: #333333;
+}
+
+.blockk .title {
+  color: black;
+  text-transform: uppercase;
+}
+
+.blockk .subtitle {
+  color: #828282;
+}
+
+.blockk .content {
+  box-sizing: border-box;
+}
+
+.blockk footer {
+  display: none;
+}
+
+/*
+* LINE CHART BLOCKS
+*/
+.blockk-line {
+  border-color: green;
+}
+
+.blockk-line header {
+  border-bottom-color: green;
+}
+
+.blockk-line .time-wrap > .value {
+  background-color: #F2C94C;
+}
+
+.blockk-line > .content {
+  padding: 7px;
+}
+
+.blockk-line > .content > canvas {
+  margin-top: -20px;
+}
+
+.blockk-line .content > iframe {
+  display: none;
+}
+
+/*
+* TABLE INFORMATION BLOCK
+*/
+.blockk-table {
+  border-color: black;
+}
+
+.content-table {
+  width: 100%;
+  margin-top: -23px;
+  box-sizing: border-box;
+}
+
+.content-table tr {
+  width: 100%;
+}
+
+.content-table td {
+  border-bottom: 1px solid lightgray;
+  width: 100%;
+  padding: 1em;
+  margin: 0;
+}
+
+.content-table .add-information {
+  color: green;
+}
+
+@media screen and (min-width: 501px){
+
+   .blockk {
+      display: inline-block;
+      width: 32%;
+      margin: 0 0.5% 15px 0.5%;
+      height: 250px;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+
+  .blockk {
+    margin-bottom: 1em;
+  }
+
+  .blockk .tool-wrap {
+    display: none;
+  }
+
+}

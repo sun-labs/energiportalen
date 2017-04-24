@@ -1,7 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 
-import '../styles/LineBlock.css';
+import Block from './Block';
 
 let defaultOptions = {
   legend: {
@@ -118,7 +118,7 @@ const LineBlock = (props) => {
     data = [ph_Data[0]], 
     labels = ph_Labels,
     title = ph_Title,
-    name = ph_Name,
+    subtitle = ph_Name,
     timeSpan = ph_TimeSpan
   } = props;
 
@@ -127,22 +127,16 @@ const LineBlock = (props) => {
     labels
   );
 
+  const blockInfo = {
+    title,
+    subtitle,
+    timeSpan
+  }
+
   return (
-    <div className="block line-block">
-      {/*You could have some data right here, not there, here, at Sun Labs, and you could have it beautifully visualized*/}
-
-      <div className="header">
-        <p className="time-span">{timeSpan}</p>
-
-        <div className="title-name">
-          <h3 className="title">{title} <span className="edit">EDIT</span> </h3>
-          <p className="name">{name}</p>
-        </div>
-      </div>
-      <div className="chart">
-        <Line className="line-chart" data={datasets} options={options} />        
-      </div>
-    </div>
+    <Block className="blockk-line" { ...blockInfo }>
+      <Line className="line-chart" data={datasets} options={options} />
+    </Block>
   );
 }
 

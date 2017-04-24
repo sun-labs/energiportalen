@@ -1,69 +1,51 @@
-
+#portal .content .add-block {
+    border: 2px dashed #BFBFBF;
+    padding: 1em;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
 
 @media screen and (min-width: 501px){
 
-     #portal .content {
-      margin-top: 100px;  
-    }
-
-   
-    #portal .block {
-    width: 30%;
-    margin: 10px;
-    position: relative;
-    margin-bottom: 0.75em;
-    display: block;
-    display: inline-block;
-    border: 2px solid black;
-    border-radius: 5px;
+  #portal > .content {
+    padding-top: 100px;
     box-sizing: border-box;
-    padding: 1em;
-    font-size: 1.5em;
+    padding: 100px 1em 1em 1em;
   }
 
-
-  #portal .text-block {
+  #portal > .content > .text-block {
     text-align: left;
+    padding: 1em 0;
+    box-sizing: border-box;
   }
   
-  #portal .text-block h1{
+  #portal > .content > .text-block h1 {
     text-transform: uppercase;
   }
 
-  #portal .text-block h2{
+  #portal > .content > .text-block h2 {
     font-weight: lighter;
-    font-size: 18px;
+    font-size: 16px;
   }
 
-  #portal .inline-button{
+  #portal > .content .inline-button{
     font-size: 10px;
     color: #6FCF97;
   }
   
-  #portal .add-block.block{
+  #portal .content .add-block {
     display: none;
   }
 
 }
 
 @media screen and (max-width: 500px) {
-  #portal .content {
+  #portal > .content {
     margin: 6em 1em 5em 1em;
   }
 
-  #portal .block {
-    position: relative;
-    margin-bottom: 0.75em;
-    display: block;
-    text-align: center;
-    border: 2px solid #6FCF97;
-    border-radius: 5px;
-    padding: 0;
-    font-size: 1.5em;
-  }
   #portal .content .add-block {
-    border: 2px dashed #BFBFBF;
-    padding: 1em;
+    display: block;
   }
 
   #portal .text-block{
