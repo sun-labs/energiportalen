@@ -1,9 +1,8 @@
 .blockk {
-  width: 98%;
+  width: 97%;
   margin: 1%;
   border-radius: 10px;
   border: 2px solid black;
-  box-sizing: border-box;
   overflow: auto;
   min-width: 300px;
 }
@@ -40,10 +39,13 @@
   float: left;
 }
 
-.blockk .time-wrap > .value {
+.blockk header .time-wrap > .value {
+  margin: 5px 0 0 5px;
   width: 40px;
   line-height: 40px;
-  margin: 5px 0 0 5px;
+}
+
+.blockk .time-wrap > .value {
   background-color: gray;
   text-align: center;
   border-radius: 5px;
@@ -62,6 +64,7 @@
 
 .blockk .content {
   box-sizing: border-box;
+  overflow-y: scroll;
 }
 
 .blockk footer {
@@ -87,8 +90,8 @@
   padding: 7px;
 }
 
-.blockk-line > .content > canvas {
-  margin-top: -20px;
+.blockk-line .content > canvas {
+  margin-top: -23px;
 }
 
 .blockk-line .content > iframe {
@@ -100,6 +103,39 @@
 */
 .blockk-table {
   border-color: black;
+}
+
+.blockk-table header > .time-wrap {
+  display: none;
+}
+
+.blockk-table .time-wrap .value {
+  background-color: #F2C94C;
+  padding: 5px;
+  margin: 12px 10px 0 10px;
+}
+
+.content-table .data-wrap {
+  float: right;
+  padding: 7px 0.75em 7px 0;
+}
+
+.content-table .data-wrap .value {
+  color: black;
+}
+
+.content-table .data-wrap .unit {
+  color: gray;
+  font-size: 12px;
+}
+
+.content-table .description-wrap {
+  margin-left: 0;
+  margin-top: 0;
+}
+
+.content-table .description-wrap .title {
+  line-height: 50px;
 }
 
 .content-table {
@@ -115,8 +151,12 @@
 .content-table td {
   border-bottom: 1px solid lightgray;
   width: 100%;
-  padding: 1em;
+  /*padding: 1em;*/
   margin: 0;
+}
+
+.content-table tr:last-child > td {
+  border-bottom: none;
 }
 
 .content-table .add-information {
@@ -127,9 +167,14 @@
 
    .blockk {
       display: inline-block;
-      width: 32%;
+      width: 31%;
       margin: 0 0.5% 15px 0.5%;
       height: 270px;
+      max-width: 400px;
+  }
+
+  .blockk > .content {
+    height: 210px;
   }
 
 }
@@ -137,7 +182,7 @@
 @media screen and (max-width: 500px) {
 
   .blockk {
-    margin-bottom: 1em;
+    margin-bottom: 1em; 
     min-width: 280px;
   }
 
