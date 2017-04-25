@@ -19,10 +19,18 @@ const TableBlock = (props) => {
       <table className="content-table">
         <tbody>
           <tr>
-            <td>Row 1</td>
-          </tr>
-          <tr>
-            <td>Row 2</td>
+            <td>
+              <div className="time-wrap">
+                <p className="value">24h</p>
+              </div>
+              <div className="description-wrap">
+                <p className="title">Producerad energi</p>
+              </div>
+              <div className="data-wrap">
+                <p className="value">500</p>
+                <p className="unit">MWh</p>
+              </div>
+            </td>
           </tr>
           <tr>
             <td className="add-information">+ add information</td>
