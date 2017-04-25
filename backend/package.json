@@ -11,8 +11,13 @@
   "author": "Sun Labs Nordic Handelsbolag",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "cors": "^2.8.3",
     "express": "^4.15.2",
-    "mysql": "^2.13.0"
+    "jwt-simple": "^0.5.1",
+    "mysql": "^2.13.0",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
+    "passport-local": "^1.0.0"
   }
 }
