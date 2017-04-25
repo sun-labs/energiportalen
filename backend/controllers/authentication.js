@@ -11,7 +11,6 @@ const tokenForUser = (user) => {
 	return jwt.encode({ sub: user._id, iat: timestamp }, 'THIS SHOULD BE SECRET STUFF');
 }
 
-
 Authentication.signin = (req, res, next) => {
 	res.send({ token: tokenForUser(req.user) });
 }
@@ -68,7 +67,7 @@ Authentication.signup = (req, res, next) => {
 
             if(!error) {
               // cb(results, fields);
-
+              // TODO någon callback här
               console.log('WORKED MOTHERFUCKER');
               
             } else {

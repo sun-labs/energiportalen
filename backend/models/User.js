@@ -21,11 +21,14 @@ User.preSave = (user, cb) => {
   });
 }
 
-User.comparePassword = (candidatePassword, callback) => {
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-    if (err) return callback(err);
+User.comparePassword = (user, candidatePassword, cb) => {
 
-    callback(null, isMatch)
+  const { email, password } = user;
+
+  bcrypt.compare(candidatePassword, password, function(error, isMatch) {
+    if (error) return cb(error);
+
+    cb(null, isMatch)
 	})
 }
 
