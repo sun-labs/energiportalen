@@ -38,9 +38,9 @@
   }
 
   #portal .block-wraper{
-    overflow-y: hidden;
+    /*overflow-y: hidden;
     white-space: nowrap;
-    width: 100%;
+    width: 100%;*/
   }
 
 }
