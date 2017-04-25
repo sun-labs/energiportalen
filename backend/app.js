@@ -1,11 +1,14 @@
 import express from 'express';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 import apiRouter from './routes/apiRouter';
 
-import Authentication from './controllers/authentication';
+import Authentication from './controllers/Authentication';
 
 const app = express();
 
+app.use(bodyParser.json({ type: '*/*' }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use('/1', apiRouter);
 

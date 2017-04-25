@@ -4,8 +4,10 @@ import con from './Connection.js';
 
 let User = {};
 
-User.preSave = (cb) => {
+User.preSave = (user, cb) => {
   // const user = this;
+
+  console.log("User");
 
   bcrypt.genSalt(10, function(error, salt) {
   if (error) cb(error);
