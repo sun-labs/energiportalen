@@ -17,16 +17,18 @@ const TableBlock = (props) => {
   return (
     <Block className="blockk-table" { ...blockInfo }>
       <table className="content-table">
-        <tr>
-          <td>Row 1</td>
-        </tr>
-        <tr>
-          <td>Row 2</td>
-        </tr>
-        <tr>
-          <td className="add-information">+ add information</td>
-        </tr>
-      </table>  
+        <tbody>
+          <tr>
+            <td>Row 1</td>
+          </tr>
+          <tr>
+            <td>Row 2</td>
+          </tr>
+          <tr>
+            <td className="add-information">+ add information</td>
+          </tr>
+        </tbody>
+      </table>
     </Block>
   );
 }
