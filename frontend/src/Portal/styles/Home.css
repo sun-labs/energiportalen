@@ -37,6 +37,12 @@
     display: none;
   }
 
+  #portal .block-wraper{
+    overflow-y: hidden;
+    white-space: nowrap;
+    width: 100%;
+  }
+
 }
 
 @media screen and (max-width: 500px) {
