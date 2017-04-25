@@ -138,6 +138,7 @@
 
   .blockk {
     margin-bottom: 1em;
+    min-width: 280px;
   }
 
   .blockk .tool-wrap {
