@@ -4,12 +4,12 @@ import bodyParser from 'body-parser';
 import apiRouter from './routes/apiRouter';
 
 import Authentication from './controllers/Authentication';
-import passportService from './services/passport';
+// import passportService from './services/passport';
 import passport from 'passport';
 
 const app = express();
 
-app.use(bodyParser.json({ type: '*/*' }));
+app.use(bodyParser.json({ type: '*/*' })); // TODO 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use('/1', apiRouter);

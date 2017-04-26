@@ -4,8 +4,6 @@ import con from '../models/Connection.js';
 import User from '../models/user';
 import { Strategy as JwtStrategy } from 'passport-jwt';
 import { ExtractJwt } from 'passport-jwt';
-// const JwtStrategy = require('passport-jwt').Strategy;
-// const ExtractJwt = require('passport-jwt').ExtractJwt;
 import LocalStrategy from 'passport-local';
 
 const localOptions = { usernameField: 'email' };
