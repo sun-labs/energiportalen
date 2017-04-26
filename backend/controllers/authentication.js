@@ -26,10 +26,10 @@ Authentication.signup = (req, res, next) => {
   const query = `
     SELECT *
     FROM users
-    WHERE email = '${email}'
+    WHERE email = ?
   `;
 
-  const p_query = mysql.format(query);
+  const p_query = mysql.format(query, email);
 
   con.query({
     sql: p_query
@@ -56,8 +56,10 @@ Authentication.signup = (req, res, next) => {
 
           const query = `
             INSERT into users (email, password)
-            VALUES ('${email}', '${hash}')
+            VALUES (?, ?)
           `;
+
+          const p_query = mysql.format(query, email, hash);
 
           con.query({
             sql: query,

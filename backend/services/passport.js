@@ -14,10 +14,10 @@ const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
   const query = `
     SELECT email, password
     FROM users
-    WHERE email = '${email}'
+    WHERE email = ?
   `;
 
-  const p_query = mysql.format(query);
+  const p_query = mysql.format(query, email);
 
   con.query({
     sql: p_query
