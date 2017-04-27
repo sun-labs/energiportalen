@@ -2,9 +2,10 @@ USE energiportalen; -- set database to energiportalen
 
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) NOT NULL DEFAULT '',
-  `password` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
+  `email` varchar(255) NOT NULL,
+  `password` BINARY (60) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `units` (
