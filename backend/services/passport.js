@@ -19,7 +19,7 @@ const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
 
   con.query({
     sql: p_query
-  }, (error, results, fields) => {
+  }, (error, results) => {
 
     if(!error) {
 
@@ -29,7 +29,7 @@ const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
           password: results[0].password
         };
 
-        User.comparePassword(user, password, (error, isMatch) => {
+        User.comparePassword(password, (error, isMatch) => {
           if (error) {
             console.log(error);
             return done(error);
@@ -55,14 +55,41 @@ const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
 
 const jwtOptions = {
 	jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-	***REMOVED***OrKey: 'THIS SHOULD BE SECRET STUFF'
+	***REMOVED***OrKey: '***REMOVED***'
 };
 
 const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
 
-  console.log("here");
+  const query = `
+    SELECT *
+    FROM users
+    WHERE id = ?
+  `;
 
-  // TODO authenticate user
+  const p_query = mysql.format(query, payload.sub);
+
+  con.query({
+    sql: p_query
+  }, (error, results) => {
+
+    if(!error) {
+
+      if (results[0]) {
+        const user = {
+          id: results[0].id,
+          email: results[0].email
+        }
+
+        done(null, user)
+      } else {
+        done(null, false)
+      }
+
+    } else {
+      console.log(error);
+      done(err, false)
+    }
+  });
 
 });
 

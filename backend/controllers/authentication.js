@@ -7,11 +7,12 @@ import con from '../models/Connection';
 let Authentication = {};
 
 const tokenForUser = (user) => {
+  console.log(user);
 	const timestamp = new Date().getTime();
-	return jwt.encode({ sub: user._id, iat: timestamp }, 'THIS SHOULD BE SECRET STUFF');
+	return jwt.encode({ sub: user.id, iat: timestamp }, '***REMOVED***');
 }
 
-Authentication.signin = (req, res) => {
+Authentication.signin = (req, res, next) => {
 	res.send({ token: tokenForUser(req.user) });
 }
 
@@ -34,7 +35,7 @@ Authentication.signup = (req, res, next) => {
 
   con.query({
     sql: p_query
-  }, function (error, results, fields) {
+  }, function (error, results) {
     if(!error) {
 
       if (results.length !== 0) {
@@ -47,13 +48,13 @@ Authentication.signup = (req, res, next) => {
           password
         };
 
-        User.preSave(user, (hash, error) => {
+        User.preSave((hash, error) => {
 
           if (!error) {
 
             const query = `
-              INSERT into users (email, password)
-              VALUES (?, ?)
+              INSERT into users (email, password) 
+              VALUES (?, ?);
             `;
 
             const inserts = [email, hash];
@@ -62,10 +63,12 @@ Authentication.signup = (req, res, next) => {
             con.query({
               sql: p_query,
               timeout: 5000,
-            }, (error, results, fields) => {
-
+            }, (error, result) => {
 
               if(!error) {
+
+                user.id = result.insertId;
+
                 const token = tokenForUser(user);
                 console.log('Token: ' + token);                
                 res.json({ token });

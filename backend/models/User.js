@@ -4,10 +4,8 @@ import con from './Connection.js';
 
 let User = {};
 
-User.preSave = (user, cb) => {
-  // const user = this;
-
-  console.log("User");
+User.preSave = function(cb) {
+  const user = this;
 
   bcrypt.genSalt(10, function(error, salt) {
   if (error) cb(error);
@@ -21,8 +19,8 @@ User.preSave = (user, cb) => {
   });
 }
 
-User.comparePassword = (user, candidatePassword, cb) => {
-
+User.comparePassword = function(candidatePassword, cb) {
+  const user = this;
   const { email, password } = user;
 
   bcrypt.compare(candidatePassword, password, function(error, isMatch) {

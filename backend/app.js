@@ -4,7 +4,8 @@ import bodyParser from 'body-parser';
 import apiRouter from './routes/apiRouter';
 
 import Authentication from './controllers/Authentication';
-// import passportService from './services/passport';
+import passportService from './services/passport'; // NOTE denna används för local-strategy, 
+                                                   // går ej att logga in med mail & pass annars
 import passport from 'passport';
 
 const app = express();
