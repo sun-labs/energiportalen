@@ -27,7 +27,7 @@ app.post('/signup', Authentication.signup);
 
 app.post('/signin', requireSignin, Authentication.signin);
 
-app.post('/testAuth', requireAuth, (req, res) => {
+app.post('/auth', requireAuth, (req, res) => {
 
 });
 
