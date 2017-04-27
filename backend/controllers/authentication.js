@@ -3,14 +3,7 @@ import User from '../models/user';
 import mysql from'mysql';
 import con from '../models/Connection';
 import { jwtSecret } from '../config.js';
-
-const validateEmail = (email) => {
-  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value)) {
-    return true;
-  } else {
-    return false
-  }
-}
+import { isEmail } from 'validator';
 
 let Authentication = {};
 
@@ -28,7 +21,7 @@ Authentication.signup = (req, res, next) => {
 	const email = req.body.email;
 	const password = req.body.password;
 
-	if (!email || !password || !validateEmail(email)) {
+	if (!email || !password || !isEmail(email)) {
 		return res.status(422).send({ error: 'You must provide email and password' });
 	}  
 

@@ -6,9 +6,15 @@ import { Strategy as JwtStrategy } from 'passport-jwt';
 import { ExtractJwt } from 'passport-jwt';
 import LocalStrategy from 'passport-local';
 import { jwtSecret } from '../config.js';
+import { isEmail } from 'validator';
 
 const localOptions = { usernameField: 'email' };
 const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
+
+  if (!isEmail(email)) {
+    console.log('Email does not exist');
+    return done(null, false);
+  }
 
   const query = `
     SELECT email, password
