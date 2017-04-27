@@ -4,24 +4,29 @@ import con from '../models/Connection.js';
 import User from '../models/user';
 import { Strategy as JwtStrategy } from 'passport-jwt';
 import { ExtractJwt } from 'passport-jwt';
-// const JwtStrategy = require('passport-jwt').Strategy;
-// const ExtractJwt = require('passport-jwt').ExtractJwt;
 import LocalStrategy from 'passport-local';
+import { jwtSecret } from '../config.js';
+import { isEmail } from 'validator';
 
 const localOptions = { usernameField: 'email' };
 const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
 
+  if (!isEmail(email)) {
+    console.log('Email does not exist');
+    return done(null, false);
+  }
+
   const query = `
     SELECT email, password
     FROM users
-    WHERE email = '${email}'
+    WHERE email = ?
   `;
 
-  const p_query = mysql.format(query);
+  const p_query = mysql.format(query, email);
 
   con.query({
     sql: p_query
-  }, (error, results, fields) => {
+  }, (error, results) => {
 
     if(!error) {
 
@@ -31,7 +36,7 @@ const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
           password: results[0].password
         };
 
-        User.comparePassword(user, password, (error, isMatch) => {
+        User.comparePassword(password, (error, isMatch) => {
           if (error) {
             console.log(error);
             return done(error);
@@ -57,14 +62,41 @@ const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
 
 const jwtOptions = {
 	jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-	***REMOVED***OrKey: 'THIS SHOULD BE SECRET STUFF'
+	***REMOVED***OrKey: jwtSecret
 };
 
 const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
 
-  console.log("here");
+  const query = `
+    SELECT *
+    FROM users
+    WHERE id = ?
+  `;
 
-  // TODO authenticate user
+  const p_query = mysql.format(query, payload.sub);
+
+  con.query({
+    sql: p_query
+  }, (error, results) => {
+
+    if(!error) {
+
+      if (results[0]) {
+        const user = {
+          id: results[0].id,
+          email: results[0].email
+        }
+
+        done(null, user)
+      } else {
+        done(null, false)
+      }
+
+    } else {
+      console.log(error);
+      done(err, false)
+    }
+  });
 
 });
 

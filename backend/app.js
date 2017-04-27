@@ -4,12 +4,17 @@ import bodyParser from 'body-parser';
 import apiRouter from './routes/apiRouter';
 
 import Authentication from './controllers/Authentication';
-import passportService from './services/passport';
+import passportService from './services/passport'; // NOTE denna används för local-strategy, 
+                                                   // går ej att logga in med mail & pass annars
 import passport from 'passport';
+
+
+// TODO maybe move to some assets folder same as in frontend
+const VERSION = 1;
 
 const app = express();
 
-app.use(bodyParser.json({ type: '*/*' }));
+app.use(bodyParser.json({ type: '*/*' })); // TODO 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use('/1', apiRouter);
@@ -22,11 +27,11 @@ app.get('/', (req, res) => {
   res.send();
 });
 
-app.post('/signup', Authentication.signup);
+app.post(`/${VERSION}/signup`, Authentication.signup);
 
-app.post('/signin', requireSignin, Authentication.signin);
+app.post(`/${VERSION}/signin`, requireSignin, Authentication.signin);
 
-app.post('/testAuth', requireAuth, (req, res) => {
+app.post(`/${VERSION}/auth`, requireAuth, (req, res) => {
 
 });
 
