@@ -8,6 +8,10 @@ import passportService from './services/passport'; // NOTE denna används för l
                                                    // går ej att logga in med mail & pass annars
 import passport from 'passport';
 
+
+// TODO maybe move to some assets folder same as in frontend
+const VERSION = 1;
+
 const app = express();
 
 app.use(bodyParser.json({ type: '*/*' })); // TODO 
@@ -23,11 +27,11 @@ app.get('/', (req, res) => {
   res.send();
 });
 
-app.post('/signup', Authentication.signup);
+app.post(`/${VERSION}/signup`, Authentication.signup);
 
-app.post('/signin', requireSignin, Authentication.signin);
+app.post(`/${VERSION}/signin`, requireSignin, Authentication.signin);
 
-app.post('/auth', requireAuth, (req, res) => {
+app.post(`/${VERSION}/auth`, requireAuth, (req, res) => {
 
 });
 

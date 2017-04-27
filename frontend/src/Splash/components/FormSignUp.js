@@ -30,7 +30,6 @@ class FormSignUp extends Component {
       axios.post(API_SIGNUP, { email: this.state.email, password: this.state.password })
         .then((res) => {
           
-          console.log(res);
           localStorage.setItem('token', res.data.token);
           // TODO redirect to portal maybe ?
 
