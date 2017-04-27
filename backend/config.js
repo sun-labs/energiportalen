@@ -5,6 +5,9 @@ const config = {
     password: '***REMOVED***',
     database: 'energiportalen',
     port: 8889
+  },
+  bcrypt: {
+    rounds: 10
   }
 };
 

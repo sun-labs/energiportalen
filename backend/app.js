@@ -8,6 +8,7 @@ import passportService from './services/passport'; // NOTE denna används för l
                                                    // går ej att logga in med mail & pass annars
 import passport from 'passport';
 
+
 const app = express();
 
 app.use(bodyParser.json({ type: '*/*' })); // TODO 
