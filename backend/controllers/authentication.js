@@ -23,6 +23,7 @@ Authentication.signup = (req, res, next) => {
 		return res.status(422).send({ error: 'You must provide email and password' });
 	}  
 
+
   const query = `
     SELECT *
     FROM users
@@ -55,10 +56,11 @@ Authentication.signup = (req, res, next) => {
               VALUES (?, ?)
             `;
 
-            const p_query = mysql.format(query, email, hash);
+            const inserts = [email, hash];
+            const p_query = mysql.format(query, inserts);
 
             con.query({
-              sql: query,
+              sql: p_query,
               timeout: 5000,
             }, (error, results, fields) => {
 
