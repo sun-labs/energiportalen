@@ -11,7 +11,7 @@ const tokenForUser = (user) => {
 	return jwt.encode({ sub: user._id, iat: timestamp }, 'THIS SHOULD BE SECRET STUFF');
 }
 
-Authentication.signin = (req, res, next) => {
+Authentication.signin = (req, res) => {
 	res.send({ token: tokenForUser(req.user) });
 }
 
@@ -36,7 +36,7 @@ Authentication.signup = (req, res, next) => {
   }, function (error, results, fields) {
     if(!error) {
 
-      if (results.length !== 0) {        
+      if (results.length !== 0) {
 			  return res.status(422).send({ error: 'Email is in use' });
 
       } else {
@@ -47,41 +47,40 @@ Authentication.signup = (req, res, next) => {
         };
 
         User.preSave(user, (hash, error) => {
-          if (error) { 
+
+          if (!error) {
+
+            const query = `
+              INSERT into users (email, password)
+              VALUES (?, ?)
+            `;
+
+            const p_query = mysql.format(query, email, hash);
+
+            con.query({
+              sql: query,
+              timeout: 5000,
+            }, (error, results, fields) => {
+
+
+              if(!error) {
+                const token = tokenForUser(user);
+                console.log('Token: ' + token);                
+                res.json({ token });
+                
+              } else {
+                console.log(error);
+                next(error);
+              }
+
+            });
+          } else {
             console.log(error);
             next(error);
           }
 
-          console.log(hash);
-
-          const query = `
-            INSERT into users (email, password)
-            VALUES (?, ?)
-          `;
-
-          const p_query = mysql.format(query, email, hash);
-
-          con.query({
-            sql: query,
-            timeout: 5000,
-          }, (error, results, fields) => {
-
-
-            if(!error) {
-              // cb(results, fields);
-              // TODO någon callback här
-              console.log('WORKED MOTHERFUCKER');
-              
-            } else {
-              console.log(error);
-              next(error);
-            }
-
-          });
-
         });
 
-        res.json({ token: tokenForUser(user) });
       }
 
     } else {
