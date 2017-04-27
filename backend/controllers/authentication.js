@@ -2,14 +2,22 @@ import jwt from 'jwt-simple';
 import User from '../models/user';
 import mysql from'mysql';
 import con from '../models/Connection';
+import { jwtSecret } from '../config.js';
 
+const validateEmail = (email) => {
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value)) {
+    return true;
+  } else {
+    return false
+  }
+}
 
 let Authentication = {};
 
 const tokenForUser = (user) => {
   console.log(user);
 	const timestamp = new Date().getTime();
-	return jwt.encode({ sub: user.id, iat: timestamp }, '***REMOVED***');
+	return jwt.encode({ sub: user.id, iat: timestamp }, jwtSecret);
 }
 
 Authentication.signin = (req, res, next) => {
@@ -20,7 +28,7 @@ Authentication.signup = (req, res, next) => {
 	const email = req.body.email;
 	const password = req.body.password;
 
-	if (!email || !password) {
+	if (!email || !password || !validateEmail(email)) {
 		return res.status(422).send({ error: 'You must provide email and password' });
 	}  
 

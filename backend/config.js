@@ -5,7 +5,8 @@ const config = {
     password: '***REMOVED***',
     database: 'energiportalen',
     port: 8889
-  }
+  },
+  jwtSecret: '***REMOVED***'
 };
 
 export default config;
