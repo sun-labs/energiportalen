@@ -9,7 +9,8 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",
-    "concurrently": "^3.4.0"
+    "concurrently": "^3.4.0",
+    "mysql": "^2.13.0"
   },
   "scripts": {
     "test_be": "cd tests/; webpack && mocha build/backend.js",
