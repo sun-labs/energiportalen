@@ -49,7 +49,7 @@ Authentication.signup = (req, res, next) => {
           password
         };
 
-        User.preSave((hash, error) => {
+        User.preSave(user, (hash, error) => {
 
           if (!error) {
 

@@ -36,7 +36,7 @@ const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
           password: results[0].password
         };
 
-        User.comparePassword(password, (error, isMatch) => {
+        User.comparePassword(user, password, (error, isMatch) => {
           if (error) {
             console.log(error);
             return done(error);
@@ -55,6 +55,7 @@ const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
       }
 
     } else {
+      // console.log("here");
       console.log(error);
     }
   });
