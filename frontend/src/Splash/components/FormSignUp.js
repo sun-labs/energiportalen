@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import { API_SIGNUP, URL_TERMS } from '../assets/APIRoutes';
+import { PASS_MATCH } from '../assets/errorMessages';
 import '../styles/Section.css';
 
 class FormSignUp extends Component {
@@ -36,10 +37,10 @@ class FormSignUp extends Component {
         })
         .catch((error) => {
           console.log("error");
-          this.props.showError('Error Received', error.toString());
+          this.props.showError('Error Received', error);
         });
     } else {
-      this.props.showError('passwords don\'t match', 'This is only to help you not to get locked out of your account.');
+      this.props.showError('passwords don\'t match', PASS_MATCH); // TODO passwords dont match message
     }
   }
 

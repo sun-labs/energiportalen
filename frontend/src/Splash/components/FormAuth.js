@@ -21,11 +21,10 @@ class FormAuth extends Component {
     .then((res) => {
       console.log('success, setting token');
       localStorage.setItem('token', res.data.token);
-      // console.log(this.props);
       this.props.history.push('/portal');
     })
     .catch((error) => {
-      this.props.showError('Error Received', error.toString());
+      this.props.showError('Error Received', error);
     });
   }
 
