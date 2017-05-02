@@ -19,4 +19,6 @@ const config = {
   }
 };
 
+export const jwtSecret = '***REMOVED***';
+
 export default config;

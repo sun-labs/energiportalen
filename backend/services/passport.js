@@ -3,7 +3,8 @@ import {
   ExtractJwt 
 } from 'passport-jwt';
 import LocalStrategy from 'passport-local';
-
+import { jwtSecret } from '../config.js';
+import { isEmail } from 'validator';
 import User from '../models/user';
 import Authentication from '../controllers/Authentication';
 
@@ -12,7 +13,7 @@ const localOptions = {
 };
 const jwtOptions = {
 	jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-	***REMOVED***OrKey: '***REMOVED***'
+	***REMOVED***OrKey: jwtSecret
 };
 
 /*

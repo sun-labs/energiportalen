@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+// ASSET IMPORTS
+import { UNAUTHORIZED, UNKNOWN } from '../assets/errorMessages';
+
 // STYLE IMPORTS
 import '../styles/Splash.css';
 
@@ -30,7 +33,20 @@ class Splash extends Component {
     });
   }
 
-  showError(title, body) {
+  showError(title, error) {
+    let body;
+
+    if (typeof(error) === 'object') {
+      switch (error.response.status) {
+        case 401:
+          body = UNAUTHORIZED;
+          break;
+        default:
+          body = UNKNOWN;
+          break;
+      }
+    }
+
     this.setState({
       displayError: true,
       error: { title, body }

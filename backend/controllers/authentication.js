@@ -3,7 +3,8 @@ import User from '../models/user';
 import bcrypt from 'bcrypt-nodejs';
 import mysql from'mysql';
 import con from '../models/Connection';
-import Config from '../config.js';
+import { isEmail } from 'validator';
+import Config, { jwtSecret } from '../config.js';
 
 
 class Authentication {
@@ -16,7 +17,7 @@ class Authentication {
     return jwt.encode({ 
       sub: user.id, 
       iat: timestamp 
-    }, '***REMOVED***');
+    }, jwtSecret);
   }
 
   /*

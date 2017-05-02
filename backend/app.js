@@ -8,12 +8,15 @@ import apiRouter from './routes/apiRouter';
 import Authentication from './controllers/Authentication';
 import { jwtAuth, localAuth } from './services/passport';
 
+
+// TODO maybe move to some assets folder same as in frontend
+const VERSION = 1;
+
 const app = express();
 
 app.use(bodyParser.json({ type: '*/*' })); // TODO 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use('/1', apiRouter);
 
 passport.use(jwtAuth);
 passport.use(localAuth);
@@ -26,12 +29,12 @@ app.get('/', (req, res) => {
   res.send();
 });
 
+app.use('/1', apiRouter);
+
 app.post('/checkToken/', tokenAuth, (req, res) => {
-  res.send('its ok');
+  res.send('the token is ok');
 });
-
 app.post('/auth', credentialAuth, Authentication.generateTokenMW);
-
 app.post('/signup/', Authentication.signUpMW, Authentication.generateTokenMW);
 
 app.listen(4000, () => {

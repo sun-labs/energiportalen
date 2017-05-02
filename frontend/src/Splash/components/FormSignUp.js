@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import { API_SIGNUP, URL_TERMS } from '../assets/APIRoutes';
+import { PASS_MATCH } from '../assets/errorMessages';
 import '../styles/Section.css';
 
 class FormSignUp extends Component {
@@ -27,21 +28,23 @@ class FormSignUp extends Component {
   handleSubmit(e) {
     e.preventDefault();
     if(this.passwordsMatch()) {
-      axios.post(API_SIGNUP, this.state)
-      .then((value) => {
-        // TODO what is returned after sign up? Store a token? Redirect to login?
-        console.log(value);
-      })
-      .catch((error) => {
-        this.props.showError('Error Received', error.toString());
-      });
+      axios.post(API_SIGNUP, { email: this.state.email, password: this.state.password })
+        .then((res) => {
+          
+          localStorage.setItem('token', res.data.token);
+          // TODO redirect to portal maybe ?
+
+        })
+        .catch((error) => {
+          console.log("error");
+          this.props.showError('Error Received', error);
+        });
     } else {
-      this.props.showError('passwords don\'t match', 'This is only to help you not to get locked out of your account.');
+      this.props.showError('passwords don\'t match', PASS_MATCH); // TODO passwords dont match message
     }
   }
 
   handleChange(e) {
-    console.log(this.passwordsMatch());
     this.setState({
       [e.target.name]: e.target.value
     });
