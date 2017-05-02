@@ -1,3 +1,19 @@
+USE energiportalen;
+
+INSERT INTO `units` (`id`, `name`)
+VALUES
+	(1,'Cluster1'),
+	(2,'Cluster2'),
+	(3,'Cluster3'),
+	(4,'Schneider'),
+	(5,'Vader');
+
+INSERT INTO users
+  (id, email, password)
+VALUES
+  -- password: ***REMOVED***
+  (1, 'asdf@asdf.com', '***REMOVED***');
+
 INSERT INTO `unit_keys` (`id`, `unit_id`, `name`, `log_no`, `notes`)
 VALUES
 	(1,1,'F15_AS3_CCtrl_Unit1_P_L1',1,NULL),
