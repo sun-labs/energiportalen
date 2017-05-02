@@ -6,63 +6,117 @@ import con from '../models/Connection';
 import Config from '../config.js';
 
 
-let Authentication = {};
+class Authentication {
 
-const tokenForUser = (user) => {
-  console.log(user);
-	const timestamp = new Date().getTime();
-	return jwt.encode({ 
-    sub: user.id, 
-    iat: timestamp 
-  }, '***REMOVED***');
-}
+  /*
+  * RETURNS: String
+  */
+  static tokenForUser(user) {
+    const timestamp = new Date().getTime();
+    return jwt.encode({ 
+      sub: user.id, 
+      iat: timestamp 
+    }, '***REMOVED***');
+  }
 
-const hashPassword = (password) => {
-  console.log(password);
-  console.log(Config.bcrypt);
-  return bcrypt.hashSync(password, 10);
-}
+  /*
+  * RETURNS: String
+  */
+  static hashPassword(password) {
+    const rounds = Config.bcrypt.rounds;
+    const salt = bcrypt.genSaltSync(rounds);
+    return bcrypt.hashSync(password, salt);
+  }
 
-const comparePassword = (candidate, password) => {
-  return bcrypt.compareSync(candidate, password);
-}
+  /*
+  * RETURNS: Boolean
+  */
+  static comparePassword(candidate, password) {
+    return bcrypt.compareSync(candidate, password);
+  }
 
-Authentication.signin = (req, res, next) => {
-	res.send({ token: tokenForUser(req.user) });
-}
-
-Authentication.signup = (req, res, next) => {
-	const email = req.body.email;
-	const password = req.body.password;
-
-	if (!email || !password) {
-		return res.status(422).send({ error: 'You must provide email and password' });
-	}
-
-  let u = new User();
-  u.email = email;
-  u.fetchData();
-  
-  if(u.exists === true) {
-    return res.status(422).send({ error: 'Email is in use' });
-  } else {
-    u.password = hashPassword(password);
-    u.save((error, result) => {
-      if(!error) {
-        u.id = result.insertId;
-        const token = tokenForUser(u);        
-        res.json({ 
-          token 
-        });
+  /**
+   * CB: err, { user }
+   */
+  static verifyCredentials({ email, password }, cb) {
+    if(!email || !password) {
+      return cb({ message: 'no email or password' });
+    }
+    User.getUser({ 
+      email 
+    }, (err, user) => {
+      if(!err) {
+        if(user) { // if user exists
+          const valid = Authentication.comparePassword(password, user.password);
+          if(valid) { // if passwords match
+            return cb(undefined, user);
+          } else {
+            return cb({ message: 'password doesnt match' });
+          }
+        } else {
+          return cb({ message: 'user doesnt exist' });
+        }
       } else {
-        console.log(error);
+        return cb(err);
       }
     });
   }
 
-  const token = tokenForUser(user);
-  console.log('Token: ' + token);                
-  res.json({ token });
+  /**
+   * CB: err, { user }
+   */
+  static signUp({ email, password }, cb) {
+
+    const hash = Authentication.hashPassword(password);
+    let newUser = {
+      email,
+      password: hash
+    };
+
+    User.storeUser(newUser, (err, results) => {
+      if(err) {
+        return cb(err);
+      }
+      newUser.id = results.insertId;
+      return cb(err, newUser);
+    });
+
+  }
+
+  static generateTokenMW(req, res, next) {
+    const user = req.user;
+    if(user) {
+      const token = Authentication.tokenForUser(user);
+      res.json({ 
+        token
+      });
+    }
+  }
+
+  static signUpMW(req, res, next) {
+
+    const email = req.body.email;
+    const password = req.body.password;
+
+    Authentication.signUp({
+      email,
+      password
+    }, (err, user) => {
+      if(err) {
+        return res.status(500).json({ error: err.message });
+      } else {
+        if(user) {
+          const token = Authentication.tokenForUser(user); 
+          res.json({ 
+            token 
+          });
+        } else {
+          return res.status(401).json({ error: 'Unauthorized' });
+        }
+      }
+    });
+
+  }
 
 }
 

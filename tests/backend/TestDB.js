@@ -1,14 +1,4 @@
-import mysql from 'mysql';
-const Config = {
-  mysql: {
-    host: '127.0.0.1',
-    user: 'energiportalen',
-    password: '***REMOVED***',
-    database: 'energiportalen_test',
-    port: 8889,
-    multipleStatements: true
-  }
-};
+import { connect } from '../../backend/models/Connection.js';
 
 const tables = [
   'units', 
@@ -20,9 +10,14 @@ const tables = [
   'users'
 ];
 
-const con = mysql.createConnection(Config.mysql);
+let con;
 
 class TestDB {
+
+  static connect(cb) {
+    con = connect('TEST');
+    cb();
+  }
 
   static clearTableData(cb) {
     const statements = tables.map((table) => {
@@ -31,8 +26,7 @@ class TestDB {
     const query = statements.join(';');
     con.query({
       sql: query
-    }, (error, results) => {
-      console.log(error, results);
+    }, (err, results) => {
       cb();
     });
   }
@@ -46,7 +40,6 @@ class TestDB {
     con.query({
       sql: query
     }, (error, results) => {
-      console.log(error, results);
       cb();
     });
 
@@ -63,7 +56,6 @@ class TestDB {
     con.query({
       sql: query
     }, (error, results) => {
-      console.log(error, results);
       cb();
     });
   }
@@ -80,7 +72,6 @@ class TestDB {
     con.query({
       sql: query
     }, (error, results) => {
-      console.log(error, results);
       cb();
     });
   }
@@ -99,7 +90,6 @@ class TestDB {
     con.query({
       sql: query
     }, (error, results) => {
-      console.log(error, results);
       cb();
     });
   }
@@ -115,7 +105,6 @@ class TestDB {
     con.query({
       sql: query
     }, (error, results) => {
-      console.log(error, results);
       cb();
     });
   }
@@ -146,7 +135,6 @@ class TestDB {
     con.query({
       sql: query
     }, (error, results) => {
-      console.log(error, results);
       cb();
     });
   }
@@ -206,7 +194,6 @@ class TestDB {
     con.query({
       sql: query
     }, (error, results) => {
-      console.log(error, results);
       cb();
     });
   }
@@ -226,7 +213,6 @@ class TestDB {
     con.query({
       sql: query
     }, (error, results) => {
-      console.log(error, results);
       cb();
     });
   }
@@ -244,7 +230,6 @@ class TestDB {
     con.query({
       sql: query
     }, (error, results) => {
-      console.log(error, results);
       cb();
     });
   }

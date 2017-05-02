@@ -1,76 +1,112 @@
 import mysql from 'mysql';
 import con from './Connection.js';
-import Config from '../config.js';
 
-function User() {
-  this.id = -1;
-  this.email = '';
-  this.password = '';
-  this.exists = false;
-}
+class User {
 
-User.prototype.save = function(cb) {
-  const query = `
-    INSERT into users (email, password) 
-    VALUES (?, ?);
-  `;
-  const inserts = [this.email, this.password];
-  const p_query = mysql.format(query, inserts);
+  construct({ id, email, password }) {
+    this.id = id || -1;
+    this.email = email || '';
+    this.password = password || '';
+    this.exists = false;
+  }
 
-  con.query({
-    sql: p_query,
-    }, (error, result) => {
-      cb(err, result);
-  });
-};
-
-User.prototype.fetchData = function() {
-
-  const query = `
-    SELECT *
-    FROM users
-    WHERE email = ?
-  `;
-  const p_query = mysql.format(query, this.email);
-
-  con.query({
-    sql: p_query
-  }, (error, results) => {
-    if(results.length > 0) {
-      this.exists = true;
-      for (let property in results[0]) {
-        this[property] = results[0][property];
+  /*
+  * CB: { this }
+  */
+  fetchData(cb) {
+    const me = { email: this.email };
+    User.getUser(me, (err, user) => {
+      if(user) {
+        this.password = user.password;
+        this.email = user.email;
+        this.id = user.id;
+        this.exists = true;
       }
-      this.password = this.password.toString();
+      cb(user);
+    });
+    
+  }
+
+  /*
+  * CB: Int
+  */
+  static getUserCount(cb) {
+    const query = `
+      SELECT COUNT(id) as userCount FROM users;
+    `;
+    con.query({ 
+      sql: query
+    }, (err, results) => {
+      cb(results[0].userCount);
+    });
+  }
+
+  /**
+  * CB: Boolean
+  */
+  static validEmail(email) {
+    return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email));
+  }
+
+  /**
+  * CB: { err, result }
+  */
+  static storeUser({ email, password }, cb) {
+
+    if (!email || !password) {
+      return cb({ error: 'no email or password' });
     }
-  });
+    if(!User.validEmail(email)) {
+      return cb({ error: 'not a valid email' });
+    }
 
-};
+    const query = `
+      INSERT into users (email, password) 
+      VALUES (?, ?);
+    `;
+    const inserts = [email, password];
+    const p_query = mysql.format(query, inserts);
 
-// User.preSave = function(cb) {
-//   const user = this;
+    con.query({
+      sql: p_query,
+    }, (err, result) => {
+      cb(err, result);
+      // err.code; == 'ER_DUP_ENTRY'
+    });
 
-//   bcrypt.genSalt(10, function(error, salt) {
-//   if (error) cb(error);
+  }
 
-//     bcrypt.hash(user.password, salt, null, (error, hash) => {
-//       if (error) cb(error);
-
-//       user.password = hash;
-//       cb(hash);
-//     });
-//   });
-// }
-
-// User.comparePassword = function(candidatePassword, cb) {
-//   const user = this;
-//   const { email, password } = user;
-
-//   bcrypt.compare(candidatePassword, password, function(error, isMatch) {
-//     if (error) return cb(error);
-
-//     cb(null, isMatch)
-// 	})
-// }
+  /*
+  * PARAMS: { email, id }
+  * NOTE: id is first priority, email second priority
+  * PURPOSE: finds user from DB via email or by ID.
+  * CB: err, { user }
+  */
+  static getUser({ email, id }, cb) {
+    if(!email && !id) {
+      return cb();
+    }
+    const key = (id) ? 'id' : 'email';
+    const value = (id) ? id : email;
+    const query = `
+      SELECT *
+      FROM users
+      WHERE ${key} = ?
+    `;
+    const p_query = mysql.format(query, value);
+    con.query({
+      sql: p_query
+    }, (err, results) => {
+      if(!err && results.length > 0) {
+        let user = results[0];
+        user.password = user.password.toString();
+        cb(err, user);
+      } else {
+        cb(err);
+      }
+    });
+  }
+  
+}
 
 export default User;

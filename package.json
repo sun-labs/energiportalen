@@ -10,11 +10,12 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "concurrently": "^3.4.0",
-    "mysql": "^2.13.0"
+    "mysql": "^2.13.0",
+    "source-map-support": "^0.4.14"
   },
   "scripts": {
-    "test_be": "cd tests/; webpack && mocha build/backend.js",
-    "test_fe": "cd tests/; webpack && mocha build/frontend.js",
+    "test_be": "export NODE_ENV=TEST; cd tests/; webpack && mocha build/backend.js || true",
+    "test_fe": "export NODE_ENV=TEST; cd tests/; webpack && mocha build/frontend.js || true",
     "test": "npm run test_be; npm run test_fe",
     "server": "cd backend/; npm run start",
     "client": "cd frontend/; npm run start",
