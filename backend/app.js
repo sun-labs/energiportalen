@@ -26,16 +26,13 @@ app.get('/', (req, res) => {
   res.send();
 });
 
-app.post('/checkToken/', (req, res) => {
-  // check if valid token
+app.post('/checkToken/', tokenAuth, (req, res) => {
+  res.send('its ok');
 });
 
 app.post('/auth', credentialAuth, Authentication.generateTokenMW);
 
-app.post('/signup/', (req, res) => {
-  // check if valid email, password
-  // store in db.
-});
+app.post('/signup/', Authentication.signUpMW, Authentication.generateTokenMW);
 
 app.listen(4000, () => {
   console.log('Sun Labs API is running.');

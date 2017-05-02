@@ -103,13 +103,11 @@ class Authentication {
       password
     }, (err, user) => {
       if(err) {
-        return res.status(500).json({ error: err.message });
+        return res.status(500).json({ error: err });
       } else {
         if(user) {
-          const token = Authentication.tokenForUser(user); 
-          res.json({ 
-            token 
-          });
+          req.user = user;
+          next();
         } else {
           return res.status(401).json({ error: 'Unauthorized' });
         }
