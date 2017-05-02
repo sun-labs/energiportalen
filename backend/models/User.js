@@ -1,4 +1,6 @@
 import mysql from 'mysql';
+import { isEmail } from 'validator';
+
 import con from './Connection.js';
 
 class User {
@@ -45,7 +47,7 @@ class User {
   * CB: Boolean
   */
   static validEmail(email) {
-    return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email));
+    return isEmail(email);
   }
 
   /**

@@ -3,7 +3,6 @@ import User from '../models/user';
 import bcrypt from 'bcrypt-nodejs';
 import mysql from'mysql';
 import con from '../models/Connection';
-import { isEmail } from 'validator';
 import Config, { jwtSecret } from '../config.js';
 
 

@@ -129,7 +129,7 @@ describe('[BE] Authentication tests', () => {
 
   it('Edge cases with emails and spam inputs', () => {
     User.validEmail('asdfasdf.asdf').should.not.be.true;
-    User.validEmail('asdf@asdf.asdf').should.be.false; // TODO should be true.
+    User.validEmail('asdf@asdf.asdf').should.be.true;
     User.validEmail('asdf@asdfasdf').should.be.false;
     User.validEmail('victor.linus@gmail.com').should.be.true;
     User.validEmail('victor@linus@gmail.com').should.not.be.true;

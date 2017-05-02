@@ -3,8 +3,8 @@ import {
   ExtractJwt 
 } from 'passport-jwt';
 import LocalStrategy from 'passport-local';
+
 import { jwtSecret } from '../config.js';
-import { isEmail } from 'validator';
 import User from '../models/user';
 import Authentication from '../controllers/Authentication';
 
