@@ -4,12 +4,12 @@
 - MySQL installed
  - Port: 8889
  
-###A database with the following specification
+### A database with the following specification
  - Name: energiportalen
  - Tables: `units`, `unit_data`, `unit_keys`, `unit_data_minute`, `unit_data_hour`, `unit_data_day`
 
 
-###User with information
+### User with information
  - Username: energiportalen
  - Host: %
  - Pass: ***REMOVED***
