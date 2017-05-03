@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 
 app.use(`/${VERSION}`, apiRouter);
 
-app.post(`/${VERSION}/checkToken/`, tokenAuth, (req, res) => {
+app.get(`/${VERSION}/checkToken/`, tokenAuth, (req, res) => {
   res.send('the token is ok');
 });
 app.post(`/${VERSION}/auth/`, credentialAuth, Authentication.generateTokenMW);
