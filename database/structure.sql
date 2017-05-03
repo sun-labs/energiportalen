@@ -1,10 +1,32 @@
-USE energiportalen; -- set database to energiportalen
+-- DATABASE
+CREATE DATABASE energiportalen CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE energiportalen_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- GRANTS
+CREATE USER 'energiportalen'@'%' IDENTIFIED BY '***REMOVED***';
+GRANT 
+  ALL PRIVILEGES 
+ON 
+  energiportalen.* 
+TO 
+  'energiportalen'@'%';
+
+GRANT 
+  ALL PRIVILEGES 
+ON 
+  energiportalen_test.* 
+TO 
+  'energiportalen'@'%';
+
+-- TABLES
+USE energiportalen;
 
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) NOT NULL DEFAULT '',
-  `password` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
+  `email` varchar(255) NOT NULL,
+  `password` BINARY (60) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `units` (
