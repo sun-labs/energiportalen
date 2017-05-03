@@ -29,13 +29,13 @@ app.get('/', (req, res) => {
   res.send();
 });
 
-app.use('/1', apiRouter);
+app.use(`/${VERSION}`, apiRouter);
 
-app.post('/checkToken/', tokenAuth, (req, res) => {
+app.post(`/${VERSION}/checkToken/`, tokenAuth, (req, res) => {
   res.send('the token is ok');
 });
-app.post('/auth', credentialAuth, Authentication.generateTokenMW);
-app.post('/signup/', Authentication.signUpMW, Authentication.generateTokenMW);
+app.post(`/${VERSION}/auth/`, credentialAuth, Authentication.generateTokenMW);
+app.post(`/${VERSION}/signup/`, Authentication.signUpMW, Authentication.generateTokenMW);
 
 app.listen(4000, () => {
   console.log('Sun Labs API is running.');
