@@ -5,6 +5,7 @@ module.exports = {
      output: {
         filename: 'build/index.js'
      },
+     devtool: 'source-map',
      resolve: {
         extensions: ['.js', '.jsx'] // common extensions
      },

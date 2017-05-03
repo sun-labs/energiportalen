@@ -1,12 +1,12 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import apiRouter from './routes/apiRouter';
-
-import Authentication from './controllers/Authentication';
-import passportService from './services/passport'; // NOTE denna används för local-strategy, 
-                                                   // går ej att logga in med mail & pass annars
+import 'source-map-support/register';
 import passport from 'passport';
+
+import apiRouter from './routes/apiRouter';
+import Authentication from './controllers/Authentication';
+import { jwtAuth, localAuth } from './services/passport';
 
 
 // TODO maybe move to some assets folder same as in frontend
@@ -17,23 +17,25 @@ const app = express();
 app.use(bodyParser.json({ type: '*/*' })); // TODO 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use('/1', apiRouter);
 
-const requireAuth = passport.authenticate('jwt', { session: false });
-const requireSignin = passport.authenticate('local', { session: false });
+passport.use(jwtAuth);
+passport.use(localAuth);
+
+const tokenAuth = passport.authenticate('jwt', { session: false });
+const credentialAuth = passport.authenticate('local', { session: false });
 
 app.get('/', (req, res) => {
   res.write('Welcome to the api.');
   res.send();
 });
 
-app.post(`/${VERSION}/signup`, Authentication.signup);
+app.use(`/${VERSION}`, apiRouter);
 
-app.post(`/${VERSION}/signin`, requireSignin, Authentication.signin);
-
-app.post(`/${VERSION}/auth`, requireAuth, (req, res) => {
-
+app.post(`/${VERSION}/checkToken/`, tokenAuth, (req, res) => {
+  res.send('the token is ok');
 });
+app.post(`/${VERSION}/auth/`, credentialAuth, Authentication.generateTokenMW);
+app.post(`/${VERSION}/signup/`, Authentication.signUpMW, Authentication.generateTokenMW);
 
 app.listen(4000, () => {
   console.log('Sun Labs API is running.');

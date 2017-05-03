@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 
-import { API_SIGNIN, API_FORGOT_PASSWORD } from '../assets/APIRoutes';
+import { API_AUTH, API_FORGOT_PASSWORD } from '../assets/APIRoutes';
 
 class FormAuth extends Component {
 
@@ -17,7 +17,7 @@ class FormAuth extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(API_SIGNIN, this.state)
+    axios.post(API_AUTH, this.state)
     .then((res) => {
       console.log('success, setting token');
       localStorage.setItem('token', res.data.token);

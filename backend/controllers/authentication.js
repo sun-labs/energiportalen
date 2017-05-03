@@ -1,99 +1,121 @@
 import jwt from 'jwt-simple';
 import User from '../models/user';
+import bcrypt from 'bcrypt-nodejs';
 import mysql from'mysql';
 import con from '../models/Connection';
-import { jwtSecret } from '../config.js';
-import { isEmail } from 'validator';
-
-let Authentication = {};
-
-const tokenForUser = (user) => {
-  console.log(user);
-	const timestamp = new Date().getTime();
-	return jwt.encode({ sub: user.id, iat: timestamp }, jwtSecret);
-}
-
-Authentication.signin = (req, res, next) => {
-	res.send({ token: tokenForUser(req.user) });
-}
-
-Authentication.signup = (req, res, next) => {
-	const email = req.body.email;
-	const password = req.body.password;
-
-	if (!email || !password || !isEmail(email)) {
-		return res.status(422).send({ error: 'You must provide email and password' });
-	}  
+import Config, { jwtSecret } from '../config.js';
 
 
-  const query = `
-    SELECT *
-    FROM users
-    WHERE email = ?
-  `;
+class Authentication {
 
-  const p_query = mysql.format(query, email);
+  /*
+  * RETURNS: String
+  */
+  static tokenForUser(user) {
+    const timestamp = new Date().getTime();
+    return jwt.encode({ 
+      sub: user.id, 
+      iat: timestamp 
+    }, jwtSecret);
+  }
 
-  con.query({
-    sql: p_query
-  }, function (error, results) {
-    if(!error) {
+  /*
+  * RETURNS: String
+  */
+  static hashPassword(password) {
+    const rounds = Config.bcrypt.rounds;
+    const salt = bcrypt.genSaltSync(rounds);
+    return bcrypt.hashSync(password, salt);
+  }
 
-      if (results.length !== 0) {
-			  return res.status(422).send({ error: 'Email is in use' });
+  /*
+  * RETURNS: Boolean
+  */
+  static comparePassword(candidate, password) {
+    return bcrypt.compareSync(candidate, password);
+  }
 
-      } else {
-
-        let user = {
-          email,
-          password
-        };
-
-        User.preSave(user, (hash, error) => {
-
-          if (!error) {
-
-            const query = `
-              INSERT into users (email, password) 
-              VALUES (?, ?);
-            `;
-
-            const inserts = [email, hash];
-            const p_query = mysql.format(query, inserts);
-
-            con.query({
-              sql: p_query,
-              timeout: 5000,
-            }, (error, result) => {
-
-              if(!error) {
-
-                user.id = result.insertId;
-
-                const token = tokenForUser(user);
-                console.log('Token: ' + token);                
-                res.json({ token });
-                
-              } else {
-                console.log(error);
-                next(error);
-              }
-
-            });
-          } else {
-            console.log(error);
-            next(error);
-          }
-
-        });
-
-      }
-
-    } else {
-      console.log(error);      
-      next(error);
+  /**
+   * CB: err, { user }
+   */
+  static verifyCredentials({ email, password }, cb) {
+    if(!email || !password) {
+      return cb({ message: 'no email or password' });
     }
-  });
+    User.getUser({ 
+      email 
+    }, (err, user) => {
+      if(!err) {
+        if(user) { // if user exists
+          const valid = Authentication.comparePassword(password, user.password);
+          if(valid) { // if passwords match
+            return cb(undefined, user);
+          } else {
+            return cb({ message: 'password doesnt match' });
+          }
+        } else {
+          return cb({ message: 'user doesnt exist' });
+        }
+      } else {
+        return cb(err);
+      }
+    });
+  }
+
+  /**
+   * CB: err, { user }
+   */
+  static signUp({ email, password }, cb) {
+
+    const hash = Authentication.hashPassword(password);
+    let newUser = {
+      email,
+      password: hash
+    };
+
+    User.storeUser(newUser, (err, results) => {
+      if(err) {
+        return cb(err);
+      }
+      newUser.id = results.insertId;
+      return cb(err, newUser);
+    });
+
+  }
+
+  static generateTokenMW(req, res, next) {
+    const user = req.user;
+    if(user) {
+      const token = Authentication.tokenForUser(user);
+      res.json({ 
+        token
+      });
+    }
+  }
+
+  static signUpMW(req, res, next) {
+
+    const email = req.body.email;
+    const password = req.body.password;
+
+    Authentication.signUp({
+      email,
+      password
+    }, (err, user) => {
+      if(err) {
+        return res.status(500).json({ error: err });
+      } else {
+        if(user) {
+          req.user = user;
+          next();
+        } else {
+          return res.status(401).json({ error: 'Unauthorized' });
+        }
+      }
+    });
+
+  }
+
 }
 
 export default Authentication;
