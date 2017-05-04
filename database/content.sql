@@ -1,12 +1,31 @@
 USE energiportalen;
 
-INSERT INTO `units` (`id`, `name`)
+INSERT INTO units 
+	(id, name)
 VALUES
 	(1,'Cluster1'),
 	(2,'Cluster2'),
 	(3,'Cluster3'),
 	(4,'Schneider'),
+	(6,'Sun Labs'),
 	(5,'Vader');
+
+INSERT INTO locations 
+	(id, name, image, description, country, city)
+VALUES
+	(1, 'Akademiska Sjukhuset', NULL, 'The academic hospital of Uppsala has 50% of their roof covered with solar panels.', 'SWE', 'Uppsala'),
+	(3, 'Origo', NULL, 'Panels on the roof are tilted 45 degrees (under construction).', 'SWE', 'Uppsala'),
+	(2, 'Base10', NULL, 'Base is the place if youre among the top 1 per mille, the roof is covered in sunlight and happiness 24 hours a day.', 'SWE', 'Uppsala');
+
+INSERT INTO unit_locations 
+	(unit_id, location_id)
+VALUES
+	(1, 1),
+	(2, 1),
+	(3, 1),
+	(4, 1),
+	(5, 1),
+	(6, 2);
 
 INSERT INTO users
   (id, email, password)
@@ -14,7 +33,8 @@ VALUES
   -- password: ***REMOVED***
   (1, 'asdf@asdf.com', '***REMOVED***');
 
-INSERT INTO `unit_keys` (`id`, `unit_id`, `name`, `log_no`, `notes`)
+INSERT INTO unit_keys 
+	(id, unit_id, name, log_no, notes)
 VALUES
 	(1,1,'F15_AS3_CCtrl_Unit1_P_L1',1,NULL),
 	(2,1,'F15_AS3_CCtrl_Unit1_P_L2',1,NULL),
