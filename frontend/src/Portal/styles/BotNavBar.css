@@ -41,9 +41,9 @@
     padding: 10px;
   }
 
-  .bot-navbar-portal .search.icon{
+  .bot-navbar-portal .sign-out.icon{
     float: right;
-
+    cursor: pointer;
   }
 
   li:hover {

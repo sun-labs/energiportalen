@@ -16,7 +16,8 @@
   "scripts": {
     "test_be": "export NODE_ENV=TEST; cd tests/; webpack && mocha build/backend.js || true",
     "test_fe": "export NODE_ENV=TEST; cd tests/; webpack && mocha build/frontend.js || true",
-    "test": "npm run test_be; npm run test_fe",
+    "test_renders": "cd frontend/; npm run test",
+    "test": "npm run test_be; npm run test_fe; npm run test_renders",
     "server": "cd backend/; npm run start",
     "client": "cd frontend/; npm run start",
     "start": "concurrently \"npm run server\" \"npm run client\""

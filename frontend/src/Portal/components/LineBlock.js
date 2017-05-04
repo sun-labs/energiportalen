@@ -115,7 +115,7 @@ const LineBlock = (props) => {
 
   const {
     options = defaultOptions, 
-    data = [ph_Data[0]], 
+    data = [ph_Data[0], ph_Data[1]],
     labels = ph_Labels,
     title = ph_Title,
     subtitle = ph_Name,

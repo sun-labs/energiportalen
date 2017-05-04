@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router';
 
 import { API_SIGNUP, URL_TERMS } from '../assets/APIRoutes';
 import { PASS_MATCH } from '../assets/errorMessages';
@@ -32,7 +33,7 @@ class FormSignUp extends Component {
         .then((res) => {
           
           localStorage.setItem('token', res.data.token);
-          // TODO redirect to portal maybe ?
+          this.props.history.push('/portal');
 
         })
         .catch((error) => {
@@ -74,4 +75,4 @@ class FormSignUp extends Component {
 
 }
 
-export default FormSignUp;
+export default withRouter(FormSignUp);
