@@ -11,7 +11,7 @@ class Queries {
     if (Queries.QUERIES[queryName]) {
       return Queries.QUERIES[queryName];
     } else {
-      console.log(`[WARNING] No query named ${queryName}!`);
+      // console.log(`[WARNING] No query named ${queryName}!`);
     }
   }
 

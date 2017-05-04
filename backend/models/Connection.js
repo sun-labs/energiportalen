@@ -11,12 +11,22 @@ class Connection {
   init(cb) {
     Connection.connect(this.ENV, (err, con) => {
       this.con = con;
-      cb(err);
+      if(cb) {
+        cb(err);
+      }
     });
+    return this;
   }
 
   unsafeEnv() {
     return (this.ENV !== 'TEST');
+  }
+
+  /*
+  * Pass queries to mysql
+  */
+  query(...args) {
+    return this.con.query(...args);
   }
 
   create(TABLE, cb) {
@@ -118,15 +128,12 @@ class Connection {
     const connection = mysql.createConnection(dbConfig);
     connection.connect((err) => {
       console.log(`[${ENV}] Database Connected`);
-      return cb(err, connection);
+      cb(err, connection);
     });
   };
 
 }
 
-console.log(`
-  ${Queries.getQuery('CREATE_USERS')}
-`);
-
+export const con = new Connection(process.env.NODE_ENV).init();
 export const connect = Connection.connect;
 export default Connection;

@@ -1,11 +1,9 @@
 import chai from 'chai';
-import mysql from 'mysql';
-import TestDB from './TestDB';
-import Authentication from '../../backend/controllers/Authentication.js';
-import User from '../../backend/models/User.js';
 import 'source-map-support/register';
 
 import Connection from '../../backend/models/Connection';
+import Authentication from '../../backend/controllers/Authentication.js';
+import User from '../../backend/models/User.js';
 
 const should = chai.should();
 
