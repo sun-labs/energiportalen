@@ -17,8 +17,14 @@ export default function(ComposedComponent) {
     }
 
     authenticate() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        this.props.history.push('/');
+        return;
+      }
       axios.get(API_CHECK_TOKEN, {
-        headers: { authorization: localStorage.getItem('token') }
+        headers: { authorization: token }
       })
       .then((res) => {
         this.setState({
@@ -26,7 +32,7 @@ export default function(ComposedComponent) {
         })
       })
       .catch((error) => {
-        this.props.history.push('/');        
+        this.props.history.push('/');
       });
     }
 
@@ -35,7 +41,7 @@ export default function(ComposedComponent) {
 		}
 
 		componentWillUpdate() {
-      if (!this.state.checkedToken) { 
+      if (!this.state.checkedToken) {
         this.authenticate();
       }
 		}
