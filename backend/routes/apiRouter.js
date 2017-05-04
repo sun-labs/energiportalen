@@ -1,19 +1,25 @@
 import express from 'express';
 
-import unitRouter from './unitRouter.js';
+import unitRouter from './unitRouter';
+import authRouter from './authRouter';
+import { tokenCheck } from '../services/passport';
 
 let router = express.Router();
 
-router.use('/units', unitRouter);
-
 router.get('/', (req, res) => {
-  res.write('Welcome to API version 1');
-  res.send();
+  res.json({ 
+    message: 'welcome',
+    version: 0.1
+  });
 });
 
+router.use('/units', tokenCheck, unitRouter);
+router.use('/auth', authRouter);
+
 router.get('/locations/', (req, res) => {
-  res.write('List locations from the database');
-  res.send();
+  res.json({
+    message: 'return a list of locations from the database'
+  });
 });
 
 export default router;
