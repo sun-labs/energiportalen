@@ -157,6 +157,7 @@
     display: block;
     margin: auto;
     z-index: 1;
+    margin-top: 2em;
   }
 
   .section1 .logo {
