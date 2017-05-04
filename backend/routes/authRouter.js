@@ -8,10 +8,10 @@ import {
 
 let router = express.Router();
 
-router.get('/checkToken/', tokenCheck, (req, res) => {
+router.get('/check', tokenCheck, (req, res) => {
   res.json(req.user);
 });
-router.post('/auth/', credentialCheck, Authentication.generateTokenMW);
-router.post('/signup/', Authentication.signUpMW, Authentication.generateTokenMW);
+router.post('/', credentialCheck, Authentication.generateTokenMW);
+router.post('/signup', Authentication.signUpMW, Authentication.generateTokenMW);
 
 export default router;
