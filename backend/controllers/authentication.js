@@ -2,7 +2,7 @@ import jwt from 'jwt-simple';
 import User from '../models/user';
 import bcrypt from 'bcrypt-nodejs';
 import mysql from'mysql';
-import con from '../models/Connection';
+import { con } from '../models/Connection';
 import Config, { jwtSecret } from '../config.js';
 
 
