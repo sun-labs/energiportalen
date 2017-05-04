@@ -8,7 +8,7 @@ import {
 
 let router = express.Router();
 
-router.post('/checkToken/', tokenCheck, (req, res) => {
+router.get('/checkToken/', tokenCheck, (req, res) => {
   res.json(req.user);
 });
 router.post('/auth/', credentialCheck, Authentication.generateTokenMW);
