@@ -1,4 +1,4 @@
-import { connect } from '../../backend/models/Connection.js';
+import Connection, { connect } from '../../backend/models/Connection.js';
 
 const tables = [
   'units', 
@@ -17,32 +17,6 @@ class TestDB {
   static connect(cb) {
     con = connect('TEST');
     cb();
-  }
-
-  static clearTableData(cb) {
-    const statements = tables.map((table) => {
-      return `DELETE FROM ${table}`;
-    });
-    const query = statements.join(';');
-    con.query({
-      sql: query
-    }, (err, results) => {
-      cb();
-    });
-  }
-  
-  static clearTables(cb) {
-
-    const query = `
-      SET FOREIGN_KEY_CHECKS = 0;
-      DROP TABLE IF EXISTS ${tables.join(',')};
-    `;
-    con.query({
-      sql: query
-    }, (error, results) => {
-      cb();
-    });
-
   }
 
   static createUnits(cb) {
