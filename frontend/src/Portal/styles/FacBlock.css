@@ -52,6 +52,8 @@
 
   .blockk.fac-block{
     height: 500px;
+    min-width: 250px;
+    width: 22%;
   }
 
 

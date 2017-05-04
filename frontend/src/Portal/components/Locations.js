@@ -21,6 +21,7 @@ class Locations extends Component {
           <FacBlock/>
           <FacBlock/>
           <FacBlock/>
+          <FacBlock/>
         </div>
       </div>
     );
