@@ -1,0 +1,106 @@
+.img-circle {
+    display: block;
+    margin: auto auto;
+    border-radius: 50%;
+}
+
+.blockk.fac-block{
+  position: relative;
+}
+
+.description-fac-wrap{
+  width: 100%;
+  text-align: center;
+  margin-left: 0;
+}
+
+.info-fac-wrap{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.info-fac-wrap .wrap-info{
+  text-align: center;
+  display: inline-block;
+  font-weight: lighter;
+}
+
+.solar-info{
+  float: left;
+}
+
+.effect-info{
+  float: right;
+}
+
+.blockk.fac-block:hover{
+  border-color: #219653;
+}
+
+.info-fac-wrap p.fac-info-text{
+  color: #219653;
+}
+
+
+@media screen and (min-width: 501px){
+
+  .img-circle {
+    width: 50%;
+  } 
+
+  .blockk.fac-block{
+    height: 500px;
+  }
+
+
+  .description-fac-wrap{
+    margin-top: 1em;
+  }
+
+  .picture-wrap{
+    margin-top: 1em;
+  }
+
+  .info-fac-wrap .wrap-info{
+    font-size: 2em;
+    margin: 1em;
+  }
+
+  .info-fac-wrap p.fac-info-text{
+    font-size: 0.5em;
+  }
+
+}
+
+
+@media screen and (max-width: 500px){
+
+  .img-circle {
+    width: 30%;
+  } 
+
+  .blockk.fac-block{
+    height: 300px;
+  }
+
+
+  .description-fac-wrap{
+    margin-top: 0.5em;
+  }
+
+  .picture-wrap{
+    margin-top: 0.5em;
+  }
+
+  .info-fac-wrap .wrap-info{
+    font-size: 1em;
+    margin: 1em;
+  }
+
+  .info-fac-wrap p.fac-info-text{
+    font-size: 1em;
+  }
+
+}
