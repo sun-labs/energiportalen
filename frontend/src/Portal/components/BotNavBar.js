@@ -14,7 +14,9 @@ const BotNavBar = ({ history }) => {
         <li className="dashboard icon">
           <Link to={`${ROOT}/`}>DASHBOARD</Link>
         </li>
-        <li className="locations icon">LOCATION</li>
+        <li className="locations icon"> 
+          <Link to={`${ROOT}/locations`}>LOCATIONS</Link>
+        </li>
         <li className="sign-out icon" onClick={() => {
           localStorage.removeItem('token');
           history.push('/');
