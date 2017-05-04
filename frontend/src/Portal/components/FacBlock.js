@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import '../styles/Block.css';
 import '../styles/FacBlock.css';
 import img from '../../imgs/akademiska.png';
 
