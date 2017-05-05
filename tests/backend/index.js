@@ -1,9 +1,9 @@
 import chai from 'chai';
-import mysql from 'mysql';
-import TestDB from './TestDB';
+import 'source-map-support/register';
+
+import Connection from '../../backend/models/Connection';
 import Authentication from '../../backend/controllers/Authentication.js';
 import User from '../../backend/models/User.js';
-import 'source-map-support/register';
 
 const should = chai.should();
 
@@ -12,35 +12,27 @@ const CORRECT_CREDENTIALS = {
   password: '***REMOVED***'
 };
 
+let con;
+
 describe('[BE] Authentication tests', () => {
 
   before((done) => { // run before all of the tests
-    TestDB.connect((err) => {
-      should.not.exist(err);
-      TestDB.clearTables(() => {
-        TestDB.createUnits(() => {
-          TestDB.createUnitKeys(() => {
-            TestDB.createUnitData(() => {
-              TestDB.createUsers(() => {
-                done();
-              });
-            });
-          });
+
+    con = new Connection('test');
+    con.init((err) => {
+      if(err) { done(err); }
+      con.dropAllTables(() => {
+        con.createAllTables(() => {
+          done();
         });
       });
     });
   });
 
   beforeEach((done) => { // run before each test
-    TestDB.clearTableData(() => {
-      TestDB.populateUnits(() => {
-        TestDB.populateUnitKeys(() => {
-          TestDB.populateUnitData(() => {
-            TestDB.populateUsers(() => {
-              done();
-            });
-          });
-        })
+    con.clearAllTables(() => {
+      con.populateAllTables((err) => {
+        done(err);
       });
     });
   });
