@@ -67,7 +67,15 @@
 
   .info-fac-wrap .wrap-info{
     font-size: 2em;
-    margin: 1em;
+    margin-bottom: 1em;
+  }
+
+  .info-fac-wrap .wrap-info.solar-info{
+    margin-left: 0.5em;
+  }
+
+  .info-fac-wrap .wrap-info.effect-info{
+    margin-right: 0.5em;
   }
 
   .info-fac-wrap p.fac-info-text{
