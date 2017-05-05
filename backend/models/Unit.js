@@ -1,5 +1,5 @@
 import mysql from 'mysql';
-import con from './Connection.js';
+import { con } from './Connection';
 
 let Unit = {};
 

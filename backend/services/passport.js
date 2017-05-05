@@ -1,25 +1,20 @@
-import { 
-  Strategy as JwtStrategy, 
-  ExtractJwt 
-} from 'passport-jwt';
+import passport from 'passport';
 import LocalStrategy from 'passport-local';
+import { 
+    Strategy as JwtStrategy, 
+    ExtractJwt 
+  } from 'passport-jwt';
 
 import { jwtSecret } from '../config.js';
 import User from '../models/user';
 import Authentication from '../controllers/Authentication';
 
-const localOptions = { 
-  usernameField: 'email' 
-};
-const jwtOptions = {
-	jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-	***REMOVED***OrKey: jwtSecret
-};
-
 /*
 * Sign in with email and password
 */
-const localAuth = new LocalStrategy(localOptions, (email, password, done) => {
+const localAuth = new LocalStrategy({ 
+  usernameField: 'email'
+}, (email, password, done) => {
   Authentication.verifyCredentials({
     email, 
     password
@@ -40,7 +35,10 @@ const localAuth = new LocalStrategy(localOptions, (email, password, done) => {
 /*
 * Check validity of JWT token, aka sign in with token.
 */
-const jwtAuth = new JwtStrategy(jwtOptions, (payload, done) => {
+const jwtAuth = new JwtStrategy({
+  jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+	***REMOVED***OrKey: jwtSecret
+}, (payload, done) => {
 
   User.getUser({ 
     id: payload.sub 
@@ -57,5 +55,13 @@ const jwtAuth = new JwtStrategy(jwtOptions, (payload, done) => {
   });
 
 });
+
+// passport init
+passport.use(jwtAuth);
+passport.use(localAuth);
+
+// middleware
+export const tokenCheck = passport.authenticate('jwt', { session: false });
+export const credentialCheck = passport.authenticate('local', { session: false });
 
 export { jwtAuth, localAuth };

@@ -1,7 +1,7 @@
 import mysql from 'mysql';
 import { isEmail } from 'validator';
 
-import con from './Connection.js';
+import { con } from './Connection';
 
 class User {
 
