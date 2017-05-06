@@ -25,6 +25,25 @@ Unit.getUnits = (cb) => {
 
 };
 
+/**
+ * CB: err, [unit]
+ */
+Unit.getUnitsFromLocation = (locationId, cb) => {
+  const query = `
+    SELECT u.*
+    FROM units as u
+    INNER JOIN unit_locations as ul ON u.id = ul.unit_id
+    INNER JOIN locations as l ON l.id = ul.location_id
+    WHERE l.id = ${locationId}
+  `;
+  const p_query = mysql.format(query, locationId);
+  con.query({
+    sql: query
+  }, (err, units) => {
+    cb(err, units);
+  });
+};
+
 Unit.getUnitKeys = (unitId, cb) => {
 
   const query = `
