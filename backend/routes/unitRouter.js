@@ -4,22 +4,23 @@ let router = express.Router();
 
 // get units
 router.get('/', (req, res) => {
-  Unit.getUnits((results, fields) => {
-    res.json(results);
+  Unit.getUnits((err, units) => {
+    res.json(units);
   });
 });
 
 // get data keys from a unit
 router.get('/:unitId', (req, res) => {
-  Unit.getUnitKeys(req.params.unitId, (results, fields) => {
-    res.json(results);
+  Unit.getUnitKeys(req.params.unitId, (err, keys) => {
+    res.json(keys);
   });
 });
 
 // get data from a unit with speicified key
 router.get('/:unitId/:unitKeyId', (req, res) => {
-  Unit.getUnitDataFromKey(req.params.unitId, req.params.unitKeyId, (results, fields) => {
-    res.json(results);
+  const { unitId, unitKeyId } = req.params;
+  Unit.getUnitDataFromKey(unitId, unitKeyId, (err, data) => {
+    res.json(data);
   });
 });
 

@@ -22,10 +22,10 @@ describe('[BE] Authentication tests', () => {
 
     con = new Connection('test');
     con.init((err) => {
-      if(err) { done(err); }
+      if (err) { done(err); }
       con.dropAllTables(() => {
-        con.createAllTables(() => {
-          done();
+        con.createAllTables((err) => {
+          done(err);
         });
       });
     });
@@ -81,28 +81,28 @@ describe('[BE] Authentication tests', () => {
   });
 
   it('User count database.', (done) => {
-      User.getUserCount((count) => {
-        count.should.equal(1);
-        done();
-      });
+    User.getUserCount((count) => {
+      count.should.equal(1);
+      done();
+    });
   });
 
   it('Add user correct mail and password.', (done) => {
-      User.storeUser({ 
-        email: 'hello@sunlabs.se', 
-        password: 'lala' 
-      }, (err, result) => {
-        should.not.exist(err);
-        should.exist(result);
-        User.getUserCount((count) => {
-          count.should.equal(2);
-          done();
-        });
+    User.storeUser({
+      email: 'hello@sunlabs.se',
+      password: 'lala'
+    }, (err, result) => {
+      should.not.exist(err);
+      should.exist(result);
+      User.getUserCount((count) => {
+        count.should.equal(2);
+        done();
       });
+    });
   });
 
   it('Add user duplicate mail and password.', (done) => {
-      User.storeUser(CORRECT_CREDENTIALS, 
+    User.storeUser(CORRECT_CREDENTIALS,
       (err, result) => {
         should.exist(err);
         should.not.exist(result);
@@ -111,14 +111,14 @@ describe('[BE] Authentication tests', () => {
   });
 
   it('Add user empty mail and password.', (done) => {
-      User.storeUser({
-        email: '',
-        password: ''
-      }, (err, results) => {
-        should.exist(err);
-        should.not.exist(results);
-        done();
-      });
+    User.storeUser({
+      email: '',
+      password: ''
+    }, (err, results) => {
+      should.exist(err);
+      should.not.exist(results);
+      done();
+    });
   });
 
   it('Edge cases with emails and spam inputs', () => {
@@ -128,7 +128,7 @@ describe('[BE] Authentication tests', () => {
     User.validEmail('victor.linus@gmail.com').should.be.true;
     User.validEmail('victor@linus@gmail.com').should.not.be.true;
   });
-  
+
   it('Duplicate SignUp', (done) => {
     Authentication.signUp(CORRECT_CREDENTIALS, (err, user) => {
       should.exist(err);
@@ -153,11 +153,11 @@ describe('[BE] Authentication tests', () => {
     });
   });
 
-   it('Correct SignUp', (done) => {
-     const newUser = {
+  it('Correct SignUp', (done) => {
+    const newUser = {
       email: 'fb@se.se',
       password: 'popo'
-     };
+    };
     Authentication.signUp(newUser, (err, user) => {
       should.not.exist(err);
       should.exist(user);
@@ -166,20 +166,57 @@ describe('[BE] Authentication tests', () => {
     });
   });
 
- it('Get locations', (done) => {
-   Location.getLocations((err, locations) => {
-    should.not.exist(err);
-    locations.length.should.equal(3);
-    done();
-   });
+  it('Get locations', (done) => {
+    Location.getLocations((err, locations) => {
+      should.not.exist(err);
+      locations.length.should.equal(3);
+      done();
+    });
   });
 
- it('Get units from location', (done) => {
-   Unit.getUnitsFromLocation(1, (err, units) => {
-    should.not.exist(err);
-    units.length.should.equal(5);
-    done();
-   });
+  it('Get units from location', (done) => {
+    Unit.getUnitsFromLocation(1, (err, units) => {
+      should.not.exist(err);
+      units.length.should.equal(5);
+      done();
+    });
+  });
+
+  it('Get all units', (done) => {
+    Unit.getUnits((err, units) => {
+      should.not.exist(err);
+      units.length.should.equal(6);
+      done();
+    });
+  });
+
+  /**
+   * NOTE Doesnt work atm as we dont have a test-db
+   * for daily grouped data.
+   */
+  it('Get all keys for a unit', (done) => {
+    const unitId = 1;
+    Unit.getUnitKeys(unitId, (err, keys) => {
+      should.not.exist(err);
+      //keys.length.should.equal(2); // correct
+      should.exist(keys);
+      done();
+    });
+  });
+
+  /**
+   * NOTE Doesnt work atm as we dont have a test-db
+   * for daily grouped data.
+   */
+  it('Get all data from a unit', (done) => {
+    const unitId = 4;
+    const keyId = 85;
+    Unit.getUnitDataFromKey(unitId, keyId, (err, data) => {
+      should.not.exist(err);
+      //data.length.should.equal(?);
+      should.exist(data);
+      done();
+    });
   });
 
 });

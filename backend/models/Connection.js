@@ -66,8 +66,8 @@ class Connection {
 
   clear(TABLE, cb) {
     if (this.unsafeEnv()) { return cb(); }
-
     const QUERY = `
+      SET FOREIGN_KEY_CHECKS = 0;
       DELETE FROM ${TABLE};
     `;
     this.con.query({
@@ -107,6 +107,7 @@ class Connection {
     });
     this.mapTables(tables, this.populate, cb);
   }
+
   createAllTables(cb) {
     this.mapTables(Queries.TABLES, this.create, cb);
   }
@@ -115,7 +116,7 @@ class Connection {
   * STATIC FUNCTIONS
   */
 
-  static connect(ENV = 'DEV', cb) {
+  static connect(ENV = 'TEST', cb) {
     let dbConfig;
     switch (ENV) {
       case 'TEST':
