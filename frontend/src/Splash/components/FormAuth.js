@@ -9,14 +9,15 @@ class FormAuth extends Component {
   constructor() {
     super();
     this.state = {
-      email: '',
-      password: ''
+      email: 'asdf@asdf.com',
+      password: '***REMOVED***'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
+    console.log(API_AUTH);
     axios.post(API_AUTH, this.state)
     .then((res) => {
       console.log('success, setting token');

@@ -46,7 +46,6 @@ class Splash extends Component {
           break;
       }
     }
-
     this.setState({
       displayError: true,
       error: { title, body }
@@ -66,7 +65,10 @@ class Splash extends Component {
     return (
       <div id="Splash">
         <NavBar { ...uiProps } />
-        { this.state.displayError && <MessageBox className="error" onClick={ this.handleErrorClose } { ...this.state.error } /> }
+        { 
+          this.state.displayError && 
+          <MessageBox className="error" onClick={ this.handleErrorClose } { ...this.state.error } />
+        }
         <Sections { ...uiProps } />
       </div>
     );
