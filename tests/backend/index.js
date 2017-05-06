@@ -2,8 +2,9 @@ import chai from 'chai';
 import 'source-map-support/register';
 
 import Connection from '../../backend/models/Connection';
-import Authentication from '../../backend/controllers/Authentication.js';
-import User from '../../backend/models/User.js';
+import Location from '../../backend/models/Location';
+import User from '../../backend/models/User';
+import Authentication from '../../backend/controllers/Authentication';
 
 const should = chai.should();
 
@@ -162,6 +163,14 @@ describe('[BE] Authentication tests', () => {
       newUser.email.should.equal(user.email);
       done();
     });
+  });
+
+ it('Get locations', (done) => {
+   Location.getLocations((err, locations) => {
+    should.not.exist(err);
+    locations.length.should.equal(3);
+    done();
+   });
   });
 
 });
