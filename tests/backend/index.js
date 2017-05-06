@@ -2,6 +2,7 @@ import chai from 'chai';
 import 'source-map-support/register';
 
 import Connection from '../../backend/models/Connection';
+import Unit from '../../backend/models/Unit';
 import Location from '../../backend/models/Location';
 import User from '../../backend/models/User';
 import Authentication from '../../backend/controllers/Authentication';
@@ -169,6 +170,14 @@ describe('[BE] Authentication tests', () => {
    Location.getLocations((err, locations) => {
     should.not.exist(err);
     locations.length.should.equal(3);
+    done();
+   });
+  });
+
+ it('Get units from location', (done) => {
+   Unit.getUnitsFromLocation(1, (err, units) => {
+    should.not.exist(err);
+    units.length.should.equal(5);
     done();
    });
   });

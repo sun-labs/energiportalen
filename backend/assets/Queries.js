@@ -282,9 +282,13 @@ Queries.QUERIES = {
     INSERT INTO units 
       (id, name)
     VALUES
-      (1, 'Unit1'),
-      (2, 'Unit2'),
-      (3, 'Unit3');
+      (1, 'Unit1')
+      ,(2, 'Unit2')
+      ,(3, 'Unit3')
+      ,(4, 'Unit4')
+      ,(5, 'Unit5')
+      ,(6, 'Unit6')
+      ;
   `
   ,POPULATE_UNIT_KEYS_TEST: `
     INSERT INTO unit_keys 
@@ -317,6 +321,17 @@ Queries.QUERIES = {
       (11, 3, 5, 1000),
       (12, 3, 5, 1121),
       (13, 3, 5, 1200);
+  `
+  ,POPULATE_UNIT_LOCATIONS_TEST: `
+    INSERT INTO unit_locations 
+      (unit_id, location_id)
+    VALUES
+      (1, 1),
+      (2, 1),
+      (3, 1),
+      (4, 1),
+      (5, 1),
+      (6, 2);
   `
   ,POPULATE_USERS_TEST: `
     INSERT INTO users
