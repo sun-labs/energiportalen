@@ -9,6 +9,7 @@ import '../styles/Home.css';
 // COMPONENT IMPORTS
 import LineBlock from './LineBlock';
 import TableBlock from './TableBlock';
+import IlluBlock from './IlluBlock';
 
 class Home extends Component {
   constructor() {
@@ -37,7 +38,7 @@ class Home extends Component {
         <div className="block-wraper">
           <LineBlock title="Hello World" />
           <TableBlock />
-          <LineBlock/>
+          <IlluBlock value="5"/>
           <LineBlock/>
         </div>
       </div>

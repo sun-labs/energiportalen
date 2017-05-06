@@ -91,7 +91,7 @@
 }
 
 .blockk-line .content > canvas {
-  margin-top: -23px;
+  /*margin-top: -23px;*/
 }
 
 .blockk-line .content > iframe {
@@ -140,7 +140,7 @@
 
 .content-table {
   width: 100%;
-  margin-top: -23px;
+  /*margin-top: -23px;*/
   box-sizing: border-box;
 }
 
@@ -161,6 +161,87 @@
 
 .content-table .add-information {
   color: #219653;
+}
+
+/*
+* ILLUSTRATION BLOCKS
+*/
+.blockk-illu {
+  background-color: #25436A;
+  border-color: #25436A;
+}
+
+.blockk-illu header {
+  display: none;
+}
+
+.blockk-illu .content {
+  height: 100% !important;
+}
+
+.blockk-illu .content-illu {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.blockk-illu .content-illu {
+  background-image: url('../imgs/stars.png');
+  background-position: center center;
+  background-size: 75% auto;
+}
+
+.content-illu .value-illu {
+  position: absolute;
+  color: white;
+  right: 0.5em;
+  top: 0.5em;
+  font-size: 2em;
+  text-align: right;
+}
+
+.content-illu .earth {
+  position: absolute;
+  width: 100%; height: 100%;
+  background-image: url('../imgs/earth.png');
+  background-size: 50% auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+  animation-name: SPIN;
+  animation-duration: 30s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.content-illu .scooter {
+  position: absolute;
+  width: 100%; height: 100%;
+  background-image: url('../imgs/scooter.png');
+  background-size: 25% auto;
+  background-repeat: no-repeat;
+  background-position: right 40px top 50px;
+  z-index: 10;
+  animation-name: BUMP;
+  animation-duration: 0.25s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes SPIN {
+  from {
+      transform: rotate(0deg);
+  }
+  to { 
+      transform: rotate(360deg);
+  }
+}
+@keyframes BUMP {
+  from {
+      background-position: right 40px top 50px;
+  }
+  to { 
+      background-position: right 40px top 50.5px;
+  }
 }
 
 @media screen and (min-width: 501px){

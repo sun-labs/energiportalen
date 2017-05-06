@@ -28,7 +28,7 @@ const Block = (props) => {
       </header>
 
       <div className="content">
-        &nbsp; {/* DO NOT REMOVE THIS MOTHERFUCKER */}
+        {/*&nbsp;  DO NOT REMOVE THIS MOTHERFUCKER, okay. it seems to be cool /V */}
         { children }
       </div>
 
