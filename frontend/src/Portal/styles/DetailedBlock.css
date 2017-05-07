@@ -1,0 +1,79 @@
+.compare-wrap .img-circle {
+    display: block;
+    border-radius: 50%;
+}
+
+.content-detailedBlock header{
+   display: none;
+}
+
+@media screen and (min-width: 501px){
+
+  .compare-wrap{
+    margin: 1em 0 0 0;
+  }
+  
+  .compare-wrap .picture-wrap{
+    float: left;
+  }
+
+  .compare-wrap .img-circle {
+    width: 75px;
+    margin: 1em 0 0 1em;
+    overflow: auto;
+  } 
+
+  .compare-wrap .blockk.fac-block{
+    height: 200px;
+    width: 45%;
+    border-width: 1px;
+    border-radius: 0;
+    border-color: gray;
+  }
+
+  .compare-wrap .info-fac-wrap .wrap-info{
+    display: none;
+  }
+
+  .compare-wrap .description-fac-wrap{
+    width: 70%;
+    text-align: left;
+    margin-left: 0;
+    float: right;
+    overflow: auto;
+  }
+
+  .compare-wrap .info-fac-button button{
+    display: block;
+    margin: 0 0 1em 1em;
+    text-transform: uppercase;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #219653;
+    color: white;
+    font-weight: lighter;
+    box-shadow: none;
+  }
+
+  .content-detailedBlock .blockk.blockk-line{
+    width: 775px;
+    height: 400px;
+    max-width: none;
+    border-radius: 0;
+    border-width: 1px;
+    border-color: gray;
+    margin: 0; 
+  }
+
+  .content-detailedBlock .blockk > .content{
+    height: 400px;
+  }
+
+}
+
+@media screen and (max-width: 500px){
+  .compare-wrap .info-fac-wrap{
+    display: none;
+  }
+
+}
