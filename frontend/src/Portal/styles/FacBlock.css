@@ -35,12 +35,12 @@
   float: right;
 }
 
-.blockk.fac-block:hover{
-  border-color: #219653;
-}
-
 .info-fac-wrap p.fac-info-text{
   color: #219653;
+}
+
+.info-fac-button button{
+  display: none;
 }
 
 
