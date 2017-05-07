@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import { ROOT } from './Portal';
 
 // STYLE IMPORTS
 import '../styles/Home.css';
@@ -18,7 +20,7 @@ class Locations extends Component {
           <h2> Search for solar facilities in sweden to compare and see how much energy that is produced. </h2>
         </div>
         <div className="FacBlock-wrap">
-          <FacBlock/>
+          <Link to={`${ROOT}/locations/1`}> <FacBlock/> </Link>
           <FacBlock/>
           <FacBlock/>
           <FacBlock/>
