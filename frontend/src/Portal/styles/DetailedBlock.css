@@ -43,7 +43,8 @@
     overflow: auto;
   }
 
-  .compare-wrap .info-fac-button button{
+  .compare-wrap .info-fac-button button,
+  .content-detailedBlock .blockk.blockk-line button{
     display: block;
     margin: 0 0 1em 1em;
     text-transform: uppercase;
@@ -57,7 +58,7 @@
 
   .content-detailedBlock .blockk.blockk-line{
     width: 775px;
-    height: 400px;
+    height: 475px;
     max-width: none;
     border-radius: 0;
     border-width: 1px;
@@ -68,6 +69,25 @@
   .content-detailedBlock .blockk > .content{
     height: 400px;
   }
+
+  .content-detailedBlock .blockk footer{
+    display: block;
+  }
+
+  .content-detailedBlock .blockk.blockk-line footer button{
+    display: inline-block;
+    float: left;
+    background-color: white;
+    color: #BDBDBD;
+    border-style: solid;
+    border-color: #BDBDBD;
+    border-width: 1px;
+  }
+
+   .content-detailedBlock .blockk.blockk-line footer button#export-data{
+     float: right;
+     margin: 0 1em 0 0;
+   }
 
 }
 

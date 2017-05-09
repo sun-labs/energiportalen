@@ -23,7 +23,6 @@ class DetailedBlock extends Component {
             <LineBlock/>
         </div>
           <footer>
-
           </footer>
           
           
