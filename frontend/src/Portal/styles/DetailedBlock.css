@@ -75,7 +75,7 @@
   }
 
   .content-detailedBlock .blockk.blockk-line footer button{
-    display: inline-block;
+    margin: 0 0 0 1em;
     float: left;
     background-color: white;
     color: #BDBDBD;

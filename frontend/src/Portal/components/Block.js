@@ -33,11 +33,13 @@ const Block = (props) => {
       </div>
 
       <footer>
-        <button>DAILY</button>
-        <button>WEEKLY</button>
-        <button>MONTHLY</button>
-        <button>YEARLY</button>
-        <button id="export-data">export data</button>
+        <ul>
+          <li><button>DAILY</button></li>
+          <li><button>WEEKLY</button></li>
+          <li><button>MONTHLY</button></li>
+          <li><button>YEARLY</button></li>
+          <li><button id="export-data">export data</button></li>
+        </ul>
       </footer>
 
     </div>);
