@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import '../styles/AddBlock.css';
+import Block from './Block';
 
-const AddBlock = () => {
-  return (
-    <div id="add-block">HELLO SUN LABS</div>
-  );
+class IlluBlock extends Component {
+  render() {
+    const {
+      value = 534.3,
+    } = this.props;
+
+    const blockInfo = {
+      value
+    }
+    return(
+    <Block className="blockk-add">
+      <div className="content-add">
+      </div>
+    </Block>
+    );
+  }
 }
 
-export default AddBlock;
+export default IlluBlock;
