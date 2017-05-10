@@ -12,6 +12,7 @@ import '../styles/Locations.css';
 // COMPONENT IMPORTS
 import FacBlock from './FacBlock';
 
+//TODO GET DATA FROM DATABASE FOR EVERY LOCATION TO DISPLAY. MAYBE IMPLEMENT SUPPORT FOR NUMERS OF SOLAR CELL IN FACILITY?
 
 class Location extends Component {
 
