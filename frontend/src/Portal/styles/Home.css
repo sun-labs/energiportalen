@@ -5,6 +5,12 @@
     margin-bottom: 15px;
 }
 
+  .facblock-wrapper .blockk.fac-block{
+    display: inline-block;
+    border-width: 1px;
+    border-color: gray;
+  }
+
 @media screen and (min-width: 501px){
 
   #portal > .content {
@@ -37,10 +43,29 @@
     display: none;
   }
 
-  #portal .block-wraper{
-    /*overflow-y: hidden;
-    white-space: nowrap;
-    width: 100%;*/
+  .facblock-wrapper .blockk.fac-block{
+    height: 100px;
+    width: 31%;
+  }
+
+  .facblock-wrapper .blockk.fac-block .img-circle{
+    vertical-align: middle;
+    width: 20%;
+    float: left;
+    margin: 0 1em 0 1em;
+  }
+
+  .facblock-wrapper .blockk .description-fac-wrap{
+    vertical-align: middle;
+    text-align: left;
+  }
+
+  .facblock-wrapper .blockk .description-fac-wrap .title{
+      font-size: 1.5em;
+ }
+
+  .facblock-wrapper .blockk.fac-block .info-fac-wrap{
+    display: none;
   }
 
 }
@@ -57,4 +82,24 @@
   #portal .text-block{
     display: none;
   }
+
+  .facblock-wrapper .blockk.fac-block{
+    height: 80px;
+    width: 20%;
+    min-width: 0px;
+  }
+
+  .facblock-wrapper .blockk.fac-block .img-circle{
+    width: 50%;
+  }
+
+  .facblock-wrapper .blockk .description-fac-wrap .title{
+      font-size: 0.6em;
+ }
+
+ .facblock-wrapper .blockk.fac-block .info-fac-wrap,
+ .facblock-wrapper .blockk.fac-block .subtitle{
+    display: none;
+  }
+
 }
