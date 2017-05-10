@@ -54,7 +54,7 @@ componentWillMount(){
   let lengthLocations = this.state.locations.length;
   for (var i = 0; i < lengthLocations; i++){
     let location = this.state.locations[i];
-    content.push(<FacBlock fac={location.Image} title={location.Name} key={location.Id} />)
+    content.push(<FacBlock fac={location.Image} title={location.Name} subtitle={location.City} key={location.Id} />)
   }
 
     return (
