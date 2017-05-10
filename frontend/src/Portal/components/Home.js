@@ -10,6 +10,7 @@ import '../styles/Home.css';
 import LineBlock from './LineBlock';
 import TableBlock from './TableBlock';
 import IlluBlock from './IlluBlock';
+import AddBlock from './AddBlock';
 
 class Home extends Component {
   constructor() {
@@ -36,6 +37,7 @@ class Home extends Component {
             <h2> These are your own personally defined blocks, you may add and remove as you like to customize your dashboard </h2>
         </div>
         <div className="block-wraper">
+          <AddBlock/>
           <LineBlock title="Hello World" />
           <TableBlock />
           <IlluBlock value="5"/>
