@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
+import { ROOT } from './Portal';
 
 // STYLE IMPORTS
 import '../styles/Home.css';
@@ -15,8 +18,8 @@ class DetailedBlock extends Component {
         <div className="detailedBlock">
           <header>
             <div className="compare-wrap">
-              <FacBlock/>
-              <FacBlock/>
+              <FacBlock subtitle={"Uppsala"} />
+              <Link to={`${ROOT}/locations/addCompare`} className="blockk add-block">+ ADD BLOCK</Link>
             </div>
           </header>
         <div className="content-detailedBlock">

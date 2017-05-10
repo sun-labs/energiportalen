@@ -58,10 +58,11 @@
   .facblock-wrapper .blockk .description-fac-wrap{
     vertical-align: middle;
     text-align: left;
+    margin: 0 0 0 5em;
   }
 
   .facblock-wrapper .blockk .description-fac-wrap .title{
-      font-size: 1.5em;
+      font-size: 1.5vw;
  }
 
   .facblock-wrapper .blockk.fac-block .info-fac-wrap{
@@ -84,9 +85,10 @@
   }
 
   .facblock-wrapper .blockk.fac-block{
-    height: 80px;
-    width: 20%;
+    height: 95px;
+    width: 22%;
     min-width: 0px;
+    margin-bottom: 0;
   }
 
   .facblock-wrapper .blockk.fac-block .img-circle{
@@ -94,7 +96,7 @@
   }
 
   .facblock-wrapper .blockk .description-fac-wrap .title{
-      font-size: 0.6em;
+      font-size: 3.0vw;
  }
 
  .facblock-wrapper .blockk.fac-block .info-fac-wrap,
