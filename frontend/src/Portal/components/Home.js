@@ -10,7 +10,7 @@ import '../styles/Home.css';
 import LineBlock from './LineBlock';
 import TableBlock from './TableBlock';
 import IlluBlock from './IlluBlock';
-import FacBlock from './FacBlock';
+import FacDashBlock from './DashboardLocations'
 import AddBlock from './AddBlock';
 
 class Home extends Component {
@@ -37,11 +37,7 @@ class Home extends Component {
           <h1>FAVORITE LOCATIONS<span className="inline-button"> add location + </span></h1>
           <h2> you may save or remove your own personally defined locations for easier access. </h2>
         </div>
-        <div className="facblock-wrapper">
-          <FacBlock/>
-          <FacBlock/>
-          <FacBlock/>
-        </div>
+        <FacDashBlock/>
         <Link to={`${ROOT}/addblock`} className="blockk add-block">+ ADD BLOCK</Link>
         <div className="text-block">
             <h1>blocks <span className="inline-button"> add block + </span></h1>
