@@ -19,7 +19,7 @@ const Block = (props) => {
       
     
         <div className="picture-wrap">
-          <img className="img-circle" alt="Facility" src={ fac }/>
+          <img className="img-circle" alt="" src={ fac }/>
         </div>
         <div className="description-fac-wrap">
           <p className="title">{ title }</p>
