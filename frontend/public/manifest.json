@@ -3,6 +3,8 @@
       "fullscreen"
   ],
   "display": "standalone",
+  "background_color": "#33B5FF",
+  "theme-color": "#33B5FF",
   "icons": [
     {
       "src": "ic_launcher_36x36.png",
