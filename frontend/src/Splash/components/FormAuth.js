@@ -41,11 +41,11 @@ class FormAuth extends Component {
       <form className={ className ? className : '' } onSubmit={ this.handleSubmit }>
         <div className="placeholder-wrap">
           <p>e-mail</p>
-          <input type="email" name="email" tabIndex="1" onChange={ this.handleChange } />
+          <input type="email" placeholder="e-mail" name="email" tabIndex="1" onChange={ this.handleChange } />
         </div>
         <div className="placeholder-wrap">
           <p>password <a href={ API_FORGOT_PASSWORD }>forgot?</a></p>
-          <input type="password" name="password" tabIndex="2" onChange={ this.handleChange } />
+          <input type="password" placeholder="password" name="password" tabIndex="2" onChange={ this.handleChange } />
         </div>
         <button tabIndex="3">SIGN IN</button>
       </form>
