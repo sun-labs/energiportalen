@@ -2,6 +2,21 @@ import React from 'react';
 
 import '../styles/Block.css';
 
+const renderBlock = (type, content) => {
+  switch(type) {
+    case 'ADD':
+    break;
+    case 'ILLUSTRATION':
+    break;
+    case 'LINE':
+    break;
+    case 'TABLE':
+    break;
+    default:
+    break;
+  }
+}
+
 const Block = (props) => {
 
   const { 
@@ -9,7 +24,8 @@ const Block = (props) => {
     className = '',
     title = 'title',
     subtitle = 'subtitle',
-    timeSpan = '00h'
+    timeSpan = '00h',
+    type = 'DEFAULT'
   } = props;
 
   return (

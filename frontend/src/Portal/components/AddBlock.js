@@ -9,7 +9,8 @@ class IlluBlock extends Component {
     } = this.props;
 
     const blockInfo = {
-      value
+      value,
+      type: 'ADD'
     }
     return(
     <Block className="blockk-add">
