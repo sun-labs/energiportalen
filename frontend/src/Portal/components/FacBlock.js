@@ -19,7 +19,7 @@ const Block = (props) => {
       
     
         <div className="picture-wrap">
-          <img className="img-circle" alt="" src={ fac }/>
+          <img className="img-circle" alt="" src={ img }/> {/*change back to { fac } to renger image from DB*/}
         </div>
         <div className="description-fac-wrap">
           <p className="title">{ title }</p>

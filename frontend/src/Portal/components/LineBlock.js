@@ -130,7 +130,8 @@ const LineBlock = (props) => {
   const blockInfo = {
     title,
     subtitle,
-    timeSpan
+    timeSpan,
+    type: 'LINE'
   }
 
   return (

@@ -2,14 +2,19 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../Splash/assets/APIRoutes';
 
+import { Link } from 'react-router-dom';
+import { ROOT } from './Portal';
+
 // STYLE IMPORTS
 import '../styles/Home.css';
+import '../styles/Locations.css';
 
 // COMPONENT IMPORTS
 import FacBlock from './FacBlock';
 
+//TODO GET DATA FROM DATABASE FOR EVERY LOCATION TO DISPLAY. MAYBE IMPLEMENT SUPPORT FOR NUMERS OF SOLAR CELL IN FACILITY?
 
-class DashboardLocations extends Component {
+class Location extends Component {
 
   constructor () {
     super()
@@ -20,7 +25,7 @@ class DashboardLocations extends Component {
 
 componentWillMount(){
   const token = localStorage.getItem('token');
-
+  
   axios.get(API_URL+'/locations', { headers: {Authorization: token}}).then(Response => {
     let location = [];
     let responsData = Response.data.length;
@@ -31,7 +36,7 @@ componentWillMount(){
       let Desc = Response.data[i].description;
       let Image = Response.data[i].image;
 
-      let DashLocation = {
+      let LocLocation = {
         Id: Id, 
         Name: Name,
         City: City,
@@ -39,8 +44,7 @@ componentWillMount(){
         Image: Image
       }
 
-      location = location.concat(DashLocation);
-
+      location = location.concat(LocLocation);
     }
     this.setState({
       locations: location
@@ -55,11 +59,11 @@ componentWillMount(){
   let lengthLocations = this.state.locations.length;
   for (let i = 0; i < lengthLocations; i++){
     let location = this.state.locations[i];
-    content = content.concat(<FacBlock fac={location.Image} title={location.Name} subtitle={location.City} key={location.Id} />);
+    content = content.concat(<Link to={`${ROOT}/locations/` +  location.Id} key={location.Id}><FacBlock fac={location.Image} title={location.Name} subtitle={location.Desc} key={location.Id} /></Link>)
   }
 
     return (
-        <div className="facblock-wrapper">
+        <div className="FacBlock-wrap">
           { content }
         </div>
     );
@@ -67,4 +71,4 @@ componentWillMount(){
 
 }
 
-export default DashboardLocations;
+export default Location;
