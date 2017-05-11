@@ -11,7 +11,8 @@ const TableBlock = (props) => {
 
   const blockInfo = {
     title,
-    subtitle
+    subtitle,
+    type: 'TABLE'
   }
 
   return (

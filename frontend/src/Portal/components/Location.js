@@ -27,9 +27,9 @@ componentWillMount(){
   const token = localStorage.getItem('token');
   
   axios.get(API_URL+'/locations', { headers: {Authorization: token}}).then(Response => {
-    var location = [];
-    var responsData = Response.data.length;
-    for (var i = 0; i < responsData; i++){
+    let location = [];
+    let responsData = Response.data.length;
+    for (let i = 0; i < responsData; i++){
       let Id = Response.data[i].id;
       let Name = Response.data[i].name;
       let City = Response.data[i].city;
@@ -44,7 +44,7 @@ componentWillMount(){
         Image: Image
       }
 
-      location.push(LocLocation);
+      location = location.concat(LocLocation);
     }
     this.setState({
       locations: location
@@ -57,9 +57,9 @@ componentWillMount(){
 
   let content = [];
   let lengthLocations = this.state.locations.length;
-  for (var i = 0; i < lengthLocations; i++){
+  for (let i = 0; i < lengthLocations; i++){
     let location = this.state.locations[i];
-    content.push(<Link to={`${ROOT}/locations/` +  location.Id} key={location.Id}><FacBlock fac={location.Image} title={location.Name} subtitle={location.Desc} key={location.Id} /></Link>)
+    content = content.concat(<Link to={`${ROOT}/locations/` +  location.Id} key={location.Id}><FacBlock fac={location.Image} title={location.Name} subtitle={location.Desc} key={location.Id} /></Link>)
   }
 
     return (
