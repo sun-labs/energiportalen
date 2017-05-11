@@ -1,5 +1,43 @@
 @media screen and (max-width: 500px) {
-  #add-block {
-    margin: 12em 1em 0em 1em;
+
+  .blockk-add {
+    display: inline-block;
+  }
+
+  .blockk-add input,
+  .blockk-add button {
+    margin-left: 10px;
+  }
+
+  .blockk-add input,
+  .blockk-add button {
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+
+  .blockk-add input {
+    border: 1px solid gray;
+    font-size: 1.125em;
+    padding: 0.5em;
+  }
+
+  .blockk-add .chooseLoc-add {
+    margin-top: 10px;
+  }
+
+  .blockk-add .chooseLoc-add {
+    width: 60%;
+  }
+  .blockk-add .chooseBlock-add {
+    width: 89%;
+  }
+  .blockk-add .chooseTime-add {
+    width: 30%;
+  }
+  .blockk-add button {
+    background-color: #219653;
+    font-weight: normal;
+    color: white;
+    width: 60%;
   }
 }

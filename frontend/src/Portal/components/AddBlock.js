@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/AddBlock.css';
 
 import Block from './Block';
 
@@ -15,9 +16,13 @@ class IlluBlock extends Component {
     }
     return(
     <Block className="blockk-add" {...blockInfo}>
-      <p>
-        ADD BLOCK THINGY
-      </p>
+      <input className="chooseLoc-add" placeholder="CHOOSE LOCATION"/>
+      <input className="chooseBlock-add" placeholder="CHOOSE BLOCK TYPE"/>
+      <input className="chooseTime-add" placeholder="TIME SPAN"/>
+      <input className="chooseContent-add" placeholder="CHOOSE CONTENT"/>
+      <button>
+        SAVE BLOCK
+      </button>
     </Block>
     );
   }
