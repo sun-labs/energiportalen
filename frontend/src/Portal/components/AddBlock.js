@@ -10,12 +10,14 @@ class IlluBlock extends Component {
 
     const blockInfo = {
       value,
-      type: 'ADD'
+      type: 'ADD',
+      title: 'ADD BLOCK'
     }
     return(
-    <Block className="blockk-add">
-      <div className="content-add">
-      </div>
+    <Block className="blockk-add" {...blockInfo}>
+      <p>
+        ADD BLOCK THINGY
+      </p>
     </Block>
     );
   }
