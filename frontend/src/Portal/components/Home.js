@@ -47,7 +47,7 @@ class Home extends Component {
           <AddBlock/>
           <LineBlock title="Hello World" />
           <TableBlock />
-          <IlluBlock value="5"/>
+          <IlluBlock/>
           <LineBlock/>
         </div>
       </div>
