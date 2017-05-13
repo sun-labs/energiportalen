@@ -62,7 +62,6 @@ Queries.QUERIES = {
       name varchar(255) NOT NULL,
       image varchar(255) DEFAULT NULL,
       description text,
-      solarcells int(11) unsigned NOT NULL,
       country varchar(11) DEFAULT NULL COMMENT 'ISO 3166-1 alpha-3',
       city varchar(60) DEFAULT NULL,
       PRIMARY KEY (id)
@@ -153,11 +152,11 @@ Queries.QUERIES = {
   `
   ,POPULATE_LOCATIONS_DEV: `
     INSERT INTO locations 
-      (id, name, image, description, solarcells, country, city)
+      (id, name, image, description, country, city)
     VALUES
-      (1, 'Akademiska Sjukhuset', NULL, 'The academic hospital of Uppsala has 50% of their roof covered with solar panels.', 176, 'SWE', 'Uppsala'),
-      (3, 'Origo', NULL, 'Panels on the roof are tilted 45 degrees (under construction).', 214, 'SWE', 'Uppsala'),
-      (2, 'Base10', NULL, 'Base is the place if youre among the top 1 per mille, the roof is covered in sunlight and happiness 24 hours a day.', 64, 'SWE', 'Uppsala');
+      (1, 'Akademiska Sjukhuset', NULL, 'The academic hospital of Uppsala has 50% of their roof covered with solar panels.', 'SWE', 'Uppsala'),
+      (3, 'Origo', NULL, 'Panels on the roof are tilted 45 degrees (under construction).', 'SWE', 'Uppsala'),
+      (2, 'Base10', NULL, 'Base is the place if youre among the top 1 per mille, the roof is covered in sunlight and happiness 24 hours a day.', 'SWE', 'Uppsala');
   `
   ,POPULATE_UNIT_LOCATIONS_DEV: `
     INSERT INTO unit_locations 
