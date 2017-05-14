@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-
 import axios from 'axios';
 import { API_URL } from '../../Splash/assets/APIRoutes';
-
-import { Link } from 'react-router-dom';
-import { ROOT } from './Portal';
-
 
 // STYLE IMPORTS
 import '../styles/Home.css';
@@ -53,7 +48,6 @@ componentWillMount(){
 
 }
 
-
   render() {
     let l1 = this.props.match.params.locationID - 1; 
 
@@ -61,12 +55,13 @@ componentWillMount(){
       let lengthLocations = this.state.locations.length;
       for (let i = 0; i < lengthLocations; i++){
         if(l1 === i){
-         let location = this.state.locations[i];
+            let location = this.state.locations[i];
             content = content.concat(<DetailedBlock  title={location.Name} subtitle={location.City} key={location.Id} image={location.Image} />) 
           }
           else{
+
           }
-          }
+      }
     return (
       <div className="content">
         { content }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { ROOT } from './Portal';
@@ -14,18 +14,16 @@ import LineBlock from './LineBlock';
 const DetailedBlock = (props) => {
 
 const { 
-    className = '',
     title = 'Stadshuset',
     subtitle = 'Stockholm',
-    solarPlants = '158',
-    totEffect = '340',
+    // image = Image Remove when using real pictures
   } = props;
 
     return (
         <div className="detailedBlock">
           <header>
             <div className="compare-wrap">
-              <FacBlock title={ title } subtitle={ subtitle } />  {/* TODO Send image to facblock*/}
+              <FacBlock title={ title } subtitle={ subtitle }/>  {/* TODO Send image to facblock*/}
               <Link to={`${ROOT}/locations/addCompare`} className="blockk add-block">+ ADD BLOCK</Link>
             </div>
           </header>
