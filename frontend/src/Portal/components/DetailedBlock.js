@@ -11,14 +11,21 @@ import '../styles/DetailedBlock.css'
 import FacBlock from './FacBlock';
 import LineBlock from './LineBlock';
 
-class DetailedBlock extends Component {
+const DetailedBlock = (props) => {
 
-  render() {
+const { 
+    className = '',
+    title = 'Stadshuset',
+    subtitle = 'Stockholm',
+    solarPlants = '158',
+    totEffect = '340',
+  } = props;
+
     return (
         <div className="detailedBlock">
           <header>
             <div className="compare-wrap">
-              <FacBlock subtitle={"Uppsala"} />
+              <FacBlock title={ title } subtitle={ subtitle } />  {/* TODO Send image to facblock*/}
               <Link to={`${ROOT}/locations/addCompare`} className="blockk add-block">+ ADD BLOCK</Link>
             </div>
           </header>
@@ -32,7 +39,5 @@ class DetailedBlock extends Component {
         </div>
     );
   }
-
-}
 
 export default DetailedBlock;
