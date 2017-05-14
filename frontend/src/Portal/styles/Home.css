@@ -99,8 +99,15 @@
       font-size: 3.0vw;
  }
 
+ #portal .content .facblock-wrapper .blockk.fac-block{
+   display: inline-block;
+   margin-bottom: 0;
+   padding: 0;
+ }
+
  .facblock-wrapper .blockk.fac-block .info-fac-wrap,
- .facblock-wrapper .blockk.fac-block .subtitle{
+ .facblock-wrapper .blockk.fac-block .subtitle,
+ #portal .content .blockk.add-block#AddlocationDash{
     display: none;
   }
 

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../Splash/assets/APIRoutes';
 
+import addimg from '../../imgs/add-button.png';
+
 // STYLE IMPORTS
 import '../styles/Home.css';
 
@@ -57,7 +59,7 @@ componentWillMount(){
     let location = this.state.locations[i];
     content = content.concat(<FacBlock fac={location.Image} title={location.Name} subtitle={location.City} key={location.Id} />);
   }
-
+  content = content.concat(<FacBlock className="add-block" key={'addlockation'}  title={'Add location'} fac={ addimg }/>);
     return (
         <div className="facblock-wrapper">
           { content }
