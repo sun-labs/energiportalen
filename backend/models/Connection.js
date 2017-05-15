@@ -133,6 +133,13 @@ class Connection {
     });
   };
 
+  /**
+   * DEFAULT: interval = day
+   */
+  static getIntervalFormat(interval = 'day') {
+    return Queries.getIntervalFormat(interval);
+  }
+
 }
 
 export const con = new Connection(process.env.NODE_ENV).init();
