@@ -17,6 +17,20 @@ class Queries {
     }
   }
 
+  /**
+  * Get DATE_FORMAT mask for interval
+  */
+  static getIntervalFormat(interval) {
+    return Queries.INTERVAL_FORMATS[interval];
+  }
+
+}
+
+Queries.INTERVAL_FORMATS = {
+  min: '%Y-%m-%d %H:%i:00',
+  hour: '%Y-%m-%d %H:00:00',
+  day: '%Y-%m-%d 00:00:00',
+  raw: '%Y-%m-%d %H:%i:%s'
 }
 
 Queries.QUERIES = {
@@ -64,6 +78,7 @@ Queries.QUERIES = {
       description text,
       country varchar(11) DEFAULT NULL COMMENT 'ISO 3166-1 alpha-3',
       city varchar(60) DEFAULT NULL,
+      n_panels int(11) unsigned DEFAULT NULL COMMENT 'Number of solar panels installed at the location',
       PRIMARY KEY (id)
     ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
   `
@@ -302,25 +317,38 @@ Queries.QUERIES = {
   `
   ,POPULATE_UNIT_DATA_TEST: `
     INSERT INTO unit_data 
-      (id, unit_id, unit_key, value)
+      (id, unit_id, unit_key, value, timestamp)
     VALUES
       -- UNIT 1, KEY 1
-      (1, 1, 1, 1.2),
-      (2, 1, 1, 2.0),
-      (3, 1, 1, 1.5),
-      (4, 1, 1, 1.5),
+      (1, 1, 1, 1.2, '2017-02-09 00:00:01'),
+      (2, 1, 1, 2.0, '2017-02-09 00:00:02'),
+      (3, 1, 1, 1.5, '2017-02-09 00:01:01'),
+      (4, 1, 1, 1.5, '2017-02-09 00:01:02'),
+      (14, 1, 1, 1.2, '2017-02-10 00:00:01'),
+      (15, 1, 1, 2.0, '2017-02-10 00:00:02'),
+      (16, 1, 1, 1.5, '2017-02-10 00:01:01'),
+      (17, 1, 1, 1.5, '2017-02-10 00:01:02'),
+
+      (18, 1, 1, 1.2, '2017-02-11 00:00:01'),
+      (19, 1, 1, 2.0, '2017-02-11 01:00:02'),
+      (20, 1, 1, 1.5, '2017-02-13 00:01:01'),
+      (21, 1, 1, 1.5, '2017-02-13 01:01:02'),
+      (22, 1, 1, 1.2, '2017-02-15 00:00:01'),
+      (23, 1, 1, 2.0, '2017-02-15 01:00:02'),
+      (24, 1, 1, 1.5, '2017-02-17 00:01:01'),
+      (25, 1, 1, 1.5, '2017-02-17 01:01:02'),
       -- UNIT 2, KEY 3
-      (5, 2, 3, 0.12),
-      (6, 2, 3, 0.20),
-      (7, 2, 3, 0.15),
+      (5, 2, 3, 0.12, '2017-02-09 00:00:01'),
+      (6, 2, 3, 0.20, '2017-02-09 00:00:01'),
+      (7, 2, 3, 0.15, '2017-02-09 00:00:01'),
       -- UNIT 2, KEY 4
-      (8, 2, 4, 10.0),
-      (9, 2, 4, 20.0),
-      (10, 2, 4, 15.0),
+      (8, 2, 4, 10.0, '2017-02-09 00:00:01'),
+      (9, 2, 4, 20.0, '2017-02-09 00:00:01'),
+      (10, 2, 4, 15.0, '2017-02-09 00:00:01'),
       -- UNIT 3, KEY 5
-      (11, 3, 5, 1000),
-      (12, 3, 5, 1121),
-      (13, 3, 5, 1200);
+      (11, 3, 5, 1000, '2017-02-09 00:00:01'),
+      (12, 3, 5, 1121, '2017-02-09 00:00:01'),
+      (13, 3, 5, 1200, '2017-02-09 00:00:01');
   `
   ,POPULATE_UNIT_LOCATIONS_TEST: `
     INSERT INTO unit_locations 
@@ -352,8 +380,7 @@ Queries.QUERIES = {
 
 // NOTE: these are listed in the order they depend on each other (FOREIGN KEY etc).
 Queries.TABLES = [
-  'users'
-  , 'locations'
+  'locations'
   , 'units'
   , 'unit_keys'
   , 'unit_data'
@@ -361,6 +388,7 @@ Queries.TABLES = [
   , 'unit_data_hour'
   , 'unit_data_day'
   , 'unit_locations'
+  , 'users'
 ];
 
 export default Queries;
