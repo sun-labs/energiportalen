@@ -209,12 +209,97 @@ describe('[BE] Authentication tests', () => {
    * for daily grouped data.
    */
   it('Get all data from a unit', (done) => {
-    const unitId = 4;
-    const keyId = 85;
-    Unit.getUnitDataFromKey(unitId, keyId, (err, data) => {
+    const unitId = 1;
+    const keyId = 1;
+    Unit.getUnitDataFromKeyDate(unitId, keyId, {
+      interval: 'raw'
+    }, (err, res) => {
       should.not.exist(err);
-      //data.length.should.equal(?);
+      should.exist(res);
+      res.length.should.equal(16);
+      done();
+    });
+  });
+
+  it('Get all data from a unit with valid time span', (done) => {
+    const unitId = 1;
+    const keyId = 1;
+    Unit.getUnitDataFromKeyDate(unitId, keyId, {
+      interval: 'hour',
+      date: {
+        from: '2017-02-09',
+        to: '2017-02-10 23:59:59'
+      }
+    }, (err, data) => {
+      should.not.exist(err);
+      data.length.should.equal(2);
       should.exist(data);
+      done();
+    });
+  });
+
+  it('Get all data from a unit with invalid reverse time span', (done) => {
+    const unitId = 1;
+    const keyId = 1;
+    Unit.getUnitDataFromKeyDate(unitId, keyId, {
+      interval: 'hour',
+      date: {
+        to: '2017-02-09',
+        from: '2017-02-10 23:59:59'
+      }
+    }, (err, data) => {
+      should.exist(err);
+      should.not.exist(data);
+      done();
+    });
+  });
+
+  it('Undefined time span in unit data request with hourly interval', (done) => {
+    const unitId = 1;
+    const keyId = 1;
+    Unit.getUnitDataFromKeyDate(unitId, keyId, {
+      interval: 'hour'
+    }, (err, data) => {
+      should.not.exist(err);
+      should.exist(data);
+      data.length.should.equal(10);
+      done();
+    });
+  });
+
+  it('all data for a unit and a daily interval', (done) => {
+    const unitId = 1;
+    const keyId = 1;
+    Unit.getUnitDataFromKeyDate(unitId, keyId, {
+      interval: 'day'
+    }, (err, data) => {
+      should.not.exist(err);
+      should.exist(data);
+      data.length.should.equal(6);
+      done();
+    });
+  });
+
+  it('all data for a unit with minute interval', (done) => {
+    const unitId = 1;
+    const keyId = 1;
+    Unit.getUnitDataFromKeyDate(unitId, keyId, {
+      interval: 'min'
+    }, (err, data) => {
+      should.not.exist(err);
+      should.exist(data);
+      data.length.should.equal(12);
+      done();
+    });
+  });
+
+  it('Get metadata from a location', (done) => {
+    const locationId = 2;
+    Location.getLocation(locationId, (err, loc) => {
+      should.not.exist(err);
+      const name = loc.name.toLowerCase();
+      name.should.equal('base10');
+      loc.id.should.equal(2);
       done();
     });
   });
