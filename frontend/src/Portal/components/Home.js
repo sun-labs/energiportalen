@@ -32,7 +32,7 @@ class Home extends Component {
   render() {
     return (
       <div className="content">
-        <Link to={`${ROOT}/addlocation`} className="blockk add-block">+ ADD LOCATION</Link>
+        <Link to={`${ROOT}/addlocation`} id="AddlocationDash" className="blockk add-block">+ ADD LOCATION</Link>
         <div className="text-block">
           <h1>FAVORITE LOCATIONS<span className="inline-button"> add location + </span></h1>
           <h2> you may save or remove your own personally defined locations for easier access. </h2>
@@ -47,7 +47,7 @@ class Home extends Component {
           <AddBlock/>
           <LineBlock title="Hello World" />
           <TableBlock />
-          <IlluBlock value="5"/>
+          <IlluBlock/>
           <LineBlock/>
         </div>
       </div>
