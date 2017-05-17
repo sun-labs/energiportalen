@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../Splash/assets/APIRoutes';
+import { Link } from 'react-router-dom';
+import { ROOT } from './Portal';
+
+import addimg from '../../imgs/add-button.png';
 
 // STYLE IMPORTS
 import '../styles/Home.css';
@@ -55,9 +59,9 @@ componentWillMount(){
   let lengthLocations = this.state.locations.length;
   for (let i = 0; i < lengthLocations; i++){
     let location = this.state.locations[i];
-    content = content.concat(<FacBlock fac={location.Image} title={location.Name} subtitle={location.City} key={location.Id} />);
+    content = content.concat(<Link to={`${ROOT}/locations/` + location.Id }><FacBlock fac={location.Image} title={location.Name} subtitle={location.City} key={location.Id} /></Link>);
   }
-
+  content = content.concat(<Link to={`${ROOT}/locations/addlocation`}><FacBlock className="add-block" key={'addlocation'}  title={'Add location'} fac={ addimg }/></Link>);
     return (
         <div className="facblock-wrapper">
           { content }

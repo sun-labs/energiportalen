@@ -5,7 +5,13 @@ import Block from './Block';
 class IlluBlock extends Component {
   render() {
     const {
-      value = 534.3,
+      generatedWh = 534.3, //TODO should be the generated energy from the solar facility
+      mAh = 3000,        // size of battery
+      V = 5,            // size of charger
+      Wh = (mAh * V/1000), //formula
+      x =  generatedWh/Wh, // generated energy / needed per phone
+      value = Math.floor(x) // floor the value so that we display a integer
+
     } = this.props;
 
     const blockInfo = {
@@ -15,7 +21,7 @@ class IlluBlock extends Component {
     return(
     <Block className="blockk-illu" { ...blockInfo }>
       <div className="content-illu">
-        <p className="value-illu">{ this.props.value }</p>
+        <p className="value-illu">{ value }</p>
         <figure className="scooter"></figure>
         <figure className="earth"></figure>
       </div>
