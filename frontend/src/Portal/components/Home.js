@@ -39,17 +39,17 @@ class Home extends Component {
           <h2> you may save or remove your own personally defined locations for easier access. </h2>
         </div>
         <FacDashBlock/>
-        <Link to={`${ROOT}/addblock`} className="blockk add-block">+ ADD BLOCK</Link>
+        {/*<Link to={`${ROOT}/addblock`} className="blockk add-block">+ ADD BLOCK</Link>*/}
         <div className="text-block">
             <h1>blocks <span className="inline-button"> add block + </span></h1>
             <h2> These are your own personally defined blocks, you may add and remove as you like to customize your dashboard </h2>
         </div>
         <div className="block-wraper">
-          <AddBlock/>
-          <LineBlock title="Hello World" />
-          <TableBlock />
+          {/*<AddBlock/>*/}
           <IlluPhoneBlock />
+          <TableBlock />
           <IlluScooterBlock />
+          <LineBlock title="Hello World" />
           <LineBlock/>
         </div>
       </div>

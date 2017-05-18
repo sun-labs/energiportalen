@@ -1,45 +1,74 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Block from './Block';
+import TableBlockRow from './TableBlockRow';
 
-const TableBlock = (props) => {
+class TableBlock extends Component {
 
-  const {
-    title = 'Akademiska Sjukhuset',
-    subtitle = 'Uppsala'
-  } = props;
-
-  const blockInfo = {
-    title,
-    subtitle,
-    type: 'TABLE'
+  constructor() {
+    super();
+    this.state = {
+      facility: {
+        name: 'Akademiska Sjukhuset',
+        location: 'Uppsala'
+      },
+      rows: [] 
+    }
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  return (
+  handleClick(e) {
+    this.addRow();
+  }
+
+  addRow() {
+    let rows = this.state.rows;
+    rows.push({
+      unitId: 4,
+      keyId: 87,
+      value: 400,
+      si: 'MWh',
+      span: '365d',
+      from: Date(),
+      to: Date(),
+      title: 'Pungpin'
+    });
+    this.setState({
+      ...this.state.facility,
+      ...rows
+    });
+  }
+
+  render() {
+
+    const {
+      title = this.state.facility.name,
+      subtitle = this.state.facility.location
+    } = this.props;
+
+    const blockInfo = {
+      title,
+      subtitle,
+      type: 'TABLE'
+    }
+  
+    return (
     <Block className="blockk-table" { ...blockInfo }>
       <table className="content-table">
         <tbody>
+          { 
+            this.state.rows.map((elem, index) => {
+              return (<TableBlockRow key={ index } {...elem} />);
+            })
+          }
           <tr>
-            <td>
-              <div className="time-wrap">
-                <p className="value">24h</p>
-              </div>
-              <div className="description-wrap">
-                <p className="title">Producerad energi</p>
-              </div>
-              <div className="data-wrap">
-                <p className="value">500</p>
-                <p className="unit">MWh</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td className="add-information">+ add information</td>
+            <td onClick={ this.handleClick } className="add-information">+ add information</td>
           </tr>
         </tbody>
       </table>
     </Block>
   );
+  }
 }
 
 export default TableBlock;
