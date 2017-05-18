@@ -160,7 +160,9 @@
 }
 
 .content-table .add-information {
+  padding: 10px;
   color: #219653;
+  cursor: pointer;
 }
 
 /*

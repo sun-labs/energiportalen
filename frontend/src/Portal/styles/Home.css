@@ -8,7 +8,24 @@
   .facblock-wrapper .blockk.fac-block{
     display: inline-block;
     border-width: 1px;
-    border-color: gray;
+    border-color: lightgray;
+    height: 70px;
+  }
+
+  .facblock-wrapper .blockk .description-fac-wrap .title{
+      font-size: 18px;
+      text-transform: capitalize;
+      font-weight: lighter;
+  }
+
+  .facblock-wrapper .blockk .description-fac-wrap .subtitle {
+      font-size: 14px;
+      font-weight: lighter;
+      margin-top: 5px;
+  }
+
+  .facblock-wrapper .picture-wrap {
+    margin-top: 10px;
   }
 
 @media screen and (min-width: 501px){
@@ -44,26 +61,22 @@
   }
 
   .facblock-wrapper .blockk.fac-block{
-    height: 100px;
     width: 31%;
   }
 
   .facblock-wrapper .blockk.fac-block .img-circle{
     vertical-align: middle;
-    width: 20%;
+    width: 48px;
+    height: 48px;
     float: left;
-    margin: 0 1em 0 1em;
+    margin: 0 10px 0 10px;
   }
 
   .facblock-wrapper .blockk .description-fac-wrap{
     vertical-align: middle;
     text-align: left;
-    margin: 0 0 0 5em;
+    margin: 0 0 0 4.25em;
   }
-
-  .facblock-wrapper .blockk .description-fac-wrap .title{
-      font-size: 1.5vw;
- }
 
   .facblock-wrapper .blockk.fac-block .info-fac-wrap{
     display: none;
@@ -92,7 +105,8 @@
   }
 
   .facblock-wrapper .blockk.fac-block .img-circle{
-    width: 50%;
+    width: 42px;
+    height: 42px;
   }
 
   .facblock-wrapper .blockk .description-fac-wrap .title{
