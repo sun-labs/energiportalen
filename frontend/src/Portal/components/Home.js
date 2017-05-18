@@ -9,7 +9,8 @@ import '../styles/Home.css';
 // COMPONENT IMPORTS
 import LineBlock from './LineBlock';
 import TableBlock from './TableBlock';
-import IlluBlock from './IlluBlock';
+import IlluPhoneBlock from './IlluPhoneBlock';
+import IlluScooterBlock from './IlluScooterBlock';
 import FacDashBlock from './DashboardLocations'
 import AddBlock from './AddBlock';
 
@@ -47,7 +48,8 @@ class Home extends Component {
           <AddBlock/>
           <LineBlock title="Hello World" />
           <TableBlock />
-          <IlluBlock/>
+          <IlluPhoneBlock />
+          <IlluScooterBlock />
           <LineBlock/>
         </div>
       </div>
