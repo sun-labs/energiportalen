@@ -25,9 +25,9 @@ class IlluPhoneBlock extends Component {
     return(
     <IlluBlock className="block-phone">
         <p className="value-illu">{ this.calcCharged(value) }</p>
+        <figure className="charge"></figure>
         <figure className="phone"></figure>
         <figure className="cable"></figure>
-        <figure className="charge"></figure>
     </IlluBlock>
     );
   }

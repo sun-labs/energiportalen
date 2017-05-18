@@ -349,4 +349,13 @@
     height: 300px;
   }
 
+  @keyframes PLUG_IN {
+  from {
+    bottom: 0;
+  }
+  to { 
+    bottom: 43px;
+  }
+}
+
 }
