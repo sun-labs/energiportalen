@@ -11,7 +11,7 @@ const Block = (props) => {
     subtitle = 'Lorem ipsum dolores huota. Lorem ipsum dolores huota. Lorem ipsum dolores huota. Lorem ipsum dolores huota.',
     solarPlants = '158',
     totEffect = '340',
-    // fac = img TODO remove comment when using real image
+    fac = img
   } = props;
 
   return (
@@ -19,7 +19,7 @@ const Block = (props) => {
       
     
         <div className="picture-wrap">
-          <img className="img-circle" alt="" src={ img }/> {/*change back to { fac } to render image from DB*/}
+          <img className="img-circle" alt="" src={ fac }/>
         </div>
         <div className="description-fac-wrap">
           <p className="title">{ title }</p>
