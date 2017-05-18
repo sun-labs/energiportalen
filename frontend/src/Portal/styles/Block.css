@@ -186,7 +186,7 @@
   overflow: hidden;
 }
 
-.blockk-illu .content-illu {
+.blockk-illu.block-scooter .content-illu {
   background-image: url('../imgs/stars.png');
   background-position: center center;
   background-size: 75% auto;
@@ -225,6 +225,80 @@
   animation-duration: 0.25s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
+}
+
+.blockk-illu.block-phone {
+  background-color: #272727;
+  border-color: black;
+}
+
+.blockk-illu.block-phone .content-illu {
+  position: relative;
+}
+
+.block-phone .phone,
+.block-phone .cable,
+.block-phone .charge {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: 65px auto;
+}
+
+.block-phone .phone {
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  z-index: 10;
+  background-image: url('../imgs/phone.png');
+}
+
+.block-phone .cable {
+  background-image: url('../imgs/cable.png');
+  height: 57px;
+  width: 100%;
+  background-size: 8px auto;
+  background-position: center top;
+  z-index: 5;
+  bottom: 0;
+  animation-name: PLUG_IN;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+}
+
+.block-phone .charge {
+  opacity: 0;
+  background-image: url('../imgs/charge.png');
+  width: 100%;
+  height: 100%;
+  background-size: 16px auto;
+  background-position: center center;
+  z-index: 15;
+  animation-name: FADE;
+  animation-delay: 1.5s;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+}
+
+@keyframes FADE {
+  0%, 100% {
+    opacity: 0.1;
+  }
+  50% { 
+    opacity: 1.0;
+  }
+}
+
+@keyframes PLUG_IN {
+  from {
+    bottom: 0;
+  }
+  to { 
+    bottom: 28px;
+  }
 }
 
 @keyframes SPIN {
