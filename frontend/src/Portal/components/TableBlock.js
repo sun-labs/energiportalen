@@ -25,18 +25,22 @@ class TableBlock extends Component {
     let rows = this.state.rows;
     rows.push({
       unitId: 4,
-      keyId: 87,
+      keyId: 95,
       value: 400,
-      si: 'MWh',
-      span: '365d',
-      from: Date(),
-      to: Date(),
-      title: 'Pungpin'
+      si: 'Wh',
+      span: '1d',
+      interval: 'day',
+      from: '2017-02-10',
+      to: '2017-02-10 23:23:59',
+      title: 'Energy Produced'
     });
     this.setState({
-      ...this.state.facility,
+      facility: {
+        ...this.state.facility
+      },
       ...rows
     });
+    console.log(this.state);
   }
 
   render() {

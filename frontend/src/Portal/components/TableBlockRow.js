@@ -1,22 +1,51 @@
 import React, { Component } from 'react';
 import { API_URL } from '../../Splash/assets/APIRoutes.js';
+import axios from 'axios';
 
 class TableBlockRow extends Component {
 
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      ...this.props
+    };
   }
 
   componentWillMount() {
     this.setState({
-      ...this.props
+      ...this.props,
+      value: '?'
+    }, () => {
+      this.fetchData((data) => {
+        this.setState({
+          ...this.state,
+          value: data.data[0].sum_val.toFixed(0)
+        })
+      });
     });
-    this.APIEndpoint = `${API_URL}/`;
+  }
+
+  fetchData(cb) {
+    const token = localStorage.getItem('token');
+    const PARAM_FROM = 'date[from]'; // this will send a javascript object to backend like: date { from: data }
+    const PARAM_TO = 'date[to]';
+    const PARAM_INT = 'interval';
+    const {
+      from,
+      to,
+      interval
+    } = this.state;
+    const PARAMETERS = `${PARAM_FROM}=${from}&${PARAM_TO}=${to}&${PARAM_INT}=${interval}`;
+    axios.get(`${API_URL}/units/${this.state.unitId}/${this.state.keyId}?${PARAMETERS}`, {
+      headers: {
+        Authorization: token
+      }
+    }).then((res) => {
+      cb(res.data);
+    });
   }
 
   render() {
-  
     return (
       <tr>
         <td>
