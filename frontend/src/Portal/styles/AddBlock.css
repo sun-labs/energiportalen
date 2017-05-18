@@ -26,13 +26,16 @@
   }
 
   .blockk-add .chooseLoc-add {
-    width: 60%;
+    width: 80%;
   }
   .blockk-add .chooseBlock-add {
-    width: 89%;
+    width: 80%;
   }
   .blockk-add .chooseTime-add {
     width: 30%;
+  }
+  .blockk-add .chooseContent-add {
+    width: 47%;
   }
   .blockk-add button {
     background-color: #219653;
