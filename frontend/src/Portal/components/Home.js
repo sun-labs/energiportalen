@@ -50,7 +50,7 @@ class Home extends Component {
           <TableBlock />
           <IlluScooterBlock />
           <LineBlock title="Hello World" />
-          <LineBlock/>
+          {/*<LineBlock/>*/}
         </div>
       </div>
     );

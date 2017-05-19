@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
+import axios from 'axios';
 
+import { API_URL } from '../../Splash/assets/APIRoutes.js';
 import Block from './Block';
 
 let defaultOptions = {
@@ -58,39 +60,112 @@ const ph_Title = 'TITLE';
 const ph_Name = 'NAME';
 const ph_TimeSpan = '24h';
 
-const setArrayLengths = (datasets, labels) => {
+// NOTE data sent to block must be a list with lists of data
+// aka [[1, 2, 3, 4], [1, 2, 3, 4, 6]]
+// const LineBlock = ({ options = defaultOptions, data = [datas[0]], labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'] }) => {
+// const LineBlock = ({ options = defaultOptions, data = [defaultData[0]], labels = defaultLabels }) => {
+class LineBlock extends Component {
 
-  const max = datasets.reduce((acc, val) => {
-    if (acc.data.length > val.data.length) {
-      return acc;
-    } else {
-      return val;
+  constructor() {
+    super();
+    this.state = {
+      data: [data1, data2],
+      title: 'Akademiska Sjukhuset',
+      labels: ph_Labels,
+      from: '2017-02-10',
+      to: '2017-02-10 23:59:59',
+      interval: 'hour',
+      unitId: 4,
+      keyId: 95,
+      refresh: true
+    };
+  }
+
+  componentWillMount() {
+    if(this.state.refresh === true) {
+      this.setState({
+        ...this.props,
+        value: 'loading..'
+      }, () => {
+        this.fetchData((data) => {
+          const values = data.data.map((elem) => {
+            return elem.sum_val.toFixed(0);
+          });
+          const labels = data.data.map((elem) => {
+            return elem.new_timestamp;
+          });
+          this.setState({
+            ...this.state,
+            data: [{
+              data: values,
+              label: this.state.title
+            }, {
+              data: values.map((elem) => {
+                return parseInt(elem) + Math.random() * 50;
+              }),
+              label: 'Random Akkis'
+            }],
+            labels: labels,
+            value: data.data[0].sum_val.toFixed(0)
+          })
+        });
+      });
     }
-  }).data.length;
+  }
 
-  if (max < labels.length) {
+  fetchData(cb) {
+    const token = localStorage.getItem('token');
+    const PARAM_FROM = 'date[from]'; // this will send a javascript object to backend like: date { from: data }
+    const PARAM_TO = 'date[to]';
+    const PARAM_INT = 'interval';
+    const {
+      from,
+      to,
+      interval
+    } = this.state;
+    const PARAMETERS = `${PARAM_FROM}=${from}&${PARAM_TO}=${to}&${PARAM_INT}=${interval}`;
+    axios.get(`${API_URL}/units/${this.state.unitId}/${this.state.keyId}?${PARAMETERS}`, {
+      headers: {
+        Authorization: token
+      }
+    }).then((res) => {
+      cb(res.data);
+    });
+  }
+
+  setArrayLengths(datasets, labels) {
+
+    const max = datasets.reduce((acc, val) => {
+      if (acc.data.length > val.data.length) {
+        return acc;
+      } else {
+        return val;
+      }
+    }).data.length;
+
+    if (max < labels.length) {
+      return { 
+        datasets,
+        labels: labels.slice(0, max)
+      };
+    }
+    else if (max > labels.length) {
+      return {
+        labels,
+        datasets: datasets.map(item => ({
+          ...item,
+          data: item.data.slice(0, labels.length)
+        }))
+      };
+    }
+
     return { 
-      datasets,
-      labels: labels.slice(0, max)
+      labels, 
+      datasets
     };
-  }
-  else if (max > labels.length) {
-    return {
-      labels,
-      datasets: datasets.map(item => ({
-        ...item,
-        data: item.data.slice(0, labels.length)
-      }))
-    };
-  }
-
-  return { 
-    labels, 
-    datasets
-  };
 }
 
-const setDataColors = (dataList, config) => {
+setDataColors(dataList, config) {
 
   // NOTE, make sure we have more colors than datasets
   const colors = ['#4bc0c0', '#F2C94C', '#EB5757'];
@@ -107,38 +182,39 @@ const setDataColors = (dataList, config) => {
   });
 }
 
-// NOTE data sent to block must be a list with lists of data
-// aka [[1, 2, 3, 4], [1, 2, 3, 4, 6]]
-// const LineBlock = ({ options = defaultOptions, data = [datas[0]], labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'] }) => {
-// const LineBlock = ({ options = defaultOptions, data = [defaultData[0]], labels = defaultLabels }) => {
-const LineBlock = (props) => {
 
-  const {
-    options = defaultOptions, 
-    data = [ph_Data[0], ph_Data[1]],
-    labels = ph_Labels,
-    title = ph_Title,
-    subtitle = ph_Name,
-    timeSpan = ph_TimeSpan
-  } = props;
+  render() {
 
-  const datasets = setArrayLengths(
-    setDataColors(data, defaultConfig), 
-    labels
-  );
+    const props = this.props;
 
-  const blockInfo = {
-    title,
-    subtitle,
-    timeSpan,
-    type: 'LINE'
+    const {
+      options = defaultOptions, 
+      data = this.state.data, 
+      labels = this.state.labels,
+      title = ph_Title,
+      subtitle = ph_Name,
+      timeSpan = ph_TimeSpan
+    } = props;
+
+    const datasets = this.setArrayLengths(
+      this.setDataColors(data, defaultConfig), 
+      labels
+    );
+
+    const blockInfo = {
+      title,
+      subtitle,
+      timeSpan,
+      type: 'LINE'
+    }
+
+    return (
+      <Block className="blockk-line" { ...blockInfo }>
+        <Line className="line-chart" data={datasets} options={options} />
+      </Block>
+    );
+
   }
-
-  return (
-    <Block className="blockk-line" { ...blockInfo }>
-      <Line className="line-chart" data={datasets} options={options} />
-    </Block>
-  );
 }
 
 export default LineBlock;

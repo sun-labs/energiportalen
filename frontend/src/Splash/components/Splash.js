@@ -37,13 +37,15 @@ class Splash extends Component {
     let body;
 
     if (typeof(error) === 'object') {
-      switch (error.response.status) {
-        case 401:
-          body = UNAUTHORIZED;
-          break;
-        default:
-          body = UNKNOWN;
-          break;
+      if(error.response) {
+        switch (error.response.status) {
+          case 401:
+            body = UNAUTHORIZED;
+            break;
+          default:
+            body = UNKNOWN;
+            break;
+        }
       }
     }
     this.setState({
