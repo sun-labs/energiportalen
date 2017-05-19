@@ -117,6 +117,7 @@ describe('[IT] Integration test ', () => {
       .get('/1/locations')
       .set('Authorization', CORRECT_TOKEN)
       .end((err, res) => {
+        res.body.length.should.equal(3);
         res.statusCode.should.equal(200);
         done();
       });
@@ -138,6 +139,17 @@ describe('[IT] Integration test ', () => {
       .set('Authorization', CORRECT_TOKEN)
       .end((err, res) => {
         res.statusCode.should.equal(200);
+        done();
+      });
+  });
+
+  it('should return location metadata to authenticated user', (done) => {
+    chai.request(app)
+      .get('/1/locations/2')
+      .set('Authorization', CORRECT_TOKEN)
+      .end((err, res) => {
+        res.statusCode.should.equal(200);
+        res.body.name.toLowerCase().should.equal('base10');
         done();
       });
   });

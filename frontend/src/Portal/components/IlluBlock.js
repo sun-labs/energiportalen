@@ -4,20 +4,14 @@ import Block from './Block';
 
 class IlluBlock extends Component {
   render() {
-    const {
-      value = 534.3,
-    } = this.props;
 
     const blockInfo = {
-      value,
       type: 'ILLUSTRATION'
     }
     return(
-    <Block className="blockk-illu" { ...blockInfo }>
+    <Block className={`blockk-illu ${this.props.className}`} { ...blockInfo }>
       <div className="content-illu">
-        <p className="value-illu">{ this.props.value }</p>
-        <figure className="scooter"></figure>
-        <figure className="earth"></figure>
+        { this.props.children }
       </div>
     </Block>
     );

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { ROOT } from './Portal';
@@ -11,14 +11,19 @@ import '../styles/DetailedBlock.css'
 import FacBlock from './FacBlock';
 import LineBlock from './LineBlock';
 
-class DetailedBlock extends Component {
+const DetailedBlock = (props) => {
 
-  render() {
+const { 
+    title = 'Stadshuset',
+    subtitle = 'Stockholm',
+    image
+  } = props;
+
     return (
         <div className="detailedBlock">
           <header>
             <div className="compare-wrap">
-              <FacBlock subtitle={"Uppsala"} />
+              <FacBlock title={ title } subtitle={ subtitle } fac={ image }/>  {/* TODO Send image to facblock*/}
               <Link to={`${ROOT}/locations/addCompare`} className="blockk add-block">+ ADD BLOCK</Link>
             </div>
           </header>
@@ -32,7 +37,5 @@ class DetailedBlock extends Component {
         </div>
     );
   }
-
-}
 
 export default DetailedBlock;

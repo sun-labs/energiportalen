@@ -12,6 +12,16 @@ router.get('/', (req, res) => {
 
 router.get('/:locationId', (req, res) => {
   const id = req.params.locationId;
+  Location.getLocation(id, (err, location) => {
+    if(err) {
+      throw err;
+    }
+    res.json(location);
+  });
+});
+
+router.get('/:locationId/units', (req, res) => {
+  const id = req.params.locationId;
   Unit.getUnitsFromLocation(id, (err, units) => {
     if(err) {
       throw err;

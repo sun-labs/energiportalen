@@ -9,7 +9,8 @@ import '../styles/Home.css';
 // COMPONENT IMPORTS
 import LineBlock from './LineBlock';
 import TableBlock from './TableBlock';
-import IlluBlock from './IlluBlock';
+import IlluPhoneBlock from './IlluPhoneBlock';
+import IlluScooterBlock from './IlluScooterBlock';
 import FacDashBlock from './DashboardLocations'
 import AddBlock from './AddBlock';
 
@@ -39,13 +40,12 @@ class Home extends Component {
     const { addBlock } = this.state;
     return (
       <div className="content">
-        <Link to={`${ROOT}/addlocation`} className="blockk add-block">+ ADD LOCATION</Link>
+        <Link to={`${ROOT}/addlocation`} id="AddlocationDash" className="blockk add-block">+ ADD LOCATION</Link>
         <div className="text-block">
           <h1>FAVORITE LOCATIONS<span className="inline-button"> add location + </span></h1>
           <h2> you may save or remove your own personally defined locations for easier access. </h2>
         </div>
         <FacDashBlock/>
-        
         { addBlock 
           ? <AddBlock addNewBlock={this.addNewBlock}/>
           : <div 
@@ -53,15 +53,16 @@ class Home extends Component {
               onClick={() => this.addNewBlock()}
             >+ ADD BLOCK</div>
         }
-                
         <div className="text-block">
             <h1>blocks <span className="inline-button"> add block + </span></h1>
             <h2> These are your own personally defined blocks, you may add and remove as you like to customize your dashboard </h2>
         </div>
         <div className="block-wraper">
           <LineBlock title="Hello World" />
+          <IlluPhoneBlock />
           <TableBlock />
-          <IlluBlock value="5"/>
+          <IlluScooterBlock />
+          <LineBlock title="Hello World" />
           <LineBlock/>
         </div>
       </div>
