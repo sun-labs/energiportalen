@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { API_URL } from '../../Splash/assets/APIRoutes.js';
 import axios from 'axios';
+
+import { API_URL } from '../../Splash/assets/APIRoutes.js';
 
 class TableBlockRow extends Component {
 
@@ -14,7 +15,7 @@ class TableBlockRow extends Component {
   componentWillMount() {
     this.setState({
       ...this.props,
-      value: '?'
+      value: 'loading..'
     }, () => {
       this.fetchData((data) => {
         this.setState({
