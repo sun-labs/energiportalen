@@ -6,7 +6,7 @@
 
   .blockk-add input,
   .blockk-add button {
-    margin-left: 10px;
+    /*margin-left: 10px;*/
   }
 
   .blockk-add input,
@@ -20,27 +20,54 @@
     font-size: 1.125em;
     padding: 0.5em;
   }
-
   .blockk-add .chooseLoc-add {
+    /*width: 80%;*/
     margin-top: 10px;
-  }
-
-  .blockk-add .chooseLoc-add {
-    width: 80%;
+    min-width: 220px;
+    /*width: 320px;*/
   }
   .blockk-add .chooseBlock-add {
-    width: 80%;
+    /*width: 80%;*/
+    min-width: 220px;
   }
   .blockk-add .chooseTime-add {
-    width: 30%;
+    /*width: 30%;*/
+    min-width: 120px;
   }
   .blockk-add .chooseContent-add {
-    width: 47%;
+    /*width: 47%;*/
+    min-width: 190px;
   }
   .blockk-add button {
     background-color: #219653;
     font-weight: normal;
     color: white;
     width: 60%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .blockk-add input {
+    border: 1px solid gray;
+    font-size: 1.125em;
+    padding: 0.5em;
+  }
+  .blockk-add .chooseLoc-add {
+    /*width: 80%;*/
+    margin-top: 10px;
+    min-width: 200px !important;
+    /*width: 320px;*/
+  }
+  .blockk-add .chooseBlock-add {
+    /*width: 80%;*/
+    min-width: 220px;
+  }
+  .blockk-add .chooseTime-add {
+    /*width: 30%;*/
+    min-width: 120px;
+  }
+  .blockk-add .chooseContent-add {
+    /*width: 47%;*/
+    min-width: 190px;
   }
 }

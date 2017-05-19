@@ -73,19 +73,7 @@ class IlluBlock extends Component {
         onChange={(e) =>
           { e 
             ? this.setState({ location: e.value }) 
-            : this.setState({ location: '' })}
-        }/>
-      <Select
-        name="form-field-name"
-        value={type}
-        options={typeOptions}
-        placeholder="CHOOSE BLOCK TYPE"
-        clearable={true}
-        className="chooseBlock-add"
-        onChange={(e) =>
-          { e 
-            ? this.setState({ type: e.value }) 
-            : this.setState({ type: '' })}
+            : this.setState({ location: '', timespan: '', content: '', type: '' })}
         }/>
       <Select
         name="form-field-name"
@@ -93,11 +81,12 @@ class IlluBlock extends Component {
         options={timespanOptions}
         placeholder="TIME SPAN"
         clearable={true}
+        disabled={ location.length < 1 }
         className="chooseTime-add"
         onChange={(e) =>
           { e 
             ? this.setState({ timespan: e.value }) 
-            : this.setState({ timespan: '' })}
+            : this.setState({ timespan: '', content: '', type: '' })}
         }/>
       <Select
         name="form-field-name"
@@ -105,13 +94,28 @@ class IlluBlock extends Component {
         options={contentOptions}
         placeholder="CHOOSE CONTENT"
         clearable={true}
+        disabled={ timespan.length < 1 }
         className="chooseContent-add"
         onChange={(e) =>
           { e 
             ? this.setState({ content: e.value }) 
-            : this.setState({ content: '' })}
+            : this.setState({ content: '', type: '' })}
         }/>
-      <button>
+      <Select
+        name="form-field-name"
+        value={type}
+        options={typeOptions}
+        placeholder="CHOOSE BLOCK TYPE"
+        clearable={true}
+        disabled={ content.length < 1 }
+        className="chooseBlock-add"
+        onChange={(e) =>
+          { e 
+            ? this.setState({ type: e.value }) 
+            : this.setState({ type: '' })}
+        }/>
+      <button
+        disabled={ type.length < 1 }>
         SAVE BLOCK
       </button>
     </Block>
