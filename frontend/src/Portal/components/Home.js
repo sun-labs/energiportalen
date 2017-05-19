@@ -21,15 +21,22 @@ class Home extends Component {
       data: [],
       timestamps: [],
       title: [],
-      name: []
+      name: [],
+      addBlock: false
     }
-
-    this.componentDidMount = this.componentDidMount.bind(this);
+    this.addNewBlock = this.addNewBlock.bind(this);
   }
 
-  componentDidMount() {}
+  addNewBlock() {
+    // TODO
+    // when adding the new block, --> ADD the new block in here
+    this.setState({
+      addBlock: !this.state.addBlock
+    })
+  }
 
   render() {
+    const { addBlock } = this.state;
     return (
       <div className="content">
         <Link to={`${ROOT}/addlocation`} className="blockk add-block">+ ADD LOCATION</Link>
@@ -38,13 +45,20 @@ class Home extends Component {
           <h2> you may save or remove your own personally defined locations for easier access. </h2>
         </div>
         <FacDashBlock/>
-        <Link to={`${ROOT}/addblock`} className="blockk add-block">+ ADD BLOCK</Link>
+        
+        { addBlock 
+          ? <AddBlock addNewBlock={this.addNewBlock}/>
+          : <div 
+              className="blockk add-block"
+              onClick={() => this.addNewBlock()}
+            >+ ADD BLOCK</div>
+        }
+                
         <div className="text-block">
             <h1>blocks <span className="inline-button"> add block + </span></h1>
             <h2> These are your own personally defined blocks, you may add and remove as you like to customize your dashboard </h2>
         </div>
         <div className="block-wraper">
-          <AddBlock/>
           <LineBlock title="Hello World" />
           <TableBlock />
           <IlluBlock value="5"/>

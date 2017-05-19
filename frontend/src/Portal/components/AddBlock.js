@@ -5,7 +5,7 @@ import Select from 'react-select';
 import '../styles/react-select.css';
 import Block from './Block';
 
-class IlluBlock extends Component {
+class AddBlock extends Component {
   constructor() {
     super();
 
@@ -18,9 +18,8 @@ class IlluBlock extends Component {
   }
 
   render() {
-    const {
-      value = 534.3,
-    } = this.props;
+
+    const { addNewBlock } = this.props;
 
     const {
       location,
@@ -30,7 +29,6 @@ class IlluBlock extends Component {
     } = this.state;
 
     const blockInfo = {
-      value,
       type: 'ADD',
       title: 'ADD BLOCK'
     }
@@ -69,7 +67,7 @@ class IlluBlock extends Component {
         options={locationOptions}
         placeholder="CHOOSE LOCATION"
         clearable={true}
-        className="chooseLoc-add"
+        className="choose-loc-add"
         onChange={(e) =>
           { e 
             ? this.setState({ location: e.value }) 
@@ -82,7 +80,7 @@ class IlluBlock extends Component {
         placeholder="TIME SPAN"
         clearable={true}
         disabled={ location.length < 1 }
-        className="chooseTime-add"
+        className="choose-time-add"
         onChange={(e) =>
           { e 
             ? this.setState({ timespan: e.value }) 
@@ -95,7 +93,7 @@ class IlluBlock extends Component {
         placeholder="CHOOSE CONTENT"
         clearable={true}
         disabled={ timespan.length < 1 }
-        className="chooseContent-add"
+        className="choose-content-add"
         onChange={(e) =>
           { e 
             ? this.setState({ content: e.value }) 
@@ -108,19 +106,28 @@ class IlluBlock extends Component {
         placeholder="CHOOSE BLOCK TYPE"
         clearable={true}
         disabled={ content.length < 1 }
-        className="chooseBlock-add"
+        className="choose-block-add"
         onChange={(e) =>
           { e 
             ? this.setState({ type: e.value }) 
             : this.setState({ type: '' })}
         }/>
-      <button
-        disabled={ type.length < 1 }>
-        SAVE BLOCK
-      </button>
+      <div className="button-wrapper">
+        <button
+          onClick={() => addNewBlock()}
+          className="cancel-block-add"
+          >CANCEL
+        </button>
+        <button
+          onClick={() => addNewBlock()}
+          className="save-block-add"
+          disabled={ type.length < 1 }>
+          SAVE BLOCK
+        </button>
+      </div>
     </Block>
     );
   }
 }
 
-export default IlluBlock;
+export default AddBlock;

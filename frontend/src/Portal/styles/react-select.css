@@ -8,8 +8,11 @@
 
 .Select {
   position: relative;
-  margin: 0 0 10px 10px;
-  display: inline-block;
+  /*margin: 0 0 10px 10px;*/
+  /*display: inline-block;*/
+  /*display: table-cell;*/
+  display: table;
+  margin: 0 auto;
 }
 .Select,
 .Select div,
