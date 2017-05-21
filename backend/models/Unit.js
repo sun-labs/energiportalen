@@ -90,11 +90,10 @@ class Unit {
 
     const QUERY = `
       SELECT 
-        u.unit_id,
-        u.unit_key,
         (SELECT name FROM units WHERE id = unit_id) as unit_name,
         (SELECT name FROM unit_keys WHERE id = unit_key) as unit_key,
         AVG(value) as avg_val,
+        SUM(value) as sum_val,
         u.new_timestamp
       FROM (
         SELECT
@@ -121,7 +120,21 @@ class Unit {
     con.query({
       sql: P_QUERY
     }, (err, res) => {
-      cb(err, res);
+      if(err) {
+        throw err;
+      }
+      if(res.length > 0) {
+        const data = {
+          unitId,
+          unitKeyId,
+          date,
+          interval,
+          data: res,
+        }
+        cb(err, data);
+      } else {
+        cb(err, undefined); 
+      }
     });
 
   }

@@ -19,8 +19,24 @@ router.get('/:unitId', (req, res) => {
 // get data from a unit with speicified key
 router.get('/:unitId/:unitKeyId', (req, res) => {
   const { unitId, unitKeyId } = req.params;
-  Unit.getUnitDataFromKey(unitId, unitKeyId, (err, data) => {
-    res.json(data);
+  let from, to;
+  if(req.query.date) {
+    from = req.query.date.from;
+    to = req.query.date.to;
+  }
+  const { interval } = req.query;
+  Unit.getUnitDataFromKeyDate(unitId, unitKeyId, {
+    date: {
+      from,
+      to
+    },
+    interval
+  }, (err, data) => {
+    if(data) {
+      res.json(data);
+    } else {
+      res.status(400).send();
+    }
   });
 });
 
