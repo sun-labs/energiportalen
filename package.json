@@ -6,7 +6,11 @@
   "directories": {
     "test": "tests"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react-addons-css-transition-group": "^15.5.2",
+    "react-addons-shallow-compare": "^15.5.2",
+    "react-file-download": "^0.3.4"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
