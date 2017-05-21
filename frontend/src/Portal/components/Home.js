@@ -58,7 +58,7 @@ class Home extends Component {
             <h2> These are your own personally defined blocks, you may add and remove as you like to customize your dashboard </h2>
         </div>
         <div className="block-wraper">
-          <LineBlock title="Hello World" />
+          <LineBlock />
           <IlluPhoneBlock />
           <TableBlock />
           <IlluScooterBlock />
