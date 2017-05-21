@@ -49,7 +49,7 @@ class Home extends Component {
           <IlluPhoneBlock />
           <TableBlock />
           <IlluScooterBlock />
-          <LineBlock title="Hello World" />
+          <LineBlock />
           {/*<LineBlock/>*/}
         </div>
       </div>

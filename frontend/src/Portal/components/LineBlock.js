@@ -47,13 +47,6 @@ const data2 = {
   data: [35, 49, 70, 31, 27, 83, 123, 27, 83]
 }
 
-const data3 = {
-  label: 'baz',
-  data: [25, 59, 40, 15, 100]
-}
-
-const ph_Data = [data1, data2, data3];
-
 const ph_Labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
 const ph_Title = 'TITLE';
@@ -71,6 +64,7 @@ class LineBlock extends Component {
     this.state = {
       data: [data1, data2],
       title: 'Akademiska Sjukhuset',
+      dataKey: 'Energi producerad',
       labels: ph_Labels,
       from: '2017-02-10',
       to: '2017-02-10 23:59:59',
@@ -202,8 +196,8 @@ setDataColors(dataList, config) {
     );
 
     const blockInfo = {
-      title,
-      subtitle,
+      title: this.state.title,
+      subtitle: this.state.dataKey,
       timeSpan,
       type: 'LINE'
     }
