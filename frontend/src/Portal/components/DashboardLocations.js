@@ -59,9 +59,9 @@ componentWillMount(){
   let lengthLocations = this.state.locations.length;
   for (let i = 0; i < lengthLocations; i++){
     let location = this.state.locations[i];
-    content = content.concat(<Link to={`${ROOT}/locations/` + location.Id }><FacBlock fac={location.Image} title={location.Name} subtitle={location.City} key={location.Id} /></Link>);
+    content = content.concat(<Link to={`${ROOT}/locations/` + location.Id } key={location.Id}><FacBlock fac={location.Image} title={location.Name} subtitle={location.City}/></Link>);
   }
-  content = content.concat(<Link to={`${ROOT}/locations/addlocation`}><FacBlock className="add-block" key={'addlocation'}  title={'Add location'} fac={ addimg }/></Link>);
+  content = content.concat(<Link to={`${ROOT}/locations/addlocation`} key={'addlocation'}><FacBlock className="add-block" title={'Add location'} fac={ addimg }/></Link>);
     return (
         <div className="facblock-wrapper">
           { content }
