@@ -94,47 +94,9 @@ Queries.QUERIES = {
       FOREIGN KEY (unit_key) REFERENCES unit_keys(id)
     ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
   `
-  ,CREATE_UNIT_DATA_MINUTE: `
-    CREATE TABLE IF NOT EXISTS unit_data_minute (
-      id bigint(11) unsigned NOT NULL AUTO_INCREMENT,
-      unit_id int(11) unsigned NOT NULL,
-      unit_key int(11) unsigned NOT NULL,
-      value_avg float NOT NULL,
-      value_sum bigint(11) NOT NULL,
-      value_count bigint(11) NOT NULL,
-      timestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-      PRIMARY KEY (id),
-      FOREIGN KEY (unit_id) REFERENCES units(id),
-      FOREIGN KEY (unit_key) REFERENCES unit_keys(id)
-    ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
-  `
-  ,CREATE_UNIT_DATA_HOUR: `
-    CREATE TABLE IF NOT EXISTS unit_data_hour (
-      id bigint(11) unsigned NOT NULL AUTO_INCREMENT,
-      unit_id int(11) unsigned NOT NULL,
-      unit_key int(11) unsigned NOT NULL,
-      value_avg float NOT NULL,
-      value_sum bigint(11) NOT NULL,
-      value_count bigint(11) NOT NULL,
-      timestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-      PRIMARY KEY (id),
-      FOREIGN KEY (unit_id) REFERENCES units(id),
-      FOREIGN KEY (unit_key) REFERENCES unit_keys(id)
-    ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
-  `
-  ,CREATE_UNIT_DATA_DAY: `
-    CREATE TABLE IF NOT EXISTS unit_data_day (
-      id bigint(11) unsigned NOT NULL AUTO_INCREMENT,
-      unit_id int(11) unsigned NOT NULL,
-      unit_key int(11) unsigned NOT NULL,
-      value_avg float NOT NULL,
-      value_sum bigint(11) NOT NULL,
-      value_count bigint(11) NOT NULL,
-      timestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-      PRIMARY KEY (id),
-      FOREIGN KEY (unit_id) REFERENCES units(id),
-      FOREIGN KEY (unit_key) REFERENCES unit_keys(id)
-    ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+  ,INDEX_UNIT_DATA: `
+    CREATE INDEX unit_key_id
+    ON unit_data (unit_key, unit_id, timestamp);
   `
   ,CREATE_UNIT_LOCATIONS: `
     CREATE TABLE unit_locations (
@@ -384,9 +346,6 @@ Queries.TABLES = [
   , 'units'
   , 'unit_keys'
   , 'unit_data'
-  , 'unit_data_minute'
-  , 'unit_data_hour'
-  , 'unit_data_day'
   , 'unit_locations'
   , 'users'
 ];
