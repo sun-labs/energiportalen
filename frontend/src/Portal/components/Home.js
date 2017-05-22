@@ -23,7 +23,8 @@ class Home extends Component {
       timestamps: [],
       title: [],
       name: [],
-      addBlock: false
+      addBlock: false,
+      tempStuffForPresentation: false
     }
     this.addNewBlock = this.addNewBlock.bind(this);
   }
@@ -31,9 +32,18 @@ class Home extends Component {
   addNewBlock() {
     // TODO
     // when adding the new block, --> ADD the new block in here
-    this.setState({
-      addBlock: !this.state.addBlock
-    })
+
+    // TEMP FOR PRES
+    if (this.state.addBlock) {
+      this.setState({
+        addBlock: !this.state.addBlock,
+        tempStuffForPresentation: true
+      })
+    } else {
+      this.setState({
+        addBlock: !this.state.addBlock
+      })
+    }
   }
 
   render() {
@@ -58,7 +68,10 @@ class Home extends Component {
             <h2> These are your own personally defined blocks, you may add and remove as you like to customize your dashboard </h2>
         </div>
         <div className="block-wraper">
-          <LineBlock />
+
+          {this.state.tempStuffForPresentation ? <LineBlock/> : ''}
+          
+          
           <IlluPhoneBlock />
           <TableBlock />
           <IlluScooterBlock />

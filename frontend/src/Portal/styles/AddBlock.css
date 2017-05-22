@@ -1,3 +1,8 @@
+.blockk.blockk-add,
+.blockk.blockk-add .content {
+  overflow: visible;
+}
+
 @media screen and (min-width: 501px){
   .blockk-add .content {
     height: 270px;
