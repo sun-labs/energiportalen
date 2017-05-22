@@ -17,6 +17,10 @@ class TableBlock extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentWillMount() {
+    this.addRow();
+  }
+
   handleClick(e) {
     this.addRow();
   }
