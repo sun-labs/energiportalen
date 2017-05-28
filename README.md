@@ -5,10 +5,11 @@
  - Port: 8889
 
 ## Setup Queries
-- ```mysql
+```mysql
     CREATE DATABASE energiportalen CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
     CREATE DATABASE energiportalen_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
+
 - `ADD_USERS` in `backend/assets/Queries.js`
 - `GRANT_USERS` in `backend/assets/Queries.js`
 - `POPULATE_USERS` in `backend/assets/Queries.js`
