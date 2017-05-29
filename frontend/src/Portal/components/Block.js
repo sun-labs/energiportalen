@@ -10,10 +10,15 @@ const LINE = 'LINE';
 const TABLE = 'TABLE';
 
 const Header = (props) => {
-  const { type = DEFAULT, 
-          timeSpan = -1, 
-          title = 'TITLE', 
-          subtitle = 'SUBTITLE' } = props;
+  const { 
+    type = DEFAULT, 
+    timeSpan = -1, 
+    title = 'TITLE', 
+    subtitle = 'SUBTITLE',
+    from,
+    to,
+    editHandle
+  } = props;
 
   switch(type) {
     case ILLUSTRATION:
@@ -22,14 +27,14 @@ const Header = (props) => {
       return (
         <header>
           <div className="time-wrap">
-            <p className="value">{ timeSpan }</p>
+            <p className="value" alt={`${from} - ${to}`}>{ timeSpan }</p>
           </div>
           <div className="description-wrap">
             <p className="title">{ title }</p>
             <p className="subtitle">{ subtitle }</p>
           </div>
           <div className="tool-wrap">
-            <p className="button">edit</p>
+            <p onClick={ editHandle } className="button">edit</p>
           </div>
         </header>
       );
@@ -66,34 +71,54 @@ const Footer = (props) => {
   }
 }
 
-const render = (blockType, contentType) => {
-  switch(blockType) {
-    case ADD:
-      return false;
-    case ILLUSTRATION:
-    case LINE:
-    case TABLE:
-      return true;
-    default:
-      return false;
+class Block extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      editing: false
+    }
+    this.handleClick.bind(this);
   }
-}
 
-const Block = (props) => {
-  const { className, children, type } = props;
+  handleClick(e) {
+    console.log(this);
+    this.setState({
+      editing: !this.state.editing
+    });
+  }
 
-  return (
-    <div className={`blockk ${className}`}>
-      { render(type, HEADER) ? <Header {...props} /> : '' }
+  shouldRender(blockType, contentType) {
+    switch(blockType) {
+      case ADD:
+        return false;
+      case ILLUSTRATION:
+      case LINE:
+      case TABLE:
+        return true;
+      default:
+        return false;
+    }
+  }
 
-      <div className="content">
-        {/*&nbsp;  DO NOT REMOVE THIS MOTHERFUCKER, okay. it seems to be cool /V */}
-        { children }
+  render() {
+    const { className, children, type } = this.props;
+
+    const content = (!this.state.editing) ? children : <p>Editing as fuck</p>;
+
+    return (
+      <div className={`blockk ${className}`}>
+        { this.shouldRender(type, HEADER) ? <Header {...this.props} editHandle={ this.handleClick.bind(this) } /> : '' }
+
+        <div className="content">
+          { content }
+        </div>
+
+        { this.shouldRender(type, FOOTER) ? <Footer {...this.props} /> : '' }
       </div>
+    );
+  }
 
-      { render(type, FOOTER) ? <Footer {...props} /> : '' }
-    </div>
-  );
 }
 
 export default Block;
