@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/Block.css';
+import ContentEdit from './ContentEdit';
 
 const HEADER = 'HEADER';
 const FOOTER = 'FOOTER';
@@ -71,6 +72,31 @@ const Footer = (props) => {
   }
 }
 
+class Content extends React.Component {
+
+  render() {
+
+    const { type, children, editing } = this.props;
+    let content = children;
+
+    if(editing) {
+      switch(type) {
+        case ILLUSTRATION:
+        case LINE:
+        case TABLE:
+          content = <ContentEdit />;
+        break;
+      }
+    }
+
+    return (
+      <div className="content">
+        { content }
+      </div>
+    );
+  }
+}
+
 class Block extends React.Component {
 
   constructor() {
@@ -82,7 +108,6 @@ class Block extends React.Component {
   }
 
   handleClick(e) {
-    console.log(this);
     this.setState({
       editing: !this.state.editing
     });
@@ -104,15 +129,13 @@ class Block extends React.Component {
   render() {
     const { className, children, type } = this.props;
 
-    const content = (!this.state.editing) ? children : <p>Editing as fuck</p>;
-
     return (
       <div className={`blockk ${className}`}>
         { this.shouldRender(type, HEADER) ? <Header {...this.props} editHandle={ this.handleClick.bind(this) } /> : '' }
 
-        <div className="content">
-          { content }
-        </div>
+        <Content {...this.props} editing={ this.state.editing }>
+          { children }
+        </Content>
 
         { this.shouldRender(type, FOOTER) ? <Footer {...this.props} /> : '' }
       </div>
