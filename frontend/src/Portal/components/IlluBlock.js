@@ -6,7 +6,10 @@ class IlluBlock extends Component {
   render() {
 
     const blockInfo = {
-      type: 'ILLUSTRATION'
+      type: 'ILLUSTRATION',
+      title: this.props.title,
+      subtitle: this.props.subtitle,
+      timeSpan: this.props.timeSpan
     }
     return(
     <Block className={`blockk-illu ${this.props.className}`} { ...blockInfo }>
