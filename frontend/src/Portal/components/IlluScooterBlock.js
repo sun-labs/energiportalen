@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
-import { API_URL } from '../../Splash/assets/APIRoutes.js';
+import API from '../../API';
 import IlluBlock from './IlluBlock';
 
 class IlluScooterBlock extends Component {
@@ -11,6 +10,8 @@ class IlluScooterBlock extends Component {
     this.state = {
       value: 100,
       title: 'Akademiska Sjukhuset',
+      subtitle: 'Uppsala',
+      timeSpan: '24h',
       from: '2017-02-10',
       to: '2017-02-10 23:59:59',
       interval: 'hour',
@@ -35,21 +36,7 @@ class IlluScooterBlock extends Component {
   }
 
   fetchData(cb) {
-    const token = localStorage.getItem('token');
-    const PARAM_FROM = 'date[from]'; // this will send a javascript object to backend like: date { from: data }
-    const PARAM_TO = 'date[to]';
-    const PARAM_INT = 'interval';
-    const {
-      from,
-      to,
-      interval
-    } = this.state;
-    const PARAMETERS = `${PARAM_FROM}=${from}&${PARAM_TO}=${to}&${PARAM_INT}=${interval}`;
-    axios.get(`${API_URL}/units/${this.state.unitId}/${this.state.keyId}?${PARAMETERS}`, {
-      headers: {
-        Authorization: token
-      }
-    }).then((res) => {
+    API.getDataFromKey(this.state, (res) => {
       cb(res.data);
     });
   }
@@ -73,7 +60,7 @@ class IlluScooterBlock extends Component {
 
     const { value = 100 } = this.state;
     return(
-    <IlluBlock className="block-scooter">
+    <IlluBlock className="block-scooter" title={ this.state.title } subtitle={ this.state.subtitle } timeSpan={ this.state.timeSpan }>
         <p className="value-illu">{ this.calcTurnsAroundEarth(value).toFixed(2) }</p>
         <figure className="scooter"></figure>
         <figure className="earth"></figure>

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
-import { API_URL } from '../../Splash/assets/APIRoutes.js';
 import IlluBlock from './IlluBlock';
+import API from '../../API.js';
 
 class IlluPhoneBlock extends Component {
 
@@ -11,6 +10,8 @@ class IlluPhoneBlock extends Component {
     this.state = {
       value: 100,
       title: 'Akademiska Sjukhuset',
+      subtitle: 'Uppsala',
+      timeSpan: '24h',
       from: '2017-02-10',
       to: '2017-02-10 23:59:59',
       interval: 'hour',
@@ -35,21 +36,7 @@ class IlluPhoneBlock extends Component {
   }
 
   fetchData(cb) {
-    const token = localStorage.getItem('token');
-    const PARAM_FROM = 'date[from]'; // this will send a javascript object to backend like: date { from: data }
-    const PARAM_TO = 'date[to]';
-    const PARAM_INT = 'interval';
-    const {
-      from,
-      to,
-      interval
-    } = this.state;
-    const PARAMETERS = `${PARAM_FROM}=${from}&${PARAM_TO}=${to}&${PARAM_INT}=${interval}`;
-    axios.get(`${API_URL}/units/${this.state.unitId}/${this.state.keyId}?${PARAMETERS}`, {
-      headers: {
-        Authorization: token
-      }
-    }).then((res) => {
+    API.getDataFromKey(this.state, (res) => {
       cb(res.data);
     });
   }
@@ -72,7 +59,7 @@ class IlluPhoneBlock extends Component {
     const { value = 100 } = this.state;
 
     return(
-    <IlluBlock className="block-phone">
+    <IlluBlock className="block-phone" title={ this.state.title } subtitle={ this.state.subtitle } timeSpan={ this.state.timeSpan }>
         <p className="value-illu">{ this.calcCharged(value) }</p>
         <figure className="charge"></figure>
         <figure className="phone"></figure>
