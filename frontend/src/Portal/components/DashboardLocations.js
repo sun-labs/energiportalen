@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { API_URL } from '../../Splash/assets/APIRoutes';
 import { Link } from 'react-router-dom';
 import { ROOT } from './Portal';
 
+import API from '../../API';
 import addimg from '../../imgs/add-button.png';
 
 // STYLE IMPORTS
@@ -22,49 +21,37 @@ class DashboardLocations extends Component {
     }
   }
 
-componentWillMount(){
-  const token = localStorage.getItem('token');
-
-  axios.get(API_URL+'/locations', { headers: {Authorization: token}}).then(Response => {
-    let location = [];
-    let responsData = Response.data.length;
-    for (let i = 0; i < responsData; i++){
-      let Id = Response.data[i].id;
-      let Name = Response.data[i].name;
-      let City = Response.data[i].city;
-      let Desc = Response.data[i].description;
-      let Image = Response.data[i].image;
-
-      let DashLocation = {
-        Id: Id, 
-        Name: Name,
-        City: City,
-        Desc: Desc,
-        Image: Image
-      }
-
-      location = location.concat(DashLocation);
-
-    }
+componentWillMount() {
+  API.getLocations({}, (res) => {
     this.setState({
-      locations: location
+      locations: res.data.map((loc) => {
+        return {
+          Id: loc.id,
+          Name: loc.name,
+          City: loc.city,
+          Desc: loc.description,
+          Image: loc.image
+        }
+      })
     });
-  })
+  });
 
 } 
 
   render() {
 
-  let content = [];
-  let lengthLocations = this.state.locations.length;
-  for (let i = 0; i < lengthLocations; i++){
-    let location = this.state.locations[i];
-    content = content.concat(<Link to={`${ROOT}/locations/` + location.Id } key={location.Id}><FacBlock fac={location.Image} title={location.Name} subtitle={location.City}/></Link>);
-  }
-  content = content.concat(<Link to={`${ROOT}/locations/addlocation`} key={'addlocation'}><FacBlock className="add-block" title={'Add location'} fac={ addimg }/></Link>);
+    let blocks = this.state.locations.map((loc) => {
+      return (
+        <Link to={`${ROOT}/locations/` + loc.Id } key={loc.Id}>
+          <FacBlock fac={loc.Image} title={loc.Name} subtitle={loc.City}/>
+        </Link>
+      );
+    });
+    blocks.push(<Link to={`${ROOT}/locations/addlocation`} key={'addlocation'}><FacBlock className="add-block" title={'Add location'} fac={ addimg }/></Link>);
+
     return (
         <div className="facblock-wrapper">
-          { content }
+          { blocks }
         </div>
     );
   }

@@ -28,6 +28,12 @@ const funcs = {
       .then((res) => {
         cb(res);
       });
+  },
+  getLocations: (params, cb) => {
+    funcs.apiCall().get('/locations/')
+      .then((res) => {
+        cb(res);
+      });
   }
 };
 
