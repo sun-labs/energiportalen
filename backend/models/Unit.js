@@ -28,11 +28,11 @@ class Unit {
       FROM units as u
       INNER JOIN unit_locations as ul ON u.id = ul.unit_id
       INNER JOIN locations as l ON l.id = ul.location_id
-      WHERE l.id = ${locationId}
+      WHERE l.id = ?
     `;
     const p_query = mysql.format(query, locationId);
     con.query({
-      sql: query
+      sql: p_query
     }, (err, units) => {
       cb(err, units);
     });
