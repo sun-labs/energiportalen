@@ -216,7 +216,7 @@ describe('[BE] Authentication tests', () => {
     }, (err, res) => {
       should.not.exist(err);
       should.exist(res);
-      res.length.should.equal(16);
+      res.data.length.should.equal(16);
       done();
     });
   });
@@ -232,7 +232,7 @@ describe('[BE] Authentication tests', () => {
       }
     }, (err, data) => {
       should.not.exist(err);
-      data.length.should.equal(2);
+      data.data.length.should.equal(2);
       should.exist(data);
       done();
     });
@@ -262,7 +262,7 @@ describe('[BE] Authentication tests', () => {
     }, (err, data) => {
       should.not.exist(err);
       should.exist(data);
-      data.length.should.equal(10);
+      data.data.length.should.equal(10);
       done();
     });
   });
@@ -275,7 +275,7 @@ describe('[BE] Authentication tests', () => {
     }, (err, data) => {
       should.not.exist(err);
       should.exist(data);
-      data.length.should.equal(6);
+      data.data.length.should.equal(6);
       done();
     });
   });
@@ -288,7 +288,7 @@ describe('[BE] Authentication tests', () => {
     }, (err, data) => {
       should.not.exist(err);
       should.exist(data);
-      data.length.should.equal(12);
+      data.data.length.should.equal(12);
       done();
     });
   });
@@ -300,6 +300,19 @@ describe('[BE] Authentication tests', () => {
       const name = loc.name.toLowerCase();
       name.should.equal('base10');
       loc.id.should.equal(2);
+      done();
+    });
+  });
+
+  it('Get start and end date of unit and key', (done) => {
+    const unitId = 1;
+    const keyId = 1;
+    Unit.getDatesFromIdAndKey(unitId, keyId, (err, res) => {
+      should.not.exist(err);
+      const first = new Date(res.first_log);
+      const last = new Date(res.last_log);
+      first.getDate().should.equal(9);
+      last.getDate().should.equal(17);
       done();
     });
   });

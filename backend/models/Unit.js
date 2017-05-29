@@ -57,6 +57,33 @@ class Unit {
 
   };
 
+  static getDatesFromIdAndKey(unitId, keyId, cb) {
+    const QUERY = `
+      SELECT 
+        MIN(timestamp) as first_log, 
+        MAX(timestamp) as last_log,
+        (SELECT name FROM units WHERE id = ?) as unit_name,
+        (SELECT name FROM unit_keys WHERE id = ?) as unit_key,
+        ? as unit_id,
+        ? as unit_key
+      FROM unit_data WHERE unit_id = ? AND unit_key = ?
+    `;
+
+    const DATA = [unitId, keyId, unitId, keyId, unitId, keyId];
+    const P_QUERY = mysql.format(QUERY, DATA);
+
+    con.query({
+      sql: P_QUERY
+    }, (err, res) => {
+      if(res.length > 0) {
+        cb(err, res[0]);
+      } else {
+        cb(err, undefined); 
+      }
+    });
+
+  }
+
   /**
    * options: {
    *  date: { 
@@ -70,7 +97,7 @@ class Unit {
    * CB: err, {data}
    */
   // REAL DATA: id = 4, key = 85
-  static getUnitDataFromKeyDate(unitId, unitKeyId, {
+  static getUnitDataFromKeyDate(unitId, keyId, {
     date = {},
     interval = 'day'
   }, cb) {
@@ -114,7 +141,7 @@ class Unit {
       ORDER BY new_timestamp
     `;
 
-    const INSERTS = [unitId, unitKeyId, from, to];
+    const INSERTS = [unitId, keyId, from, to];
     const P_QUERY = mysql.format(QUERY, INSERTS);
 
     con.query({
@@ -126,11 +153,11 @@ class Unit {
       if(res.length > 0) {
         const data = {
           unitId,
-          unitKeyId,
+          keyId,
           date,
           interval,
           data: res,
-        }
+        };
         cb(err, data);
       } else {
         cb(err, undefined); 
