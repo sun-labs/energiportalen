@@ -39,12 +39,12 @@ const defaultConfig = {
 
 const data1 = {
   label: 'foo',
-  data: [65, 59, 80, 81, 56, 55]
+  data: []
 }
 
 const data2 = {
   label: 'bar',
-  data: [35, 49, 70, 31, 27, 83, 123, 27, 83]
+  data: []
 }
 
 const ph_Labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
