@@ -35,7 +35,7 @@ class AddBlock extends Component {
 
     const locationOptions = [
       { value: 'Akademiska Sjukhuset', label: 'Akademiska Sjukhuset' },
-      { value: 'Origo', label: 'Origo' }
+      { value: 'Base10', label: 'Base10' }
     ];
 
     const typeOptions = [
@@ -53,7 +53,7 @@ class AddBlock extends Component {
     ];
 
     const contentOptions = [
-      { value: 'kWh', label: 'kWh' },
+      { value: 'energy produced', label: 'energy produced' },
       { value: 'temperature', label: 'temperature' },
       { value: 'humidity', label: 'humidity' },
       { value: 'radiation', label: 'radiation' }

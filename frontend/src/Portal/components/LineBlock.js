@@ -64,7 +64,7 @@ class LineBlock extends Component {
     this.state = {
       data: [data1, data2],
       title: 'Akademiska Sjukhuset',
-      dataKey: 'Energi producerad',
+      dataKey: 'Energy produced',
       labels: ph_Labels,
       from: '2017-02-10',
       to: '2017-02-10 23:59:59',
