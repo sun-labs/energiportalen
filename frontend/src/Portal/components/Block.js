@@ -84,7 +84,7 @@ class Content extends React.Component {
         case ILLUSTRATION:
         case LINE:
         case TABLE:
-          content = <ContentEdit />;
+          content = <ContentEdit {...this.props} />;
         break;
       }
     }
@@ -102,9 +102,10 @@ class Block extends React.Component {
   constructor() {
     super();
     this.state = {
-      editing: false
+      editing: false,
+
     }
-    this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(e) {
@@ -126,12 +127,23 @@ class Block extends React.Component {
     }
   }
 
+  getCSSClass(blockType) {
+    switch(blockType) {
+      case LINE:
+        return "blockk-line";
+      case TABLE:
+        return "blockk-table";
+      default: // illustration blocks
+        return this.props.className;
+    }
+  }
+
   render() {
     const { className, children, type } = this.props;
 
     return (
-      <div className={`blockk ${className}`}>
-        { this.shouldRender(type, HEADER) ? <Header {...this.props} editHandle={ this.handleClick.bind(this) } /> : '' }
+      <div className={`blockk ${this.getCSSClass(type)}`}>
+        { this.shouldRender(type, HEADER) ? <Header {...this.props} editHandle={ this.handleClick } /> : '' }
 
         <Content {...this.props} editing={ this.state.editing }>
           { children }

@@ -41,12 +41,13 @@ class Unit {
   static getUnitKeys(unitId, cb) {
 
     const query = `
-      SELECT DISTINCT 
-        ud.unit_key, uk.name 
-      FROM unit_data_day as ud
-      INNER JOIN unit_keys as uk
-      ON ud.unit_key = uk.id
-      WHERE ud.unit_id = ?
+      SELECT
+        id,
+        name
+      FROM
+        unit_keys
+      WHERE
+        unit_id = ?
     `;
     const p_query = mysql.format(query, unitId);
     con.query({

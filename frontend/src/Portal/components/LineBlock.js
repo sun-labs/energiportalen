@@ -72,9 +72,21 @@ class LineBlock extends Component {
       keyId: 95,
       refresh: true
     };
+    this.updateBlock = this.updateBlock.bind(this);
+    this.getBlock = this.getBlock.bind(this);
+  }
+
+  updateBlock(params) {
+    console.log(params);
+    this.setState(params);
+  }
+
+  getBlock() {
+    return this.state;
   }
 
   componentWillMount() {
+    console.log('mounting yo');
     if(this.state.refresh === true) {
       this.setState({
         ...this.props,
@@ -164,6 +176,8 @@ setDataColors(dataList, config) {
 
   render() {
 
+    console.log('rendering line');
+
     const props = this.props;
 
     const {
@@ -184,7 +198,9 @@ setDataColors(dataList, config) {
       title: this.state.title,
       subtitle: this.state.dataKey,
       timeSpan,
-      type: 'LINE'
+      type: 'LINE',
+      updateBlock: this.updateBlock,
+      getBlock: this.getBlock
     }
 
     return (
