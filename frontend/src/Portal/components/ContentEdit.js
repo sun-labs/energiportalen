@@ -128,13 +128,13 @@ class ContentEdit extends React.Component {
 
   render() {
 
-    const { addNewBlock, updateBlock, getBlock } = this.props;
+    const { addNewBlock } = this.props;
 
     const {
       location,
       type,
       interval,
-      content,
+      // content,
       unitId,
       keyId,
       from,

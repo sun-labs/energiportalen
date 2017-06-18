@@ -48,8 +48,8 @@ const data2 = {
 
 const ph_Labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-const ph_Title = 'TITLE';
-const ph_Name = 'NAME';
+// const ph_Title = 'TITLE';
+// const ph_Name = 'NAME';
 const ph_TimeSpan = '24h';
 
 // NOTE data sent to block must be a list with lists of data
@@ -106,7 +106,7 @@ class LineBlock extends Component {
               label: this.state.title
             }, {
               data: values.map((elem) => {
-                return parseInt(elem) + Math.random() * 50;
+                return parseInt(elem, 10) + Math.random() * 50;
               }),
               label: 'Random Akkis'
             }],
@@ -184,8 +184,8 @@ setDataColors(dataList, config) {
       options = defaultOptions, 
       data = this.state.data, 
       labels = this.state.labels,
-      title = ph_Title,
-      subtitle = ph_Name,
+      // title = ph_Title,
+      // subtitle = ph_Name,
       timeSpan = ph_TimeSpan
     } = props;
 

@@ -17,7 +17,7 @@ class AddBlock extends Component {
 
     return(
     <Block className="blockk-add" {...blockInfo}>
-      <ContentEdit addNewBlock />
+      <ContentEdit {...addNewBlock} />
     </Block>
     );
   }

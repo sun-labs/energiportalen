@@ -86,6 +86,8 @@ class Content extends React.Component {
         case TABLE:
           content = <ContentEdit {...this.props} />;
         break;
+        default:
+          break;
       }
     }
 
@@ -139,7 +141,7 @@ class Block extends React.Component {
   }
 
   render() {
-    const { className, children, type } = this.props;
+    const { children, type } = this.props;
 
     return (
       <div className={`blockk ${this.getCSSClass(type)}`}>
