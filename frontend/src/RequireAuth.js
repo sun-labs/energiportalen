@@ -19,7 +19,8 @@ export default function(ComposedComponent, auth = false) {
         return;
       }
 
-      authToken(token, this.props.history);
+      const { dispatch, history } = this.props;
+      dispatch(authToken(token, history));
     }
 
 		componentWillMount() {

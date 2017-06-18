@@ -1,83 +1,31 @@
-import React, { Component } from 'react';
-
-// ASSET IMPORTS
-import { UNAUTHORIZED, UNKNOWN } from '../assets/errorMessages';
-
-// STYLE IMPORTS
+import React from 'react';
 import '../styles/Splash.css';
-
-// COMPONENT IMPORTS
 import NavBar from './NavBar';
 import Sections from './Sections';
 import MessageBox from './MessageBox';
+import { connect } from 'react-redux';
+import { closeAuthError } from '../../actions/authActions';
 
-class Splash extends Component {
-
-  constructor() {
-    super();
-    this.state = {
-      displayError: false,
-      error: {
-        title: 'title',
-        body: 'body body body'
+const Splash = ({ signInError, error, dispatch, uiP }) => {
+  return (
+    <div id="Splash">
+      {/*<NavBar { ...uiProps } />*/}
+      {/* fix uiProps */}
+      <NavBar />      
+      { 
+        signInError &&
+        <MessageBox className="error" onClick={ () => dispatch(closeAuthError())} { ...error } />
       }
-    };
-    this.handleErrorClose = this.handleErrorClose.bind(this);
-    this.showError = this.showError.bind(this);
-    this.hideError = this.hideError.bind(this);
-  }
-
-  hideError() {
-    this.setState({
-      displayError: false
-    });
-  }
-
-  showError(title, error) {
-    let body;
-
-    if (typeof(error) === 'object') {
-      if(error.response) {
-        switch (error.response.status) {
-          case 401:
-            body = UNAUTHORIZED;
-            break;
-          default:
-            body = UNKNOWN;
-            break;
-        }
-      }
-    }
-    this.setState({
-      displayError: true,
-      error: { title, body }
-    })
-  }
-
-  handleErrorClose(e) {
-    e.preventDefault();
-    this.hideError();
-  }
-
-  render() {
-    const uiProps = {
-      showError: this.showError,
-      hideError: this.hideError
-    };
-    return (
-      <div id="Splash">
-        <NavBar { ...uiProps } />
-        { 
-          this.state.displayError && 
-          <MessageBox className="error" onClick={ this.handleErrorClose } { ...this.state.error } />
-        }
-        <Sections { ...uiProps } />
-      </div>
-    );
-  }
-
+      {/* fix uiProps */}
+      <Sections/>
+      {/*<Sections { ...uiProps } />*/}
+    </div>
+  );
 }
 
-export default Splash;
+const mapStateToProps = (state) => ({
+  signInError: state.authReducer.signInError,
+  error: state.authReducer.error
+})
 
-
+export default connect(mapStateToProps)(Splash);
