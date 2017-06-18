@@ -44,7 +44,7 @@ class TableBlock extends Component {
       },
       ...rows
     });
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   render() {

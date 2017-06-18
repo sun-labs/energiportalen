@@ -86,7 +86,7 @@ class LineBlock extends Component {
   }
 
   componentWillMount() {
-    console.log('mounting yo');
+    // console.log('mounting yo');
     if(this.state.refresh === true) {
       this.setState({
         ...this.props,
@@ -176,7 +176,7 @@ setDataColors(dataList, config) {
 
   render() {
 
-    console.log('rendering line');
+    // console.log('rendering line');
 
     const props = this.props;
 

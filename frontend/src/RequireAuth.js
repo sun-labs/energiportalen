@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { authToken } from './actions/authActions';
 
-import { API_CHECK_TOKEN } from './Splash/assets/APIRoutes';
-
-export default function(ComposedComponent) {
+export default function(ComposedComponent, auth = false) {
 	class Authentication extends Component {
     constructor() {
       super();
-
-      this.state = {
-        checkedToken: false
-      }
 
       this.authenticate = this.authenticate.bind(this);
     }
@@ -23,17 +18,8 @@ export default function(ComposedComponent) {
         this.props.history.push('/');
         return;
       }
-      axios.get(API_CHECK_TOKEN, {
-        headers: { authorization: token }
-      })
-      .then((res) => {
-        this.setState({
-          checkedToken: true
-        })
-      })
-      .catch((error) => {
-        this.props.history.push('/');
-      });
+
+      authToken(token, this.props.history);
     }
 
 		componentWillMount() {
@@ -41,7 +27,7 @@ export default function(ComposedComponent) {
 		}
 
 		componentWillUpdate() {
-      if (!this.state.checkedToken) {
+      if (!this.props.authenticated) {
         this.authenticate();
       }
 		}
@@ -50,5 +36,11 @@ export default function(ComposedComponent) {
 			return <ComposedComponent {...this.props} />
 		}
 	}
-  return withRouter(Authentication);
+
+  const mapStateToProps = (state) => ({
+    authenticated: state.authReducer.authenticated
+  })
+
+  return connect(mapStateToProps)(withRouter(Authentication))
+
 }
