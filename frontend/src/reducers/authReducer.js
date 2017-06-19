@@ -6,7 +6,7 @@ import {
 	SHOW_ERROR,
 	FAILED_SIGN_UP,
 	PASSWORD_MISMATCH
-} from '../constants/auth';
+} from '../constants/authConstants';
 
 const initialState = {
 	authenticated: false,

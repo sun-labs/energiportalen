@@ -1,28 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import { connect } from 'react-redux';
 import { ROOT } from './Portal';
-
-// STYLE IMPORTS
-import '../styles/Home.css';
-
-// COMPONENT IMPORTS
 import LineBlock from './LineBlock';
 import TableBlock from './TableBlock';
 import IlluPhoneBlock from './IlluPhoneBlock';
 import IlluScooterBlock from './IlluScooterBlock';
 import FacDashBlock from './DashboardLocations'
 import AddBlock from './AddBlock';
+import '../styles/Home.css';
 
 class Home extends Component {
   constructor() {
     super();
 
     this.state = {
-      data: [],
-      timestamps: [],
-      title: [],
-      name: [],
       addBlock: false,
       tempStuffForPresentation: false
     }
@@ -48,6 +40,9 @@ class Home extends Component {
 
   render() {
     const { addBlock } = this.state;
+    const { blocks } = this.props;
+
+
     return (
       <div className="content">
         <Link to={`${ROOT}/addlocation`} id="AddlocationDash" className="blockk add-block">+ ADD LOCATION</Link>
@@ -71,12 +66,20 @@ class Home extends Component {
 
           {this.state.tempStuffForPresentation ? <LineBlock/> : ''}
           
-          
-          <IlluPhoneBlock />
-          <TableBlock />
-          <IlluScooterBlock />
-          <LineBlock />
-          {/*<LineBlock/>*/}
+          {blocks.map((block) => {
+            
+            switch(block.blockType) {
+              // TEMP DO BETTER
+              case 'PHONE':
+                return <IlluPhoneBlock key={block.id}/>
+              case 'TABLE':
+                return <TableBlock key={block.id}/>
+              case 'SCOOTER':
+                return <IlluScooterBlock key={block.id}/>
+              case 'LINE':
+                return <LineBlock key={block.id}/>
+            }
+          })}
         </div>
       </div>
     );
@@ -84,4 +87,10 @@ class Home extends Component {
 
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    blocks: state.blocksReducer.blocks
+  }
+}
+
+export default connect(mapStateToProps)(Home);
