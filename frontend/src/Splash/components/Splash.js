@@ -9,8 +9,6 @@ import { closeAuthError } from '../../actions/authActions';
 const Splash = ({ signInError, error, dispatch, uiP }) => {
   return (
     <div id="Splash">
-      {/*<NavBar { ...uiProps } />*/}
-      {/* fix uiProps */}
       <NavBar />      
       { 
         signInError &&

@@ -3,7 +3,9 @@ import {
 	UNAUTH_USER,
 	FAILED_SIGN_IN,
 	CLOSE_AUTH_ERROR,
-	SHOW_ERROR
+	SHOW_ERROR,
+	FAILED_SIGN_UP,
+	PASSWORD_MISMATCH
 } from '../constants/auth';
 
 const initialState = {
@@ -24,6 +26,8 @@ const authReducer = (state = initialState, action = null) => {
 				...state,
 				authenticated: false
 			}
+		case PASSWORD_MISMATCH:
+		case FAILED_SIGN_UP:
 		case FAILED_SIGN_IN:
 			return {
 				...state,

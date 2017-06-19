@@ -35,7 +35,7 @@ class Section1 extends Component {
       return (
         <Popup className="popup-signup" onClose={this.togglePopup}>
           <h1>SIGN UP</h1>
-          <FormSignUp showError={ this.props.showError } className="wrap-signup" />
+          <FormSignUp className="wrap-signup" />
         </Popup>
       );
     } else {
@@ -52,7 +52,7 @@ class Section1 extends Component {
         <div className="creat-wrap">
           <h1>SIGN UP WITH SUN LABS</h1>
           <h2>It's free and will always be for Sun Labs</h2>
-          <FormSignUp showError={ this.props.showError } />
+          <FormSignUp />
         </div>
         <button id="mobile-btn-create-account" onClick={ this.togglePopup }>CREATE ACCOUNT</button>
         <TextContent title="What is Sun Labs?" body="Sun Labs dramatically improves the most important aspects of the Sun Energy experience. It introduces advanced visualisation and cloud first experience. Immersive statistics. The brightest, most colorful way to visualize energy data. And it looks every bit as powerful as it is. This is Sun Labs." />
@@ -92,10 +92,10 @@ const Section4 = () => {
   )
 }
 
-const Sections = ({ showError }) => {
+const Sections = () => {
   return (
     <div className="sections">
-      <Section1 showError={ showError } />
+      <Section1 />
       <Section2 />
       <Section3 />
       <Section4 />
