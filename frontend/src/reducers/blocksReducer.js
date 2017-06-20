@@ -5,14 +5,9 @@
 // lineblock
 
 import {
-  FETCH_DATA_SUCCESS
+  FETCH_DATA_SUCCESS,
+  TOGGLE_ADD_BLOCK
 } from '../constants/blockConstants';
-
-
-{/*<IlluPhoneBlock />
-<TableBlock />
-<IlluScooterBlock />
-<LineBlock />*/}
 
 const initialBlock = {
   title: '',
@@ -22,7 +17,7 @@ const initialBlock = {
   unitId: '',
   keyId: '',
   refresh: false,
-  id: '',
+  blockId: '',
   blockType: ''
 }
 
@@ -41,20 +36,35 @@ const initialIlluBlock = {
 }
 
 const initialState = {
+  addingBlock: false,
   blocks: [
-    { ...initialIlluBlock, blockType: 'PHONE', id: 0 },
-    { ...initialBlock, blockType: 'TABLE', id: 1},
-    { ...initialIlluBlock, blockType: 'SCOOTER', id: 2},
-    { ...initialGraphBlock, blockType: 'LINE', id: 3},
+    { 
+      ...initialIlluBlock,
+      title: 'Akademiska Sjukhuset',
+      subtitle: 'Uppsala',
+      timeSpan: '24h',
+      blockType: 'PHONE', 
+      id: 0,
+      from: '2017-02-10',
+      to: '2017-02-10 23:59:59',
+      interval: 'hour',
+      unitId: 4,
+      keyId: 95,
+      blockId: 1,
+      refresh: true
+    },
+    // { ...initialBlock, blockType: 'TABLE', id: 1},
+    // { ...initialIlluBlock, blockType: 'SCOOTER', id: 2},
+    // { ...initialGraphBlock, blockType: 'LINE', id: 3},
     ],
 };
 
-const illuBlockReducer = (state = initialIlluBlock, action = null) => {
-  switch(action.type) {
-    default: 
-      return state;
-  }
-}
+// const illuBlockReducer = (state = initialIlluBlock, action = null) => {
+//   switch(action.type) {
+//     default: 
+//       return state;
+//   }
+// }
 
 const blockReducer = (state = {}, action = null) => {
   switch(action.type) {
@@ -70,12 +80,17 @@ const blockReducer = (state = {}, action = null) => {
 
 const blocksReducer = (state = initialState, action = null) => {
   switch(action.type) {
+    case TOGGLE_ADD_BLOCK:
+      return {
+        ...state,
+        addingBlock: !state.addingBlock
+      }
     case FETCH_DATA_SUCCESS:
       return {
         ...state,
         blocks: state.blocks.map((block) => {
-          if (block.id === action.id) {
-            return blockReducer(block, action.id)
+          if (block.blockId === action.blockId) {
+            return blockReducer(block, action)
           } else {
             return block;
           }

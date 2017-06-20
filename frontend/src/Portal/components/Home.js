@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { 
+  fetchData,
+  toggleAddBlock
+} from '../../actions/blockActions';
 import { ROOT } from './Portal';
 import LineBlock from './LineBlock';
 import TableBlock from './TableBlock';
@@ -39,8 +43,12 @@ class Home extends Component {
   }
 
   render() {
-    const { addBlock } = this.state;
-    const { blocks } = this.props;
+    // const { addBlock } = this.state;
+    const { 
+      addingBlock, 
+      blocks,
+      dispatch
+    } = this.props;
 
 
     return (
@@ -51,11 +59,11 @@ class Home extends Component {
           <h2> you may save or remove your own personally defined locations for easier access. </h2>
         </div>
         <FacDashBlock/>
-        { addBlock 
-          ? <AddBlock addNewBlock={this.addNewBlock}/>
+        { addingBlock
+          ? <AddBlock addNewBlock={() => dispatch(toggleAddBlock())}/>
           : <div 
               className="blockk add-block"
-              onClick={() => this.addNewBlock()}
+              onClick={() => dispatch(toggleAddBlock())}
             >+ ADD BLOCK</div>
         }
         <div className="text-block">
@@ -67,17 +75,24 @@ class Home extends Component {
           {this.state.tempStuffForPresentation ? <LineBlock/> : ''}
           
           {blocks.map((block) => {
+            const blockProps = {
+              ...block,
+              fetchData,
+              dispatch
+            };
             
             switch(block.blockType) {
               // TEMP DO BETTER
               case 'PHONE':
-                return <IlluPhoneBlock key={block.id}/>
+                return <IlluPhoneBlock key={block.id} { ...blockProps }/>
               case 'TABLE':
-                return <TableBlock key={block.id}/>
+                return <TableBlock key={block.id} { ...blockProps }/>
               case 'SCOOTER':
-                return <IlluScooterBlock key={block.id}/>
+                return <IlluScooterBlock key={block.id} { ...blockProps }/>
               case 'LINE':
-                return <LineBlock key={block.id}/>
+                return <LineBlock key={block.id} { ...blockProps }/>
+              default:
+                return null;
             }
           })}
         </div>
@@ -89,6 +104,7 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    addingBlock: state.blocksReducer.addingBlock,
     blocks: state.blocksReducer.blocks
   }
 }
