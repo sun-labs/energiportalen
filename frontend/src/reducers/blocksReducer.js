@@ -5,9 +5,10 @@
 // lineblock
 
 import {
-  FETCH_DATA_SUCCESS,
+  FETCH_SUM_VALUE_DATA_SUCCESS,
   TOGGLE_ADD_BLOCK,
-  ADD_TABLE_BLOCK_ROW
+  ADD_TABLE_BLOCK_ROW,
+  FETCH_DATA_SUCCESS
 } from '../constants/blockConstants';
 
 const tempRow = {
@@ -23,10 +24,9 @@ const tempRow = {
 }
 
 const initialBlock = {
-  title: '',
-  from: '',
-  to: '',
-  interval: '',
+  title: 'Akademiska Sjukhuset',
+  from: '2017-02-10',
+  to: '2017-02-10 23:59:59',  
   unitId: '',
   keyId: '',
   refresh: false,
@@ -38,14 +38,18 @@ const initialGraphBlock = {
   ...initialBlock,
   data: [],
   dataKey: '',
-  labels: [],
+  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  interval: 'hour',
+  refresh: true
 }
 
 const initialIlluBlock = {
-  ...initialGraphBlock,
+  ...initialBlock,
   value: -1,
-  subtitle: '',
-  timeSpan: '',
+  subtitle: 'Uppsala',
+  timeSpan: '24h',
+  interval: 'hour',
+  refresh: true
 }
 
 const initialState = {
@@ -53,24 +57,16 @@ const initialState = {
   blocks: [
     { 
       ...initialIlluBlock,
-      title: 'Akademiska Sjukhuset',
-      subtitle: 'Uppsala',
-      timeSpan: '24h',
       blockType: 'PHONE', 
       id: 0,
-      from: '2017-02-10',
-      to: '2017-02-10 23:59:59',
-      interval: 'hour',
       unitId: 4,
       keyId: 95,
       blockId: 0,
-      refresh: true
     },
     { 
       ...initialBlock, 
       blockType: 'TABLE', 
       blockId: 1,
-      title: 'Akademiska Sjukhuset',
       subtitle: 'Uppsala',
       rows: []
     },
@@ -78,17 +74,16 @@ const initialState = {
       ...initialIlluBlock, 
       blockType: 'SCOOTER', 
       blockId: 2,
-      title: 'Akademiska Sjukhuset',
-      subtitle: 'Uppsala',
-      timeSpan: '24h',
-      from: '2017-02-10',
-      to: '2017-02-10 23:59:59',
-      interval: 'hour',
       unitId: 4,
       keyId: 95,
-      refresh: true
     },
-    // { ...initialGraphBlock, blockType: 'LINE', id: 3},
+    { 
+      ...initialGraphBlock, 
+      blockType: 'LINE', 
+      blockId: 3,
+      unitId: 4,
+      keyId: 95
+    },
     ],
 };
 
@@ -112,6 +107,13 @@ const blockReducer = (state = {}, action = null) => {
     case FETCH_DATA_SUCCESS:
       return {
         ...state,
+        labels: action.labels,
+        data: action.data,
+        value: action.value
+      }
+    case FETCH_SUM_VALUE_DATA_SUCCESS:
+      return {
+        ...state,
         value: action.value
       }
     default:
@@ -127,6 +129,7 @@ const blocksReducer = (state = initialState, action = null) => {
         addingBlock: !state.addingBlock
       }
     case ADD_TABLE_BLOCK_ROW:
+    case FETCH_SUM_VALUE_DATA_SUCCESS:
     case FETCH_DATA_SUCCESS:
       return {
         ...state,

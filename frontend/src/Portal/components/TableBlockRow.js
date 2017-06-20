@@ -16,7 +16,7 @@ class TableBlockRow extends Component {
       ...this.props,
       value: 'loading..'
     }, () => {
-      this.fetchData((data) => {
+      this.fetchSumValueData((data) => {
         this.setState({
           ...this.state,
           value: data.data[0].sum_val.toFixed(0)
@@ -25,7 +25,7 @@ class TableBlockRow extends Component {
     });
   }
 
-  fetchData(cb) {
+  fetchSumValueData(cb) {
     API.getDataFromKey(this.state, (res) => {
       cb(res.data);
     });

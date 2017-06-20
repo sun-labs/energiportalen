@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { 
+  fetchSumValueData,
   fetchData,
   toggleAddBlock,
   addTableBlockRow
@@ -78,6 +79,7 @@ class Home extends Component {
           {blocks.map((block) => {
             const blockProps = {
               ...block,
+              fetchSumValueData,
               fetchData,
               dispatch,
             };
