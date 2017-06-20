@@ -5,53 +5,20 @@ import TableBlockRow from './TableBlockRow';
 
 class TableBlock extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      facility: {
-        name: 'Akademiska Sjukhuset',
-        location: 'Uppsala'
-      },
-      rows: [] 
-    }
-    this.handleClick = this.handleClick.bind(this);
-  }
-
   componentWillMount() {
-    this.addRow();
-  }
-
-  handleClick(e) {
-    this.addRow();
-  }
-
-  addRow() {
-    let rows = this.state.rows;
-    rows.push({
-      unitId: 4,
-      keyId: 95,
-      value: 400,
-      si: 'Wh',
-      span: '1d',
-      interval: 'day',
-      from: '2017-02-10',
-      to: '2017-02-10 23:23:59',
-      title: 'Energy Produced'
-    });
-    this.setState({
-      facility: {
-        ...this.state.facility
-      },
-      ...rows
-    });
-    // console.log(this.state);
+    const { dispatch, addTableBlockRow, blockId } = this.props;
+    dispatch(addTableBlockRow(blockId));
   }
 
   render() {
 
     const {
-      title = this.state.facility.name,
-      subtitle = this.state.facility.location
+      title = '',
+      subtitle = '',
+      rows = [],
+      addTableBlockRow,
+      dispatch,
+      blockId
     } = this.props;
 
     const blockInfo = {
@@ -65,12 +32,12 @@ class TableBlock extends Component {
       <table className="content-table">
         <tbody>
           { 
-            this.state.rows.map((elem, index) => {
-              return (<TableBlockRow key={ index } {...elem} />);
+            rows.map((elem, index) => {
+              return (<TableBlockRow key={ index + this.props } { ...elem } />);
             })
           }
           <tr>
-            <td onClick={ this.handleClick } className="add-information">+ add information</td>
+            <td onClick={ () => dispatch(addTableBlockRow(blockId)) } className="add-information">+ add information</td>
           </tr>
         </tbody>
       </table>

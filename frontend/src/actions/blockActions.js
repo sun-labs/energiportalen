@@ -1,7 +1,8 @@
 import API from '../API';
 import {
   FETCH_DATA_SUCCESS,
-  TOGGLE_ADD_BLOCK
+  TOGGLE_ADD_BLOCK,
+  ADD_TABLE_BLOCK_ROW
 } from '../constants/blockConstants';
 
 export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockType }) => {
@@ -16,5 +17,11 @@ export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockTyp
 export const toggleAddBlock = () => {
   return (dispatch) => {
     dispatch({ type: TOGGLE_ADD_BLOCK })
+  }
+}
+
+export const addTableBlockRow = (blockId) => {
+  return (dispatch) => {
+    dispatch({ type: ADD_TABLE_BLOCK_ROW, blockId })
   }
 }

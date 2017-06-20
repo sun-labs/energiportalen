@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { 
   fetchData,
-  toggleAddBlock
+  toggleAddBlock,
+  addTableBlockRow
 } from '../../actions/blockActions';
 import { ROOT } from './Portal';
 import LineBlock from './LineBlock';
@@ -78,19 +79,19 @@ class Home extends Component {
             const blockProps = {
               ...block,
               fetchData,
-              dispatch
+              dispatch,
             };
             
             switch(block.blockType) {
               // TEMP DO BETTER
               case 'PHONE':
-                return <IlluPhoneBlock key={block.id} { ...blockProps }/>
+                return <IlluPhoneBlock key={block.blockId} { ...blockProps }/>
               case 'TABLE':
-                return <TableBlock key={block.id} { ...blockProps }/>
+                return <TableBlock key={block.blockId} { ...blockProps } addTableBlockRow={addTableBlockRow} />
               case 'SCOOTER':
-                return <IlluScooterBlock key={block.id} { ...blockProps }/>
+                return <IlluScooterBlock key={block.blockId} { ...blockProps }/>
               case 'LINE':
-                return <LineBlock key={block.id} { ...blockProps }/>
+                return <LineBlock key={block.blockId} { ...blockProps }/>
               default:
                 return null;
             }
