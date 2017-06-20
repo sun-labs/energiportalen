@@ -1,44 +1,20 @@
 import React, { Component } from 'react';
-
-import API from '../../API';
 import IlluBlock from './IlluBlock';
 
 class IlluScooterBlock extends Component {
 
   constructor() {
     super();
-    this.state = {
-      value: 100,
-      title: 'Akademiska Sjukhuset',
-      subtitle: 'Uppsala',
-      timeSpan: '24h',
-      from: '2017-02-10',
-      to: '2017-02-10 23:59:59',
-      interval: 'hour',
-      unitId: 4,
-      keyId: 95,
-      refresh: true
-    };
+
+    this.calcTurnsAroundEarth = this.calcTurnsAroundEarth.bind(this);
   }
 
   componentWillMount() {
-    this.setState({
-      ...this.props,
-      value: -1
-    }, () => {
-      this.fetchData((data) => {
-        this.setState({
-          ...this.state,
-          value: data.data[0].sum_val
-        })
-      });
-    });
-  }
-
-  fetchData(cb) {
-    API.getDataFromKey(this.state, (res) => {
-      cb(res.data);
-    });
+    const { 
+      fetchData, 
+      dispatch 
+    } = this.props;
+    dispatch(fetchData(this.props));
   }
 
   /**
@@ -58,10 +34,18 @@ class IlluScooterBlock extends Component {
 
   render() {
 
-    const { value = 100 } = this.state;
+    const { 
+      value = 100,
+      title,
+      subtitle,
+      timeSpan,
+    } = this.props;
+
+    const { calcTurnsAroundEarth } = this;
+
     return(
-    <IlluBlock className="block-scooter" title={ this.state.title } subtitle={ this.state.subtitle } timeSpan={ this.state.timeSpan }>
-        <p className="value-illu">{ this.calcTurnsAroundEarth(value).toFixed(2) }</p>
+    <IlluBlock className="block-scooter" title={ title } subtitle={ subtitle } timeSpan={ timeSpan }>
+        <p className="value-illu">{ calcTurnsAroundEarth(value).toFixed(2) }</p>
         <figure className="scooter"></figure>
         <figure className="earth"></figure>
     </IlluBlock>

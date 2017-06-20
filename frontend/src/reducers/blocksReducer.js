@@ -63,18 +63,31 @@ const initialState = {
       interval: 'hour',
       unitId: 4,
       keyId: 95,
-      blockId: 1,
+      blockId: 0,
       refresh: true
     },
     { 
       ...initialBlock, 
       blockType: 'TABLE', 
-      blockId: 2,
+      blockId: 1,
       title: 'Akademiska Sjukhuset',
       subtitle: 'Uppsala',
       rows: []
     },
-    // { ...initialIlluBlock, blockType: 'SCOOTER', id: 2},
+    { 
+      ...initialIlluBlock, 
+      blockType: 'SCOOTER', 
+      blockId: 2,
+      title: 'Akademiska Sjukhuset',
+      subtitle: 'Uppsala',
+      timeSpan: '24h',
+      from: '2017-02-10',
+      to: '2017-02-10 23:59:59',
+      interval: 'hour',
+      unitId: 4,
+      keyId: 95,
+      refresh: true
+    },
     // { ...initialGraphBlock, blockType: 'LINE', id: 3},
     ],
 };
