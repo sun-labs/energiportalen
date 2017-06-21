@@ -5,23 +5,6 @@ import Block from './Block';
 
 class LineBlock extends Component {
 
-  constructor() {
-    super();
-    
-    this.updateBlock = this.updateBlock.bind(this);
-    this.getBlock = this.getBlock.bind(this);
-  }
-
-  updateBlock(params) {
-    // TODO
-    console.log(params);
-    this.setState(params);
-  }
-
-  getBlock() {
-    return this.state;
-  }
-
   componentWillMount() {
     const {
       refresh,
@@ -106,8 +89,6 @@ setDataColors(dataList, config) {
       subtitle: dataKey,
       timeSpan,
       type: 'LINE',
-      updateBlock: this.updateBlock,
-      getBlock: this.getBlock
     }
 
     return (
