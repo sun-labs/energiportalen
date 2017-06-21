@@ -9,7 +9,11 @@ import {
   TOGGLE_ADD_BLOCK,
   ADD_TABLE_BLOCK_ROW,
   FETCH_DATA_SUCCESS,
-  TOGGLE_EDIT_BLOCK
+  TOGGLE_EDIT_BLOCK,
+  PHONE,
+  TABLE,
+  SCOOTER,
+  LINE
 } from '../constants/blockConstants';
 
 const tempRow = {
@@ -59,7 +63,7 @@ const initialState = {
   blocks: [
     { 
       ...initialIlluBlock,
-      blockType: 'PHONE', 
+      blockType: PHONE, 
       id: 0,
       unitId: 4,
       keyId: 95,
@@ -67,21 +71,22 @@ const initialState = {
     },
     { 
       ...initialBlock, 
-      blockType: 'TABLE', 
+      blockType: TABLE, 
       blockId: 1,
       subtitle: 'Uppsala',
       rows: []
     },
     { 
       ...initialIlluBlock, 
-      blockType: 'SCOOTER', 
+      blockType: SCOOTER, 
       blockId: 2,
       unitId: 4,
       keyId: 95,
     },
     { 
       ...initialGraphBlock, 
-      blockType: 'LINE', 
+      blockType: LINE,
+      timeSpan: '24h',
       blockId: 3,
       unitId: 4,
       keyId: 95

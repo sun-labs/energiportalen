@@ -8,6 +8,12 @@ import {
   addTableBlockRow,
   toggleEditBlock
 } from '../../actions/blockActions';
+import {
+  PHONE,
+  TABLE,
+  SCOOTER,
+  LINE
+} from '../../constants/blockConstants';
 import { ROOT } from './Portal';
 import LineBlock from './LineBlock';
 import TableBlock from './TableBlock';
@@ -63,7 +69,11 @@ class Home extends Component {
         </div>
         <FacDashBlock/>
         { addingBlock
-          ? <AddBlock addNewBlock={() => dispatch(toggleAddBlock())}/>
+          ? <AddBlock 
+              addNewBlock={() => dispatch(toggleAddBlock())}
+              dispatch={dispatch}
+              toggleEditBlock={toggleEditBlock}
+            />
           : <div 
               className="blockk add-block"
               onClick={() => dispatch(toggleAddBlock())}
@@ -88,13 +98,13 @@ class Home extends Component {
             
             switch(block.blockType) {
               // TEMP DO BETTER
-              case 'PHONE':
+              case PHONE:
                 return <IlluPhoneBlock key={block.blockId} { ...blockProps }/>
-              case 'TABLE':
+              case TABLE:
                 return <TableBlock key={block.blockId} { ...blockProps } addTableBlockRow={addTableBlockRow} />
-              case 'SCOOTER':
+              case SCOOTER:
                 return <IlluScooterBlock key={block.blockId} { ...blockProps }/>
-              case 'LINE':
+              case LINE:
                 return <LineBlock key={block.blockId} { ...blockProps }/>
               default:
                 return null;
