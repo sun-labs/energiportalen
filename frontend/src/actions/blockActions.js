@@ -3,7 +3,8 @@ import {
   FETCH_SUM_VALUE_DATA_SUCCESS,
   TOGGLE_ADD_BLOCK,
   ADD_TABLE_BLOCK_ROW,
-  FETCH_DATA_SUCCESS
+  FETCH_DATA_SUCCESS,
+  TOGGLE_EDIT_BLOCK
 } from '../constants/blockConstants';
 
 export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockType }) => {
@@ -56,5 +57,11 @@ export const toggleAddBlock = () => {
 export const addTableBlockRow = (blockId) => {
   return (dispatch) => {
     dispatch({ type: ADD_TABLE_BLOCK_ROW, blockId })
+  }
+}
+
+export const toggleEditBlock = (blockId) => {
+  return (dispatch) => {
+    dispatch({ type: TOGGLE_EDIT_BLOCK, blockId })
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../styles/Block.css';
 import ContentEdit from './ContentEdit';
 
@@ -72,7 +72,7 @@ const Footer = (props) => {
   }
 }
 
-class Content extends React.Component {
+class Content extends Component {
 
   render() {
 
@@ -99,22 +99,22 @@ class Content extends React.Component {
   }
 }
 
-class Block extends React.Component {
+class Block extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      editing: false,
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     editing: false,
 
-    }
-    this.handleClick = this.handleClick.bind(this);
-  }
+  //   }
+  //   this.handleClick = this.handleClick.bind(this);
+  // }
 
-  handleClick(e) {
-    this.setState({
-      editing: !this.state.editing
-    });
-  }
+  // handleClick(e) {
+  //   this.setState({
+  //     editing: !this.state.editing
+  //   });
+  // }
 
   shouldRender(blockType, contentType) {
     switch(blockType) {
@@ -141,13 +141,13 @@ class Block extends React.Component {
   }
 
   render() {
-    const { children, type } = this.props;
+    const { children, type, editing, dispatch, toggleEditBlock, blockId } = this.props;
 
     return (
       <div className={`blockk ${this.getCSSClass(type)}`}>
-        { this.shouldRender(type, HEADER) ? <Header {...this.props} editHandle={ this.handleClick } /> : '' }
+        { this.shouldRender(type, HEADER) ? <Header {...this.props} editHandle={() => dispatch(toggleEditBlock(blockId))} /> : '' }
 
-        <Content {...this.props} editing={ this.state.editing }>
+        <Content {...this.props} editing={ editing }>
           { children }
         </Content>
 

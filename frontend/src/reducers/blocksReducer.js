@@ -8,7 +8,8 @@ import {
   FETCH_SUM_VALUE_DATA_SUCCESS,
   TOGGLE_ADD_BLOCK,
   ADD_TABLE_BLOCK_ROW,
-  FETCH_DATA_SUCCESS
+  FETCH_DATA_SUCCESS,
+  TOGGLE_EDIT_BLOCK
 } from '../constants/blockConstants';
 
 const tempRow = {
@@ -31,7 +32,8 @@ const initialBlock = {
   keyId: '',
   refresh: false,
   blockId: '',
-  blockType: ''
+  blockType: '',
+  editing: false
 }
 
 const initialGraphBlock = {
@@ -96,6 +98,11 @@ const initialState = {
 
 const blockReducer = (state = {}, action = null) => {
   switch(action.type) {
+    case TOGGLE_EDIT_BLOCK:
+      return {
+        ...state,
+        editing: !state.editing
+      }
     case ADD_TABLE_BLOCK_ROW:
       return {
         ...state,
@@ -128,6 +135,7 @@ const blocksReducer = (state = initialState, action = null) => {
         ...state,
         addingBlock: !state.addingBlock
       }
+    case TOGGLE_EDIT_BLOCK:
     case ADD_TABLE_BLOCK_ROW:
     case FETCH_SUM_VALUE_DATA_SUCCESS:
     case FETCH_DATA_SUCCESS:

@@ -18,13 +18,19 @@ class TableBlock extends Component {
       rows = [],
       addTableBlockRow,
       dispatch,
-      blockId
+      blockId,
+      editing,
+      toggleEditBlock
     } = this.props;
 
     const blockInfo = {
       title,
       subtitle,
-      type: 'TABLE'
+      type: 'TABLE',
+      editing,
+      toggleEditBlock,
+      dispatch,
+      blockId
     }
   
     return (

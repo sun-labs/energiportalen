@@ -77,6 +77,10 @@ setDataColors(dataList, config) {
       timeSpan,
       title,
       dataKey,
+      editing,
+      toggleEditBlock,
+      dispatch,
+      blockId
     } = this.props;
 
     const datasets = this.setArrayLengths(
@@ -89,6 +93,10 @@ setDataColors(dataList, config) {
       subtitle: dataKey,
       timeSpan,
       type: 'LINE',
+      editing,
+      toggleEditBlock,
+      dispatch,
+      blockId
     }
 
     return (

@@ -5,7 +5,8 @@ import {
   fetchSumValueData,
   fetchData,
   toggleAddBlock,
-  addTableBlockRow
+  addTableBlockRow,
+  toggleEditBlock
 } from '../../actions/blockActions';
 import { ROOT } from './Portal';
 import LineBlock from './LineBlock';
@@ -82,6 +83,7 @@ class Home extends Component {
               fetchSumValueData,
               fetchData,
               dispatch,
+              toggleEditBlock
             };
             
             switch(block.blockType) {
