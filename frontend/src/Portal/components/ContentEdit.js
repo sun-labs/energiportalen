@@ -23,58 +23,47 @@ class ContentEdit extends React.Component {
   }
 
   componentWillMount() {
-    const { getBlock } = this.props;
-    if(getBlock) {
-      const {
-        from,
-        to,
-        interval,
-        unitId,
-        keyId,
-        title
-      } = getBlock();
+    // const { getBlock } = this.props;
+    // if(getBlock) {
+    //   const {
+    //     from,
+    //     to,
+    //     interval,
+    //     unitId,
+    //     keyId,
+    //     title
+    //   } = getBlock();
 
-      this.setState({
-        from,
-        to,
-        unitId,
-        keyId,
-        interval,
-        location: title,
-        locationId: title
-      })
+      // this.setState({
+      //   from,
+      //   to,
+      //   unitId,
+      //   keyId,
+      //   interval,
+      //   location: title,
+      //   locationId: title
+      // })
+
+      // console.log('props', this.props);
+      const { 
+        dispatch, 
+        blockActions 
+      } = this.props;
+      dispatch(blockActions.getLocations());
     }
-
-    API.getLocations({}, (res) => {
-      this.setState({
-        locationOptions: res.data.map((loc, index) => {
-          return {
-            value: loc.id,
-            label: loc.name
-          }
-        })
-      });
-    });
-
-  }
 
   handleLocationChange(e) {
     if(e) {
       this.setState({
-        locationId: e.value,
-        location: e.label
+        location : {
+          label: e.label,
+          value: e.value
+        }
       }, () => {
 
-        API.getUnitsFromLocation(this.state.locationId, (res) => {
-        this.setState({
-          unitOptions: res.data.map((unit, index) => {
-            return {
-              value: unit.id,
-              label: unit.name
-            }
-          })
-        })
-      });
+        const { blockActions, dispatch } = this.props;
+
+        dispatch(blockActions.getUnitsFromLocation(this.state.location));
 
       });
     } else {
@@ -109,29 +98,40 @@ class ContentEdit extends React.Component {
 
   handleSave(e) {
     console.log(this.state);
-    const {
-      from,
-      to,
-      interval,
-      unitId,
-      keyId
-    } = this.state;
-    this.props.updateBlock({
-      from,
-      to,
-      interval,
-      unitId,
-      keyId
-    });
+    // const {
+    //   from,
+    //   to,
+    //   interval,
+    //   unitId,
+    //   keyId
+    // } = this.state;
+    // this.props.updateBlock({
+    //   from,
+    //   to,
+    //   interval,
+    //   unitId,
+    //   keyId
+    // });
+
+
     console.log('time to save');
   }
 
   render() {
 
-    const { addNewBlock } = this.props;
+    // console.log(this.props);
+
+    const { 
+      blockActions, 
+      dispatch,
+      locationOptions = []
+    } = this.props;
+
+    // console.log('props', this.props);
 
     const {
       location,
+      // locationId,
       type,
       interval,
       // content,
@@ -160,8 +160,8 @@ class ContentEdit extends React.Component {
       <div className="blockk-add">
         <Select
           name="form-field-name"
-          value={location}
-          options={this.state.locationOptions}
+          value={location.value}
+          options={locationOptions}
           placeholder="CHOOSE LOCATION"
           clearable={true}
           className="choose-loc-add"
@@ -233,7 +233,7 @@ class ContentEdit extends React.Component {
           } />
         <div className="button-wrapper">
           <button
-            onClick={() => addNewBlock()}
+            onClick={() => dispatch(blockActions.addNewBlock())}
             className="cancel-block-add"
           >CANCEL
         </button>

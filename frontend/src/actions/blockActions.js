@@ -4,7 +4,9 @@ import {
   TOGGLE_ADD_BLOCK,
   ADD_TABLE_BLOCK_ROW,
   FETCH_DATA_SUCCESS,
-  TOGGLE_EDIT_BLOCK
+  TOGGLE_EDIT_BLOCK,
+  GET_LOCATIONS,
+  GET_UNITS_FROM_LOCATION
 } from '../constants/blockConstants';
 
 export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockType }) => {
@@ -63,5 +65,33 @@ export const addTableBlockRow = (blockId) => {
 export const toggleEditBlock = (blockId) => {
   return (dispatch) => {
     dispatch({ type: TOGGLE_EDIT_BLOCK, blockId })
+  }
+}
+
+export const addBlock = ({ from, to, interval, unitId, keyId }) => {
+
+}
+
+export const getLocations = () => {
+  return (dispatch) => {
+    API.getLocations({}, (res) => {
+
+      dispatch({ 
+        type: GET_LOCATIONS,
+        locations: res.data.map((loc) => ({ value: loc.id, label: loc.name }))
+      })
+    });
+  }
+}
+
+export const getUnitsFromLocation = (location) => {
+  return (dispatch) => {
+     API.getUnitsFromLocation(location.value, (res) => {
+      dispatch({
+        type: GET_UNITS_FROM_LOCATION,
+        units: res.data.map((unit) => ({ value: unit.id, label: unit.name  })),
+        location
+      })
+    });
   }
 }

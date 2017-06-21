@@ -8,24 +8,17 @@ class AddBlock extends Component {
 
   render() {
 
-    const { 
-      addNewBlock, 
-      editing, 
-      toggleEditBlock,
-      dispatch
-    } = this.props;
+    // console.log('add block props', this.props);
 
     const blockInfo = {
+      ...this.props,
       type: 'ADD',
       title: 'ADD BLOCK',
-      editing,
-      toggleEditBlock,
-      dispatch
     }
 
     return(
     <Block className="blockk-add" {...blockInfo}>
-      <ContentEdit {...addNewBlock} />
+      <ContentEdit {...blockInfo} />
     </Block>
     );
   }

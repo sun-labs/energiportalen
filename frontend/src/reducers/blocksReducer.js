@@ -13,7 +13,9 @@ import {
   PHONE,
   TABLE,
   SCOOTER,
-  LINE
+  LINE,
+  GET_LOCATIONS,
+  GET_UNITS_FROM_LOCATION
 } from '../constants/blockConstants';
 
 const tempRow = {
@@ -59,6 +61,7 @@ const initialIlluBlock = {
 }
 
 const initialState = {
+  locationOptions: [],
   addingBlock: false,
   blocks: [
     { 
@@ -135,6 +138,25 @@ const blockReducer = (state = {}, action = null) => {
 
 const blocksReducer = (state = initialState, action = null) => {
   switch(action.type) {
+    case GET_UNITS_FROM_LOCATION:
+      return {
+        ...state,
+        locationOptions: state.locationOptions.map((loc) => {
+          if (loc.value === action.location.value) {
+            return {
+              ...loc,
+              unitOptions: action.units
+            }
+          } else {
+            return loc;
+          }
+        })
+      }
+    case GET_LOCATIONS:
+      return {
+        ...state,
+        locationOptions: action.locations
+      }
     case TOGGLE_ADD_BLOCK:
       return {
         ...state,

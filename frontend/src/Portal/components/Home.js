@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { 
-  fetchSumValueData,
-  fetchData,
-  toggleAddBlock,
-  addTableBlockRow,
-  toggleEditBlock
-} from '../../actions/blockActions';
+// import { 
+//   fetchSumValueData,
+//   fetchData,
+//   toggleAddBlock,
+//   addTableBlockRow,
+//   toggleEditBlock,
+//   getLocations
+// } from '../../actions/blockActions';
+
+import * as blockActions from '../../actions/blockActions';
+
 import {
   PHONE,
   TABLE,
@@ -56,9 +60,13 @@ class Home extends Component {
     const { 
       addingBlock, 
       blocks,
-      dispatch
+      dispatch,
+      locationOptions
     } = this.props;
 
+    const {
+      toggleAddBlock,
+    } = blockActions;
 
     return (
       <div className="content">
@@ -70,9 +78,9 @@ class Home extends Component {
         <FacDashBlock/>
         { addingBlock
           ? <AddBlock 
-              addNewBlock={() => dispatch(toggleAddBlock())}
+              blockActions={blockActions}
               dispatch={dispatch}
-              toggleEditBlock={toggleEditBlock}
+              locationOptions={locationOptions}
             />
           : <div 
               className="blockk add-block"
@@ -90,10 +98,8 @@ class Home extends Component {
           {blocks.map((block) => {
             const blockProps = {
               ...block,
-              fetchSumValueData,
-              fetchData,
               dispatch,
-              toggleEditBlock
+              blockActions,
             };
             
             switch(block.blockType) {
@@ -101,7 +107,7 @@ class Home extends Component {
               case PHONE:
                 return <IlluPhoneBlock key={block.blockId} { ...blockProps }/>
               case TABLE:
-                return <TableBlock key={block.blockId} { ...blockProps } addTableBlockRow={addTableBlockRow} />
+                return <TableBlock key={block.blockId} { ...blockProps } />
               case SCOOTER:
                 return <IlluScooterBlock key={block.blockId} { ...blockProps }/>
               case LINE:
@@ -120,7 +126,8 @@ class Home extends Component {
 const mapStateToProps = (state) => {
   return {
     addingBlock: state.blocksReducer.addingBlock,
-    blocks: state.blocksReducer.blocks
+    blocks: state.blocksReducer.blocks,
+    locationOptions: state.blocksReducer.locationOptions
   }
 }
 

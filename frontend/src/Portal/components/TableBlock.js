@@ -6,8 +6,12 @@ import TableBlockRow from './TableBlockRow';
 class TableBlock extends Component {
 
   componentWillMount() {
-    const { dispatch, addTableBlockRow, blockId } = this.props;
-    dispatch(addTableBlockRow(blockId));
+    const { 
+      dispatch,
+      blockId,
+      blockActions
+    } = this.props;
+    dispatch(blockActions.addTableBlockRow(blockId));
   }
 
   render() {
@@ -16,11 +20,10 @@ class TableBlock extends Component {
       title = '',
       subtitle = '',
       rows = [],
-      addTableBlockRow,
       dispatch,
       blockId,
       editing,
-      toggleEditBlock
+      blockActions
     } = this.props;
 
     const blockInfo = {
@@ -28,7 +31,6 @@ class TableBlock extends Component {
       subtitle,
       type: 'TABLE',
       editing,
-      toggleEditBlock,
       dispatch,
       blockId
     }
@@ -43,7 +45,7 @@ class TableBlock extends Component {
             })
           }
           <tr>
-            <td onClick={ () => dispatch(addTableBlockRow(blockId)) } className="add-information">+ add information</td>
+            <td onClick={ () => dispatch(blockActions.addTableBlockRow(blockId)) } className="add-information">+ add information</td>
           </tr>
         </tbody>
       </table>

@@ -8,12 +8,12 @@ class LineBlock extends Component {
   componentWillMount() {
     const {
       refresh,
-      fetchData,
+      blockActions,
       dispatch
     } = this.props;
 
     if(refresh === true) {
-      dispatch(fetchData(this.props))
+      dispatch(blockActions.fetchData(this.props))
     }
   }
 
@@ -78,7 +78,7 @@ setDataColors(dataList, config) {
       title,
       dataKey,
       editing,
-      toggleEditBlock,
+      blockActions,
       dispatch,
       blockId
     } = this.props;
@@ -94,7 +94,7 @@ setDataColors(dataList, config) {
       timeSpan,
       type: 'LINE',
       editing,
-      toggleEditBlock,
+      blockActions,
       dispatch,
       blockId
     }
