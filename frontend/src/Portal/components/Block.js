@@ -101,20 +101,15 @@ class Content extends Component {
 
 class Block extends Component {
 
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     editing: false,
+  constructor() {
+    super();
+    this.state = {
+      editing: false,
 
-  //   }
-  //   this.handleClick = this.handleClick.bind(this);
-  // }
-
-  // handleClick(e) {
-  //   this.setState({
-  //     editing: !this.state.editing
-  //   });
-  // }
+    }
+    this.shouldRender = this.shouldRender.bind(this);
+    this.getCSSClass = this.getCSSClass.bind(this);
+  }
 
   shouldRender(blockType, contentType) {
     switch(blockType) {
@@ -141,17 +136,29 @@ class Block extends Component {
   }
 
   render() {
-    const { children, type, editing, dispatch, toggleEditBlock, blockId } = this.props;
+    const { 
+      children, 
+      type, 
+      editing, 
+      dispatch, 
+      toggleEditBlock, 
+      blockId 
+    } = this.props;
+
+    const { 
+      shouldRender, 
+      getCSSClass 
+    } = this;
 
     return (
-      <div className={`blockk ${this.getCSSClass(type)}`}>
-        { this.shouldRender(type, HEADER) ? <Header {...this.props} editHandle={() => dispatch(toggleEditBlock(blockId))} /> : '' }
+      <div className={`blockk ${getCSSClass(type)}`}>
+        { shouldRender(type, HEADER) ? <Header {...this.props} editHandle={() => dispatch(toggleEditBlock(blockId))} /> : '' }
 
         <Content {...this.props} editing={ editing }>
           { children }
         </Content>
 
-        { this.shouldRender(type, FOOTER) ? <Footer {...this.props} /> : '' }
+        { shouldRender(type, FOOTER) ? <Footer {...this.props} /> : '' }
       </div>
     );
   }
