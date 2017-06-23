@@ -16,7 +16,8 @@ import {
   LINE,
   GET_LOCATIONS,
   GET_UNITS_FROM_LOCATION,
-  GET_KEYS_FROM_UNIT
+  GET_KEYS_FROM_UNIT,
+  SAVE_NEW_BLOCK
 } from '../constants/blockConstants';
 
 const tempRow = {
@@ -165,6 +166,58 @@ const blockReducer = (state = {}, action = null) => {
 
 const blocksReducer = (state = initialState, action = null) => {
   switch(action.type) {
+    case SAVE_NEW_BLOCK:
+
+      let newBlock = {};
+
+      switch(action.blockType) {
+        case PHONE:
+          newBlock = {
+            ...initialIlluBlock,
+            from: action.from,
+            to: action.to,
+            interval: action.interval,
+            unitId: action.unitId,
+            keyId: action.keyId,
+            blockId: state.blocks.length,
+            blockType: action.blockType
+          }
+        case TABLE:
+          newBlock = {
+            ...initialBlock,
+            subtitle: 'TEMP_SUBTITLE',
+            rows: [],
+            from: action.from,
+            to: action.to,
+            unitId: action.unitId,
+            keyId: action.keyId,
+            blockId: state.blocks.length,
+            blockType: action.blockType
+          }
+        case SCOOTER:
+          newBlock = {
+            ...initialIlluBlock,
+            from: action.from,
+            to: action.to,
+            unitId: action.unitId,
+            keyId: action.keyId,
+            blockId: state.blocks.length,
+            blockType: action.blockType
+          }
+        case LINE:
+        default:
+          break;
+      }
+
+      return {
+        ...state,
+        blocks: [
+          ...state.blocks,
+          {
+            
+          }
+        ]
+      }
     case GET_KEYS_FROM_UNIT:
       return {
         ...state,

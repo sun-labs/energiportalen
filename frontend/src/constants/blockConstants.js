@@ -20,6 +20,7 @@ export const DATE_FROM = 'DATE_FROM';
 export const DATE_TO = 'DATE_TO';
 export const BLOCK_TYPE = 'BLOCK_TYPE';
 export const SAVE_BLOCK = 'SAVE_BLOCK';
+export const SAVE_NEW_BLOCK = 'SAVE_NEW_BLOCK';
 
 export const RAW = 'RAW';
 export const HOUR = 'HOUR';

@@ -7,7 +7,8 @@ import {
   TOGGLE_EDIT_BLOCK,
   GET_LOCATIONS,
   GET_UNITS_FROM_LOCATION,
-  GET_KEYS_FROM_UNIT
+  GET_KEYS_FROM_UNIT,
+  SAVE_NEW_BLOCK
 } from '../constants/blockConstants';
 
 export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockType }) => {
@@ -71,7 +72,16 @@ export const toggleEditBlock = (blockId) => {
 
 export const addBlock = ({ from, to, interval, unitId, keyId, blockType }) => {
   return (dispatch) => {
-    console.log(from, to, interval, unitId, keyId, blockType);
+    dispatch({
+      type: SAVE_NEW_BLOCK,
+      from,
+      to,
+      interval,
+      unitId,
+      keyId,
+      blockType
+    })
+    dispatch(toggleAddBlock())
   }
 }
 
