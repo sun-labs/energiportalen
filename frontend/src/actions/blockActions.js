@@ -6,7 +6,8 @@ import {
   FETCH_DATA_SUCCESS,
   TOGGLE_EDIT_BLOCK,
   GET_LOCATIONS,
-  GET_UNITS_FROM_LOCATION
+  GET_UNITS_FROM_LOCATION,
+  GET_KEYS_FROM_UNIT
 } from '../constants/blockConstants';
 
 export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockType }) => {
@@ -68,8 +69,10 @@ export const toggleEditBlock = (blockId) => {
   }
 }
 
-export const addBlock = ({ from, to, interval, unitId, keyId }) => {
-
+export const addBlock = ({ from, to, interval, unitId, keyId, blockType }) => {
+  return (dispatch) => {
+    console.log(from, to, interval, unitId, keyId, blockType);
+  }
 }
 
 export const getLocations = () => {
@@ -78,7 +81,7 @@ export const getLocations = () => {
 
       dispatch({ 
         type: GET_LOCATIONS,
-        locations: res.data.map((loc) => ({ value: loc.id, label: loc.name }))
+        locations: res.data
       })
     });
   }
@@ -86,11 +89,24 @@ export const getLocations = () => {
 
 export const getUnitsFromLocation = (location) => {
   return (dispatch) => {
-     API.getUnitsFromLocation(location.value, (res) => {
+     API.getUnitsFromLocation(location.id, (res) => {
       dispatch({
         type: GET_UNITS_FROM_LOCATION,
-        units: res.data.map((unit) => ({ value: unit.id, label: unit.name  })),
+        units: res.data.map((unit) => ({ ...unit, locationId: location.id })),
         location
+      })
+    });
+  }
+}
+
+export const getKeysFromUnit = (unit) => {
+  return (dispatch, getState) => {
+    API.getKeysFromUnit(unit.id, (res) => {
+
+      dispatch({
+        type: GET_KEYS_FROM_UNIT,
+        keys: res.data.map((key) => ({ ...key, unitId: unit.id })),
+        unit
       })
     });
   }

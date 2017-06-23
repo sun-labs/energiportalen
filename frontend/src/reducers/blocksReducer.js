@@ -15,7 +15,8 @@ import {
   SCOOTER,
   LINE,
   GET_LOCATIONS,
-  GET_UNITS_FROM_LOCATION
+  GET_UNITS_FROM_LOCATION,
+  GET_KEYS_FROM_UNIT
 } from '../constants/blockConstants';
 
 const tempRow = {
@@ -60,8 +61,41 @@ const initialIlluBlock = {
   refresh: true
 }
 
+// const locations = [
+//   location,
+//   location,
+//   location
+// ]
+
+// const location = {
+//   id,
+//   name,
+//   units: [
+//     unit,
+//     unit,
+//     unit
+//   ]
+// }
+
+// const unit = {
+//   locationId,
+//   id,
+//   name,
+//   keys: [
+//     key,
+//     key,
+//     key
+//   ]
+// }
+
+// const key = {
+//   unitId,
+//   id,
+//   name
+// }
+
 const initialState = {
-  locationOptions: [],
+  locations: [],
   addingBlock: false,
   blocks: [
     { 
@@ -97,13 +131,6 @@ const initialState = {
     ],
 };
 
-// const illuBlockReducer = (state = initialIlluBlock, action = null) => {
-//   switch(action.type) {
-//     default: 
-//       return state;
-//   }
-// }
-
 const blockReducer = (state = {}, action = null) => {
   switch(action.type) {
     case TOGGLE_EDIT_BLOCK:
@@ -138,14 +165,37 @@ const blockReducer = (state = {}, action = null) => {
 
 const blocksReducer = (state = initialState, action = null) => {
   switch(action.type) {
+    case GET_KEYS_FROM_UNIT:
+      return {
+        ...state,
+        locations: state.locations.map((loc) => {
+          if (loc.id === action.unit.locationId) {
+            return {
+              ...loc,
+              units: loc.units.map((u) => {
+                if (u.id === action.unit.id) {
+                  return {
+                    ...u,
+                    keys: action.keys
+                  }
+                } else {
+                  return u;
+                }
+              })
+            }
+          } else {
+            return loc;
+          }
+        })
+      }
     case GET_UNITS_FROM_LOCATION:
       return {
         ...state,
-        locationOptions: state.locationOptions.map((loc) => {
-          if (loc.value === action.location.value) {
+        locations: state.locations.map((loc) => {
+          if (loc.id === action.location.id) {
             return {
               ...loc,
-              unitOptions: action.units
+              units: action.units
             }
           } else {
             return loc;
@@ -155,7 +205,7 @@ const blocksReducer = (state = initialState, action = null) => {
     case GET_LOCATIONS:
       return {
         ...state,
-        locationOptions: action.locations
+        locations: action.locations
       }
     case TOGGLE_ADD_BLOCK:
       return {

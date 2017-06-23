@@ -1,252 +1,242 @@
 import React from 'react';
 import Select from 'react-select';
 import '../styles/react-select.css';
-
-import API from '../../API';
+import {
+  LOCATION,
+  UNIT,
+  KEY,
+  INTERVAL,
+  DATE_FROM,
+  DATE_TO,
+  BLOCK_TYPE,
+  SAVE_BLOCK,
+  typeOptions,
+  intervalOptions
+} from '../../constants/blockConstants';
 
 class ContentEdit extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      location: '',
-      locationId: -1,
-      type: '',
-      interval: '',
-      content: '',
-      from: undefined,
-      to: undefined,
-      locationOptions: [],
-      unitOptions: [],
-      keyOptions: []
+      location: {},
+      unit: {},
+      key: {},
+      from: '',
+      to: '',
+      interval: {},
+      type: {},
     };
+
+    this.mapNameAndIdToLabelAndValue = this.mapNameAndIdToLabelAndValue.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentWillMount() {
-    // const { getBlock } = this.props;
-    // if(getBlock) {
-    //   const {
-    //     from,
-    //     to,
-    //     interval,
-    //     unitId,
-    //     keyId,
-    //     title
-    //   } = getBlock();
-
-      // this.setState({
-      //   from,
-      //   to,
-      //   unitId,
-      //   keyId,
-      //   interval,
-      //   location: title,
-      //   locationId: title
-      // })
-
-      // console.log('props', this.props);
-      const { 
-        dispatch, 
-        blockActions 
-      } = this.props;
-      dispatch(blockActions.getLocations());
-    }
-
-  handleLocationChange(e) {
-    if(e) {
-      this.setState({
-        location : {
-          label: e.label,
-          value: e.value
-        }
-      }, () => {
-
-        const { blockActions, dispatch } = this.props;
-
-        dispatch(blockActions.getUnitsFromLocation(this.state.location));
-
-      });
-    } else {
-      this.setState({ unitId: '', interval: '', content: '', type: '' })
-    }
+    const { 
+      dispatch, 
+      blockActions 
+    } = this.props;
+    dispatch(blockActions.getLocations());
   }
 
-  handleUnitChange(e) {
-    if(e) {
-      this.setState({
-        unitId: e.value,
-        unit: e.label
-      }, () => {
+  handleChange(e = {}) {
+    const { blockActions, dispatch } = this.props;
 
-        API.getKeysFromUnit(this.state.unitId, (res) => {
-          console.log(res.data);
+    switch(e.type) {
+      case LOCATION:
         this.setState({
-          keyOptions: res.data.map((key, index) => {
-            return {
-              value: key.id,
-              label: key.name
-            }
-          })
+          location: {
+            name: e.label,
+            id: e.value
+          }
+        }, () => {
+          dispatch(blockActions.getUnitsFromLocation(this.state.location));
         })
-      });
-
-      });
-    } else {
-      this.setState({ keyId: '', interval: '', content: '', type: '' })
+        break;
+      case UNIT:
+        this.setState({
+          unit: {
+            name: e.label,
+            id: e.value,
+            locationId: this.state.location.id
+          }
+        }, () => {
+          dispatch(blockActions.getKeysFromUnit(this.state.unit));
+        })
+        break;
+      case KEY:
+        this.setState({
+          key: {
+            name: e.label,
+            id: e.value,
+            unitId: this.state.unit.id
+          }
+        })
+        break;
+      case INTERVAL:
+        this.setState({
+          interval: {
+            label: e.label,
+            value: e.value
+          }
+        })
+        break;
+      case DATE_FROM:
+        this.setState({
+          from: e.target.value
+        })
+        break;
+      case DATE_TO:
+        const _from = new Date(this.state.from);
+        const _to = new Date(e.target.value);
+        if (_to - _from > 0) {
+          this.setState({
+            to: e.target.value
+          })
+        } else {
+          // TODO
+          // display error
+        }
+        break;
+      case BLOCK_TYPE:
+        this.setState({
+          type: {
+            label: e.label,
+            value: e.value
+          }
+        })
+        break;
+      case SAVE_BLOCK:
+        const { from, to, interval, unit, key, type } = this.state;
+        dispatch(
+          blockActions.addBlock({
+            from,
+            to,
+            interval: interval.value,
+            unitId: unit.id,
+            keyId: key.id,
+            blockType: type.value
+          }));
+        break;
+      default:
+        break;
     }
   }
 
-  handleSave(e) {
-    console.log(this.state);
-    // const {
-    //   from,
-    //   to,
-    //   interval,
-    //   unitId,
-    //   keyId
-    // } = this.state;
-    // this.props.updateBlock({
-    //   from,
-    //   to,
-    //   interval,
-    //   unitId,
-    //   keyId
-    // });
-
-
-    console.log('time to save');
+  mapNameAndIdToLabelAndValue(list = []) {
+    return list.map((item) => ({ ...item, value: item.id, label: item.name }))
   }
 
   render() {
 
-    // console.log(this.props);
-
     const { 
       blockActions, 
       dispatch,
-      locationOptions = []
+      locations = []
     } = this.props;
-
-    // console.log('props', this.props);
 
     const {
       location,
-      // locationId,
       type,
       interval,
-      // content,
-      unitId,
-      keyId,
+      unit,
+      key,
       from,
-      to
+      to,
     } = this.state;
 
-    const typeOptions = [
-      { value: 'Line Chart', label: 'Line Chart' },
-      { value: 'Table Chart', label: 'Table Chart' },
-      { value: 'Smartphone charges', label: 'Smartphone charges' },
-      { value: 'Scooter thingy', label: 'Scooter thingy' }
-    ];
+    const {
+      mapNameAndIdToLabelAndValue,
+      handleChange
+    } = this;
 
-    const intervalOptions = [
-      { value: 'raw', label: '5 sec' },
-      { value: 'hour', label: '1h' },
-      { value: 'day', label: '24h' },
-      { value: 'month', label: '7d' },
-      { value: 'year', label: '365d' }
-    ];
+    const units = (location = {}) => {
+      const loc = locations.find((l) => l.id === location.id);
+      return loc ? ( loc.units ) : [];
+    }
+
+    const keys = (unit = {}) => {
+      const loc = locations.find((l) => l.id === unit.locationId);
+      const uni = loc ? loc.units.find((u) => u.id === unit.id) : {};
+      return uni.keys ? uni.keys : [];
+    }
 
     return (
       <div className="blockk-add">
         <Select
-          name="form-field-name"
-          value={location.value}
-          options={locationOptions}
+          name={LOCATION}
+          value={location.id}
+          options={mapNameAndIdToLabelAndValue(locations)}
           placeholder="CHOOSE LOCATION"
           clearable={true}
           className="choose-loc-add"
-          onChange={ this.handleLocationChange.bind(this) } />
+          onChange={(e) => handleChange({ ...e, type: LOCATION })} />
         <Select
-          name="unitId"
-          value={unitId}
-          options={this.state.unitOptions}
+          disabled={!location.id}
+          name={UNIT}
+          value={unit.id}
+          options={mapNameAndIdToLabelAndValue(units(location))}
           placeholder="CHOOSE UNIT"
           clearable={true}
           className="choose-loc-add"
-          onChange={ this.handleUnitChange.bind(this) } />
+          onChange={(e) => handleChange({ ...e, type: UNIT })} />
         <Select
-          name="keyId"
-          value={keyId}
-          options={this.state.keyOptions}
+          disabled={!unit.id}
+          name={KEY}
+          value={key.id}
+          options={mapNameAndIdToLabelAndValue(keys(unit))}
           placeholder="CHOOSE KEY"
           clearable={true}
           className="choose-loc-add"
-          onChange={(e) => {
-            e
-              ? this.setState({ keyId: e.value })
-              : this.setState({ keyId: '', interval: '', content: '', type: '' })
-          }
-          } />
+          onChange={(e) => handleChange({ ...e, type: KEY })} />
         <Select
-          name="form-field-name"
-          value={interval}
+          disabled={!key.id}
+          name={INTERVAL}
+          value={interval.value}
           options={intervalOptions}
           placeholder="INTERVAL"
           clearable={true}
           className="choose-time-add"
-          onChange={(e) => {
-            e
-              ? this.setState({ interval: e.value })
-              : this.setState({ interval: '', content: '', type: '' })
-          }
-          } />
+          onChange={(e) => handleChange({ ...e, type: INTERVAL })} />
         <input
-          name="from"
-          type="text"
+          disabled={!interval.value}
+          name={DATE_FROM}
+          type="date"
           value={from}
           placeholder="DATE FROM"
-          onChange={(e) => {
-            this.setState({ from: e.target.value })
-          }
-          } />
+          onChange={(e) => handleChange({ ...e, type: DATE_FROM })} />
         <input
-          name="to"
-          type="text"
+          disabled={!from}
+          name={DATE_TO}
+          type="date"
           value={to}
           placeholder="DATE TO"
-          onChange={(e) => {
-            this.setState({ to: e.target.value })
-          }
-          } />
+          onChange={(e) => handleChange({ ...e, type: DATE_TO })} />
         <Select
-          name="form-field-name"
+          disabled={!to}
+          name={BLOCK_TYPE}
           value={type}
           options={typeOptions}
           placeholder="CHOOSE BLOCK TYPE"
           clearable={true}
           className="choose-block-add"
-          onChange={(e) => {
-            e
-              ? this.setState({ type: e.value })
-              : this.setState({ type: '' })
-          }
-          } />
+          onChange={(e) => handleChange({ ...e, type: BLOCK_TYPE })} />
         <div className="button-wrapper">
           <button
-            onClick={() => dispatch(blockActions.addNewBlock())}
+            onClick={() => dispatch(blockActions.toggleAddBlock())}
             className="cancel-block-add"
           >CANCEL
         </button>
           <button
-            onClick={ this.handleSave.bind(this) }
+            disabled={!type.value}
+            onClick={(e) => handleChange({ ...e, type: SAVE_BLOCK })}
             className="save-block-add">
-            SAVE BLOCK
+          SAVE BLOCK
         </button>
         </div>
       </div>
     );
   }
-
 }
-
 export default ContentEdit;

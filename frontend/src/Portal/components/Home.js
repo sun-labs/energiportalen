@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 // } from '../../actions/blockActions';
 
 import * as blockActions from '../../actions/blockActions';
-
 import {
   PHONE,
   TABLE,
@@ -61,7 +60,7 @@ class Home extends Component {
       addingBlock, 
       blocks,
       dispatch,
-      locationOptions
+      locations
     } = this.props;
 
     const {
@@ -80,7 +79,7 @@ class Home extends Component {
           ? <AddBlock 
               blockActions={blockActions}
               dispatch={dispatch}
-              locationOptions={locationOptions}
+              locations={locations}
             />
           : <div 
               className="blockk add-block"
@@ -127,7 +126,7 @@ const mapStateToProps = (state) => {
   return {
     addingBlock: state.blocksReducer.addingBlock,
     blocks: state.blocksReducer.blocks,
-    locationOptions: state.blocksReducer.locationOptions
+    locations: state.blocksReducer.locations
   }
 }
 
