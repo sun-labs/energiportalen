@@ -174,37 +174,30 @@ const blocksReducer = (state = initialState, action = null) => {
         case PHONE:
           newBlock = {
             ...initialIlluBlock,
-            from: action.from,
-            to: action.to,
             interval: action.interval,
-            unitId: action.unitId,
-            keyId: action.keyId,
-            blockId: state.blocks.length,
-            blockType: action.blockType
           }
+          break;
         case TABLE:
           newBlock = {
             ...initialBlock,
             subtitle: 'TEMP_SUBTITLE',
             rows: [],
-            from: action.from,
-            to: action.to,
-            unitId: action.unitId,
-            keyId: action.keyId,
-            blockId: state.blocks.length,
-            blockType: action.blockType
           }
+          break;
         case SCOOTER:
           newBlock = {
             ...initialIlluBlock,
-            from: action.from,
-            to: action.to,
-            unitId: action.unitId,
-            keyId: action.keyId,
-            blockId: state.blocks.length,
-            blockType: action.blockType
           }
+          break;
         case LINE:
+          newBlock = {
+            ...initialGraphBlock,
+            data: [],
+            dataKey: '',
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            interval: action.interval
+          }
+          break;
         default:
           break;
       }
@@ -212,10 +205,16 @@ const blocksReducer = (state = initialState, action = null) => {
       return {
         ...state,
         blocks: [
+          { 
+            ...newBlock,
+            blockId: state.blocks.length,
+            blockType: action.blockType,
+            from: action.from,
+            to: action.to,
+            unitId: action.unitId,
+            keyId: action.keyId
+          },
           ...state.blocks,
-          {
-            
-          }
         ]
       }
     case GET_KEYS_FROM_UNIT:
