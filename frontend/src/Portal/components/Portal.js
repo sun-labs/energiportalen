@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-
-// COMPONENT IMPORTS
 import Home from './Home';
 import AddBlock from './AddBlock';
 import TopNavBar from './TopNavBar';

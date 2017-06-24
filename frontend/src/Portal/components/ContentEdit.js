@@ -33,11 +33,13 @@ class ContentEdit extends React.Component {
   }
 
   componentWillMount() {
-    const { 
-      dispatch, 
-      blockActions 
-    } = this.props;
-    dispatch(blockActions.getLocations());
+    if (this.props.locations.length < 1) {
+      const { 
+        dispatch, 
+        blockActions 
+      } = this.props;
+      dispatch(blockActions.getLocations());
+    }
   }
 
   handleChange(e = {}) {

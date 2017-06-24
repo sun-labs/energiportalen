@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../Splash/assets/APIRoutes';
-
 import { Link } from 'react-router-dom';
 import { ROOT } from './Portal';
-
-// STYLE IMPORTS
 import '../styles/Home.css';
 import '../styles/Locations.css';
 
@@ -26,30 +23,30 @@ class Location extends Component {
 componentWillMount(){
   const token = localStorage.getItem('token');
   
-  axios.get(API_URL+'/locations', { headers: {Authorization: token}}).then(Response => {
-    let location = [];
-    let responsData = Response.data.length;
-    for (let i = 0; i < responsData; i++){
-      let Id = Response.data[i].id;
-      let Name = Response.data[i].name;
-      let City = Response.data[i].city;
-      let Desc = Response.data[i].description;
-      let Image = Response.data[i].image;
+  // axios.get(API_URL+'/locations', { headers: {Authorization: token}}).then(Response => {
+  //   let location = [];
+  //   let responsData = Response.data.length;
+  //   for (let i = 0; i < responsData; i++){
+  //     let Id = Response.data[i].id;
+  //     let Name = Response.data[i].name;
+  //     let City = Response.data[i].city;
+  //     let Desc = Response.data[i].description;
+  //     let Image = Response.data[i].image;
 
-      let LocLocation = {
-        Id: Id, 
-        Name: Name,
-        City: City,
-        Desc: Desc,
-        Image: Image
-      }
+  //     let LocLocation = {
+  //       Id: Id, 
+  //       Name: Name,
+  //       City: City,
+  //       Desc: Desc,
+  //       Image: Image
+  //     }
 
-      location = location.concat(LocLocation);
-    }
-    this.setState({
-      locations: location
-    });
-  })
+  //     location = location.concat(LocLocation);
+  //   }
+  //   this.setState({
+  //     locations: location
+  //   });
+  // })
 
 } 
 

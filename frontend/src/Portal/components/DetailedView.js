@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../Splash/assets/APIRoutes';
-
-
-// STYLE IMPORTS
 import '../styles/Home.css';
 import '../styles/DetailedView.css'
-
-// COMPONENT IMPORTS
 import DetailedBlock from './DetailedBlock';
 
 class DetailedView extends Component {

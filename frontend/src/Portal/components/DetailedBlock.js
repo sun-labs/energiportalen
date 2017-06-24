@@ -1,13 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { ROOT } from './Portal';
-
-// STYLE IMPORTS
 import '../styles/Home.css';
 import '../styles/DetailedBlock.css'
-
-// COMPONENT IMPORTS
 import FacBlock from './FacBlock';
 import LineBlock from './LineBlock';
 

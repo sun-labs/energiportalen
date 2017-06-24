@@ -18,6 +18,13 @@ import AddBlock from './AddBlock';
 import '../styles/Home.css';
 
 class Home extends Component {
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+
+    dispatch(blockActions.getLocations());
+  }
+
   render() {
     const { 
       addingBlock, 
