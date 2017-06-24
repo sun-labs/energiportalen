@@ -13,7 +13,7 @@ import LineBlock from './LineBlock';
 import TableBlock from './TableBlock';
 import IlluPhoneBlock from './IlluPhoneBlock';
 import IlluScooterBlock from './IlluScooterBlock';
-import FacDashBlock from './DashboardLocations'
+import DashboardLocations from './DashboardLocations'
 import AddBlock from './AddBlock';
 import '../styles/Home.css';
 
@@ -37,7 +37,11 @@ class Home extends Component {
           <h1>FAVORITE LOCATIONS<span className="inline-button"> add location + </span></h1>
           <h2> you may save or remove your own personally defined locations for easier access. </h2>
         </div>
-        <FacDashBlock/>
+        <DashboardLocations 
+          blockActions={blockActions} 
+          dispatch={dispatch} 
+          locations={locations} 
+        />
         { addingBlock
           ? <AddBlock 
               blockActions={blockActions}
