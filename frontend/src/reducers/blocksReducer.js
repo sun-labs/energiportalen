@@ -23,7 +23,7 @@ import {
 const tempRow = {
   unitId: 4,
   keyId: 95,
-  value: 400,
+  value: '',
   si: 'Wh',
   span: '1d',
   interval: 'day',
@@ -38,7 +38,7 @@ const initialBlock = {
   to: '2017-02-10 23:59:59',  
   unitId: '',
   keyId: '',
-  refresh: false,
+  refresh: true,
   blockId: '',
   blockType: '',
   editing: false
@@ -50,7 +50,6 @@ const initialGraphBlock = {
   dataKey: '',
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   interval: 'hour',
-  refresh: true
 }
 
 const initialIlluBlock = {
@@ -59,7 +58,6 @@ const initialIlluBlock = {
   subtitle: 'Uppsala',
   timeSpan: '24h',
   interval: 'hour',
-  refresh: true
 }
 
 // const locations = [
@@ -111,6 +109,8 @@ const initialState = {
       ...initialBlock, 
       blockType: TABLE, 
       blockId: 1,
+      unitId: 4,
+      keyId: 95,
       subtitle: 'Uppsala',
       rows: []
     },
@@ -144,7 +144,7 @@ const blockReducer = (state = {}, action = null) => {
         ...state,
         rows: [
           ...state.rows,
-          tempRow
+          { ...tempRow, id: state.rows.length }
         ]
       }
     case FETCH_DATA_SUCCESS:
@@ -155,9 +155,25 @@ const blockReducer = (state = {}, action = null) => {
         value: action.value
       }
     case FETCH_SUM_VALUE_DATA_SUCCESS:
-      return {
-        ...state,
-        value: action.value
+      if (typeof action.rowId === 'number') {
+        return {
+          ...state,
+          rows: state.rows.map((row) => {
+            if (row.id === action.rowId) {
+              return {
+                ...row,
+                value: parseInt(action.value, 0)
+              }
+            } else {
+              return row;
+            }
+          })
+        }
+      } else {
+        return {
+          ...state,
+          value: action.value
+        }
       }
     default:
       return state;

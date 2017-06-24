@@ -4,6 +4,38 @@ import Block from './Block';
 import TableBlockRow from './TableBlockRow';
 
 class TableBlock extends Component {
+  constructor() {
+    super();
+
+    this.fetchRowData = this.fetchRowData.bind(this);
+  }
+
+  fetchRowData(rowId) {
+    const {
+      blockActions,      
+      dispatch,
+      from,
+      to,
+      interval,
+      unitId,
+      keyId,
+      blockId,
+      blockType,
+    } = this.props;
+
+    dispatch(
+      blockActions.fetchSumValueData({
+        from,
+        to,
+        interval,
+        unitId,
+        keyId,
+        blockId,
+        blockType,
+        rowId
+      })
+    )
+  }
 
   componentWillMount() {
     const { 
@@ -26,6 +58,10 @@ class TableBlock extends Component {
       blockActions
     } = this.props;
 
+    const {
+      fetchRowData
+    } = this;
+
     const blockInfo = {
       title,
       subtitle,
@@ -41,7 +77,11 @@ class TableBlock extends Component {
         <tbody>
           { 
             rows.map((elem, index) => {
-              return (<TableBlockRow key={ index + this.props } { ...elem } />);
+              const rowProps = {
+                ...elem,
+                fetchRowData
+              }
+              return (<TableBlockRow key={ index + this.props } { ...rowProps } />);
             })
           }
           <tr>

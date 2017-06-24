@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-
-// STYLE IMPORTS
 import '../styles/Home.css';
 import '../styles/Locations.css';
-
-// COMPONENT IMPORTS
 import FacBlock from './Location'
 
 class Locations extends Component {

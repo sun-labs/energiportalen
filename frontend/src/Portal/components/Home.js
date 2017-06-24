@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { 
-//   fetchSumValueData,
-//   fetchData,
-//   toggleAddBlock,
-//   addTableBlockRow,
-//   toggleEditBlock,
-//   getLocations
-// } from '../../actions/blockActions';
-
 import * as blockActions from '../../actions/blockActions';
 import {
   PHONE,
@@ -27,35 +18,7 @@ import AddBlock from './AddBlock';
 import '../styles/Home.css';
 
 class Home extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      addBlock: false,
-      tempStuffForPresentation: false
-    }
-    this.addNewBlock = this.addNewBlock.bind(this);
-  }
-
-  addNewBlock() {
-    // TODO
-    // when adding the new block, --> ADD the new block in here
-
-    // TEMP FOR PRES
-    if (this.state.addBlock) {
-      this.setState({
-        addBlock: !this.state.addBlock,
-        tempStuffForPresentation: true
-      })
-    } else {
-      this.setState({
-        addBlock: !this.state.addBlock
-      })
-    }
-  }
-
   render() {
-    // const { addBlock } = this.state;
     const { 
       addingBlock, 
       blocks,
@@ -92,8 +55,6 @@ class Home extends Component {
         </div>
         <div className="block-wraper">
 
-          {this.state.tempStuffForPresentation ? <LineBlock/> : ''}
-          
           {blocks.map((block) => {
             const blockProps = {
               ...block,
@@ -102,7 +63,6 @@ class Home extends Component {
             };
             
             switch(block.blockType) {
-              // TEMP DO BETTER
               case PHONE:
                 return <IlluPhoneBlock key={block.blockId} { ...blockProps }/>
               case TABLE:
