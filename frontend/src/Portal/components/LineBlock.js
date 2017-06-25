@@ -9,10 +9,13 @@ class LineBlock extends Component {
     const {
       refresh,
       actions,
-      dispatch
+      dispatch,
+      locationId = null
     } = this.props;
 
-    if(refresh === true) {
+    if (typeof locationId === 'number') {
+      dispatch(actions.fetchLocationData(this.props));
+    } else if (refresh === true) {
       dispatch(actions.fetchData(this.props))
     }
   }
@@ -80,7 +83,7 @@ setDataColors(dataList, config) {
       editing,
       actions,
       dispatch,
-      blockId
+      blockId = null
     } = this.props;
 
     const datasets = this.setArrayLengths(

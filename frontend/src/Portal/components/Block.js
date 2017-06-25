@@ -142,7 +142,7 @@ class Block extends Component {
       editing, 
       dispatch, 
       toggleEditBlock, 
-      blockId 
+      blockId = null // TODO handle when null & "toggleEditBlock" --> locationBlock
     } = this.props;
 
     const { 

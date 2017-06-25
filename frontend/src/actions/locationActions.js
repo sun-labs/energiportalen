@@ -6,7 +6,37 @@ import {
   GET_LOCATIONS,
   GET_UNITS_FROM_LOCATION,
   GET_KEYS_FROM_UNIT,
+  FETCH_LOCATION_DATA_SUCCESS,
 } from '../constants/locationConstants';
+
+export const fetchLocationData = ({ from, to, interval, unitId, keyId, title, blockType, locationId }) => {
+  return (dispatch, getState) => {
+    API.getDataFromKey({ from, to, interval, unitId, keyId }, (res) => {
+
+      const values = res.data.data.map((elem) => {
+        return elem.sum_val.toFixed();
+      });
+
+      const labels = res.data.data.map((elem) => {
+        return elem.new_timestamp;
+      });
+
+      const data = [
+        { 
+          data: values, 
+          label: title, 
+        },
+        { 
+          data: values.map((elem) => { return parseInt(elem, 10) + Math.random() * 50 }),
+          label: `Random ${title}`
+        }
+      ];
+      const value = res.data.data[0].sum_val.toFixed(0);
+
+      dispatch({ type: FETCH_LOCATION_DATA_SUCCESS, labels, data, value, locationId });
+    });
+  }
+}
 
 export const getLocation = (id) => {
   const token = localStorage.getItem('token');

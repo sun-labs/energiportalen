@@ -23,7 +23,8 @@ class DetailedView extends Component {
   render() {
     const { 
       match, 
-      locations = [] 
+      locations = [],
+      dispatch
     } = this.props;
     const id = match.params.locationID;
 
@@ -35,12 +36,7 @@ class DetailedView extends Component {
       <div className="content">
         { 
           location ?
-          <DetailedBlock
-            title={location.name}
-            subtitle={location.city}
-            key={location.id}
-            image={location.image}
-          /> :
+          <DetailedBlock {...location} dispatch={dispatch} actions={actions} /> :
           null
         }
       </div>

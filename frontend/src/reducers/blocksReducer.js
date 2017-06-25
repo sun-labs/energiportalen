@@ -11,7 +11,7 @@ import {
   SAVE_NEW_BLOCK
 } from '../constants/blockConstants';
 
-const tempRow = {
+export const tempRow = {
   unitId: 4,
   keyId: 95,
   value: '',
@@ -23,7 +23,7 @@ const tempRow = {
   title: 'Energy Produced'
 }
 
-const initialBlock = {
+export const initialBlock = {
   title: 'Akademiska Sjukhuset',
   from: '2017-02-10',
   to: '2017-02-10 23:59:59',  
@@ -35,7 +35,7 @@ const initialBlock = {
   editing: false
 }
 
-const initialGraphBlock = {
+export const initialGraphBlock = {
   ...initialBlock,
   data: [],
   dataKey: '',
@@ -43,7 +43,7 @@ const initialGraphBlock = {
   interval: 'hour',
 }
 
-const initialIlluBlock = {
+export const initialIlluBlock = {
   ...initialBlock,
   value: -1,
   subtitle: 'Uppsala',
@@ -174,7 +174,6 @@ const blocksReducer = (state = initialState, action = null) => {
         default:
           break;
       }
-
       return {
         ...state,
         blocks: [
