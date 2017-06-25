@@ -1,4 +1,5 @@
 import {
+  GET_LOCATION,
   GET_LOCATIONS,
   GET_UNITS_FROM_LOCATION,
   GET_KEYS_FROM_UNIT,
@@ -89,6 +90,28 @@ const locationsReducer = (state = initialState, action = null) => {
             return loc;
           }
         })
+      }
+    case GET_LOCATION:
+      let added = false;
+      const locations = state.locations.map((loc) => {
+        if (loc.id === action.location.id) {
+          added = true;
+          return {
+            ...action.location
+          }
+        } else {
+          return loc;
+        }
+      })      
+
+      return {
+        ...state,
+        locations: added ? 
+          locations : 
+          [
+            ...state.locations,
+            { ...action.location }
+          ]
       }
     case GET_LOCATIONS:
       return {

@@ -6,8 +6,6 @@ import MessageBox from '../components/MessageBox';
 import { connect } from 'react-redux';
 import actions from '../../actions';
 
-console.log('actions', actions);
-
 const Splash = ({ signInError, error, dispatch }) => {
   return (
     <div id="Splash">
