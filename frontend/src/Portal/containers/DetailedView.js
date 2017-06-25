@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/Home.css';
 import '../styles/DetailedView.css'
-import DetailedBlock from './DetailedBlock';
+import DetailedBlock from '../components/DetailedBlock';
 import { connect } from 'react-redux';
 import actions from '../../actions';
 

@@ -5,7 +5,7 @@ import AddBlock from './AddBlock';
 import TopNavBar from './TopNavBar';
 import BotNavBar from './BotNavBar';
 import Locations from '../containers/Locations';
-import DetailedView from './DetailedView'
+import DetailedView from '../containers/DetailedView'
 
 export const ROOT = '/portal';
 
