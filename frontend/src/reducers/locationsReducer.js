@@ -4,20 +4,20 @@ import {
   GET_KEYS_FROM_UNIT,
 } from '../constants/locationConstants';
 
-const initialKey = {
-  unitId: null,
-  id: null,
-  name: ''
-};
+// const initialKey = {
+//   unitId: null,
+//   id: null,
+//   name: ''
+// };
 
-const initialKeys = [];
+// const initialKeys = [];
 
-const initialUnit = {
-  locationId: null,
-  id: null,
-  name: '',
-  keys: initialKeys
-};
+// const initialUnit = {
+//   locationId: null,
+//   id: null,
+//   name: '',
+//   keys: initialKeys
+// };
 
 const initialUnits = [];
 

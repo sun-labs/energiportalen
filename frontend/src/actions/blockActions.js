@@ -5,9 +5,6 @@ import {
   ADD_TABLE_BLOCK_ROW,
   FETCH_DATA_SUCCESS,
   TOGGLE_EDIT_BLOCK,
-  GET_LOCATIONS,
-  GET_UNITS_FROM_LOCATION,
-  GET_KEYS_FROM_UNIT,
   SAVE_NEW_BLOCK
 } from '../constants/blockConstants';
 

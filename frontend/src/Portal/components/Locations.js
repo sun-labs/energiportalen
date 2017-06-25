@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import '../styles/Home.css';
 import '../styles/Locations.css';
-import Location from './Location';
 import { connect } from 'react-redux';
 import actions from '../../actions';
+import { Link } from 'react-router-dom';
+import { ROOT } from './Portal';
+import FacBlock from './FacBlock';
 
 class Locations extends Component {
   componentWillMount() {
@@ -21,13 +23,22 @@ class Locations extends Component {
           <h1>LOCATIONS</h1>
           <h2> Search for solar facilities in sweden to compare and see how much energy that is produced. </h2>
         </div>
-          {
-            locations.map((location) => {
-              return (
-                <Location key={location.id} location={location}/>
-              );
-            })
-          }
+          <div className="FacBlock-wrap">
+            {
+              locations.map((location) => {
+                return (
+                  <Link 
+                    to={`${ROOT}/locations/` +  location.id} key={location.id}>
+                    <FacBlock 
+                      fac={location.image} 
+                      title={location.name} 
+                      subtitle={location.description} 
+                      key={location.id} />
+                  </Link>
+                );
+              })
+            }
+          </div>          
       </div>
     );
   }
@@ -36,7 +47,7 @@ class Locations extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    locations: state.blocksReducer.locations
+    locations: state.locationsReducer.locations
   }
 }
 
