@@ -6,7 +6,7 @@ const store = configureStore();
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Splash from './Splash/components/Splash';
+import Splash from './Splash/containers/Splash';
 import Portal from './Portal/components/Portal';
 import RequireAuth from './RequireAuth';
 

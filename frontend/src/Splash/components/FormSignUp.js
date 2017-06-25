@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
-import { connect } from 'react-redux';
-import { authSignUp, passwordMismatch } from '../../actions/authActions';
 import { URL_TERMS } from '../assets/APIRoutes';
 import '../styles/Section.css';
 
@@ -26,14 +24,14 @@ class FormSignUp extends Component {
   }
 
   handleSubmit(e) {
-    const { dispatch, history } = this.props;
+    const { dispatch, actions, history } = this.props;
     const { email, password } = this.props;
 
     e.preventDefault();
     if(this.passwordsMatch()) {
-      dispatch(authSignUp(email, password, history));
+      dispatch(actions.authSignUp(email, password, history));
     } else {
-      dispatch(passwordMismatch());
+      dispatch(actions.passwordMismatch());
     }
   }
 
@@ -67,4 +65,4 @@ class FormSignUp extends Component {
 
 }
 
-export default connect()(withRouter(FormSignUp));
+export default withRouter(FormSignUp);

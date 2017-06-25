@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Home from './Home';
+import Home from '../containers/Home';
 import AddBlock from './AddBlock';
 import TopNavBar from './TopNavBar';
 import BotNavBar from './BotNavBar';
-import Locations from './Locations';
+import Locations from '../containers/Locations';
 import DetailedView from './DetailedView'
 
 export const ROOT = '/portal';

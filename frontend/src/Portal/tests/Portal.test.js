@@ -7,7 +7,7 @@ import Block from '../components/Block';
 import BotNavBar from '../components/BotNavBar';
 import Home from '../components/Home';
 import LineBlock from '../components/LineBlock';
-import Portal from '../components/Portal';
+import Portal from '../containers/Portal';
 import TableBlock from '../components/TableBlock';
 import TinyInfoBlock from '../components/TinyInfoBlock';
 import TopNavBar from '../components/TopNavBar';

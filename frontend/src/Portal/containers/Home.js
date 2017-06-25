@@ -8,13 +8,13 @@ import {
   SCOOTER,
   LINE
 } from '../../constants/blockConstants';
-import { ROOT } from './Portal';
-import LineBlock from './LineBlock';
-import TableBlock from './TableBlock';
-import IlluPhoneBlock from './IlluPhoneBlock';
-import IlluScooterBlock from './IlluScooterBlock';
-import DashboardLocations from './DashboardLocations'
-import AddBlock from './AddBlock';
+import { ROOT } from '../components/Portal';
+import LineBlock from '../components/LineBlock';
+import TableBlock from '../components/TableBlock';
+import IlluPhoneBlock from '../components/IlluPhoneBlock';
+import IlluScooterBlock from '../components/IlluScooterBlock';
+import DashboardLocations from '../components/DashboardLocations'
+import AddBlock from '../components/AddBlock';
 import '../styles/Home.css';
 
 class Home extends Component {

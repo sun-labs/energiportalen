@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
-import { connect } from 'react-redux';
-import { authSignIn } from '../../actions/authActions';
 import { API_FORGOT_PASSWORD } from '../assets/APIRoutes';
 
 class FormAuth extends Component {
@@ -18,10 +16,14 @@ class FormAuth extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const { history, dispatch } = this.props;
+    const { 
+      history, 
+      dispatch,
+      actions
+    } = this.props;
     const { email, password } = this.state;
 
-    dispatch(authSignIn(email, password, history));
+    dispatch(actions.authSignIn(email, password, history));
   }
 
   handleChange = (e) => {
@@ -51,4 +53,4 @@ class FormAuth extends Component {
 
 }
 
-export default connect()(withRouter(FormAuth));
+export default withRouter(FormAuth);

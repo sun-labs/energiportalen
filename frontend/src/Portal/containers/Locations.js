@@ -4,8 +4,8 @@ import '../styles/Locations.css';
 import { connect } from 'react-redux';
 import actions from '../../actions';
 import { Link } from 'react-router-dom';
-import { ROOT } from './Portal';
-import FacBlock from './FacBlock';
+import { ROOT } from '../components/Portal';
+import FacBlock from '../components/FacBlock';
 
 class Locations extends Component {
   componentWillMount() {
