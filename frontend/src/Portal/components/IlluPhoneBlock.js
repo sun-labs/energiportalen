@@ -11,10 +11,10 @@ class IlluPhoneBlock extends Component {
 
   componentWillMount() {
     const { 
-      blockActions,
+      actions,
       dispatch
     } = this.props;
-    dispatch(blockActions.fetchSumValueData(this.props));
+    dispatch(actions.fetchSumValueData(this.props));
   }
 
   /**

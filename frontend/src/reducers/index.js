@@ -2,14 +2,12 @@
 import { combineReducers } from 'redux';
 import authReducer from './authReducer';
 import blocksReducer from './blocksReducer';
+import locationsReducer from './locationsReducer';
 
 const portalApp = combineReducers({
   authReducer,
-  blocksReducer
+  blocksReducer,
+  locationsReducer
 });
-
-// const portalApp = (state = {}, action = null) => {
-//   return state;
-// }
 
 export default portalApp;

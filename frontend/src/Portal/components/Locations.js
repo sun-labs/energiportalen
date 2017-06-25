@@ -3,12 +3,12 @@ import '../styles/Home.css';
 import '../styles/Locations.css';
 import Location from './Location';
 import { connect } from 'react-redux';
-import * as blockActions from '../../actions/blockActions';
+import actions from '../../actions';
 
 class Locations extends Component {
   componentWillMount() {
     if (this.props.locations.length < 1) {
-      this.props.dispatch(blockActions.getLocations());
+      this.props.dispatch(actions.getLocations());
     }
   }
 

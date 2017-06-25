@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as blockActions from '../../actions/blockActions';
+import actions from '../../actions';
 import {
   PHONE,
   TABLE,
@@ -22,7 +22,7 @@ class Home extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
 
-    dispatch(blockActions.getLocations());
+    dispatch(actions.getLocations());
   }
 
   render() {
@@ -35,7 +35,7 @@ class Home extends Component {
 
     const {
       toggleAddBlock,
-    } = blockActions;
+    } = actions;
 
     return (
       <div className="content">
@@ -45,13 +45,13 @@ class Home extends Component {
           <h2> you may save or remove your own personally defined locations for easier access. </h2>
         </div>
         <DashboardLocations 
-          blockActions={blockActions} 
+          actions={actions} 
           dispatch={dispatch} 
           locations={locations} 
         />
         { addingBlock
           ? <AddBlock 
-              blockActions={blockActions}
+              actions={actions}
               dispatch={dispatch}
               locations={locations}
             />
@@ -70,7 +70,7 @@ class Home extends Component {
             const blockProps = {
               ...block,
               dispatch,
-              blockActions,
+              actions,
             };
             
             switch(block.blockType) {
@@ -97,7 +97,7 @@ const mapStateToProps = (state) => {
   return {
     addingBlock: state.blocksReducer.addingBlock,
     blocks: state.blocksReducer.blocks,
-    locations: state.blocksReducer.locations
+    locations: state.locationsReducer.locations
   }
 }
 

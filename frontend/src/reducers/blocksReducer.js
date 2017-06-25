@@ -1,9 +1,3 @@
-// included:
-// illuphoneblock
-// illuscooterblock
-// tableblock
-// lineblock
-
 import {
   FETCH_SUM_VALUE_DATA_SUCCESS,
   TOGGLE_ADD_BLOCK,
@@ -14,9 +8,6 @@ import {
   TABLE,
   SCOOTER,
   LINE,
-  GET_LOCATIONS,
-  GET_UNITS_FROM_LOCATION,
-  GET_KEYS_FROM_UNIT,
   SAVE_NEW_BLOCK
 } from '../constants/blockConstants';
 
@@ -60,41 +51,7 @@ const initialIlluBlock = {
   interval: 'hour',
 }
 
-// const locations = [
-//   location,
-//   location,
-//   location
-// ]
-
-// const location = {
-//   id,
-//   name,
-//   units: [
-//     unit,
-//     unit,
-//     unit
-//   ]
-// }
-
-// const unit = {
-//   locationId,
-//   id,
-//   name,
-//   keys: [
-//     key,
-//     key,
-//     key
-//   ]
-// }
-
-// const key = {
-//   unitId,
-//   id,
-//   name
-// }
-
 const initialState = {
-  locations: [],
   addingBlock: false,
   blocks: [
     { 
@@ -232,48 +189,6 @@ const blocksReducer = (state = initialState, action = null) => {
           },
           ...state.blocks,
         ]
-      }
-    case GET_KEYS_FROM_UNIT:
-      return {
-        ...state,
-        locations: state.locations.map((loc) => {
-          if (loc.id === action.unit.locationId) {
-            return {
-              ...loc,
-              units: loc.units.map((u) => {
-                if (u.id === action.unit.id) {
-                  return {
-                    ...u,
-                    keys: action.keys
-                  }
-                } else {
-                  return u;
-                }
-              })
-            }
-          } else {
-            return loc;
-          }
-        })
-      }
-    case GET_UNITS_FROM_LOCATION:
-      return {
-        ...state,
-        locations: state.locations.map((loc) => {
-          if (loc.id === action.location.id) {
-            return {
-              ...loc,
-              units: action.units
-            }
-          } else {
-            return loc;
-          }
-        })
-      }
-    case GET_LOCATIONS:
-      return {
-        ...state,
-        locations: action.locations
       }
     case TOGGLE_ADD_BLOCK:
       return {

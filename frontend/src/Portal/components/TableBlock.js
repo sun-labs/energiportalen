@@ -12,7 +12,7 @@ class TableBlock extends Component {
 
   fetchRowData(rowId) {
     const {
-      blockActions,      
+      actions,      
       dispatch,
       from,
       to,
@@ -24,7 +24,7 @@ class TableBlock extends Component {
     } = this.props;
 
     dispatch(
-      blockActions.fetchSumValueData({
+      actions.fetchSumValueData({
         from,
         to,
         interval,
@@ -41,9 +41,9 @@ class TableBlock extends Component {
     const { 
       dispatch,
       blockId,
-      blockActions
+      actions
     } = this.props;
-    dispatch(blockActions.addTableBlockRow(blockId));
+    dispatch(actions.addTableBlockRow(blockId));
   }
 
   render() {
@@ -55,7 +55,7 @@ class TableBlock extends Component {
       dispatch,
       blockId,
       editing,
-      blockActions
+      actions
     } = this.props;
 
     const {
@@ -85,7 +85,7 @@ class TableBlock extends Component {
             })
           }
           <tr>
-            <td onClick={ () => dispatch(blockActions.addTableBlockRow(blockId)) } className="add-information">+ add information</td>
+            <td onClick={ () => dispatch(actions.addTableBlockRow(blockId)) } className="add-information">+ add information</td>
           </tr>
         </tbody>
       </table>

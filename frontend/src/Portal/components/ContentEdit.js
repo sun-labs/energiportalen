@@ -36,14 +36,14 @@ class ContentEdit extends React.Component {
     if (this.props.locations.length < 1) {
       const { 
         dispatch, 
-        blockActions 
+        actions 
       } = this.props;
-      dispatch(blockActions.getLocations());
+      dispatch(actions.getLocations());
     }
   }
 
   handleChange(e = {}) {
-    const { blockActions, dispatch } = this.props;
+    const { actions, dispatch } = this.props;
 
     switch(e.type) {
       case LOCATION:
@@ -53,7 +53,7 @@ class ContentEdit extends React.Component {
             id: e.value
           }
         }, () => {
-          dispatch(blockActions.getUnitsFromLocation(this.state.location));
+          dispatch(actions.getUnitsFromLocation(this.state.location));
         })
         break;
       case UNIT:
@@ -64,7 +64,7 @@ class ContentEdit extends React.Component {
             locationId: this.state.location.id
           }
         }, () => {
-          dispatch(blockActions.getKeysFromUnit(this.state.unit));
+          dispatch(actions.getKeysFromUnit(this.state.unit));
         })
         break;
       case KEY:
@@ -112,7 +112,7 @@ class ContentEdit extends React.Component {
       case SAVE_BLOCK:
         const { from, to, interval, unit, key, type } = this.state;
         dispatch(
-          blockActions.addBlock({
+          actions.addBlock({
             from,
             to,
             interval: interval.value,
@@ -133,7 +133,7 @@ class ContentEdit extends React.Component {
   render() {
 
     const { 
-      blockActions, 
+      actions, 
       dispatch,
       locations = []
     } = this.props;
@@ -226,7 +226,7 @@ class ContentEdit extends React.Component {
           onChange={(e) => handleChange({ ...e, type: BLOCK_TYPE })} />
         <div className="button-wrapper">
           <button
-            onClick={() => dispatch(blockActions.toggleAddBlock())}
+            onClick={() => dispatch(actions.toggleAddBlock())}
             className="cancel-block-add"
           >CANCEL
         </button>

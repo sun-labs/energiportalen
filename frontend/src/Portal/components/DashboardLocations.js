@@ -9,8 +9,8 @@ import FacBlock from './FacBlock';
 class DashboardLocations extends Component {
   componentWillMount() {
     if (this.props.locations.length < 1) {
-      const { dispatch, blockActions } = this.props;
-      dispatch(blockActions.getLocations());
+      const { dispatch, actions } = this.props;
+      dispatch(actions.getLocations());
     }
   }
 

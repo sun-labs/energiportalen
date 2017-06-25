@@ -12,7 +12,7 @@ class IlluBlock extends Component {
       timeSpan: this.props.timeSpan,
       editing: this.props.editing,
       dispatch: this.props.dispatch,
-      blockActions: this.props.blockActions,
+      actions: this.props.actions,
       blockId: this.props.blockId
     }
     return(
