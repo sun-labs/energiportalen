@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { withRouter } from 'react-router';
-
-import { API_AUTH, API_FORGOT_PASSWORD } from '../assets/APIRoutes';
+import { API_FORGOT_PASSWORD } from '../assets/APIRoutes';
 
 class FormAuth extends Component {
 
@@ -17,16 +15,15 @@ class FormAuth extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(API_AUTH);
-    axios.post(API_AUTH, this.state)
-    .then((res) => {
-      console.log('success, setting token');
-      localStorage.setItem('token', res.data.token);
-      this.props.history.push('/portal');
-    })
-    .catch((error) => {
-      this.props.showError('Error Received', error);
-    });
+
+    const { 
+      history, 
+      dispatch,
+      actions
+    } = this.props;
+    const { email, password } = this.state;
+
+    dispatch(actions.authSignIn(email, password, history));
   }
 
   handleChange = (e) => {
@@ -37,15 +34,17 @@ class FormAuth extends Component {
 
   render() {
     const { className } = this.props;
+    const { handleSubmit, handleChange } = this;
+
     return (
-      <form className={ className ? className : '' } onSubmit={ this.handleSubmit }>
+      <form className={ className ? className : '' } onSubmit={ handleSubmit }>
         <div className="placeholder-wrap">
           <p>e-mail</p>
-          <input type="email" placeholder="e-mail" name="email" tabIndex="1" onChange={ this.handleChange } />
+          <input type="email" placeholder="e-mail" name="email" tabIndex="1" onChange={ handleChange } />
         </div>
         <div className="placeholder-wrap">
           <p>password <a href={ API_FORGOT_PASSWORD }>forgot?</a></p>
-          <input type="password" placeholder="password" name="password" tabIndex="2" onChange={ this.handleChange } />
+          <input type="password" placeholder="password" name="password" tabIndex="2" onChange={ handleChange } />
         </div>
         <button tabIndex="3">SIGN IN</button>
       </form>

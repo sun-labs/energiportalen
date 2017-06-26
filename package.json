@@ -16,12 +16,13 @@
     "chai-http": "^3.0.0",
     "concurrently": "^3.4.0",
     "mysql": "^2.13.0",
-    "source-map-support": "^0.4.14"
+    "source-map-support": "^0.4.14",
+    "webpack": "^3.0.0"
   },
   "scripts": {
-    "test_be": "export NODE_ENV=TEST; cd tests/; webpack && mocha build/backend.js || true",
-    "test_fe": "export NODE_ENV=TEST; cd tests/; webpack && mocha build/frontend.js || true",
-    "test_in": "export NODE_ENV=TEST; cd tests/; webpack && mocha build/integration.js || true",
+    "test_be": "export NODE_ENV=TEST; export TEST_ID=be; cd tests/; webpack && mocha build/backend.js || true",
+    "test_fe": "export NODE_ENV=TEST; export TEST_ID=fe; cd tests/; webpack && mocha build/frontend.js || true",
+    "test_in": "export NODE_ENV=TEST; export TEST_ID=in; cd tests/; webpack && mocha build/integration.js || true",
     "test_renders": "cd frontend/; npm run test",
     "test": "npm run test_be; npm run test_fe; npm run test_renders",
     "server": "cd backend/; npm run start",

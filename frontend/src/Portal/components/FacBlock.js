@@ -3,7 +3,7 @@ import React from 'react';
 import '../styles/FacBlock.css';
 import img from '../../imgs/akademiska.png';
 
-const Block = (props) => {
+const FacBlock = (props) => {
 
   const { 
     className = '',
@@ -16,8 +16,6 @@ const Block = (props) => {
 
   return (
     <div className={`blockk fac-block ${className}`}>
-      
-    
         <div className="picture-wrap">
           <img className="img-circle" alt="" src={ fac }/>
         </div>
@@ -40,10 +38,7 @@ const Block = (props) => {
            <button>Change location</button> 
           </div>
         </div>
-
-
-
     </div>);
 }
 
-export default Block;
+export default FacBlock;

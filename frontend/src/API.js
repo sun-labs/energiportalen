@@ -34,6 +34,18 @@ const funcs = {
       .then((res) => {
         cb(res);
       });
+  },
+  getUnitsFromLocation: (locationId, cb) => {
+    funcs.apiCall().get(`locations/${locationId}/units`)
+      .then((res) => {
+        cb(res);
+      });
+  },
+  getKeysFromUnit: (unitId, cb) => {
+    funcs.apiCall().get(`units/${unitId}/`)
+      .then((res) => {
+        cb(res);
+      });
   }
 };
 

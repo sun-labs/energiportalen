@@ -1,49 +1,33 @@
 import React, { Component } from 'react';
 
-import API from '../../API';
 
 class TableBlockRow extends Component {
-
-  constructor() {
-    super();
-    this.state = {
-      ...this.props
-    };
-  }
-
   componentWillMount() {
-    this.setState({
-      ...this.props,
-      value: 'loading..'
-    }, () => {
-      this.fetchData((data) => {
-        this.setState({
-          ...this.state,
-          value: data.data[0].sum_val.toFixed(0)
-        })
-      });
-    });
-  }
-
-  fetchData(cb) {
-    API.getDataFromKey(this.state, (res) => {
-      cb(res.data);
-    });
+    const { fetchRowData, id } = this.props;
+    fetchRowData(id);
   }
 
   render() {
+
+    const {
+      span,
+      title,
+      value,
+      si
+    } = this.props;
+
     return (
       <tr>
         <td>
           <div className="time-wrap">
-            <p className="value">{ this.state.span }</p>
+            <p className="value">{ span }</p>
           </div>
           <div className="description-wrap">
-            <p className="title">{ this.state.title }</p>
+            <p className="title">{ title }</p>
           </div>
           <div className="data-wrap">
-            <p className="value">{ this.state.value }</p>
-            <p className="unit">{ this.state.si }</p>
+            <p className="value">{ typeof value === 'number' ? value : 'loading..' }</p>
+            <p className="unit">{ si }</p>
           </div>
         </td>
       </tr>

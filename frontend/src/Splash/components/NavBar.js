@@ -17,10 +17,14 @@ class NavBar extends Component {
 
   renderPopup() {
     if(this.state.popupVisible) {
+      const {
+        dispatch,
+        actions
+      } = this.props;
       return (
         <Popup className="popup-auth" onClose={ this.togglePopup }>
           <h1>Sign in</h1>
-          <FormAuth showError={ this.props.showError } className="wrap-auth" />
+          <FormAuth className="wrap-auth" dispatch={dispatch} actions={actions} />
         </Popup>
       );
     } else {
@@ -35,6 +39,12 @@ class NavBar extends Component {
   }
 
   render() {
+
+    const {
+      dispatch,
+      actions
+    } = this.props;
+
     return (
       <div className="navbar-splash">
         {this.renderPopup()}
@@ -43,7 +53,7 @@ class NavBar extends Component {
           <h2>solar energy beautifully visualized</h2>
         </div>
         <button id="mobile-btn-sign" onClick={ this.togglePopup }>SIGN IN</button>
-        <FormAuth showError={ this.props.showError } className="sign-wrap" />
+        <FormAuth className="sign-wrap" dispatch={dispatch} actions={actions} />
       </div>
     );
   }

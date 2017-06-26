@@ -5,19 +5,16 @@ import Block from './Block';
 import ContentEdit from './ContentEdit';
 
 class AddBlock extends Component {
-
   render() {
-
-    const { addNewBlock } = this.props;
-
     const blockInfo = {
+      ...this.props,
       type: 'ADD',
-      title: 'ADD BLOCK'
+      title: 'ADD BLOCK',
     }
 
     return(
     <Block className="blockk-add" {...blockInfo}>
-      <ContentEdit addNewBlock />
+      <ContentEdit {...blockInfo} />
     </Block>
     );
   }

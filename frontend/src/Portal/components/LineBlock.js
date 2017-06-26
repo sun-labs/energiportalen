@@ -1,126 +1,34 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
-
-import API from '../../API';
+import { defaultConfig, defaultOptions } from '../defaultChartConfigs.js';
 import Block from './Block';
 
-let defaultOptions = {
-  legend: {
-    display: false,
-  },
-  scales: {
-    xAxes: [{
-      display: false
-    }]
-  },
-}
-
-const defaultConfig = {
-  type: 'line',
-  fill: false,
-  lineTension: 0.1,
-  backgroundColor: '#4bc0c0',
-  borderColor: '#4bc0c0',
-  borderCapStyle: 'butt',
-  borderDash: [],
-  borderDashOffset: 0.0,
-  borderJoinStyle: 'miter',
-  pointBorderColor: '#4bc0c0',
-  pointBackgroundColor: '#fff',
-  pointBorderWidth: 1,
-  pointHoverRadius: 5,
-  pointHoverBackgroundColor: '#4bc0c0',
-  pointHoverBorderColor: '#dcdcdc',
-  pointHoverBorderWidth: 2,
-  pointRadius: 1,
-  pointHitRadius: 10
-};
-
-const data1 = {
-  label: 'foo',
-  data: []
-}
-
-const data2 = {
-  label: 'bar',
-  data: []
-}
-
-const ph_Labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-const ph_Title = 'TITLE';
-const ph_Name = 'NAME';
-const ph_TimeSpan = '24h';
-
-// NOTE data sent to block must be a list with lists of data
-// aka [[1, 2, 3, 4], [1, 2, 3, 4, 6]]
-// const LineBlock = ({ options = defaultOptions, data = [datas[0]], labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'] }) => {
-// const LineBlock = ({ options = defaultOptions, data = [defaultData[0]], labels = defaultLabels }) => {
 class LineBlock extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      data: [data1, data2],
-      title: 'Akademiska Sjukhuset',
-      dataKey: 'Energy produced',
-      labels: ph_Labels,
-      from: '2017-02-10',
-      to: '2017-02-10 23:59:59',
-      interval: 'hour',
-      unitId: 4,
-      keyId: 95,
-      refresh: true
-    };
-  }
-
   componentWillMount() {
-    if(this.state.refresh === true) {
-      this.setState({
-        ...this.props,
-        value: 'loading..'
-      }, () => {
-        this.fetchData((data) => {
-          const values = data.data.map((elem) => {
-            return elem.sum_val.toFixed(0);
-          });
-          const labels = data.data.map((elem) => {
-            return elem.new_timestamp;
-          });
-          this.setState({
-            ...this.state,
-            data: [{
-              data: values,
-              label: this.state.title
-            }, {
-              data: values.map((elem) => {
-                return parseInt(elem) + Math.random() * 50;
-              }),
-              label: 'Random Akkis'
-            }],
-            labels: labels,
-            value: data.data[0].sum_val.toFixed(0)
-          })
-        });
-      });
-    }
-  }
+    const {
+      refresh,
+      actions,
+      dispatch,
+      locationId = null
+    } = this.props;
 
-  fetchData(cb) {
-    API.getDataFromKey(this.state, (res) => {
-      cb(res.data);
-    });
+    if (typeof locationId === 'number') {
+      dispatch(actions.fetchLocationData(this.props));
+    } else if (refresh === true) {
+      dispatch(actions.fetchData(this.props))
+    }
   }
 
   setArrayLengths(datasets, labels) {
 
-    const max = datasets.reduce((acc, val) => {
+    const max = datasets.length > 0 ? datasets.reduce((acc, val) => {
       if (acc.data.length > val.data.length) {
         return acc;
       } else {
         return val;
       }
-    }).data.length;
+    }).data.length : -1;
 
     if (max < labels.length) {
       return { 
@@ -164,27 +72,34 @@ setDataColors(dataList, config) {
 
   render() {
 
-    const props = this.props;
-
     const {
-      options = defaultOptions, 
-      data = this.state.data, 
-      labels = this.state.labels,
-      title = ph_Title,
-      subtitle = ph_Name,
-      timeSpan = ph_TimeSpan
-    } = props;
+      options = defaultOptions,
+      config = defaultConfig,
+      data = [],
+      labels = [],
+      timeSpan,
+      title,
+      dataKey,
+      editing,
+      actions,
+      dispatch,
+      blockId = null
+    } = this.props;
 
     const datasets = this.setArrayLengths(
-      this.setDataColors(data, defaultConfig), 
+      this.setDataColors(data, config), 
       labels
     );
 
     const blockInfo = {
-      title: this.state.title,
-      subtitle: this.state.dataKey,
+      title,
+      subtitle: dataKey,
       timeSpan,
-      type: 'LINE'
+      type: 'LINE',
+      editing,
+      actions,
+      dispatch,
+      blockId
     }
 
     return (

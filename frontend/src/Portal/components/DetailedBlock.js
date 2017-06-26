@@ -1,41 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
 import { ROOT } from './Portal';
-
-// STYLE IMPORTS
 import '../styles/Home.css';
 import '../styles/DetailedBlock.css'
-
-// COMPONENT IMPORTS
 import FacBlock from './FacBlock';
 import LineBlock from './LineBlock';
 
-const DetailedBlock = (props) => {
+class DetailedBlock extends Component {
+  render() {
 
-const { 
-    title = 'Stadshuset',
-    subtitle = 'Stockholm',
-    image
-  } = props;
+    const { 
+      name = 'Stadshuset',
+      subtitle = 'Stockholm',
+      image,
+      block,
+      dispatch,
+      actions
+    } = this.props;
 
     return (
-        <div className="detailedBlock">
-          <header>
-            <div className="compare-wrap">
-              <FacBlock title={ title } subtitle={ subtitle } fac={ image }/>  {/* TODO Send image to facblock*/}
-              <Link to={`${ROOT}/locations/addCompare`} className="blockk add-block">+ ADD BLOCK</Link>
-            </div>
-          </header>
+      <div className="detailedBlock">
+
+        <header>
+          <div className="compare-wrap">
+            <FacBlock title={ name } subtitle={ subtitle } fac={ image }/>
+            <Link to={`${ROOT}/locations/addCompare`} className="blockk add-block">+ ADD BLOCK</Link>
+          </div>
+        </header>
+
         <div className="content-detailedBlock">
-            <LineBlock/>
+            <LineBlock {...block} actions={actions} dispatch={dispatch} />
         </div>
-          <footer>
-          </footer>
-          
-          
-        </div>
+
+        <footer>
+        </footer>
+      </div>
     );
   }
+}
 
 export default DetailedBlock;

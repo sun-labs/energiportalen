@@ -9,7 +9,7 @@ import NavBar from '../components/NavBar';
 import Popup from '../components/Popup';
 import Section from '../components/Section';
 import Sections from '../components/Sections';
-import Splash from '../components/Splash';
+import Splash from '../containers/Splash';
 import TextContent from '../components/TextContent';
 
 const withRouter = (component) => {

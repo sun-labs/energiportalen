@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { withRouter } from 'react-router';
-
-import { API_SIGNUP, URL_TERMS } from '../assets/APIRoutes';
-import { PASS_MATCH } from '../assets/errorMessages';
+import { URL_TERMS } from '../assets/APIRoutes';
 import '../styles/Section.css';
 
 class FormSignUp extends Component {
@@ -27,21 +24,14 @@ class FormSignUp extends Component {
   }
 
   handleSubmit(e) {
+    const { dispatch, actions, history } = this.props;
+    const { email, password } = this.props;
+
     e.preventDefault();
     if(this.passwordsMatch()) {
-      axios.post(API_SIGNUP, { email: this.state.email, password: this.state.password })
-        .then((res) => {
-          
-          localStorage.setItem('token', res.data.token);
-          this.props.history.push('/portal');
-
-        })
-        .catch((error) => {
-          console.log("error");
-          this.props.showError('Error Received', error);
-        });
+      dispatch(actions.authSignUp(email, password, history));
     } else {
-      this.props.showError('passwords don\'t match', PASS_MATCH); // TODO passwords dont match message
+      dispatch(actions.passwordMismatch());
     }
   }
 

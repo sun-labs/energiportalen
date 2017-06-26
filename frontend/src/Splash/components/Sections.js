@@ -3,9 +3,7 @@ import Section from './Section';
 import TextContent from './TextContent';
 import FormSignUp from './FormSignUp';
 import Popup from './Popup';
-
 import '../styles/Sections.css';
-
 import logo from '../../imgs/logo.png';
 import downButton from '../../imgs/downButton.png';
 
@@ -32,10 +30,15 @@ class Section1 extends Component {
 
   renderPopup() {
     if (this.state.popupVisible) {
+      const {
+        dispatch,
+        actions
+      } = this.props;
+
       return (
         <Popup className="popup-signup" onClose={this.togglePopup}>
           <h1>SIGN UP</h1>
-          <FormSignUp showError={ this.props.showError } className="wrap-signup" />
+          <FormSignUp className="wrap-signup" dispatch={dispatch} actions={actions} />
         </Popup>
       );
     } else {
@@ -44,6 +47,12 @@ class Section1 extends Component {
   }
 
   render() {
+
+    const {
+      dispatch,
+      actions
+    } = this.props;
+
     return (
       <Section className="section1">
         { this.renderPopup() }
@@ -52,7 +61,7 @@ class Section1 extends Component {
         <div className="creat-wrap">
           <h1>SIGN UP WITH SUN LABS</h1>
           <h2>It's free and will always be for Sun Labs</h2>
-          <FormSignUp showError={ this.props.showError } />
+          <FormSignUp dispatch={dispatch} actions={actions} />
         </div>
         <button id="mobile-btn-create-account" onClick={ this.togglePopup }>CREATE ACCOUNT</button>
         <TextContent title="What is Sun Labs?" body="Sun Labs dramatically improves the most important aspects of the Sun Energy experience. It introduces advanced visualisation and cloud first experience. Immersive statistics. The brightest, most colorful way to visualize energy data. And it looks every bit as powerful as it is. This is Sun Labs." />
@@ -85,17 +94,15 @@ const Section4 = () => {
   return (
     <Section className="section4">
       <TextContent title="Partnership Sun Labs." body="We’re partnered up with public corporations and experts in global warming. It’s really about empowering every person on earth to achieve more. Connecting everyone with their and others energy data. Creating new dimensions of understanding." />
-      {/*<div id="lulLogo"></div>
-      <div id="euLogo"></div>*/}
       <div id="sunlabsLogo"></div>
     </Section>
   )
 }
 
-const Sections = ({ showError }) => {
+const Sections = () => {
   return (
     <div className="sections">
-      <Section1 showError={ showError } />
+      <Section1 />
       <Section2 />
       <Section3 />
       <Section4 />

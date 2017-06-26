@@ -1,61 +1,43 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { ROOT } from './Portal';
-
-import API from '../../API';
 import addimg from '../../imgs/add-button.png';
-
-// STYLE IMPORTS
 import '../styles/Home.css';
-
-// COMPONENT IMPORTS
 import FacBlock from './FacBlock';
 
 
 class DashboardLocations extends Component {
-
-  constructor () {
-    super()
-    this.state = {
-      locations:[] // ID, name, pic, desc, city
+  componentWillMount() {
+    if (this.props.locations.length < 1) {
+      const { dispatch, actions } = this.props;
+      dispatch(actions.getLocations());
     }
   }
 
-componentWillMount() {
-  API.getLocations({}, (res) => {
-    this.setState({
-      locations: res.data.map((loc) => {
-        return {
-          Id: loc.id,
-          Name: loc.name,
-          City: loc.city,
-          Desc: loc.description,
-          Image: loc.image
-        }
-      })
-    });
-  });
-
-} 
-
   render() {
+    const { locations } = this.props;
 
-    let blocks = this.state.locations.map((loc) => {
-      return (
-        <Link to={`${ROOT}/locations/` + loc.Id } key={loc.Id}>
-          <FacBlock fac={loc.Image} title={loc.Name} subtitle={loc.City}/>
-        </Link>
-      );
-    });
-    blocks.push(<Link to={`${ROOT}/locations/addlocation`} key={'addlocation'}><FacBlock className="add-block" title={'Add location'} fac={ addimg }/></Link>);
+    const blocks = locations.map((loc) =>
+      <Link to={`${ROOT}/locations/` + loc.id } key={loc.id}>
+        <FacBlock fac={loc.image} title={loc.name} subtitle={loc.city}/>
+      </Link>
+    ).concat(
+      <Link 
+        to={`${ROOT}/locations/addlocation`} 
+        key={'addlocation'}
+      >
+        <FacBlock 
+          className="add-block" 
+          title={'Add location'} 
+          fac={ addimg }/>
+      </Link>);
 
     return (
-        <div className="facblock-wrapper">
-          { blocks }
-        </div>
+      <div className="facblock-wrapper">
+        { blocks }
+      </div>
     );
   }
-
 }
 
 export default DashboardLocations;

@@ -1,44 +1,20 @@
 import React, { Component } from 'react';
 
 import IlluBlock from './IlluBlock';
-import API from '../../API.js';
 
 class IlluPhoneBlock extends Component {
-
   constructor() {
     super();
-    this.state = {
-      value: 100,
-      title: 'Akademiska Sjukhuset',
-      subtitle: 'Uppsala',
-      timeSpan: '24h',
-      from: '2017-02-10',
-      to: '2017-02-10 23:59:59',
-      interval: 'hour',
-      unitId: 4,
-      keyId: 95,
-      refresh: true
-    };
+
+    this.calcCharged = this.calcCharged.bind(this);
   }
 
   componentWillMount() {
-    this.setState({
-      ...this.props,
-      value: -1
-    }, () => {
-      this.fetchData((data) => {
-        this.setState({
-          ...this.state,
-          value: data.data[0].sum_val
-        })
-      });
-    });
-  }
-
-  fetchData(cb) {
-    API.getDataFromKey(this.state, (res) => {
-      cb(res.data);
-    });
+    const { 
+      actions,
+      dispatch
+    } = this.props;
+    dispatch(actions.fetchSumValueData(this.props));
   }
 
   /**
@@ -56,11 +32,20 @@ class IlluPhoneBlock extends Component {
 
   render() {
 
-    const { value = 100 } = this.state;
+    const { 
+      value = 100, 
+      title, 
+      subtitle, 
+      timeSpan 
+    } = this.props;
+
+    const {
+      calcCharged
+    } = this;
 
     return(
-    <IlluBlock className="block-phone" title={ this.state.title } subtitle={ this.state.subtitle } timeSpan={ this.state.timeSpan }>
-        <p className="value-illu">{ this.calcCharged(value) }</p>
+    <IlluBlock className="block-phone" title={ title } subtitle={ subtitle } timeSpan={ timeSpan }>
+        <p className="value-illu">{ calcCharged(value) }</p>
         <figure className="charge"></figure>
         <figure className="phone"></figure>
         <figure className="cable"></figure>

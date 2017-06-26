@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../styles/Block.css';
 import ContentEdit from './ContentEdit';
 
@@ -72,7 +72,7 @@ const Footer = (props) => {
   }
 }
 
-class Content extends React.Component {
+class Content extends Component {
 
   render() {
 
@@ -84,8 +84,10 @@ class Content extends React.Component {
         case ILLUSTRATION:
         case LINE:
         case TABLE:
-          content = <ContentEdit />;
+          content = <ContentEdit {...this.props} />;
         break;
+        default:
+          break;
       }
     }
 
@@ -97,20 +99,16 @@ class Content extends React.Component {
   }
 }
 
-class Block extends React.Component {
+class Block extends Component {
 
   constructor() {
     super();
     this.state = {
-      editing: false
-    }
-    this.handleClick.bind(this);
-  }
+      editing: false,
 
-  handleClick(e) {
-    this.setState({
-      editing: !this.state.editing
-    });
+    }
+    this.shouldRender = this.shouldRender.bind(this);
+    this.getCSSClass = this.getCSSClass.bind(this);
   }
 
   shouldRender(blockType, contentType) {
@@ -126,18 +124,41 @@ class Block extends React.Component {
     }
   }
 
+  getCSSClass(blockType) {
+    switch(blockType) {
+      case LINE:
+        return "blockk-line";
+      case TABLE:
+        return "blockk-table";
+      default: // illustration blocks
+        return this.props.className;
+    }
+  }
+
   render() {
-    const { className, children, type } = this.props;
+    const { 
+      children, 
+      type, 
+      editing, 
+      dispatch, 
+      toggleEditBlock, 
+      blockId = null // TODO handle when null & "toggleEditBlock" --> locationBlock
+    } = this.props;
+
+    const { 
+      shouldRender, 
+      getCSSClass 
+    } = this;
 
     return (
-      <div className={`blockk ${className}`}>
-        { this.shouldRender(type, HEADER) ? <Header {...this.props} editHandle={ this.handleClick.bind(this) } /> : '' }
+      <div className={`blockk ${getCSSClass(type)}`}>
+        { shouldRender(type, HEADER) ? <Header {...this.props} editHandle={() => dispatch(toggleEditBlock(blockId))} /> : '' }
 
-        <Content {...this.props} editing={ this.state.editing }>
+        <Content {...this.props} editing={ editing }>
           { children }
         </Content>
 
-        { this.shouldRender(type, FOOTER) ? <Footer {...this.props} /> : '' }
+        { shouldRender(type, FOOTER) ? <Footer {...this.props} /> : '' }
       </div>
     );
   }
