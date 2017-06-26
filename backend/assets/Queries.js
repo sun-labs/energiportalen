@@ -21,6 +21,7 @@ class Queries {
   * Get DATE_FORMAT mask for interval
   */
   static getIntervalFormat(interval) {
+    interval = interval.toLowerCase();
     return Queries.INTERVAL_FORMATS[interval];
   }
 
