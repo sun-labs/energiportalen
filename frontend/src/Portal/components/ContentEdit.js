@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Select from 'react-select';
 import '../styles/react-select.css';
 import {
@@ -14,7 +14,7 @@ import {
   intervalOptions
 } from '../../constants/blockConstants';
 
-class ContentEdit extends React.Component {
+class ContentEdit extends Component {
 
   constructor() {
     super();
