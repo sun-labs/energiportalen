@@ -48,10 +48,18 @@ Queries.QUERIES = {
     ON 
       energiportalen_test.* 
     TO 
-      'energiportalen'@'%';
+      'wasabi'@'%';
+
+    GRANT 
+      ALL PRIVILEGES 
+    ON 
+      energiportalen_dev.*
+    TO 
+      'wasabi'@'%';
   `
   ,ADD_USERS: `
     CREATE USER 'energiportalen'@'%' IDENTIFIED BY '***REMOVED***';
+    CREATE USER 'wasabi'@'%' IDENTIFIED BY '***REMOVED***';
   `
   ,CREATE_UNITS: `
     CREATE TABLE IF NOT EXISTS units (

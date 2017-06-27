@@ -1,4 +1,14 @@
 const config = {
+  database: {
+    dev: {
+      host: '127.0.0.1',
+      user: 'wasabi',
+      password: '***REMOVED***',
+      database: 'energiportalen_dev',
+      port: 8889,
+      multipleStatements: true
+    }
+  },
   mysql: {
     host: '127.0.0.1',
     user: 'energiportalen',
@@ -8,7 +18,7 @@ const config = {
   },
   database_test: {
     host: '127.0.0.1',
-    user: 'energiportalen',
+    user: 'wasabi',
     password: '***REMOVED***',
     database: 'energiportalen_test',
     port: 8889,

@@ -8,7 +8,7 @@ import apiRouter from './routes/apiRouter';
 
 // TODO maybe move to some assets folder same as in frontend
 const LATEST_VERSION = 1;
-const ENV = process.env.NODE_ENV.toUpperCase();
+const ENV = process.env.NODE_ENV ? process.env.NODE_ENV.toUpperCase() : 'DEV';
 const PORT = ENV === 'TEST' ? 4001 : 4000;
 
 const app = express();

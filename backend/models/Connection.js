@@ -122,6 +122,9 @@ class Connection {
       case 'TEST':
         dbConfig = Config.database_test;
         break;
+      case 'DEV':
+        dbConfig = Config.database.dev;
+        break;
       default:
         dbConfig = Config.mysql;
         break;
