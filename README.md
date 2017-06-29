@@ -5,15 +5,50 @@
  - Port: 8889
 
 ## Setup Queries
+
+Run these queries in order (manually)
 ```mysql
     CREATE DATABASE energiportalen CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
     CREATE DATABASE energiportalen_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
     CREATE DATABASE energiportalen_dev CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-- `ADD_USERS` in `backend/assets/Queries.js`
-- `GRANT_USERS` in `backend/assets/Queries.js`
-- `POPULATE_USERS` in `backend/assets/Queries.js`
+```mysql
+    CREATE USER 'energiportalen'@'%' IDENTIFIED BY '***REMOVED***';
+    CREATE USER 'wasabi'@'%' IDENTIFIED BY '***REMOVED***';
+```
+
+```mysql
+    GRANT 
+      ALL PRIVILEGES 
+    ON 
+      energiportalen.* 
+    TO 
+      'energiportalen'@'%';
+      
+    GRANT 
+      ALL PRIVILEGES 
+    ON 
+      energiportalen_test.* 
+    TO 
+      'wasabi'@'%';
+
+    GRANT 
+      ALL PRIVILEGES 
+    ON 
+      energiportalen_dev.*
+    TO 
+      'wasabi'@'%';
+```
+
+*Before you run this, make sure that all the dependencies are installed (section beneath)*
+
+Run this in the root of the repo, will create tables and populate with dev data
+```bash
+npm run bootstrap
+```
+
+Last part is to import the `unit_data` data, have fun!
 
 ## How to run
 - `npm install` (do this in backend/ and frontend/ as well)

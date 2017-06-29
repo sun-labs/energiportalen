@@ -35,33 +35,7 @@ Queries.INTERVAL_FORMATS = {
 }
 
 Queries.QUERIES = {
-  GRANT_USERS: `
-    GRANT 
-      ALL PRIVILEGES 
-    ON 
-      energiportalen.* 
-    TO 
-      'energiportalen'@'%';
-      
-    GRANT 
-      ALL PRIVILEGES 
-    ON 
-      energiportalen_test.* 
-    TO 
-      'wasabi'@'%';
-
-    GRANT 
-      ALL PRIVILEGES 
-    ON 
-      energiportalen_dev.*
-    TO 
-      'wasabi'@'%';
-  `
-  ,ADD_USERS: `
-    CREATE USER 'energiportalen'@'%' IDENTIFIED BY '***REMOVED***';
-    CREATE USER 'wasabi'@'%' IDENTIFIED BY '***REMOVED***';
-  `
-  ,CREATE_UNITS: `
+  CREATE_UNITS: `
     CREATE TABLE IF NOT EXISTS units (
       id int(11) unsigned NOT NULL AUTO_INCREMENT,
       name varchar(255) NOT NULL DEFAULT '',
