@@ -79,3 +79,5 @@ https://www.overleaf.com/8813889qmfbzphnntbn
 * Slack
 * Google Calendar
 * Figma
+
+## Note to Kasbie: 🖕---(O_O)---🖕 SUCK MY FINGER
