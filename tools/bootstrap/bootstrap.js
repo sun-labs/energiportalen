@@ -1,11 +1,19 @@
-import Connection from '../../backend/models/Connection';
+import 'source-map-support/register';
 
-let con = new Connection('DEV'); // connect to dev database
+import Connection from '../../backend/models/Connection';
+import Queries from '../../backend/assets/Queries.js';
+
+let con = new Connection('TEST'); // connect to dev database
 con.init((err) => {
-  con.createAllTables((err) => {
-    console.log('created tables');
-    con.populateAllTables((err) => {
-      console.log('populated tables');
+  con.dropAllTables((err) => {
+    if(err) { return 'shit'; }
+    con.bootstrapAllTables((err) => {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log('fucking done yall.');
+        
+      }
       process.exit();
     });
   });
