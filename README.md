@@ -7,18 +7,18 @@
 ## Setup Queries
 
 Run these queries in order (manually)
-```mysql
+```sql
     CREATE DATABASE energiportalen CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
     CREATE DATABASE energiportalen_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
     CREATE DATABASE energiportalen_dev CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-```mysql
+```sql
     CREATE USER 'energiportalen'@'%' IDENTIFIED BY '***REMOVED***';
     CREATE USER 'wasabi'@'%' IDENTIFIED BY '***REMOVED***';
 ```
 
-```mysql
+```sql
     GRANT 
       ALL PRIVILEGES 
     ON 
@@ -48,7 +48,15 @@ Run this in the root of the repo, will create tables and populate with dev data
 npm run bootstrap
 ```
 
-Last part is to import the `unit_data` data, have fun!
+Then add the following index
+```sql
+CREATE INDEX index_butter
+ON unit_data (unit_key, unit_id, timestamp);
+```
+
+Next step is to mport the `unit_data` CSV file!
+
+Bravissimo, you're done!
 
 ## How to run
 - `npm install` (do this in backend/ and frontend/ as well)
@@ -79,5 +87,3 @@ https://www.overleaf.com/8813889qmfbzphnntbn
 * Slack
 * Google Calendar
 * Figma
-
-## Note to Kasbie: 🖕---(O_O)---🖕 SUCK MY FINGER
