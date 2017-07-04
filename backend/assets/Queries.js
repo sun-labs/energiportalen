@@ -84,8 +84,32 @@ Queries.TABLE_QUERIES = [
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
   `,
   populate: {
-    test: undefined,
-    dev: undefined
+    test: `
+      INSERT INTO si_units 
+        (id, name, description, symbol, normalize)
+      VALUES
+        (1,'SI Unit 1','Unit 1','U1',1),
+        (2,'Kilo SI Unit 1','1000 Unit 1','kU1',1000),
+        (3,'SI Unit 2','Unit 2','U2',1),
+        (4,'Micro SI Unit 2','10^-6 Unit 2','U2', 0.000001);
+    `,
+    dev: `
+    INSERT INTO si_units 
+      (id, name, description, symbol, normalize)
+    VALUES
+      (1,'Volt','Charge','V',1),
+      (2,'Ampere','Current','A',1),
+      (3,'Watt','Energy','W',1),
+      (4,'Volt-Ampere Reactive','Reactive power is expressed in an AC electric power system','var',1),
+      (5,'Volt-Ampere','Used for the apparent power in an electrical circuit','VA',1),
+      (6,'Kilowatt Hour','A derived unit of energy equal to 3.6 megajoules','kWh',1000),
+      (7,'Kilowatt',NULL,'kW',1000),
+      (8,'Kilovolt-Ampere Reactive','','kvar',1000),
+      (9,'Kilovolt-Ampere','Used for the apparent power in an electrical circuit','kVA',1000),
+      (10,'Hertz','One cycle per second','Hz',1),
+      (11,'Watt Hour',NULL,'Wh',1),
+      (12,'Volt-Ampere Reactive Hour','','varh',1);
+    `
   }
 },{
   name: 'companies',
@@ -145,7 +169,10 @@ Queries.TABLE_QUERIES = [
       (id, email, password)
     VALUES
       -- password: ***REMOVED***
-      (1, 'asdf@asdf.com', '***REMOVED***');
+      (1, 'admin@sunlabs.se', '***REMOVED***'),
+      (2, 'user@sunlabs.se', '***REMOVED***'),
+      (3, 'user@company.se', '***REMOVED***'),
+      (3, 'admin@company.se', '***REMOVED***');
     `
   }
 },{
