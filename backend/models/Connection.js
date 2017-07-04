@@ -6,6 +6,7 @@ class Connection {
 
   constructor(ENV = 'TEST') {
     this.ENV = ENV.toUpperCase();
+    this.FORCE_UNSAFE = false; // set to true to be able to drop / clear tables in DEV mode.
   }
 
   init(cb) {
@@ -18,8 +19,11 @@ class Connection {
     return this;
   }
 
-  unsafeEnv() {
-    return (this.ENV !== 'TEST');
+  safeEnv() {
+    return (
+      this.ENV === 'TEST' ||
+      (this.ENV === 'DEV' && this.FORCE_UNSAFE === true)
+    );
   }
 
   /*
@@ -113,7 +117,7 @@ class Connection {
    * @param {*} cb 
    */
   drop(TABLE, cb) {
-    if (this.unsafeEnv()) { return cb(); }
+    if (!this.safeEnv()) { return cb('unsafe env'); }
     const QUERY = `
       SET FOREIGN_KEY_CHECKS = 0;
       DROP TABLE IF EXISTS ${TABLE}
@@ -131,7 +135,7 @@ class Connection {
    * @param {*} cb 
    */
   clear(TABLE, cb) {
-    if (this.unsafeEnv()) { return cb(); }
+    if (!this.safeEnv()) { return cb('unsafe env'); }
     const QUERY = `
       SET FOREIGN_KEY_CHECKS = 0;
       DELETE FROM ${TABLE};

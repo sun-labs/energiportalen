@@ -147,8 +147,25 @@ Queries.TABLE_QUERIES = [
     ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
   `,
     populate: {
-      test: undefined,
-      dev: undefined
+      test: `
+        INSERT INTO block_types 
+          (id, constant, name, description)
+        VALUES
+          (1,'ILLU_ONE','Illustration One','First edition'),
+          (2,'ILLU_TWO','Illustration Two','Second edition'),
+          (3,'ONE','First one','First one after the second edition'),
+          (4,'TWO','Second one','Second one after the first one');
+      `,
+      dev: `
+        INSERT INTO block_types 
+          (id, constant, name, description)
+        VALUES
+          (1,'ILLU_PHONE','Smartphones Charged','The number of smartphones charged on the equivalent energy production.'),
+          (2,'ILLU_SCOOTER','Scooter Tours around Earth','The number of tours around earth an electrical scooter could travel in the equivalent energy production'),
+          (3,'LINE','Line Plot',NULL),
+          (4,'TABLE','Data Table',NULL),
+          (5,'BAR','Bar Plot',NULL);
+      `
     }
   }, {
     name: 'users',
@@ -174,13 +191,13 @@ Queries.TABLE_QUERIES = [
     `,
       dev: `
     INSERT INTO users
-      (id, email, password)
+      (id, email, password, name)
     VALUES
       -- password: ***REMOVED***
-      (1, 'admin@sunlabs.se', '***REMOVED***'),
-      (2, 'user@sunlabs.se', '***REMOVED***'),
-      (3, 'user@company.se', '***REMOVED***'),
-      (3, 'admin@company.se', '***REMOVED***');
+      (1, 'admin@sunlabs.se', '***REMOVED***','Admin Sunlabs'),
+      (2, 'user@sunlabs.se', '***REMOVED***', 'User Sunlabs'),
+      (3, 'user@company.se', '***REMOVED***', 'User Company'),
+      (4, 'admin@company.se', '***REMOVED***', 'Admin Company');
     `
     }
   }, {
