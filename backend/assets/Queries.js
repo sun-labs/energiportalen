@@ -40,17 +40,17 @@ Queries.INTERVAL_FORMATS = {
 }
 
 Queries.TABLE_QUERIES = [
-{
-  name: 'units',
-  create: `
+  {
+    name: 'units',
+    create: `
     CREATE TABLE IF NOT EXISTS units (
       id int(11) unsigned NOT NULL AUTO_INCREMENT,
       name varchar(255) NOT NULL DEFAULT '',
       PRIMARY KEY (id)
     ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
   `,
-  populate: {
-    test: `
+    populate: {
+      test: `
     INSERT INTO units 
       (id, name)
     VALUES
@@ -61,7 +61,7 @@ Queries.TABLE_QUERIES = [
       ,(5, 'Unit5')
       ,(6, 'Unit6');
     `,
-    dev: `
+      dev: `
     INSERT INTO units 
       (id, name)
     VALUES
@@ -69,11 +69,11 @@ Queries.TABLE_QUERIES = [
       (5,'Vader'),
       (6,'Sun Labs');
     `
-  }
-},
-{
-  name: 'si_units',
-  create: `
+    }
+  },
+  {
+    name: 'si_units',
+    create: `
     CREATE TABLE IF NOT EXISTS si_units (
       id int(11) unsigned NOT NULL AUTO_INCREMENT,
       name varchar(64) NOT NULL DEFAULT '',
@@ -83,8 +83,8 @@ Queries.TABLE_QUERIES = [
       PRIMARY KEY (id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
   `,
-  populate: {
-    test: `
+    populate: {
+      test: `
       INSERT INTO si_units 
         (id, name, description, symbol, normalize)
       VALUES
@@ -93,27 +93,35 @@ Queries.TABLE_QUERIES = [
         (3,'SI Unit 2','Unit 2','U2',1),
         (4,'Micro SI Unit 2','10^-6 Unit 2','U2', 0.000001);
     `,
-    dev: `
-    INSERT INTO si_units 
-      (id, name, description, symbol, normalize)
-    VALUES
-      (1,'Volt','Charge','V',1),
-      (2,'Ampere','Current','A',1),
-      (3,'Watt','Energy','W',1),
-      (4,'Volt-Ampere Reactive','Reactive power is expressed in an AC electric power system','var',1),
-      (5,'Volt-Ampere','Used for the apparent power in an electrical circuit','VA',1),
-      (6,'Kilowatt Hour','A derived unit of energy equal to 3.6 megajoules','kWh',1000),
-      (7,'Kilowatt',NULL,'kW',1000),
-      (8,'Kilovolt-Ampere Reactive','','kvar',1000),
-      (9,'Kilovolt-Ampere','Used for the apparent power in an electrical circuit','kVA',1000),
-      (10,'Hertz','One cycle per second','Hz',1),
-      (11,'Watt Hour',NULL,'Wh',1),
-      (12,'Volt-Ampere Reactive Hour','','varh',1);
+      dev: `
+      INSERT INTO si_units 
+        (id, name, description, symbol, normalize)
+      VALUES
+        (1,'Volt','Charge','V',1),
+        (2,'Ampere','Current','A',1),
+        (3,'Watt','Energy','W',1),
+        (4,'Volt-Ampere Reactive','Reactive power is expressed in an AC electric power system','var',1),
+        (5,'Volt-Ampere','Used for the apparent power in an electrical circuit','VA',1),
+        (6,'Kilowatt Hour','A derived unit of energy equal to 3.6 megajoules','kWh',1000),
+        (7,'Kilowatt',NULL,'kW',1000),
+        (8,'Kilovolt-Ampere Reactive','','kvar',1000),
+        (9,'Kilovolt-Ampere','Used for the apparent power in an electrical circuit','kVA',1000),
+        (10,'Hertz','One cycle per second','Hz',1),
+        (11,'Watt Hour',NULL,'Wh',1),
+        (12,'Volt-Ampere Reactive Hour','','varh',1),
+        (13,'Degree',NULL,'°',1),
+        (14,'Celsius Degree',NULL,'°C',1),
+        (15,'Metre per Second','','m/s',1),
+        (16,'Millimetre','A unit of length in the metric system, equal to one thousandth of a metre','mm',0.001),
+        (17,'Millimetre per Hour',NULL,'mm/h',1),
+        (18,'Pascal','It is defined as one newton per square metre. Measures pressure.','Pa',1),
+        (19,'Hectopascal','','hPa',100),
+        (20,'Second','It is qualitatively defined as the second division of the hour by sixty','s',1);
     `
-  }
-},{
-  name: 'companies',
-  create: `
+    }
+  }, {
+    name: 'companies',
+    create: `
     CREATE TABLE IF NOT EXISTS companies (
       id int(11) unsigned NOT NULL AUTO_INCREMENT,
       name varchar(255) NOT NULL DEFAULT '',
@@ -122,14 +130,14 @@ Queries.TABLE_QUERIES = [
       PRIMARY KEY (id)
     ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
   `,
-  populate: {
-    test: undefined,
-    dev: undefined
-  }
-},
-{
-  name: 'block_types',
-  create: `
+    populate: {
+      test: undefined,
+      dev: undefined
+    }
+  },
+  {
+    name: 'block_types',
+    create: `
     CREATE TABLE IF NOT EXISTS block_types (
       id int(11) unsigned NOT NULL AUTO_INCREMENT,
       constant varchar(64) NOT NULL DEFAULT '',
@@ -138,13 +146,13 @@ Queries.TABLE_QUERIES = [
       PRIMARY KEY (id)
     ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
   `,
-  populate: {
-    test: undefined,
-    dev: undefined
-  }
-},{
-  name: 'users',
-  create: `
+    populate: {
+      test: undefined,
+      dev: undefined
+    }
+  }, {
+    name: 'users',
+    create: `
       CREATE TABLE IF NOT EXISTS users (
         id int(11) unsigned NOT NULL AUTO_INCREMENT,
         email varchar(255) NOT NULL,
@@ -155,16 +163,16 @@ Queries.TABLE_QUERIES = [
         UNIQUE KEY email (email)
       ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
   `,
-  index: [],
-  populate: {
-    test: `
+    index: [],
+    populate: {
+      test: `
     INSERT INTO users
       (id, email, password)
     VALUES
       -- password: ***REMOVED***
       (1, 'asdf@asdf.com', '***REMOVED***');
     `,
-    dev: `
+      dev: `
     INSERT INTO users
       (id, email, password)
     VALUES
@@ -174,10 +182,10 @@ Queries.TABLE_QUERIES = [
       (3, 'user@company.se', '***REMOVED***'),
       (3, 'admin@company.se', '***REMOVED***');
     `
-  }
-},{
-  name: 'unit_keys',
-  create: `
+    }
+  }, {
+    name: 'unit_keys',
+    create: `
     CREATE TABLE IF NOT EXISTS unit_keys (
       id int(11) unsigned NOT NULL AUTO_INCREMENT,
       unit_id int(11) unsigned NOT NULL,
@@ -192,8 +200,8 @@ Queries.TABLE_QUERIES = [
       CONSTRAINT unit_keys_ibfk_2 FOREIGN KEY (si_unit_id) REFERENCES si_units (id)
     ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
   `,
-  populate: {
-    test: `
+    populate: {
+      test: `
     INSERT INTO unit_keys 
       (id, unit_id, name, log_no, notes)
     VALUES
@@ -203,55 +211,55 @@ Queries.TABLE_QUERIES = [
       (4, 2, 'Key4', 0, 'NOTES'),
       (5, 3, 'Key5', 0, 'NOTES');
     `,
-    dev: `
-    INSERT INTO unit_keys 
-      (id, unit_id, name, log_no, notes)
-    VALUES
-      (82,4,'F15_AS3_MQ41_I1',1,NULL),
-      (83,4,'F15_AS3_MQ41_I2',1,NULL),
-      (84,4,'F15_AS3_MQ41_I3',1,NULL),
-      (85,4,'F15_AS3_MQ41_U1_U2',1,NULL),
-      (86,4,'F15_AS3_MQ41_U2_U3',1,NULL),
-      (87,4,'F15_AS3_MQ41_U3_U1',1,NULL),
-      (88,4,'F15_AS3_MQ41_P1',2,NULL),
-      (89,4,'F15_AS3_MQ41_P2',2,NULL),
-      (90,4,'F15_AS3_MQ41_P3',2,NULL),
-      (91,4,'F15_AS3_MQ41_PVAR',2,NULL),
-      (92,4,'F15_AS3_MQ41_PVA',2,NULL),
-      (93,4,'F15_AS3_MQ41_Pfa',2,NULL),
-      (94,4,'F15_AS3_MQ41_HZ',3,NULL),
-      (95,4,'F15_AS3_MQ41_WHAI',3,NULL),
-      (96,4,'F15_AS3_MQ41_WHAE',3,NULL),
-      (97,4,'F15_AS3_MQ41_VARHI',3,NULL),
-      (98,4,'F15_AS3_MQ41_VARHE',3,NULL),
-      (99,4,'F15_AS3_MQ41_WHPAI',3,NULL),
-      (100,4,'F15_AS3_MQ41_WHPAE',4,NULL),
-      (101,4,'F15_AS3_MQ41_WHAEI1',4,NULL),
-      (102,4,'F15_AS3_MQ41_WHAEI2',4,NULL),
-      (103,4,'F15_AS3_MQ41_WHAEI3',4,NULL),
-      (104,5,'F15_AS3_GW3U_Dn',1,NULL),
-      (105,5,'F15_AS3_GW3U_Dm',1,NULL),
-      (106,5,'F15_AS3_GW3U_Dx',1,NULL),
-      (107,5,'F15_AS3_GW3U_Sn',1,NULL),
-      (108,5,'F15_AS3_GW3U_Sm',1,NULL),
-      (109,5,'F15_AS3_GW3U_Sx',1,NULL),
-      (110,5,'F15_AS3_GW3U_Ta',2,NULL),
-      (111,5,'F15_AS3_GW3U_Tp',2,NULL),
-      (112,5,'F15_AS3_GW3U_Ua',2,NULL),
-      (113,5,'F15_AS3_GW3U_Pa',2,NULL),
-      (114,5,'F15_AS3_GW3U_Rc',2,NULL),
-      (115,5,'F15_AS3_GW3U_Rd',2,NULL),
-      (116,5,'F15_AS3_GW3U_Ri',3,NULL),
-      (117,5,'F15_AS3_GW3U_Hc',3,NULL),
-      (118,5,'F15_AS3_GW3U_Hd',3,NULL),
-      (119,5,'F15_AS3_GW3U_Hi',3,NULL),
-      (120,5,'F15_AS3_GW3U_Rp',3,NULL),
-      (121,5,'F15_AS3_GW3U_Hp',3,NULL);
+      dev: `
+      INSERT INTO unit_keys 
+        (id, unit_id, name, log_no, notes, si_unit_id)
+      VALUES
+        (82,4,'F15_AS3_MQ41_I1',1,'Ström i Ampere fas 1, adr 3000',2),
+        (83,4,'F15_AS3_MQ41_I2',1,'Ström i Ampere fas 2, adr 3002',2),
+        (84,4,'F15_AS3_MQ41_I3',1,'Ström i Ampere fas 3, adr 3004',2),
+        (85,4,'F15_AS3_MQ41_U1_U2',1,'Spänning L1-L2 i Volt, adr 3020',1),
+        (86,4,'F15_AS3_MQ41_U2_U3',1,'Spänning L2-L3 i Volt, adr 3022',1),
+        (87,4,'F15_AS3_MQ41_U3_U1',1,'Spänning L3-L1 i Volt, adr 3024',1),
+        (88,4,'F15_AS3_MQ41_P1',2,'Effekt fas 1 i kW, adr 3054',7),
+        (89,4,'F15_AS3_MQ41_P2',2,'Effekt fas 2 i kW, adr 3056',7),
+        (90,4,'F15_AS3_MQ41_P3',2,'Effekt fas 3 i kW, adr 3058',7),
+        (91,4,'F15_AS3_MQ41_PVAR',2,'Total reaktiv effekt i kVAR, adr 3068',8),
+        (92,4,'F15_AS3_MQ41_PVA',2,'Total apparent effekt i kVA, adr 3076',9),
+        (93,4,'F15_AS3_MQ41_Pfa',2,'Effektfaktor , adr 3084',NULL),
+        (94,4,'F15_AS3_MQ41_HZ',3,'Frekvens , adr 3110',10),
+        (95,4,'F15_AS3_MQ41_WHAI',3,'Total aktiv energi import i Wh, adr 45100',11),
+        (96,4,'F15_AS3_MQ41_WHAE',3,'Total aktiv energi export i Wh, adr 45102',11),
+        (97,4,'F15_AS3_MQ41_VARHI',3,'Total reaktiv energi import i VARh, adr 45104',12),
+        (98,4,'F15_AS3_MQ41_VARHE',3,'Total reaktiv energi export i VARh, adr 45106',12),
+        (99,4,'F15_AS3_MQ41_WHPAI',3,'Partial aktiv energi import i Wh, adr 45108',11),
+        (100,4,'F15_AS3_MQ41_WHPAE',4,'Partial reaktiv energi import i Wh, adr 45110',11),
+        (101,4,'F15_AS3_MQ41_WHAEI1',4,'Aktiv energi import i Wh fas 1, adr 45112',11),
+        (102,4,'F15_AS3_MQ41_WHAEI2',4,'Aktiv energi import i Wh fas 2, adr 45114',11),
+        (103,4,'F15_AS3_MQ41_WHAEI3',4,'Aktiv energi import i Wh fas 3, adr 45116',11),
+        (104,5,'F15_AS3_GW3U_Dn',1,'Wind direction minimum (D = degrees)',13),
+        (105,5,'F15_AS3_GW3U_Dm',1,'Wind direction average (D = degrees)',13),
+        (106,5,'F15_AS3_GW3U_Dx',1,'Wind direction maximum (D = degrees',13),
+        (107,5,'F15_AS3_GW3U_Sn',1,'Wind speed minimum (M = m/S)',15),
+        (108,5,'F15_AS3_GW3U_Sm',1,'Wind speed average (M = m/S)',15),
+        (109,5,'F15_AS3_GW3U_Sx',1,'Wind speed maximum (M = m/S)',15),
+        (110,5,'F15_AS3_GW3U_Ta',2,'Air temperature (C = °C)',14),
+        (111,5,'F15_AS3_GW3U_Tp',2,'Internal temperature (C = °C)',14),
+        (112,5,'F15_AS3_GW3U_Ua',2,'Relative humidity (P = % RH)',NULL),
+        (113,5,'F15_AS3_GW3U_Pa',2,'Air pressure (H = hPa)',19),
+        (114,5,'F15_AS3_GW3U_Rc',2,'Rain accumulation (M = mm)',16),
+        (115,5,'F15_AS3_GW3U_Rd',2,'Rain duration (S = S)',20),
+        (116,5,'F15_AS3_GW3U_Ri',3,'Rain intensity (M = mm/h)',17),
+        (117,5,'F15_AS3_GW3U_Hc',3,'Hail accumulation (M = hits/cm2)',NULL),
+        (118,5,'F15_AS3_GW3U_Hd',3,'Hail duration (S = S)',20),
+        (119,5,'F15_AS3_GW3U_Hi',3,'Hail intensity (M = hits/cm2h)',NULL),
+        (120,5,'F15_AS3_GW3U_Rp',3,'Rain peak intensity (M = mm/h)',17),
+        (121,5,'F15_AS3_GW3U_Hp',3,'Hail peak intensity (M = hits/cm2h)',NULL);
     `
-  }
-},{
-  name: 'locations',
-  create: `
+    }
+  }, {
+    name: 'locations',
+    create: `
     CREATE TABLE IF NOT EXISTS locations (
       id int(11) unsigned NOT NULL AUTO_INCREMENT,
       name varchar(255) NOT NULL,
@@ -259,12 +267,11 @@ Queries.TABLE_QUERIES = [
       description text,
       country varchar(11) DEFAULT NULL COMMENT 'ISO 3166-1 alpha-3',
       city varchar(60) DEFAULT NULL,
-      n_panels int(11) unsigned DEFAULT NULL COMMENT 'Number of solar panels installed at the location',
       PRIMARY KEY (id)
     ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
   `,
-  populate: {
-    test: `
+    populate: {
+      test: `
     INSERT INTO locations 
       (id, name, image, description, country, city)
     VALUES
@@ -272,7 +279,7 @@ Queries.TABLE_QUERIES = [
       (3, 'Origo', NULL, 'Panels on the roof are tilted 45 degrees (under construction).', 'SWE', 'Uppsala'),
       (2, 'Base10', NULL, 'Base is the place if youre among the top 1 per mille, the roof is covered in sunlight and happiness 24 hours a day.', 'SWE', 'Uppsala');
     `,
-    dev: `
+      dev: `
     INSERT INTO locations 
       (id, name, image, description, country, city)
     VALUES
@@ -280,10 +287,10 @@ Queries.TABLE_QUERIES = [
       (3, 'Origo', NULL, 'Panels on the roof are tilted 45 degrees (under construction).', 'SWE', 'Uppsala'),
       (2, 'Base10', NULL, 'Base is the place if youre among the top 1 per mille, the roof is covered in sunlight and happiness 24 hours a day.', 'SWE', 'Uppsala');
     `
-  }
-},{
-  name: 'unit_data',
-  create: `
+    }
+  }, {
+    name: 'unit_data',
+    create: `
     CREATE TABLE IF NOT EXISTS unit_data (
       id bigint(11) unsigned NOT NULL AUTO_INCREMENT,
       unit_id int(11) unsigned NOT NULL,
@@ -295,12 +302,12 @@ Queries.TABLE_QUERIES = [
       FOREIGN KEY (unit_key) REFERENCES unit_keys(id)
     ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
   `,
-  index: [`
+    index: [`
     CREATE INDEX unit_key_id
     ON unit_data (unit_key, unit_id, timestamp);
   `],
-  populate: {
-    test: `
+    populate: {
+      test: `
     INSERT INTO unit_data 
       (id, unit_id, unit_key, value, timestamp)
     VALUES
@@ -335,11 +342,11 @@ Queries.TABLE_QUERIES = [
       (12, 3, 5, 1121, '2017-02-09 00:00:01'),
       (13, 3, 5, 1200, '2017-02-09 00:00:01');
     `,
-    dev: undefined
-  }
-},{
-  name: 'unit_locations',
-  create: `
+      dev: undefined
+    }
+  }, {
+    name: 'unit_locations',
+    create: `
     CREATE TABLE IF NOT EXISTS unit_locations (
       unit_id int(11) unsigned NOT NULL,
       location_id int(11) unsigned NOT NULL,
@@ -348,9 +355,9 @@ Queries.TABLE_QUERIES = [
       FOREIGN KEY (location_id) REFERENCES locations(id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
   `,
-  index: [],
-  populate: {
-    test: `
+    index: [],
+    populate: {
+      test: `
     INSERT INTO unit_locations 
       (unit_id, location_id)
     VALUES
@@ -361,7 +368,7 @@ Queries.TABLE_QUERIES = [
       (5, 1),
       (6, 2);
     `,
-    dev: `
+      dev: `
     INSERT INTO unit_locations 
       (unit_id, location_id)
     VALUES
@@ -369,10 +376,10 @@ Queries.TABLE_QUERIES = [
       (5, 1),
       (6, 2);
     `
-  }
-},{
-  name: 'user_blocks',
-  create: `
+    }
+  }, {
+    name: 'user_blocks',
+    create: `
     CREATE TABLE IF NOT EXISTS user_blocks (
       id int(11) unsigned NOT NULL AUTO_INCREMENT,
       user_id int(11) unsigned NOT NULL,
@@ -396,14 +403,14 @@ Queries.TABLE_QUERIES = [
       CONSTRAINT user_blocks_ibfk_4 FOREIGN KEY (key_id) REFERENCES unit_keys (id)
     ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
   `,
-  index: [],
-  populate: {
-    test: undefined,
-    dev: undefined
-  }
-},{
-  name: 'company_users',
-  create: `
+    index: [],
+    populate: {
+      test: undefined,
+      dev: undefined
+    }
+  }, {
+    name: 'company_users',
+    create: `
     CREATE TABLE company_users (
       id int(11) unsigned NOT NULL AUTO_INCREMENT,
       user_id int(11) unsigned DEFAULT NULL,
@@ -415,12 +422,12 @@ Queries.TABLE_QUERIES = [
       CONSTRAINT company_users_ibfk_2 FOREIGN KEY (company_id) REFERENCES companies (id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
   `,
-  index: [],
-  populate: {
-    test: undefined,
-    dev: undefined
+    index: [],
+    populate: {
+      test: undefined,
+      dev: undefined
+    }
   }
-}
 ];
 
 Queries.TABLES = Queries.TABLE_QUERIES.map((tableQuery) => {
