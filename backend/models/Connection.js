@@ -29,6 +29,11 @@ class Connection {
     return this.con.query(...args);
   }
 
+  /**
+   * Create, index and populate a certain table.
+   * @param {*} TABLE
+   * @param {*} cb 
+   */
   bootstrap(TABLE, cb) {
     this.create(TABLE, (err, res) => {
       if(err) { return cb(err); }
