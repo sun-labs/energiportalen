@@ -419,8 +419,9 @@ Queries.TABLE_QUERIES = [
     create: `
     CREATE TABLE IF NOT EXISTS user_blocks (
       id int(11) unsigned NOT NULL AUTO_INCREMENT,
-      user_id int(11) unsigned NOT NULL,
-      type_id int(11) unsigned NOT NULL,
+      block_id int(10) unsigned DEFAULT NULL COMMENT 'If the block contains multiple rows of data (table block), reference the block id.',
+      user_id int(11) unsigned,
+      type_id int(11) unsigned,
       unit_id int(11) unsigned NOT NULL,
       key_id int(11) unsigned NOT NULL,
       time_interval varchar(32) DEFAULT NULL,
@@ -430,11 +431,13 @@ Queries.TABLE_QUERIES = [
       is_removed tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'If the block is removed or not',
       dashboard_index tinyint(4) unsigned DEFAULT NULL COMMENT 'The index of the dashboard',
       PRIMARY KEY (id),
+      KEY block_id (block_id),
       KEY user_id (user_id),
       KEY type_id (type_id),
       KEY unit_id (unit_id),
       KEY key_id (key_id),
       CONSTRAINT user_blocks_ibfk_1 FOREIGN KEY (user_id) REFERENCES users (id),
+      CONSTRAINT user_blocks_ibfk_5 FOREIGN KEY (block_id) REFERENCES user_blocks (id),
       CONSTRAINT user_blocks_ibfk_2 FOREIGN KEY (type_id) REFERENCES block_types (id),
       CONSTRAINT user_blocks_ibfk_3 FOREIGN KEY (unit_id) REFERENCES units (id),
       CONSTRAINT user_blocks_ibfk_4 FOREIGN KEY (key_id) REFERENCES unit_keys (id)
