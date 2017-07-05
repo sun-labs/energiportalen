@@ -131,8 +131,21 @@ Queries.TABLE_QUERIES = [
     ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
   `,
     populate: {
-      test: undefined,
-      dev: undefined
+      test: `
+        INSERT INTO companies 
+          (id, name, description, logotype)
+        VALUES
+          (1,'Company One',NULL,NULL),
+          (2,'Company Two',NULL,NULL),
+          (3,'Company Three',NULL,NULL);
+      `,
+      dev: `
+        INSERT INTO companies 
+          (id, name, description, logotype)
+        VALUES
+          (1,'HPSolarTech',NULL,NULL),
+          (2,'STUNS Energi',NULL,NULL);
+      `
     }
   },
   {
