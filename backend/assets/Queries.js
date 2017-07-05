@@ -127,7 +127,9 @@ Queries.TABLE_QUERIES = [
       name varchar(255) NOT NULL DEFAULT '',
       description text,
       logotype varchar(255) DEFAULT NULL,
-      PRIMARY KEY (id)
+      duns_id int(16) DEFAULT NULL COMMENT 'A universal identifier for global companies',
+      PRIMARY KEY (id),
+      UNIQUE KEY duns_id (duns_id)
     ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
   `,
     populate: {
@@ -200,7 +202,11 @@ Queries.TABLE_QUERIES = [
       (id, email, password)
     VALUES
       -- password: ***REMOVED***
-      (1, 'asdf@asdf.com', '***REMOVED***');
+      -- TODO remove this user from tests and remove the line below.
+      (1, 'asdf@asdf.com', '***REMOVED***'),
+      -- password: ***REMOVED***
+      (2, 'one@user.com', '***REMOVED***'),
+      (3, 'two@user.com', '***REMOVED***');
     `,
       dev: `
     INSERT INTO users
@@ -441,7 +447,7 @@ Queries.TABLE_QUERIES = [
   }, {
     name: 'company_users',
     create: `
-    CREATE TABLE company_users (
+    CREATE TABLE IF NOT EXISTS company_users (
       id int(11) unsigned NOT NULL AUTO_INCREMENT,
       user_id int(11) unsigned DEFAULT NULL,
       company_id int(11) unsigned DEFAULT NULL,
@@ -450,7 +456,38 @@ Queries.TABLE_QUERIES = [
       KEY company_id (company_id),
       CONSTRAINT company_users_ibfk_1 FOREIGN KEY (user_id) REFERENCES users (id),
       CONSTRAINT company_users_ibfk_2 FOREIGN KEY (company_id) REFERENCES companies (id)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='This is used for allowing users access to white-label solutions. The user has access to white-label portal if entered here.';
+  `,
+    index: [],
+    populate: {
+      test: `
+        INSERT INTO company_users
+          (id, user_id, company_id)
+        VALUES
+          (1, 1, 1),
+          (2, 2, 2);
+      `,
+      dev: `
+        INSERT INTO company_users
+          (id, user_id, company_id)
+        VALUES
+          (1, 3, 2);
+      `
+    }
+  }, {
+    name: 'user_companies',
+    create: `
+      CREATE TABLE IF NOT EXISTS user_companies (
+        id int(11) unsigned NOT NULL AUTO_INCREMENT,
+        user_id int(10) unsigned DEFAULT NULL,
+        company_id int(10) unsigned DEFAULT NULL,
+        is_admin tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'If the user is allowed to manage the company connected to',
+        PRIMARY KEY (id),
+        KEY user_id (user_id),
+        KEY company_id (company_id),
+        CONSTRAINT user_companies_ibfk_1 FOREIGN KEY (user_id) REFERENCES users (id),
+        CONSTRAINT user_companies_ibfk_2 FOREIGN KEY (company_id) REFERENCES companies (id)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='If a user is a part of a company (or companies).';
   `,
     index: [],
     populate: {
