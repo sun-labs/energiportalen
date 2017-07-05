@@ -108,6 +108,50 @@ class User {
       }
     });
   }
+
+  /**
+   * Get the users stored blocks from the database, users id is necessary.
+   * @param {*} param0 
+   * @param {*} cb 
+   */
+  static getUserBlocks({ id }, cb) {
+
+    if(id < 0) { return cb(new Error('invalid user id'))}
+
+    const QUERY = `
+      SELECT 
+        child.id,
+        child.unit_id,
+        child.key_id,
+        GREATEST(IFNULL(child.type_id, 0), IFNULL(parent.type_id, 0)) as b_type_id,
+        (SELECT constant FROM block_types as bt WHERE bt.id = b_type_id) as block_type,
+        GREATEST(IFNULL(child.user_id, 0), IFNULL(parent.user_id, 0)) as user_id,
+        GREATEST(IFNULL(child.time_interval, 0), IFNULL(parent.time_interval, 0)) as time_interval,
+        GREATEST(IFNULL(child.timespan, 0), IFNULL(parent.timespan, 0)) as timespan,
+        GREATEST(IFNULL(child.dashboard_index, 0), IFNULL(parent.dashboard_index, 0)) as dashboard_index,
+        child.date_from,
+        child.date_to,
+        child.is_removed
+      FROM 
+        user_blocks as child
+      LEFT JOIN 
+        user_blocks as parent
+      ON 
+        child.block_id = parent.id
+      WHERE 
+        child.user_id = ? OR 
+        parent.user_id = ?;
+    `;
+    const VALUES = [id, id];
+    const P_QUERY = mysql.format(QUERY, VALUES);
+
+    con.query({
+      sql: P_QUERY
+    }, (err, res) => {
+      cb(err, res);
+    });
+
+  }
   
 }
 

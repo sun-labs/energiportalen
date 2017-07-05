@@ -445,8 +445,27 @@ Queries.TABLE_QUERIES = [
   `,
     index: [],
     populate: {
-      test: undefined,
-      dev: undefined
+      test: `
+        INSERT INTO user_blocks 
+          (id, block_id, user_id, type_id, unit_id, key_id, time_interval, timespan, date_from, date_to, is_removed, dashboard_index)
+        VALUES
+          (1,NULL,1,1,4,84,'min','24h',NULL,NULL,0,1),
+          (2,NULL,1,3,4,95,'min','24h','2017-02-10 00:00:00','2017-02-10 23:59:59',0,2),
+          (5,NULL,1,4,4,95,'hour',NULL,'2017-02-10 00:00:00','2017-02-10 23:59:59',0,3),
+          (10,5,NULL,NULL,4,84,'day','1w',NULL,NULL,0,NULL),
+          (11,5,NULL,NULL,4,85,'hour',NULL,'2017-02-10 00:00:00','2017-02-10 23:59:59',0,NULL),
+          (12,NULL,2,3,4,84,'day','1w',NULL,NULL,0,1);
+      `,
+      dev: `
+        INSERT INTO user_blocks 
+          (id, block_id, user_id, type_id, unit_id, key_id, time_interval, timespan, date_from, date_to, is_removed, dashboard_index)
+        VALUES
+          (1,NULL,1,1,4,84,'min','24h',NULL,NULL,0,1),
+          (2,NULL,1,3,4,95,'min','24h','2017-02-10 00:00:00','2017-02-10 23:59:59',0,2),
+          (5,NULL,1,4,4,95,'hour',NULL,'2017-02-10 00:00:00','2017-02-10 23:59:59',0,3),
+          (10,5,NULL,NULL,4,84,'day','1w',NULL,NULL,0,NULL),
+          (11,5,NULL,NULL,4,85,'hour',NULL,'2017-02-10 00:00:00','2017-02-10 23:59:59',0,NULL);
+      `
     }
   }, {
     name: 'company_users',
