@@ -424,8 +424,8 @@ Queries.TABLE_QUERIES = [
       key_id int(11) unsigned NOT NULL,
       time_interval varchar(32) DEFAULT NULL,
       timespan varchar(64) DEFAULT NULL,
-      date_from date DEFAULT NULL,
-      date_to date DEFAULT NULL,
+      date_from datetime DEFAULT NULL,
+      date_to datetime DEFAULT NULL,
       is_removed tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'If the block is removed or not',
       dashboard_index tinyint(4) unsigned DEFAULT NULL COMMENT 'The index of the dashboard',
       PRIMARY KEY (id),
@@ -499,7 +499,12 @@ Queries.TABLE_QUERIES = [
           (2, 1, 2, 1), -- user one is admin of company two
           (3, 2, 2, 0); -- user two is part of company two
       `,
-      dev: undefined
+      dev: `
+        INSERT INTO user_companies
+          (id, user_id, company_id, is_admin)
+        VALUES
+          (1, 4, 1, 1);
+      `
     }
   }
 ];
