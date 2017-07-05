@@ -491,7 +491,14 @@ Queries.TABLE_QUERIES = [
   `,
     index: [],
     populate: {
-      test: undefined,
+      test: `
+        INSERT INTO user_companies
+          (id, user_id, company_id, is_admin)
+        VALUES
+          (1, 1, 1, 0), -- user one is part of company one
+          (2, 1, 2, 1), -- user one is admin of company two
+          (3, 2, 2, 0); -- user two is part of company two
+      `,
       dev: undefined
     }
   }
