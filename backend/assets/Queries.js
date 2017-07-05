@@ -158,28 +158,29 @@ Queries.TABLE_QUERIES = [
       constant varchar(64) NOT NULL DEFAULT '',
       name varchar(255) NOT NULL DEFAULT '',
       description text,
+      multiple_values tinyint(1) unsigned DEFAULT '0' COMMENT 'If the block allows values from multiple sources',
       PRIMARY KEY (id)
     ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
   `,
     populate: {
       test: `
         INSERT INTO block_types 
-          (id, constant, name, description)
+          (id, constant, name, description, multiple_values)
         VALUES
-          (1,'ILLU_ONE','Illustration One','First edition'),
-          (2,'ILLU_TWO','Illustration Two','Second edition'),
-          (3,'ONE','First one','First one after the second edition'),
-          (4,'TWO','Second one','Second one after the first one');
+          (1,'ILLU_ONE','Illustration One','First edition',0),
+          (2,'ILLU_TWO','Illustration Two','Second edition',0),
+          (3,'ONE','First one','First one after the second edition',1),
+          (4,'TWO','Second one','Second one after the first one',1);
       `,
       dev: `
         INSERT INTO block_types 
-          (id, constant, name, description)
+          (id, constant, name, description, multiple_values)
         VALUES
-          (1,'ILLU_PHONE','Smartphones Charged','The number of smartphones charged on the equivalent energy production.'),
-          (2,'ILLU_SCOOTER','Scooter Tours around Earth','The number of tours around earth an electrical scooter could travel in the equivalent energy production'),
-          (3,'LINE','Line Plot',NULL),
-          (4,'TABLE','Data Table',NULL),
-          (5,'BAR','Bar Plot',NULL);
+          (1,'ILLU_PHONE','Smartphones Charged','The number of smartphones charged on the equivalent energy production.',0),
+          (2,'ILLU_SCOOTER','Scooter Tours around Earth','The number of tours around earth an electrical scooter could travel in the equivalent energy production',0),
+          (3,'LINE','Line Plot',NULL,1),
+          (4,'TABLE','Data Table',NULL,1),
+          (5,'BAR','Bar Plot',NULL,1);
       `
     }
   }, {
