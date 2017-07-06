@@ -42,12 +42,16 @@ class Unit {
 
     const query = `
       SELECT
-        id,
-        name
+        uk.id as keyId, 
+        uk.unit_id as unitId, 
+        uk.name as keyName, 
+        su.*
       FROM
-        unit_keys
+        unit_keys as uk
+      INNER JOIN si_units as su
+      ON su.id = uk.si_unit_id
       WHERE
-        unit_id = ?
+        uk.unit_id = ?
     `;
     const p_query = mysql.format(query, unitId);
     con.query({

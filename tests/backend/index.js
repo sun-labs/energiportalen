@@ -14,6 +14,8 @@ const CORRECT_CREDENTIALS = {
   password: '***REMOVED***'
 };
 
+const DB_USER_COUNT = 3; // number of test users added to the database for each test. Change if necessary.
+
 let con;
 
 describe('[BE] Authentication tests', () => {
@@ -82,7 +84,7 @@ describe('[BE] Authentication tests', () => {
 
   it('User count database.', (done) => {
     User.getUserCount((count) => {
-      count.should.equal(1);
+      count.should.equal(DB_USER_COUNT);
       done();
     });
   });
@@ -95,7 +97,7 @@ describe('[BE] Authentication tests', () => {
       should.not.exist(err);
       should.exist(result);
       User.getUserCount((count) => {
-        count.should.equal(2);
+        count.should.equal(DB_USER_COUNT + 1);
         done();
       });
     });
@@ -190,24 +192,27 @@ describe('[BE] Authentication tests', () => {
     });
   });
 
-  /**
-   * NOTE Doesnt work atm as we dont have a test-db
-   * for daily grouped data.
-   */
   it('Get all keys for a unit', (done) => {
     const unitId = 1;
     Unit.getUnitKeys(unitId, (err, keys) => {
       should.not.exist(err);
-      //keys.length.should.equal(2); // correct
+      keys.length.should.equal(2); // correct
       should.exist(keys);
       done();
     });
   });
 
-  /**
-   * NOTE Doesnt work atm as we dont have a test-db
-   * for daily grouped data.
-   */
+  it('Get all keys for a unit and si_units', (done) => {
+    const unitId = 1;
+    Unit.getUnitKeys(unitId, (err, keys) => {
+      should.not.exist(err);
+      should.exist(keys);
+      keys.length.should.equal(2);
+      keys[0].symbol.should.equal('U1');
+      done();
+    });
+  });
+
   it('Get all data from a unit', (done) => {
     const unitId = 1;
     const keyId = 1;
@@ -313,6 +318,42 @@ describe('[BE] Authentication tests', () => {
       const last = new Date(res.last_log);
       first.getDate().should.equal(9);
       last.getDate().should.equal(17);
+      done();
+    });
+  });
+
+  it('Get user 1 block', (done) => {
+    const userId = 1;
+    User.getUserBlocks({ id: userId }, (err, res) => {
+      should.not.exist(err);
+      res.length.should.equal(5);
+      done();
+    });
+  });
+
+  it('Get user 2 block', (done) => {
+    const userId = 2;
+    User.getUserBlocks({ id: userId }, (err, res) => {
+      should.not.exist(err);
+      res.length.should.equal(1);
+      done();
+    });
+  });
+
+  it('Get user -1 block (err)', (done) => {
+    const userId = -1;
+    User.getUserBlocks({ id: userId }, (err, res) => {
+      should.exist(err);
+      should.not.exist(res);
+      done();
+    });
+  });
+
+  it('Get user 1 companies', (done) => {
+    const userId = 1;
+    User.getUserCompanies({ id: userId }, (err, res) => {
+      should.not.exist(err);
+      res.length.should.equal(2);
       done();
     });
   });

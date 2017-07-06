@@ -240,13 +240,13 @@ Queries.TABLE_QUERIES = [
     populate: {
       test: `
     INSERT INTO unit_keys 
-      (id, unit_id, name, log_no, notes)
+      (id, unit_id, name, log_no, notes, si_unit_id)
     VALUES
-      (1, 1, 'Key1', 0, 'NOTES'),
-      (2, 1, 'Key2', 0, 'NOTES'),
-      (3, 2, 'Key3', 0, 'NOTES'),
-      (4, 2, 'Key4', 0, 'NOTES'),
-      (5, 3, 'Key5', 0, 'NOTES');
+      (1, 1, 'Key1', 0, 'NOTES', 1),
+      (2, 1, 'Key2', 0, 'NOTES', 1),
+      (3, 2, 'Key3', 0, 'NOTES', 2),
+      (4, 2, 'Key4', 0, 'NOTES', 2),
+      (5, 3, 'Key5', 0, 'NOTES', NULL);
     `,
       dev: `
       INSERT INTO unit_keys 

@@ -109,10 +109,16 @@ class User {
     });
   }
 
+  
   /**
-   * Get the users stored blocks from the database, users id is necessary.
-   * @param {*} param0 
-   * @param {*} cb 
+   * @static
+   * @param {object} data
+   * @param {number} data.id
+   * @param {function} cb 
+   * @callback {function} (err, res)
+   * @returns {undefined}
+   * 
+   * @memberOf User
    */
   static getUserBlocks({ id }, cb) {
 
@@ -150,6 +156,65 @@ class User {
     }, (err, res) => {
       cb(err, res);
     });
+
+  }
+
+  static getUserCompanies({id}, cb) {
+
+    if(id < 0) { return cb(new Error('invalid user id'))}
+
+    const QUERY = `
+      SELECT
+        c.name,
+        uc.is_admin
+      FROM
+        user_companies as uc
+      INNER JOIN companies as c ON 
+        uc.company_id = c.id
+      INNER JOIN users as u ON 
+        uc.user_id = u.id
+      WHERE 
+        u.id = ?
+    `;
+
+    const VALUES = [id];
+    const P_QUERY = mysql.format(QUERY, VALUES);
+
+    con.query({
+      sql: P_QUERY
+    }, (err, res) => {
+      cb(err, res);
+    });
+
+  }
+
+  /**
+   * 
+   * Get the current number of blocks for a certain user based on userId
+   * 
+   * @param {number} { id } 
+   * @param {any} cb (err, count)
+   * 
+   * @memberOf User
+   */
+  static getBlockCountForUser({ id }, cb) {
+    this.getUserBlocks({ id }, (err, res) => {
+      blocks = res.filter((block) => {
+        return block.is_removed === false;
+      })
+      cb(err, blocks.length)
+    });
+  }
+
+  /**
+   * Add a block to the database for a certain user
+   * @static
+   * @param {any} { id, block } 
+   * @param {any} cb 
+   * 
+   * @memberOf User
+   */
+  static addBlockForUser({ id, block }, cb) {
 
   }
   
