@@ -48,12 +48,6 @@ Run this in the root of the repo, will create tables and populate with dev data
 npm run bootstrap
 ```
 
-Then add the following index
-```sql
-CREATE INDEX index_butter
-ON unit_data (unit_key, unit_id, timestamp);
-```
-
 Next step is to mport the `unit_data` CSV file!
 
 Bravissimo, you're done!
