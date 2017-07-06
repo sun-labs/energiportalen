@@ -159,6 +159,17 @@ class User {
 
   }
 
+  /**
+   * 
+   * Get companies that the user is a part of and manages(?)
+   * 
+   * @static
+   * @param {number} {id} 
+   * @param {function} cb 
+   * @returns {undefined}
+   * 
+   * @memberOf User
+   */
   static getUserCompanies({id}, cb) {
 
     if(id < 0) { return cb(new Error('invalid user id'))}
