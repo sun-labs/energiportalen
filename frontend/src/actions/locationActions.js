@@ -1,13 +1,12 @@
 import API from '../API';
 import axios from 'axios';
-import { API_URL } from '../Splash/assets/APIRoutes';
-import {
-  GET_LOCATION,
-  GET_LOCATIONS,
-  GET_UNITS_FROM_LOCATION,
-  GET_KEYS_FROM_UNIT,
-  FETCH_LOCATION_DATA_SUCCESS,
-} from '../constants/locationConstants';
+import * as APIRoutes from '../Splash/assets/APIRoutes';
+import * as locationConstants from '../constants/locationConstants';
+
+const c = {
+  ...APIRoutes,
+  ...locationConstants
+};
 
 export const fetchLocationData = ({ from, to, interval, unitId, keyId, title, blockType, locationId }) => {
   return (dispatch, getState) => {
@@ -33,7 +32,7 @@ export const fetchLocationData = ({ from, to, interval, unitId, keyId, title, bl
       ];
       const value = res.data.data[0].sum_val.toFixed(0);
 
-      dispatch({ type: FETCH_LOCATION_DATA_SUCCESS, labels, data, value, locationId });
+      dispatch({ type: c.FETCH_LOCATION_DATA_SUCCESS, labels, data, value, locationId });
     });
   }
 }
@@ -41,7 +40,7 @@ export const fetchLocationData = ({ from, to, interval, unitId, keyId, title, bl
 export const getLocation = (id) => {
   const token = localStorage.getItem('token');
   return (dispatch) => {
-    axios.get(API_URL+'/locations/' + id, 
+    axios.get(c.API_URL+'/locations/' + id, 
               { headers: {Authorization: token}})
     .then(res => {
       const location = {
@@ -54,7 +53,7 @@ export const getLocation = (id) => {
       };
 
       dispatch({
-        type: GET_LOCATION,
+        type: c.GET_LOCATION,
         location
       })
   });
@@ -66,7 +65,7 @@ export const getLocations = () => {
     API.getLocations({}, (res) => {
 
       dispatch({ 
-        type: GET_LOCATIONS,
+        type: c.GET_LOCATIONS,
         locations: res.data
       })
     });
@@ -77,7 +76,7 @@ export const getUnitsFromLocation = (location) => {
   return (dispatch) => {
      API.getUnitsFromLocation(location.id, (res) => {
       dispatch({
-        type: GET_UNITS_FROM_LOCATION,
+        type: c.GET_UNITS_FROM_LOCATION,
         units: res.data.map((unit) => ({ ...unit, locationId: location.id })),
         location
       })
@@ -90,7 +89,7 @@ export const getKeysFromUnit = (unit) => {
     API.getKeysFromUnit(unit.id, (res) => {
 
       dispatch({
-        type: GET_KEYS_FROM_UNIT,
+        type: c.GET_KEYS_FROM_UNIT,
         keys: res.data.map((key) => ({ ...key, unitId: unit.id })),
         unit
       })

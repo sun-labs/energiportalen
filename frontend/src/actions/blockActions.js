@@ -1,12 +1,9 @@
 import API from '../API';
-import {
-  FETCH_SUM_VALUE_DATA_SUCCESS,
-  TOGGLE_ADD_BLOCK,
-  ADD_TABLE_BLOCK_ROW,
-  FETCH_DATA_SUCCESS,
-  TOGGLE_EDIT_BLOCK,
-  SAVE_NEW_BLOCK
-} from '../constants/blockConstants';
+import * as blockConstants from '../constants/blockConstants';
+
+const c = {
+  ...blockConstants
+};
 
 export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockType }) => {
   return (dispatch, getState) => {
@@ -36,7 +33,7 @@ export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockTyp
       ];
       const value = res.data.data[0].sum_val.toFixed(0);
 
-      dispatch({ type: FETCH_DATA_SUCCESS, labels, data, value, blockId });
+      dispatch({ type: c.FETCH_DATA_SUCCESS, labels, data, value, blockId });
     });
   }
 }
@@ -44,33 +41,33 @@ export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockTyp
 export const fetchSumValueData = ({ from, to, interval, unitId, keyId, blockId, blockType, rowId = null }) => {
   return (dispatch) => {
     API.getDataFromKey({ from, to, interval, unitId, keyId }, (res) => {
-      dispatch({ type: FETCH_SUM_VALUE_DATA_SUCCESS, value: res.data.data[0].sum_val, blockId, blockType, rowId })
+      dispatch({ type: c.FETCH_SUM_VALUE_DATA_SUCCESS, value: res.data.data[0].sum_val, blockId, blockType, rowId })
     });
   }
 }
 
 export const toggleAddBlock = () => {
   return (dispatch) => {
-    dispatch({ type: TOGGLE_ADD_BLOCK })
+    dispatch({ type: c.TOGGLE_ADD_BLOCK })
   }
 }
 
 export const addTableBlockRow = (blockId) => {
   return (dispatch) => {
-    dispatch({ type: ADD_TABLE_BLOCK_ROW, blockId })
+    dispatch({ type: c.ADD_TABLE_BLOCK_ROW, blockId })
   }
 }
 
 export const toggleEditBlock = (blockId) => {
   return (dispatch) => {
-    dispatch({ type: TOGGLE_EDIT_BLOCK, blockId })
+    dispatch({ type: c.TOGGLE_EDIT_BLOCK, blockId })
   }
 }
 
 export const addBlock = ({ from, to, interval, unitId, keyId, blockType }) => {
   return (dispatch) => {
     dispatch({
-      type: SAVE_NEW_BLOCK,
+      type: c.SAVE_NEW_BLOCK,
       from,
       to,
       interval,
