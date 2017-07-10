@@ -12,6 +12,7 @@ class Connection {
   init(cb) {
     Connection.connect(this.ENV, (err, con) => {
       this.con = con;
+      this.database = con.config.database;
       if(cb) {
         cb(err);
       }
@@ -22,7 +23,8 @@ class Connection {
   safeEnv() {
     return (
       this.ENV === 'TEST' ||
-      (this.ENV === 'DEV' && this.FORCE_UNSAFE === true)
+      this.ENV === 'DEV' ||
+      this.FORCE_UNSAFE === true
     );
   }
 
@@ -75,6 +77,9 @@ class Connection {
     this.con.query({
       sql: QUERY
     }, (err, res) => {
+      if(err) {
+        err.continue = true; // mainly for indexes but is for the whole "exec function". Change if needed.
+      }
       cb(err, res);
     });
   }
@@ -117,7 +122,9 @@ class Connection {
    * @param {*} cb 
    */
   drop(TABLE, cb) {
-    if (!this.safeEnv()) { return cb('unsafe env'); }
+    if (!this.safeEnv()) { 
+      return cb({ unsafe: true });
+    }
     const QUERY = `
       SET FOREIGN_KEY_CHECKS = 0;
       DROP TABLE IF EXISTS ${TABLE}
@@ -135,7 +142,9 @@ class Connection {
    * @param {*} cb 
    */
   clear(TABLE, cb) {
-    if (!this.safeEnv()) { return cb('unsafe env'); }
+    if (!this.safeEnv()) { 
+      return cb({ unsafe: true });
+    }
     const QUERY = `
       SET FOREIGN_KEY_CHECKS = 0;
       DELETE FROM ${TABLE};
@@ -161,6 +170,9 @@ class Connection {
       lambda(table, (err, res) => { // call lambda function
         if (!err) { // no error, continue
           this.mapTables(rest, lambda, cb); // recursive call
+        } else if (err && err.continue === true) { // if vague error (indexing for example, which can go on without being applied)
+          console.log('[INFO] Error received but not fatal, continuing...');
+          this.mapTables(rest, lambda, cb); // rec call.
         } else { // error, return it
           return cb(err);
         }
@@ -173,21 +185,37 @@ class Connection {
   /*
   * Functions
   */
+  dropTables(tables, cb) {
+    this.mapTables(tables, this.drop, cb);
+  }
+  clearTables(tables, cb) {
+    this.mapTables(tables, this.clear, cb);
+  }
+  populateTables(tables, cb) {
+    this.mapTables(tables, this.populate, cb);
+  }
+  createTables(tables, cb) {
+    this.mapTables(tables, this.create, cb);
+  }
+  bootstrapTables(tables, cb) {
+    this.mapTables(tables, this.bootstrap, cb);
+  }
+  
+  /*
+  * Fixed functions
+  */
   dropAllTables(cb) {
     this.mapTables(Queries.TABLES, this.drop, cb);
   }
-
   clearAllTables(cb) {
     this.mapTables(Queries.TABLES, this.clear, cb);
   }
   populateAllTables(cb) {
     this.mapTables(Queries.TABLES, this.populate, cb);
   }
-
   createAllTables(cb) {
     this.mapTables(Queries.TABLES, this.create, cb);
   }
-
   bootstrapAllTables(cb) {
     this.mapTables(Queries.TABLES, this.bootstrap, cb);
   }
