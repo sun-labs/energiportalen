@@ -6,17 +6,12 @@ import Block from './Block';
 class LineBlock extends Component {
 
   componentWillMount() {
-    const {
-      refresh,
-      actions,
-      dispatch,
-      locationId = null
-    } = this.props;
+    const { props } = this;
 
-    if (typeof locationId === 'number') {
-      dispatch(actions.fetchLocationData(this.props));
-    } else if (refresh === true) {
-      dispatch(actions.fetchData(this.props))
+    if (typeof props.locationId === 'number') {
+      props.fetchLocationData(props);
+    } else if (props.refresh === true) {
+      props.fetchData(props);
     }
   }
 
@@ -72,6 +67,8 @@ setDataColors(dataList, config) {
 
   render() {
 
+    const { props } = this;
+
     const {
       options = defaultOptions,
       config = defaultConfig,
@@ -81,10 +78,8 @@ setDataColors(dataList, config) {
       title,
       dataKey,
       editing,
-      actions,
-      dispatch,
       blockId = null
-    } = this.props;
+    } = props;
 
     const datasets = this.setArrayLengths(
       this.setDataColors(data, config), 
@@ -97,9 +92,8 @@ setDataColors(dataList, config) {
       timeSpan,
       type: 'LINE',
       editing,
-      actions,
-      dispatch,
-      blockId
+      blockId,
+      ...props
     }
 
     return (

@@ -4,39 +4,32 @@ import '../styles/DetailedView.css'
 import DetailedBlock from '../components/DetailedBlock';
 import { connect } from 'react-redux';
 import actions from '../../actions';
+import { bindActionCreators } from 'redux'
 
 class DetailedView extends Component {
   componentWillMount(){
-    const { 
-      locations, 
-      dispatch,
-      match
-    } = this.props;
+    const { props } = this;
 
-    const id = match.params.locationID;
+    const id = props.match.params.locationID;
 
-    if (locations.length < 1) {
-      dispatch(actions.getLocation(id));
+    if (props.locations.length < 1) {
+      props.getLocation(id);
     }
   }
 
   render() {
-    const { 
-      match, 
-      locations = [],
-      dispatch
-    } = this.props;
-    const id = match.params.locationID;
+    const { props } = this;
+    const id = props.match.params.locationID;
 
-    const location = locations.filter((loc) => {
+    const location = props.locations.find((loc) => {
       return Number(loc.id) === Number(id);
-    })[0];
+    });
 
     return (
       <div className="content">
         { 
           location ?
-          <DetailedBlock {...location} dispatch={dispatch} actions={actions} /> :
+          <DetailedBlock {...location} {...props} /> :
           null
         }
       </div>
@@ -51,4 +44,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(DetailedView);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({...actions}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetailedView);

@@ -12,15 +12,14 @@ const c = {
 
 class DetailedBlock extends Component {
   render() {
+    const { props } = this;
 
     const { 
       name = 'Stadshuset',
       subtitle = 'Stockholm',
       image,
-      block,
-      dispatch,
-      actions
-    } = this.props;
+      block
+    } = props;
 
     return (
       <div className="detailedBlock">
@@ -33,7 +32,7 @@ class DetailedBlock extends Component {
         </header>
 
         <div className="content-detailedBlock">
-            <LineBlock {...block} actions={actions} dispatch={dispatch} />
+            <LineBlock {...block} {...props} />
         </div>
 
         <footer>

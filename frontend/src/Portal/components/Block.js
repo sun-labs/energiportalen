@@ -8,10 +8,10 @@ const c = {
 };
 
 const Header = (props) => {
-  const { 
-    type = c.DEFAULT, 
-    timeSpan = -1, 
-    title = 'TITLE', 
+  const {
+    type = c.DEFAULT,
+    timeSpan = -1,
+    title = 'TITLE',
     subtitle = 'SUBTITLE',
     from,
     to,
@@ -43,7 +43,7 @@ const Header = (props) => {
 
 const Footer = (props) => {
   const { type } = props;
-  
+
   switch(type) {
     case c.ADD:
       return (
@@ -133,29 +133,29 @@ class Block extends Component {
   }
 
   render() {
-    const { 
-      children, 
-      type, 
-      editing, 
-      dispatch, 
-      toggleEditBlock, 
-      blockId = null // TODO handle when null & "toggleEditBlock" --> locationBlock
-    } = this.props;
-
-    const { 
-      shouldRender, 
-      getCSSClass 
+    const {
+      props,
+      shouldRender,
+      getCSSClass
     } = this;
+
+    const {
+      children,
+      type,
+      editing,
+      blockId = null // TODO handle when null & "toggleEditBlock" --> locationBlock
+    } = props;
+
 
     return (
       <div className={`blockk ${getCSSClass(type)}`}>
-        { shouldRender(type, c.HEADER) ? <Header {...this.props} editHandle={() => dispatch(toggleEditBlock(blockId))} /> : '' }
+        { shouldRender(type, c.HEADER) ? <Header {...props} editHandle={() => props.toggleEditBlock(blockId)} /> : '' }
 
-        <Content {...this.props} editing={ editing }>
-          { children }
+        <Content {...props} editing={ editing }>
+          { children ? children : null }
         </Content>
 
-        { shouldRender(type, c.FOOTER) ? <Footer {...this.props} /> : '' }
+        { shouldRender(type, c.FOOTER) ? <Footer {...props} /> : '' }
       </div>
     );
   }

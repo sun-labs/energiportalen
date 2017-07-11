@@ -26,17 +26,14 @@ class ContentEdit extends Component {
   }
 
   componentWillMount() {
-    if (this.props.locations.length < 1) {
-      const { 
-        dispatch, 
-        actions 
-      } = this.props;
-      dispatch(actions.getLocations());
+    const { props } = this;
+    if (props.locations.length < 1) {
+      props.getLocations();
     }
   }
 
   handleChange(e = {}) {
-    const { actions, dispatch } = this.props;
+    const { props } = this;
 
     switch(e.type) {
       case c.LOCATION:
@@ -46,7 +43,7 @@ class ContentEdit extends Component {
             id: e.value
           }
         }, () => {
-          dispatch(actions.getUnitsFromLocation(this.state.location));
+          props.getUnitsFromLocation(this.state.location);
         })
         break;
       case c.UNIT:
@@ -57,7 +54,7 @@ class ContentEdit extends Component {
             locationId: this.state.location.id
           }
         }, () => {
-          dispatch(actions.getKeysFromUnit(this.state.unit));
+          props.getKeysFromUnit(this.state.unit);
         })
         break;
       case c.KEY:
@@ -104,15 +101,14 @@ class ContentEdit extends Component {
         break;
       case c.SAVE_BLOCK:
         const { from, to, interval, unit, key, type } = this.state;
-        dispatch(
-          actions.addBlock({
-            from,
-            to,
-            interval: interval.value,
-            unitId: unit.id,
-            keyId: key.id,
-            blockType: type.value
-          }));
+        props.addBlock({
+          from,
+          to,
+          interval: interval.value,
+          unitId: unit.id,
+          keyId: key.id,
+          blockType: type.value
+        });
         break;
       default:
         break;
@@ -124,12 +120,15 @@ class ContentEdit extends Component {
   }
 
   render() {
+    const {
+      props,
+      mapNameAndIdToLabelAndValue,
+      handleChange
+    } = this;
 
-    const { 
-      actions, 
-      dispatch,
+    const {
       locations = []
-    } = this.props;
+    } = props;
 
     const {
       location,
@@ -141,10 +140,6 @@ class ContentEdit extends Component {
       to,
     } = this.state;
 
-    const {
-      mapNameAndIdToLabelAndValue,
-      handleChange
-    } = this;
 
     const units = (location = {}) => {
       const loc = locations.find((l) => l.id === location.id);
@@ -219,7 +214,7 @@ class ContentEdit extends Component {
           onChange={(e) => handleChange({ ...e, type: c.BLOCK_TYPE })} />
         <div className="button-wrapper">
           <button
-            onClick={() => dispatch(actions.toggleAddBlock())}
+            onClick={() => props.toggleAddBlock()}
             className="cancel-block-add"
           >CANCEL
         </button>

@@ -10,11 +10,8 @@ class IlluScooterBlock extends Component {
   }
 
   componentWillMount() {
-    const { 
-      actions, 
-      dispatch 
-    } = this.props;
-    dispatch(actions.fetchSumValueData(this.props));
+    const { props } = this;
+    props.fetchSumValueData(props);
   }
 
   /**

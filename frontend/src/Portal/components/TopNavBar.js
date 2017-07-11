@@ -4,8 +4,6 @@ import fileDownload from 'react-file-download';
 import downloadImage from '../../imgs/download.png';
 import '../styles/TopNavBar.css';
 
-// NOTE maybe make a generic navbar to use for both portal & splash
-
 const TopNavBar = ({ history }) => {
   const route = history.location.pathname;
 

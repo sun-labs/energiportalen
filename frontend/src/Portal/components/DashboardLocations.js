@@ -11,9 +11,9 @@ const c = {
 
 class DashboardLocations extends Component {
   componentWillMount() {
-    if (this.props.locations.length < 1) {
-      const { dispatch, actions } = this.props;
-      dispatch(actions.getLocations());
+    const { props } = this;
+    if (props.locations.length < 1) {
+      props.getLocations();
     }
   }
 

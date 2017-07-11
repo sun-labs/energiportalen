@@ -9,9 +9,11 @@ export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockTyp
   return (dispatch, getState) => {
     API.getDataFromKey({ from, to, interval, unitId, keyId }, (res) => {
 
-      const label = getState().blocksReducer.blocks.filter((block) => {
+      let label = getState().blocksReducer.blocks.find((block) => {
         return blockId === block.blockId;
-      })[0].title;
+      });
+
+      label = label ? label.title : ''
 
       const values = res.data.data.map((elem) => {
         return elem.sum_val.toFixed();

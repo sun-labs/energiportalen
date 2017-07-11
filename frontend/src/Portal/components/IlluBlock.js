@@ -4,21 +4,19 @@ import Block from './Block';
 
 class IlluBlock extends Component {
   render() {
-
+    const { props } = this;
     const blockInfo = {
       type: 'ILLUSTRATION',
-      title: this.props.title,
-      subtitle: this.props.subtitle,
-      timeSpan: this.props.timeSpan,
-      editing: this.props.editing,
-      dispatch: this.props.dispatch,
-      actions: this.props.actions,
-      blockId: this.props.blockId
+      title: props.title,
+      subtitle: props.subtitle,
+      timeSpan: props.timeSpan,
+      editing: props.editing,
+      blockId: props.blockId
     }
     return(
-    <Block className={`blockk-illu ${this.props.className}`} { ...blockInfo }>
+    <Block className={`blockk-illu ${props.className}`} { ...blockInfo }>
       <div className="content-illu">
-        { this.props.children }
+        { props.children ? props.children : null }
       </div>
     </Block>
     );

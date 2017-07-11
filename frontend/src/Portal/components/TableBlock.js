@@ -11,81 +11,63 @@ class TableBlock extends Component {
   }
 
   fetchRowData(rowId) {
-    const {
-      actions,      
-      dispatch,
-      from,
-      to,
-      interval,
-      unitId,
-      keyId,
-      blockId,
-      blockType,
-    } = this.props;
+    const { props } = this;
 
-    dispatch(
-      actions.fetchSumValueData({
-        from,
-        to,
-        interval,
-        unitId,
-        keyId,
-        blockId,
-        blockType,
-        rowId
-      })
-    )
+    props.fetchSumValueData({
+      from: props.from,
+      to: props.to,
+      interval: props.interval,
+      unitId: props.unitId,
+      keyId: props.keyId,
+      blockId: props.blockId,
+      blockType: props.blockType,
+      rowId: props.rowId
+    })
   }
 
   componentWillMount() {
-    const { 
-      dispatch,
-      blockId,
-      actions
-    } = this.props;
-    dispatch(actions.addTableBlockRow(blockId));
+    const { props } = this;
+    props.addTableBlockRow(props.blockId);
   }
 
   render() {
+    const { 
+      props,
+      fetchRowData      
+    } = this;
 
     const {
       title = '',
       subtitle = '',
       rows = [],
-      dispatch,
       blockId,
       editing,
-      actions
-    } = this.props;
-
-    const {
-      fetchRowData
-    } = this;
+    } = props;
 
     const blockInfo = {
       title,
       subtitle,
       type: 'TABLE',
       editing,
-      dispatch,
-      blockId
+      blockId,
+      ...props
     }
-  
+
     return (
     <Block className="blockk-table" { ...blockInfo }>
       <table className="content-table">
         <tbody>
-          { 
+          {
             rows.map((elem, index) => {
               const rowProps = {
                 ...elem,
                 fetchRowData
               }
-              return (<TableBlockRow key={ index + this.props } { ...rowProps } />);
+              return (<TableBlockRow key={ index + props } { ...rowProps } />);
             })
           }
           <tr>
-            <td onClick={ () => dispatch(actions.addTableBlockRow(blockId)) } className="add-information">+ add information</td>
+            <td onClick={ () => props.addTableBlockRow(blockId) } className="add-information">+ add information</td>
           </tr>
         </tbody>
       </table>

@@ -6,6 +6,7 @@ import actions from '../../actions';
 import { Link } from 'react-router-dom';
 import * as routeConstants from '../../constants/routeConstants';
 import FacBlock from '../components/FacBlock';
+import { bindActionCreators } from 'redux'
 
 const c = {
   ...routeConstants
@@ -14,7 +15,7 @@ const c = {
 class Locations extends Component {
   componentWillMount() {
     if (this.props.locations.length < 1) {
-      this.props.dispatch(actions.getLocations());
+      this.props.getLocations();
     }
   }
 
@@ -55,4 +56,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Locations);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({...actions}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Locations);

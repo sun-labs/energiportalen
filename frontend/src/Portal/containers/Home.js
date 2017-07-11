@@ -9,6 +9,7 @@ import IlluScooterBlock from '../components/IlluScooterBlock';
 import DashboardLocations from '../components/DashboardLocations'
 import AddBlock from '../components/AddBlock';
 import '../styles/Home.css';
+import { bindActionCreators } from 'redux'
 import * as blockConstants from '../../constants/blockConstants';
 import * as routeConstants from '../components/Portal';
 
@@ -20,22 +21,11 @@ const c = {
 class Home extends Component {
 
   componentDidMount() {
-    const { dispatch } = this.props;
-
-    dispatch(actions.getLocations());
+    this.props.getLocations();
   }
 
   render() {
-    const { 
-      addingBlock, 
-      blocks,
-      dispatch,
-      locations
-    } = this.props;
-
-    const {
-      toggleAddBlock,
-    } = actions;
+    const { props } = this;
 
     return (
       <div className="content">
@@ -44,20 +34,12 @@ class Home extends Component {
           <h1>FAVORITE LOCATIONS<span className="inline-button"> add location + </span></h1>
           <h2> you may save or remove your own personally defined locations for easier access. </h2>
         </div>
-        <DashboardLocations 
-          actions={actions} 
-          dispatch={dispatch} 
-          locations={locations} 
-        />
-        { addingBlock
-          ? <AddBlock 
-              actions={actions}
-              dispatch={dispatch}
-              locations={locations}
-            />
-          : <div 
+        <DashboardLocations {...props} />
+        { props.addingBlock
+          ? <AddBlock {...props} />
+          : <div
               className="blockk add-block"
-              onClick={() => dispatch(toggleAddBlock())}
+              onClick={() => props.toggleAddBlock()}
             >+ ADD BLOCK</div>
         }
         <div className="text-block">
@@ -66,13 +48,12 @@ class Home extends Component {
         </div>
         <div className="block-wraper">
 
-          {blocks.map((block) => {
+          {props.blocks.map((block) => {
             const blockProps = {
               ...block,
-              dispatch,
-              actions,
+              ...props
             };
-            
+
             switch(block.blockType) {
               case c.PHONE:
                 return <IlluPhoneBlock key={block.blockId} { ...blockProps }/>
@@ -101,4 +82,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({...actions}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
