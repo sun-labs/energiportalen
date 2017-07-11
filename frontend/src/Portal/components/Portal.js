@@ -6,8 +6,11 @@ import TopNavBar from './TopNavBar';
 import BotNavBar from './BotNavBar';
 import Locations from '../containers/Locations';
 import DetailedView from '../containers/DetailedView'
+import * as routeConstants from '../../constants/routeConstants';
 
-export const ROOT = '/portal';
+const c = {
+  ...routeConstants
+};
 
 class Portal extends Component {
   
@@ -16,9 +19,9 @@ class Portal extends Component {
       <div id="portal">
         <TopNavBar />
           <Switch>
-            <Route path={`${ROOT}/addblock`} component={ AddBlock } />
-            <Route path={`${ROOT}/locations/:locationID`} component={ DetailedView } />
-            <Route path={`${ROOT}/locations`} component={ Locations } />               
+            <Route path={`${c.PORTAL_ROOT}/addblock`} component={ AddBlock } />
+            <Route path={`${c.PORTAL_ROOT}/locations/:locationID`} component={ DetailedView } />
+            <Route path={`${c.PORTAL_ROOT}/locations`} component={ Locations } />               
             <Route component={ Home } />
           </Switch>
         <BotNavBar/>

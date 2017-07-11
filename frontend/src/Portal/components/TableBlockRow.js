@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class TableBlockRow extends Component {
   componentWillMount() {
     const { fetchRowData, id } = this.props;

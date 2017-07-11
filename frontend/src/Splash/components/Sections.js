@@ -99,10 +99,10 @@ const Section4 = () => {
   )
 }
 
-const Sections = () => {
+const Sections = (props) => {
   return (
     <div className="sections">
-      <Section1 />
+      <Section1 {...props} />
       <Section2 />
       <Section3 />
       <Section4 />

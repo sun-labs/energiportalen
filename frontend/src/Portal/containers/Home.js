@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import actions from '../../actions';
-import {
-  PHONE,
-  TABLE,
-  SCOOTER,
-  LINE
-} from '../../constants/blockConstants';
-import { ROOT } from '../components/Portal';
 import LineBlock from '../components/LineBlock';
 import TableBlock from '../components/TableBlock';
 import IlluPhoneBlock from '../components/IlluPhoneBlock';
@@ -16,6 +9,13 @@ import IlluScooterBlock from '../components/IlluScooterBlock';
 import DashboardLocations from '../components/DashboardLocations'
 import AddBlock from '../components/AddBlock';
 import '../styles/Home.css';
+import * as blockConstants from '../../constants/blockConstants';
+import * as routeConstants from '../components/Portal';
+
+const c = {
+  ...blockConstants,
+  ...routeConstants
+};
 
 class Home extends Component {
 
@@ -39,7 +39,7 @@ class Home extends Component {
 
     return (
       <div className="content">
-        <Link to={`${ROOT}/addlocation`} id="AddlocationDash" className="blockk add-block">+ ADD LOCATION</Link>
+        <Link to={`${c.PORTAL_ROOT}/addlocation`} id="AddlocationDash" className="blockk add-block">+ ADD LOCATION</Link>
         <div className="text-block">
           <h1>FAVORITE LOCATIONS<span className="inline-button"> add location + </span></h1>
           <h2> you may save or remove your own personally defined locations for easier access. </h2>
@@ -74,13 +74,13 @@ class Home extends Component {
             };
             
             switch(block.blockType) {
-              case PHONE:
+              case c.PHONE:
                 return <IlluPhoneBlock key={block.blockId} { ...blockProps }/>
-              case TABLE:
+              case c.TABLE:
                 return <TableBlock key={block.blockId} { ...blockProps } />
-              case SCOOTER:
+              case c.SCOOTER:
                 return <IlluScooterBlock key={block.blockId} { ...blockProps }/>
-              case LINE:
+              case c.LINE:
                 return <LineBlock key={block.blockId} { ...blockProps }/>
               default:
                 return null;

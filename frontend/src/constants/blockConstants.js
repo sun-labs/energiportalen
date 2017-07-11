@@ -8,6 +8,7 @@ export const PHONE = 'PHONE';
 export const TABLE = 'TABLE';
 export const SCOOTER = 'SCOOTER';
 export const LINE = 'LINE';
+export const ILLUSTRATION = 'ILLUSTRATION';
 
 export const LOCATION = 'LOCATION';
 export const UNIT = 'UNIT';
@@ -24,6 +25,11 @@ export const HOUR = 'HOUR';
 export const DAY = 'DAY';
 export const MONTH = 'MONTH';
 export const YEAR = 'YEAR';
+
+export const HEADER = 'HEADER';
+export const FOOTER = 'FOOTER';
+export const DEFAULT = 'DEFAULT';
+export const ADD = 'ADD';
 
 export const typeOptions = [
   { value: LINE, label: 'Line Chart' },

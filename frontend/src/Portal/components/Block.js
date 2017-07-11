@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import '../styles/Block.css';
 import ContentEdit from './ContentEdit';
+import * as blockConstants from '../../constants/blockConstants';
 
-const HEADER = 'HEADER';
-const FOOTER = 'FOOTER';
-const DEFAULT = 'DEFAULT';
-const ADD = 'ADD';
-const ILLUSTRATION = 'ILLUSTRATION';
-const LINE = 'LINE';
-const TABLE = 'TABLE';
+const c = {
+  ...blockConstants
+};
 
 const Header = (props) => {
   const { 
-    type = DEFAULT, 
+    type = c.DEFAULT, 
     timeSpan = -1, 
     title = 'TITLE', 
     subtitle = 'SUBTITLE',
@@ -22,9 +19,9 @@ const Header = (props) => {
   } = props;
 
   switch(type) {
-    case ILLUSTRATION:
-    case LINE:
-    case TABLE:
+    case c.ILLUSTRATION:
+    case c.LINE:
+    case c.TABLE:
       return (
         <header>
           <div className="time-wrap">
@@ -48,14 +45,14 @@ const Footer = (props) => {
   const { type } = props;
   
   switch(type) {
-    case ADD:
+    case c.ADD:
       return (
         <div>
         </div>
       );
-    case ILLUSTRATION:
-    case LINE:
-    case TABLE:
+    case c.ILLUSTRATION:
+    case c.LINE:
+    case c.TABLE:
       return (
         <footer>
           <ul>
@@ -81,9 +78,9 @@ class Content extends Component {
 
     if(editing) {
       switch(type) {
-        case ILLUSTRATION:
-        case LINE:
-        case TABLE:
+        case c.ILLUSTRATION:
+        case c.LINE:
+        case c.TABLE:
           content = <ContentEdit {...this.props} />;
         break;
         default:
@@ -113,11 +110,11 @@ class Block extends Component {
 
   shouldRender(blockType, contentType) {
     switch(blockType) {
-      case ADD:
+      case c.ADD:
         return false;
-      case ILLUSTRATION:
-      case LINE:
-      case TABLE:
+      case c.ILLUSTRATION:
+      case c.LINE:
+      case c.TABLE:
         return true;
       default:
         return false;
@@ -126,9 +123,9 @@ class Block extends Component {
 
   getCSSClass(blockType) {
     switch(blockType) {
-      case LINE:
+      case c.LINE:
         return "blockk-line";
-      case TABLE:
+      case c.TABLE:
         return "blockk-table";
       default: // illustration blocks
         return this.props.className;
@@ -152,13 +149,13 @@ class Block extends Component {
 
     return (
       <div className={`blockk ${getCSSClass(type)}`}>
-        { shouldRender(type, HEADER) ? <Header {...this.props} editHandle={() => dispatch(toggleEditBlock(blockId))} /> : '' }
+        { shouldRender(type, c.HEADER) ? <Header {...this.props} editHandle={() => dispatch(toggleEditBlock(blockId))} /> : '' }
 
         <Content {...this.props} editing={ editing }>
           { children }
         </Content>
 
-        { shouldRender(type, FOOTER) ? <Footer {...this.props} /> : '' }
+        { shouldRender(type, c.FOOTER) ? <Footer {...this.props} /> : '' }
       </div>
     );
   }

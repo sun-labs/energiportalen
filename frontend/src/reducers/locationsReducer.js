@@ -1,16 +1,12 @@
-import {
-  GET_LOCATION,
-  GET_LOCATIONS,
-  GET_UNITS_FROM_LOCATION,
-  GET_KEYS_FROM_UNIT,
-  FETCH_LOCATION_DATA_SUCCESS,
-} from '../constants/locationConstants';
-
-import {
-  LINE
-} from '../constants/blockConstants';
-
+import * as locationConstants from '../constants/locationConstants';
+import * as blockConstants from '../constants/blockConstants';
 import { initialGraphBlock } from './blocksReducer';
+
+const c = {
+  ...locationConstants,
+  ...blockConstants
+};
+
 
 // const initialKey = {
 //   unitId: null,
@@ -31,7 +27,7 @@ const initialUnits = [];
 
 const initialBlock = {
   ...initialGraphBlock,
-  blockType: LINE,
+  blockType: c.LINE,
   timeSpan: '24h',
   unitId: 4,
   keyId: 95,
@@ -53,7 +49,7 @@ const initialState = {
 
 const unitsReducer = (state = initialUnits, action = null) => {
   switch(action.type) {
-    case GET_KEYS_FROM_UNIT:
+    case c.GET_KEYS_FROM_UNIT:
       return state.map((unit) => {
         if (unit.id === action.unit.id) {
           return {
@@ -71,7 +67,7 @@ const unitsReducer = (state = initialUnits, action = null) => {
 
 const locationReducer = (state = initialLocation, action = null) => {
   switch(action.type) {
-    case FETCH_LOCATION_DATA_SUCCESS:
+    case c.FETCH_LOCATION_DATA_SUCCESS:
       return {
         ...state,
         block: {
@@ -81,12 +77,12 @@ const locationReducer = (state = initialLocation, action = null) => {
           value: action.value
         }
       }
-    case GET_KEYS_FROM_UNIT:
+    case c.GET_KEYS_FROM_UNIT:
       return {
         ...state,
         units: unitsReducer(state.units, action)
       }
-    case GET_UNITS_FROM_LOCATION:
+    case c.GET_UNITS_FROM_LOCATION:
       return {
         ...state,
         units: action.units
@@ -98,7 +94,7 @@ const locationReducer = (state = initialLocation, action = null) => {
 
 const locationsReducer = (state = initialState, action = null) => {
   switch(action.type) {
-    case FETCH_LOCATION_DATA_SUCCESS:
+    case c.FETCH_LOCATION_DATA_SUCCESS:
       return {
         ...state,
         locations: state.locations.map((loc) => {
@@ -109,7 +105,7 @@ const locationsReducer = (state = initialState, action = null) => {
           }
         })
       }
-    case GET_KEYS_FROM_UNIT:
+    case c.GET_KEYS_FROM_UNIT:
       return {
         ...state,
         locations: state.locations.map((loc) => {
@@ -120,7 +116,7 @@ const locationsReducer = (state = initialState, action = null) => {
           }
         })
       }
-    case GET_UNITS_FROM_LOCATION:
+    case c.GET_UNITS_FROM_LOCATION:
       return {
         ...state,
         locations: state.locations.map((loc) => {
@@ -131,7 +127,7 @@ const locationsReducer = (state = initialState, action = null) => {
           }
         })
       }
-    case GET_LOCATION:
+    case c.GET_LOCATION:
       let added = false;
       const location = {
         ...action.location,
@@ -160,7 +156,7 @@ const locationsReducer = (state = initialState, action = null) => {
             { ...location }
           ]
       }
-    case GET_LOCATIONS:
+    case c.GET_LOCATIONS:
       return {
         ...state,
         locations: action.locations.map((loc) => {

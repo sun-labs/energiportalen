@@ -4,8 +4,12 @@ import '../styles/Locations.css';
 import { connect } from 'react-redux';
 import actions from '../../actions';
 import { Link } from 'react-router-dom';
-import { ROOT } from '../components/Portal';
+import * as routeConstants from '../../constants/routeConstants';
 import FacBlock from '../components/FacBlock';
+
+const c = {
+  ...routeConstants
+};
 
 class Locations extends Component {
   componentWillMount() {
@@ -28,7 +32,7 @@ class Locations extends Component {
               locations.map((location) => {
                 return (
                   <Link 
-                    to={`${ROOT}/locations/` +  location.id} key={location.id}>
+                    to={`${c.PORTAL_ROOT}/locations/` +  location.id} key={location.id}>
                     <FacBlock 
                       fac={location.image} 
                       title={location.name} 

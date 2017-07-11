@@ -3,7 +3,11 @@ import { withRouter } from 'react-router';
 import '../styles/BotNavBar.css';
 
 import { Link } from 'react-router-dom';
-import { ROOT } from './Portal';
+import * as routeConstants from '../../constants/routeConstants';
+
+const c = {
+  ...routeConstants
+};
 
 // NOTE maybe make a generic navbar to use for both portal & splash
 
@@ -12,10 +16,10 @@ const BotNavBar = ({ history }) => {
     <nav className="bot-navbar-portal">
       <ul>
         <li className="dashboard icon">
-          <Link to={`${ROOT}/`}>DASHBOARD</Link>
+          <Link to={`${c.PORTAL_ROOT}/`}>DASHBOARD</Link>
         </li>
         <li className="locations icon"> 
-          <Link to={`${ROOT}/locations`}>LOCATIONS</Link>
+          <Link to={`${c.PORTAL_ROOT}/locations`}>LOCATIONS</Link>
         </li>
         <li className="sign-out icon" onClick={() => {
           localStorage.removeItem('token');

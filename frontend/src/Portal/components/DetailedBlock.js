@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { ROOT } from './Portal';
 import '../styles/Home.css';
 import '../styles/DetailedBlock.css'
 import FacBlock from './FacBlock';
 import LineBlock from './LineBlock';
+import * as routeConstants from '../../constants/routeConstants';
+
+const c = {
+  ...routeConstants
+};
 
 class DetailedBlock extends Component {
   render() {
@@ -24,7 +28,7 @@ class DetailedBlock extends Component {
         <header>
           <div className="compare-wrap">
             <FacBlock title={ name } subtitle={ subtitle } fac={ image }/>
-            <Link to={`${ROOT}/locations/addCompare`} className="blockk add-block">+ ADD BLOCK</Link>
+            <Link to={`${c.PORTAL_ROOT}/locations/addCompare`} className="blockk add-block">+ ADD BLOCK</Link>
           </div>
         </header>
 

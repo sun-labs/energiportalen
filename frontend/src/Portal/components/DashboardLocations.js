@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { ROOT } from './Portal';
 import addimg from '../../imgs/add-button.png';
 import '../styles/Home.css';
 import FacBlock from './FacBlock';
+import * as routeConstants from '../../constants/routeConstants';
 
+const c = {
+  ...routeConstants
+};
 
 class DashboardLocations extends Component {
   componentWillMount() {
@@ -18,12 +21,12 @@ class DashboardLocations extends Component {
     const { locations } = this.props;
 
     const blocks = locations.map((loc) =>
-      <Link to={`${ROOT}/locations/` + loc.id } key={loc.id}>
+      <Link to={`${c.PORTAL_ROOT}/locations/` + loc.id } key={loc.id}>
         <FacBlock fac={loc.image} title={loc.name} subtitle={loc.city}/>
       </Link>
     ).concat(
       <Link 
-        to={`${ROOT}/locations/addlocation`} 
+        to={`${c.PORTAL_ROOT}/locations/addlocation`} 
         key={'addlocation'}
       >
         <FacBlock 

@@ -1,12 +1,8 @@
-import {
-	AUTH_USER,
-	UNAUTH_USER,
-	FAILED_SIGN_IN,
-	CLOSE_AUTH_ERROR,
-	SHOW_ERROR,
-	FAILED_SIGN_UP,
-	PASSWORD_MISMATCH
-} from '../constants/authConstants';
+import * as authConstants from '../constants/authConstants';
+
+const c = {
+	...authConstants
+};
 
 const initialState = {
 	authenticated: false,
@@ -16,30 +12,30 @@ const initialState = {
 
 const authReducer = (state = initialState, action = null) => {
 	switch(action.type) {
-		case AUTH_USER:
+		case c.AUTH_USER:
 			return {
 				...state,
 				authenticated: true
 			}
-		case UNAUTH_USER:
+		case c.UNAUTH_USER:
 			return {
 				...state,
 				authenticated: false
 			}
-		case PASSWORD_MISMATCH:
-		case FAILED_SIGN_UP:
-		case FAILED_SIGN_IN:
+		case c.PASSWORD_MISMATCH:
+		case c.FAILED_SIGN_UP:
+		case c.FAILED_SIGN_IN:
 			return {
 				...state,
 				signInError: true,
 			}
-		case CLOSE_AUTH_ERROR:
+		case c.CLOSE_AUTH_ERROR:
 			return {
 				...state,
 				signInError: false,
 				error: {}
 			}
-		case SHOW_ERROR:
+		case c.SHOW_ERROR:
 			return {
 				error: {
 					...action.error

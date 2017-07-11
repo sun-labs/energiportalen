@@ -1,15 +1,8 @@
-import {
-  FETCH_SUM_VALUE_DATA_SUCCESS,
-  TOGGLE_ADD_BLOCK,
-  ADD_TABLE_BLOCK_ROW,
-  FETCH_DATA_SUCCESS,
-  TOGGLE_EDIT_BLOCK,
-  PHONE,
-  TABLE,
-  SCOOTER,
-  LINE,
-  SAVE_NEW_BLOCK
-} from '../constants/blockConstants';
+import * as blockConstants from '../constants/blockConstants';
+
+const c = {
+  ...blockConstants
+};
 
 export const tempRow = {
   unitId: 4,
@@ -56,7 +49,7 @@ const initialState = {
   blocks: [
     { 
       ...initialIlluBlock,
-      blockType: PHONE, 
+      blockType: c.PHONE, 
       id: 0,
       unitId: 4,
       keyId: 95,
@@ -64,7 +57,7 @@ const initialState = {
     },
     { 
       ...initialBlock, 
-      blockType: TABLE, 
+      blockType: c.TABLE, 
       blockId: 1,
       unitId: 4,
       keyId: 95,
@@ -73,14 +66,14 @@ const initialState = {
     },
     { 
       ...initialIlluBlock, 
-      blockType: SCOOTER, 
+      blockType: c.SCOOTER, 
       blockId: 2,
       unitId: 4,
       keyId: 95,
     },
     { 
       ...initialGraphBlock, 
-      blockType: LINE,
+      blockType: c.LINE,
       timeSpan: '24h',
       blockId: 3,
       unitId: 4,
@@ -91,12 +84,12 @@ const initialState = {
 
 const blockReducer = (state = {}, action = null) => {
   switch(action.type) {
-    case TOGGLE_EDIT_BLOCK:
+    case c.TOGGLE_EDIT_BLOCK:
       return {
         ...state,
         editing: !state.editing
       }
-    case ADD_TABLE_BLOCK_ROW:
+    case c.ADD_TABLE_BLOCK_ROW:
       return {
         ...state,
         rows: [
@@ -104,14 +97,14 @@ const blockReducer = (state = {}, action = null) => {
           { ...tempRow, id: state.rows.length }
         ]
       }
-    case FETCH_DATA_SUCCESS:
+    case c.FETCH_DATA_SUCCESS:
       return {
         ...state,
         labels: action.labels,
         data: action.data,
         value: action.value
       }
-    case FETCH_SUM_VALUE_DATA_SUCCESS:
+    case c.FETCH_SUM_VALUE_DATA_SUCCESS:
       if (typeof action.rowId === 'number') {
         return {
           ...state,
@@ -139,30 +132,30 @@ const blockReducer = (state = {}, action = null) => {
 
 const blocksReducer = (state = initialState, action = null) => {
   switch(action.type) {
-    case SAVE_NEW_BLOCK:
+    case c.SAVE_NEW_BLOCK:
 
       let newBlock = {};
 
       switch(action.blockType) {
-        case PHONE:
+        case c.PHONE:
           newBlock = {
             ...initialIlluBlock,
             interval: action.interval,
           }
           break;
-        case TABLE:
+        case c.TABLE:
           newBlock = {
             ...initialBlock,
             subtitle: 'TEMP_SUBTITLE',
             rows: [],
           }
           break;
-        case SCOOTER:
+        case c.SCOOTER:
           newBlock = {
             ...initialIlluBlock,
           }
           break;
-        case LINE:
+        case c.LINE:
           newBlock = {
             ...initialGraphBlock,
             data: [],
@@ -189,15 +182,15 @@ const blocksReducer = (state = initialState, action = null) => {
           ...state.blocks,
         ]
       }
-    case TOGGLE_ADD_BLOCK:
+    case c.TOGGLE_ADD_BLOCK:
       return {
         ...state,
         addingBlock: !state.addingBlock
       }
-    case TOGGLE_EDIT_BLOCK:
-    case ADD_TABLE_BLOCK_ROW:
-    case FETCH_SUM_VALUE_DATA_SUCCESS:
-    case FETCH_DATA_SUCCESS:
+    case c.TOGGLE_EDIT_BLOCK:
+    case c.ADD_TABLE_BLOCK_ROW:
+    case c.FETCH_SUM_VALUE_DATA_SUCCESS:
+    case c.FETCH_DATA_SUCCESS:
       return {
         ...state,
         blocks: state.blocks.map((block) => {

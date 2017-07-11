@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import '../styles/react-select.css';
-import {
-  LOCATION,
-  UNIT,
-  KEY,
-  INTERVAL,
-  DATE_FROM,
-  DATE_TO,
-  BLOCK_TYPE,
-  SAVE_BLOCK,
-  typeOptions,
-  intervalOptions
-} from '../../constants/blockConstants';
+import * as blockConstants from '../../constants/blockConstants';
+
+const c = {
+  ...blockConstants
+};
 
 class ContentEdit extends Component {
 
@@ -46,7 +39,7 @@ class ContentEdit extends Component {
     const { actions, dispatch } = this.props;
 
     switch(e.type) {
-      case LOCATION:
+      case c.LOCATION:
         this.setState({
           location: {
             name: e.label,
@@ -56,7 +49,7 @@ class ContentEdit extends Component {
           dispatch(actions.getUnitsFromLocation(this.state.location));
         })
         break;
-      case UNIT:
+      case c.UNIT:
         this.setState({
           unit: {
             name: e.label,
@@ -67,7 +60,7 @@ class ContentEdit extends Component {
           dispatch(actions.getKeysFromUnit(this.state.unit));
         })
         break;
-      case KEY:
+      case c.KEY:
         this.setState({
           key: {
             name: e.label,
@@ -76,7 +69,7 @@ class ContentEdit extends Component {
           }
         })
         break;
-      case INTERVAL:
+      case c.INTERVAL:
         this.setState({
           interval: {
             label: e.label,
@@ -84,12 +77,12 @@ class ContentEdit extends Component {
           }
         })
         break;
-      case DATE_FROM:
+      case c.DATE_FROM:
         this.setState({
           from: e.target.value
         })
         break;
-      case DATE_TO:
+      case c.DATE_TO:
         const _from = new Date(this.state.from);
         const _to = new Date(e.target.value);
         if (_to - _from > 0) {
@@ -101,7 +94,7 @@ class ContentEdit extends Component {
           // display error
         }
         break;
-      case BLOCK_TYPE:
+      case c.BLOCK_TYPE:
         this.setState({
           type: {
             label: e.label,
@@ -109,7 +102,7 @@ class ContentEdit extends Component {
           }
         })
         break;
-      case SAVE_BLOCK:
+      case c.SAVE_BLOCK:
         const { from, to, interval, unit, key, type } = this.state;
         dispatch(
           actions.addBlock({
@@ -167,63 +160,63 @@ class ContentEdit extends Component {
     return (
       <div className="blockk-add">
         <Select
-          name={LOCATION}
+          name={c.LOCATION}
           value={location.id}
           options={mapNameAndIdToLabelAndValue(locations)}
-          placeholder="CHOOSE LOCATION"
+          placeholder="CHOOSE c.LOCATION"
           clearable={true}
           className="choose-loc-add"
-          onChange={(e) => handleChange({ ...e, type: LOCATION })} />
+          onChange={(e) => handleChange({ ...e, type: c.LOCATION })} />
         <Select
           disabled={!location.id}
-          name={UNIT}
+          name={c.UNIT}
           value={unit.id}
           options={mapNameAndIdToLabelAndValue(units(location))}
-          placeholder="CHOOSE UNIT"
+          placeholder="CHOOSE c.UNIT"
           clearable={true}
           className="choose-loc-add"
-          onChange={(e) => handleChange({ ...e, type: UNIT })} />
+          onChange={(e) => handleChange({ ...e, type: c.UNIT })} />
         <Select
           disabled={!unit.id}
-          name={KEY}
+          name={c.KEY}
           value={key.id}
           options={mapNameAndIdToLabelAndValue(keys(unit))}
-          placeholder="CHOOSE KEY"
+          placeholder="CHOOSE c.KEY"
           clearable={true}
           className="choose-loc-add"
-          onChange={(e) => handleChange({ ...e, type: KEY })} />
+          onChange={(e) => handleChange({ ...e, type: c.KEY })} />
         <Select
           disabled={!key.id}
-          name={INTERVAL}
+          name={c.INTERVAL}
           value={interval.value}
-          options={intervalOptions}
-          placeholder="INTERVAL"
+          options={c.intervalOptions}
+          placeholder="c.INTERVAL"
           clearable={true}
           className="choose-time-add"
-          onChange={(e) => handleChange({ ...e, type: INTERVAL })} />
+          onChange={(e) => handleChange({ ...e, type: c.INTERVAL })} />
         <input
           disabled={!interval.value}
-          name={DATE_FROM}
+          name={c.DATE_FROM}
           type="date"
           value={from}
           placeholder="DATE FROM"
-          onChange={(e) => handleChange({ ...e, type: DATE_FROM })} />
+          onChange={(e) => handleChange({ ...e, type: c.DATE_FROM })} />
         <input
           disabled={!from}
-          name={DATE_TO}
+          name={c.DATE_TO}
           type="date"
           value={to}
           placeholder="DATE TO"
-          onChange={(e) => handleChange({ ...e, type: DATE_TO })} />
+          onChange={(e) => handleChange({ ...e, type: c.DATE_TO })} />
         <Select
           disabled={!to}
-          name={BLOCK_TYPE}
+          name={c.BLOCK_TYPE}
           value={type}
-          options={typeOptions}
+          options={c.typeOptions}
           placeholder="CHOOSE BLOCK TYPE"
           clearable={true}
           className="choose-block-add"
-          onChange={(e) => handleChange({ ...e, type: BLOCK_TYPE })} />
+          onChange={(e) => handleChange({ ...e, type: c.BLOCK_TYPE })} />
         <div className="button-wrapper">
           <button
             onClick={() => dispatch(actions.toggleAddBlock())}
@@ -232,7 +225,7 @@ class ContentEdit extends Component {
         </button>
           <button
             disabled={!type.value}
-            onClick={(e) => handleChange({ ...e, type: SAVE_BLOCK })}
+            onClick={(e) => handleChange({ ...e, type: c.SAVE_BLOCK })}
             className="save-block-add">
           SAVE BLOCK
         </button>
