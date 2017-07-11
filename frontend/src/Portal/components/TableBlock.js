@@ -27,13 +27,13 @@ class TableBlock extends Component {
 
   componentWillMount() {
     const { props } = this;
-    props.addTableBlockRow(props.blockId);
+    if (props.rows.length < 1) props.addTableBlockRow(props.blockId);
   }
 
   render() {
-    const { 
+    const {
       props,
-      fetchRowData      
+      fetchRowData
     } = this;
 
     const {
