@@ -54,6 +54,7 @@
   #portal > .content .inline-button{
     font-size: 10px;
     color: #6FCF97;
+    cursor: pointer;
   }
   
   #portal .content .add-block {
