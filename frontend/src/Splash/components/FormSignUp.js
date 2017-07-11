@@ -16,7 +16,7 @@ class FormSignUp extends Component {
     this.passwordsMatch = this.passwordsMatch.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    
+
   }
 
   passwordsMatch() {
@@ -24,14 +24,13 @@ class FormSignUp extends Component {
   }
 
   handleSubmit(e) {
-    const { dispatch, actions, history } = this.props;
-    const { email, password } = this.props;
+    const { props } = this;
 
     e.preventDefault();
     if(this.passwordsMatch()) {
-      dispatch(actions.authSignUp(email, password, history));
+      props.authSignUp(props.email, props.password, props.history);
     } else {
-      dispatch(actions.passwordMismatch());
+      props.passwordMismatch();
     }
   }
 

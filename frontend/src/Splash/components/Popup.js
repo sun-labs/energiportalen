@@ -16,14 +16,17 @@ class Popup extends Component {
   }
 
   render() {
-    var popupClass = this.props.className ? this.props.className : '';
-    var onClick = this.props.onClose ? this.props.onClose : this.handleClick;
-    var { children } = this.props;
+    const {
+      children,
+      className = '',
+      onClose = this.handleClick
+    } = this.props;
+
     return (
-      <div className={`popup-bg ${popupClass}`}>
+      <div className={`popup-bg ${className}`}>
         <div className={`popup`}>
-          <div className="close" onClick={ onClick }>x</div>
-          {children ? children : ''}
+          <div className="close" onClick={ onClose }>x</div>
+          { children ? children : null }
         </div>
       </div>
     );

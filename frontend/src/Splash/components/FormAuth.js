@@ -16,14 +16,11 @@ class FormAuth extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const { 
-      history, 
-      dispatch,
-      actions
-    } = this.props;
-    const { email, password } = this.state;
+    const {
+      props, state
+    } = this;
 
-    dispatch(actions.authSignIn(email, password, history));
+    props.authSignIn(state.email, state.password, props.history);
   }
 
   handleChange = (e) => {
@@ -33,11 +30,10 @@ class FormAuth extends Component {
   }
 
   render() {
-    const { className } = this.props;
-    const { handleSubmit, handleChange } = this;
+    const { handleSubmit, handleChange, props } = this;
 
     return (
-      <form className={ className ? className : '' } onSubmit={ handleSubmit }>
+      <form className={ props.className ? props.className : '' } onSubmit={ handleSubmit }>
         <div className="placeholder-wrap">
           <p>e-mail</p>
           <input type="email" placeholder="e-mail" name="email" tabIndex="1" onChange={ handleChange } />

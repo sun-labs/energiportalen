@@ -30,15 +30,11 @@ class Section1 extends Component {
 
   renderPopup() {
     if (this.state.popupVisible) {
-      const {
-        dispatch,
-        actions
-      } = this.props;
 
       return (
         <Popup className="popup-signup" onClose={this.togglePopup}>
           <h1>SIGN UP</h1>
-          <FormSignUp className="wrap-signup" dispatch={dispatch} actions={actions} />
+          <FormSignUp className="wrap-signup" {...this.props} />
         </Popup>
       );
     } else {
@@ -47,11 +43,7 @@ class Section1 extends Component {
   }
 
   render() {
-
-    const {
-      dispatch,
-      actions
-    } = this.props;
+    const { props } = this;
 
     return (
       <Section className="section1">
@@ -61,7 +53,7 @@ class Section1 extends Component {
         <div className="creat-wrap">
           <h1>SIGN UP WITH SUN LABS</h1>
           <h2>It's free and will always be for Sun Labs</h2>
-          <FormSignUp dispatch={dispatch} actions={actions} />
+          <FormSignUp {...props} />
         </div>
         <button id="mobile-btn-create-account" onClick={ this.togglePopup }>CREATE ACCOUNT</button>
         <TextContent title="What is Sun Labs?" body="Sun Labs dramatically improves the most important aspects of the Sun Energy experience. It introduces advanced visualisation and cloud first experience. Immersive statistics. The brightest, most colorful way to visualize energy data. And it looks every bit as powerful as it is. This is Sun Labs." />

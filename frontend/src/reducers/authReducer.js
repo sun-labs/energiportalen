@@ -37,9 +37,10 @@ const authReducer = (state = initialState, action = null) => {
 			}
 		case c.SHOW_ERROR:
 			return {
+				signInError: true,
 				error: {
 					...action.error
-				}
+				},
 			}
 		default:
 			return state

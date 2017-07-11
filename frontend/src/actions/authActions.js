@@ -13,6 +13,7 @@ export const showError = (title, error) => {
     let body;
 
     if (typeof(error) === 'object') {
+
       if(error.response) {
         switch (error.response.status) {
           case 401:
@@ -22,6 +23,15 @@ export const showError = (title, error) => {
             body = c.UNKNOWN;
             break;
         }
+      }
+
+    } else if (typeof(error) === 'string') {
+      switch (error) {
+        case c.PASS_MATCH:
+          body = c.PASS_MATCH;
+          break;
+        default:
+          break;
       }
     }
 
@@ -78,7 +88,7 @@ export const authSignUp = ( email = '', password = '', history ) => {
         dispatch({ type: c.AUTH_USER })
       })
       .catch((error) => {
-        dispatch({ type: c.UNAUTH_USER })
+        dispatch({ type: c.UNAUTH_USER });
         dispatch(showError('Error Received', error));
         dispatch({ type: c.FAILED_SIGN_UP })
       });

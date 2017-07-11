@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../styles/Splash.css';
 import NavBar from '../components/NavBar';
 import Sections from '../components/Sections';
 import MessageBox from '../components/MessageBox';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
 import actions from '../../actions';
 
-const Splash = ({ signInError, error, dispatch }) => {
-  return (
-    <div id="Splash">
-      <NavBar dispatch={dispatch} actions={actions}/>      
-      { 
-        signInError &&
-        <MessageBox className="error" onClick={ () => dispatch(actions.closeAuthError())} { ...error } />
-      }
-      <Sections dispatch={dispatch} actions={actions} />
-    </div>
-  );
+
+class Splash extends Component {
+  render() {
+    const { props } = this;
+
+    return (
+      <div id="Splash">
+        <NavBar {...props}/>      
+        { 
+          props.signInError &&
+          <MessageBox className="error" onClick={ () => props.closeAuthError()} { ...props.error } />
+        }
+        <Sections {...props} />
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state) => ({
@@ -24,4 +30,8 @@ const mapStateToProps = (state) => ({
   error: state.authReducer.error
 })
 
-export default connect(mapStateToProps)(Splash);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({...actions}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Splash);
