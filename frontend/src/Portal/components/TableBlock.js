@@ -61,7 +61,8 @@ class TableBlock extends Component {
             rows.map((elem, index) => {
               const rowProps = {
                 ...elem,
-                fetchRowData
+                fetchRowData,
+                value: props.value
               }
               return (<TableBlockRow key={ index + props } { ...rowProps } />);
             })
