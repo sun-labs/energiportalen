@@ -16,7 +16,7 @@ class DetailedBlock extends Component {
 
     const { 
       name = 'Stadshuset',
-      subtitle = 'Stockholm',
+      city = 'Stockholm',
       image,
       block
     } = props;
@@ -26,7 +26,7 @@ class DetailedBlock extends Component {
 
         <header>
           <div className="compare-wrap">
-            <FacBlock title={ name } subtitle={ subtitle } fac={ image }/>
+            <FacBlock title={ name } subtitle={ city } fac={ image }/>
             <Link to={`${c.PORTAL_ROOT}/locations/addCompare`} className="blockk add-block">+ ADD BLOCK</Link>
           </div>
         </header>
