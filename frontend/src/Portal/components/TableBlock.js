@@ -38,7 +38,7 @@ class TableBlock extends Component {
 
     const blockInfo = {
       title: props.title,
-      subtitle: prop.title,
+      subtitle: props.title,
       type: 'TABLE',
       editing: props.editing,
       blockId: props.blockId,
