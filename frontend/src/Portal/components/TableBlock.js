@@ -36,20 +36,12 @@ class TableBlock extends Component {
       fetchRowData
     } = this;
 
-    const {
-      title = '',
-      subtitle = '',
-      rows = [],
-      blockId,
-      editing,
-    } = props;
-
     const blockInfo = {
-      title,
-      subtitle,
+      title: props.title,
+      subtitle: prop.title,
       type: 'TABLE',
-      editing,
-      blockId,
+      editing: props.editing,
+      blockId: props.blockId,
       ...props
     }
 
@@ -58,7 +50,7 @@ class TableBlock extends Component {
         <table className="content-table">
           <tbody>
             {
-              rows.map((elem, index) => {
+              props.rows.map((elem, index) => {
                 const rowProps = {
                   ...elem,
                   fetchRowData,
@@ -67,7 +59,7 @@ class TableBlock extends Component {
               })
             }
             <tr>
-              <td onClick={ () => props.addTableBlockRow(blockId) } className="add-information">+ add information</td>
+              <td onClick={ () => props.addTableBlockRow(props.blockId) } className="add-information">+ add information</td>
             </tr>
           </tbody>
         </table>
