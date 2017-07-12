@@ -38,7 +38,9 @@ class Locations extends Component {
                       fac={location.image} 
                       title={location.name} 
                       subtitle={location.description} 
-                      key={location.id} />
+                      key={location.id}
+                      solarPlants={location.solarPlants}
+                      totEffect={location.totEffect} />
                   </Link>
                 );
               })

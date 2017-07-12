@@ -34,7 +34,7 @@ class Home extends Component {
           <h1>FAVORITE LOCATIONS<span className="inline-button"> add location + </span></h1>
           <h2> you may save or remove your own personally defined locations for easier access. </h2>
         </div>
-        <DashboardLocations {...props} />
+         <DashboardLocations {...props} /> 
         { props.addingBlock
           ? <AddBlock {...props} />
           : <div

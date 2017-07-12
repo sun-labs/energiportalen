@@ -14,25 +14,18 @@ class DetailedBlock extends Component {
   render() {
     const { props } = this;
 
-    const { 
-      name = 'Stadshuset',
-      city = 'Stockholm',
-      image,
-      block
-    } = props;
-
     return (
       <div className="detailedBlock">
 
         <header>
           <div className="compare-wrap">
-            <FacBlock title={ name } subtitle={ city } fac={ image }/>
+            <FacBlock title={ props.name } subtitle={ props.city } fac={ props.image } totEffect={ props.totEffect } solarPlants={ props.solarPlants }/>
             <Link to={`${c.PORTAL_ROOT}/locations/addCompare`} className="blockk add-block">+ ADD BLOCK</Link>
           </div>
         </header>
 
         <div className="content-detailedBlock">
-            <LineBlock {...block} {...props} />
+            <LineBlock {...props.block} {...props} title={props.name} />
         </div>
 
         <footer>

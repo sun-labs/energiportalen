@@ -22,7 +22,7 @@ class DashboardLocations extends Component {
 
     const blocks = locations.map((loc) =>
       <Link to={`${c.PORTAL_ROOT}/locations/` + loc.id } key={loc.id}>
-        <FacBlock fac={loc.image} title={loc.name} subtitle={loc.city}/>
+        <FacBlock fac={loc.image} title={loc.name} subtitle={loc.city} solarPlants={loc.solarPlants} totEffect={loc.totEffect}/>
       </Link>
     ).concat(
       <Link 

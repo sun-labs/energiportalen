@@ -31,13 +31,16 @@ const initialBlock = {
   timeSpan: '24h',
   unitId: 4,
   keyId: 95,
-  locationId: null
+  locationId: null,
+  blockId: -1
 }
 
 const initialLocation = {
   id: null,
   name: '',
   units: initialUnits,
+  solarPlants: 158,
+  totEffect: 340,
   block: {
     ...initialBlock
   }
@@ -161,6 +164,7 @@ const locationsReducer = (state = initialState, action = null) => {
         ...state,
         locations: action.locations.map((loc) => {
           return {
+            ...initialLocation,
             ...loc,
             block: {
               ...initialBlock,
