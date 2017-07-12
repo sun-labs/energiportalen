@@ -1,9 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router';
-import '../styles/BotNavBar.css';
-
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as routeConstants from '../../constants/routeConstants';
+import '../styles/BotNavBar.css';
 
 const c = {
   ...routeConstants
@@ -29,5 +29,9 @@ const BotNavBar = ({ history }) => {
     </nav>
   );
 }
+
+BotNavBar.propTypes = {
+  history: PropTypes.object.isRequired
+};
 
 export default withRouter(BotNavBar);
