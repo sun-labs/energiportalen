@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import Block from './Block';
 
 class IlluBlock extends Component {
@@ -10,17 +10,22 @@ class IlluBlock extends Component {
       title: props.title,
       subtitle: props.subtitle,
       timeSpan: props.timeSpan,
-      editing: props.editing,
-      blockId: props.blockId
     }
     return(
     <Block className={`blockk-illu ${props.className}`} { ...blockInfo }>
       <div className="content-illu">
-        { props.children ? props.children : null }
+        { props.children }
       </div>
     </Block>
     );
   }
 }
+
+IlluBlock.propTypes = {
+  title:                PropTypes.string.isRequired,
+  subtitle:             PropTypes.string.isRequired,
+  timeSpan:             PropTypes.string.isRequired,
+  children:             PropTypes.array.isRequired,
+};
 
 export default IlluBlock;
