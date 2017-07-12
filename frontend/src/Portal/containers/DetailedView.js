@@ -5,6 +5,7 @@ import DetailedBlock from '../components/DetailedBlock';
 import { connect } from 'react-redux';
 import actions from '../../actions';
 import { bindActionCreators } from 'redux'
+import PropTypes from 'prop-types';
 
 class DetailedView extends Component {
   componentWillMount(){
@@ -35,8 +36,13 @@ class DetailedView extends Component {
       </div>
     );
   }
-
 }
+
+DetailedView.propTypes = {
+  match:                    PropTypes.object.isRequired,
+  locations:                PropTypes.array.isRequired,
+  getLocation:              PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => {
   return {
