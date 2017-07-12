@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ContentEdit from './ContentEdit';
 import * as blockConstants from '../../constants/blockConstants';
+import PropTypes from 'prop-types';
 import '../styles/Block.css';
 
 const c = {
@@ -9,7 +10,7 @@ const c = {
 
 const Header = (props) => {
   const {
-    type = c.DEFAULT,
+    blockType = c.DEFAULT,
     timeSpan = -1,
     title = 'TITLE',
     subtitle = 'SUBTITLE',
@@ -18,7 +19,7 @@ const Header = (props) => {
     editHandle
   } = props;
 
-  switch(type) {
+  switch(blockType) {
     case c.ILLUSTRATION:
     case c.LINE:
     case c.TABLE:
@@ -42,9 +43,9 @@ const Header = (props) => {
 }
 
 const Footer = (props) => {
-  const { type } = props;
+  const { blockType } = props;
 
-  switch(type) {
+  switch(blockType) {
     case c.ADD:
       return (
         <div>
@@ -73,11 +74,11 @@ class Content extends Component {
 
   render() {
 
-    const { type, children, editing } = this.props;
+    const { blockType, children, editing } = this.props;
     let content = children;
 
     if(editing) {
-      switch(type) {
+      switch(blockType) {
         case c.ILLUSTRATION:
         case c.LINE:
         case c.TABLE:
@@ -133,6 +134,7 @@ class Block extends Component {
   }
 
   render() {
+    
     const {
       props,
       shouldRender,
@@ -141,25 +143,40 @@ class Block extends Component {
 
     const {
       children,
-      type,
+      blockType,
       editing,
       blockId = null // TODO handle when null & "toggleEditBlock" --> locationBlock
     } = props;
 
 
     return (
-      <div className={`blockk ${getCSSClass(type)}`}>
-        { shouldRender(type, c.HEADER) ? <Header {...props} editHandle={() => props.toggleEditBlock(blockId)} /> : '' }
+      <div className={`blockk ${getCSSClass(blockType)}`}>
+        { shouldRender(blockType, c.HEADER) ? <Header {...props} editHandle={() => props.toggleEditBlock(blockId)} /> : '' }
 
         <Content {...props} editing={ editing }>
           { children ? children : null }
         </Content>
 
-        { shouldRender(type, c.FOOTER) ? <Footer {...props} /> : '' }
+        { shouldRender(blockType, c.FOOTER) ? <Footer {...props} /> : '' }
       </div>
     );
   }
-
 }
+
+Block.propTypes = {
+  title:            PropTypes.string.isRequired,
+  children:         PropTypes.object.isRequired,
+  editing:          PropTypes.bool.isRequired,
+  className:        PropTypes.string.isRequired,
+
+  blockType:        PropTypes.string,
+  subtitle:         PropTypes.string,
+  blockId:          PropTypes.number,
+  toggleEditBlock:  PropTypes.func, // TODO maybe should be required?
+  editHandle:       PropTypes.func, // TODO maybe should be required?
+  to:               PropTypes.string,
+  from:             PropTypes.string,
+  timeSpan:         PropTypes.string,
+};
 
 export default Block;

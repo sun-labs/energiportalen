@@ -7,8 +7,9 @@ class AddBlock extends Component {
   render() {
     const blockInfo = {
       ...this.props,
-      type: 'ADD',
+      blockType: 'ADD',
       title: 'ADD BLOCK',
+      editing: true
     }
 
     return(

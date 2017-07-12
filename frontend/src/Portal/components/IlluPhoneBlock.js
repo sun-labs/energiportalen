@@ -35,7 +35,7 @@ class IlluPhoneBlock extends Component {
     } = this;
 
     return(
-    <IlluBlock className="block-phone" title={ props.title } subtitle={ props.subtitle } timeSpan={ props.timeSpan }>
+    <IlluBlock className="block-phone" {...props}>
         <p className="value-illu">{ calcCharged(props.value) }</p>
         <figure className="charge"></figure>
         <figure className="phone"></figure>

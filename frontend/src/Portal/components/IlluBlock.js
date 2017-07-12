@@ -10,6 +10,9 @@ class IlluBlock extends Component {
       title: props.title,
       subtitle: props.subtitle,
       timeSpan: props.timeSpan,
+      blockType: props.blockType,
+      editing: props.editing,
+      blockId: props.blockId
     }
     return(
     <Block className={`blockk-illu ${props.className}`} { ...blockInfo }>

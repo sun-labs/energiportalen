@@ -35,7 +35,7 @@ class IlluScooterBlock extends Component {
     const { props, calcTurnsAroundEarth } = this;
 
     return(
-    <IlluBlock className="block-scooter" title={ props.title } subtitle={ props.subtitle } timeSpan={ props.timeSpan }>
+    <IlluBlock className="block-scooter" {...props}>
         <p className="value-illu">{ calcTurnsAroundEarth(props.value).toFixed(2) }</p>
         <figure className="scooter"></figure>
         <figure className="earth"></figure>

@@ -36,17 +36,8 @@ class TableBlock extends Component {
       fetchRowData
     } = this;
 
-    const blockInfo = {
-      title: props.title,
-      subtitle: props.title,
-      type: 'TABLE',
-      editing: props.editing,
-      blockId: props.blockId,
-      ...props
-    }
-
     return (
-      <Block className="blockk-table" { ...blockInfo }>
+      <Block className="blockk-table" { ...props }>
         <table className="content-table">
           <tbody>
             {
