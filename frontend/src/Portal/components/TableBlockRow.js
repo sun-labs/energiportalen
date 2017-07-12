@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class TableBlockRow extends Component {
   componentWillMount() {
@@ -25,7 +26,7 @@ class TableBlockRow extends Component {
             <p className="title">{ title }</p>
           </div>
           <div className="data-wrap">
-            <p className="value">{ typeof value === 'number' ? value : 'loading..' }</p>
+            <p className="value">{ value > 0 ? value : 'loading..' }</p>
             <p className="unit">{ si }</p>
           </div>
         </td>
@@ -33,5 +34,14 @@ class TableBlockRow extends Component {
   );
   }
 }
+
+TableBlockRow.propTypes = {
+  fetchRowData: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  span: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  si: PropTypes.string.isRequired,
+};
 
 export default TableBlockRow;
