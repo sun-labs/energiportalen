@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { URL_TERMS } from '../assets/APIRoutes';
+import PropTypes from 'prop-types';
 import '../styles/Section.css';
 
 class FormSignUp extends Component {
@@ -24,11 +25,11 @@ class FormSignUp extends Component {
   }
 
   handleSubmit(e) {
-    const { props } = this;
+    const { props, state } = this;
 
     e.preventDefault();
     if(this.passwordsMatch()) {
-      props.authSignUp(props.email, props.password, props.history);
+      props.authSignUp(state.email, state.password, props.history);
     } else {
       props.passwordMismatch();
     }
@@ -61,7 +62,14 @@ class FormSignUp extends Component {
       </form>
     );
   }
-
 }
+
+FormSignUp.propTypes = {
+  authSignUp:         PropTypes.func.isRequired,
+  history:            PropTypes.object.isRequired,
+  passwordMismatch:   PropTypes.func.isRequired,
+
+  className:          PropTypes.string,
+};
 
 export default withRouter(FormSignUp);
