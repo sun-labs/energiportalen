@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class MessageBox extends Component {
 
@@ -29,7 +30,13 @@ class MessageBox extends Component {
       </div>
     );
   }
-
 }
+
+MessageBox.propTypes = {
+  className:              PropTypes.string.isRequired,
+  title:                  PropTypes.string.isRequired,
+  body:                   PropTypes.string.isRequired,
+  onClick:                PropTypes.func.isRequired,
+};
 
 export default MessageBox;
