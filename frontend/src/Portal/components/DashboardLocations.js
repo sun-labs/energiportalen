@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import addimg from '../../imgs/add-button.png';
-import '../styles/Home.css';
 import FacBlock from './FacBlock';
+import PropTypes from 'prop-types';
 import * as routeConstants from '../../constants/routeConstants';
+import '../styles/Home.css';
 
 const c = {
   ...routeConstants
@@ -42,5 +43,9 @@ class DashboardLocations extends Component {
     );
   }
 }
+
+DashboardLocations.propTypes = {
+  locations: PropTypes.array.isRequired
+};
 
 export default DashboardLocations;
