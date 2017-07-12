@@ -6,7 +6,7 @@ import MessageBox from '../components/MessageBox';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import actions from '../../actions';
-
+import PropTypes from 'prop-types';
 
 class Splash extends Component {
   render() {
@@ -24,6 +24,12 @@ class Splash extends Component {
     );
   }
 }
+
+Splash.propTypes = {
+  signInError:        PropTypes.bool.isRequired,
+  closeAuthError:     PropTypes.func.isRequired,
+  error:              PropTypes.object.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   signInError: state.authReducer.signInError,
