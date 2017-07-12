@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import '../styles/react-select.css';
+import PropTypes from 'prop-types';
 import * as blockConstants from '../../constants/blockConstants';
+import '../styles/react-select.css';
 
 const c = {
   ...blockConstants
@@ -127,10 +128,6 @@ class ContentEdit extends Component {
     } = this;
 
     const {
-      locations = []
-    } = props;
-
-    const {
       location,
       type,
       interval,
@@ -142,12 +139,12 @@ class ContentEdit extends Component {
 
 
     const units = (location = {}) => {
-      const loc = locations.find((l) => l.id === location.id);
+      const loc = props.locations.find((l) => l.id === location.id);
       return loc ? ( loc.units ) : [];
     }
 
     const keys = (unit = {}) => {
-      const loc = locations.find((l) => l.id === unit.locationId);
+      const loc = props.locations.find((l) => l.id === unit.locationId);
       const uni = loc ? loc.units.find((u) => u.id === unit.id) : {};
       return uni.keys ? uni.keys : [];
     }
@@ -157,7 +154,7 @@ class ContentEdit extends Component {
         <Select
           name={c.LOCATION}
           value={location.id}
-          options={mapNameAndIdToLabelAndValue(locations)}
+          options={mapNameAndIdToLabelAndValue(props.locations)}
           placeholder="CHOOSE c.LOCATION"
           clearable={true}
           className="choose-loc-add"
@@ -229,4 +226,12 @@ class ContentEdit extends Component {
     );
   }
 }
+
+ContentEdit.propTypes = {
+  locations:              PropTypes.array.isRequired,
+  getUnitsFromLocation:   PropTypes.func.isRequired,
+  getKeysFromUnit:        PropTypes.func.isRequired,
+  addBlock:               PropTypes.func.isRequired,
+};
+
 export default ContentEdit;
