@@ -16,7 +16,6 @@ export const tempRow = {
 }
 
 export const initialBlock = {
-  title: 'Akademiska Sjukhuset',
   from: '2017-02-10',
   to: '2017-02-10 23:59:59',
   unitId: '',
@@ -25,7 +24,8 @@ export const initialBlock = {
   blockId: '',
   blockType: '',
   editing: false,
-  interval: 'hour'
+  interval: 'hour',
+  locationId: 1
 }
 
 export const initialGraphBlock = {
@@ -38,7 +38,6 @@ export const initialGraphBlock = {
 export const initialIlluBlock = {
   ...initialBlock,
   value: -1,
-  subtitle: 'Uppsala',
   timeSpan: '24h',
 }
 
@@ -59,7 +58,6 @@ const initialState = {
       blockId: 1,
       unitId: 4,
       keyId: 95,
-      subtitle: 'Uppsala',
       rows: [],
       interval: 'day'
     },

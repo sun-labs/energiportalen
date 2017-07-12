@@ -69,19 +69,19 @@ class TableBlock extends Component {
 }
 
 TableBlock.propTypes = {
-  fetchSumValueData: PropTypes.func.isRequired,
-  addTableBlockRow: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
-  rows: PropTypes.array.isRequired,
-  editing: PropTypes.bool.isRequired,
-  from: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired,
-  unitId: PropTypes.number.isRequired,
-  keyId: PropTypes.number.isRequired,
-  blockId: PropTypes.number.isRequired,
-  blockType: PropTypes.string.isRequired,
-  interval: PropTypes.string.isRequired,
+  fetchSumValueData:      PropTypes.func.isRequired,
+  addTableBlockRow:       PropTypes.func.isRequired,
+  title:                  PropTypes.string.isRequired,
+  subtitle:               PropTypes.string.isRequired,
+  rows:                   PropTypes.array.isRequired,
+  editing:                PropTypes.bool.isRequired,
+  from:                   PropTypes.string.isRequired,
+  to:                     PropTypes.string.isRequired,
+  unitId:                 PropTypes.number.isRequired,
+  keyId:                  PropTypes.number.isRequired,
+  blockId:                PropTypes.number.isRequired,
+  blockType:              PropTypes.string.isRequired,
+  interval:               PropTypes.string.isRequired,
 };
 
 export default TableBlock;

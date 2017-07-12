@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../styles/Block.css';
 import ContentEdit from './ContentEdit';
 import * as blockConstants from '../../constants/blockConstants';
+import '../styles/Block.css';
 
 const c = {
   ...blockConstants

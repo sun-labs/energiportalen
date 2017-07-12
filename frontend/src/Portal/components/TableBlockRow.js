@@ -36,12 +36,12 @@ class TableBlockRow extends Component {
 }
 
 TableBlockRow.propTypes = {
-  fetchRowData: PropTypes.func.isRequired,
-  id: PropTypes.number.isRequired,
-  span: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
-  si: PropTypes.string.isRequired,
+  fetchRowData:             PropTypes.func.isRequired,
+  id:                       PropTypes.number.isRequired,
+  span:                     PropTypes.string.isRequired,
+  title:                    PropTypes.string.isRequired,
+  value:                    PropTypes.number.isRequired,
+  si:                       PropTypes.string.isRequired,
 };
 
 export default TableBlockRow;

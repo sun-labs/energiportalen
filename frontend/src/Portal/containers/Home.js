@@ -45,7 +45,7 @@ class Home extends Component {
         <div className="text-block">
             <h1>
               blocks
-              <span 
+              <span
                 className="inline-button"
                 onClick={() => props.toggleAddBlock()}>
                 add block +
@@ -56,9 +56,14 @@ class Home extends Component {
         <div className="block-wraper">
 
           {props.blocks.map((block) => {
+
+            const loc = props.locations.find((loc) => loc.id === block.locationId);
+
             const blockProps = {
               ...block,
-              ...props
+              ...props,
+              title: loc ? loc.name : '',
+              subtitle: loc ? loc.city : ''
             };
 
             switch(block.blockType) {
