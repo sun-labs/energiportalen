@@ -7,6 +7,7 @@
     "test": "tests"
   },
   "dependencies": {
+    "prop-types": "^15.5.10",
     "react-addons-css-transition-group": "^15.5.2",
     "react-addons-shallow-compare": "^15.5.2",
     "react-file-download": "^0.3.4"

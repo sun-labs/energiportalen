@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import '../styles/AddBlock.css';
-
 import Block from './Block';
 import ContentEdit from './ContentEdit';
+import '../styles/AddBlock.css';
 
 class AddBlock extends Component {
   render() {
