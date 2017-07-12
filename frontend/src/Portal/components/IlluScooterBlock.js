@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import IlluBlock from './IlluBlock';
+import PropTypes from 'prop-types';
 
 class IlluScooterBlock extends Component {
 
@@ -31,23 +32,23 @@ class IlluScooterBlock extends Component {
 
   render() {
 
-    const { 
-      value = 100,
-      title,
-      subtitle,
-      timeSpan,
-    } = this.props;
-
-    const { calcTurnsAroundEarth } = this;
+    const { props, calcTurnsAroundEarth } = this;
 
     return(
-    <IlluBlock className="block-scooter" title={ title } subtitle={ subtitle } timeSpan={ timeSpan }>
-        <p className="value-illu">{ calcTurnsAroundEarth(value).toFixed(2) }</p>
+    <IlluBlock className="block-scooter" title={ props.title } subtitle={ props.subtitle } timeSpan={ props.timeSpan }>
+        <p className="value-illu">{ calcTurnsAroundEarth(props.value).toFixed(2) }</p>
         <figure className="scooter"></figure>
         <figure className="earth"></figure>
     </IlluBlock>
     );
   }
 }
+
+IlluScooterBlock.propTypes = {
+  value:                PropTypes.number.isRequired,
+  title:                PropTypes.string.isRequired,
+  subtitle:             PropTypes.string.isRequired,
+  timeSpan:             PropTypes.string.isRequired,
+};
 
 export default IlluScooterBlock;
