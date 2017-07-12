@@ -165,7 +165,10 @@ class Block extends Component {
 
 Block.propTypes = {
   title:            PropTypes.string.isRequired,
-  children:         PropTypes.object.isRequired,
+  children:         PropTypes.oneOfType([
+                      PropTypes.object,
+                      PropTypes.array,
+                    ]),
   editing:          PropTypes.bool.isRequired,
   className:        PropTypes.string.isRequired,
 

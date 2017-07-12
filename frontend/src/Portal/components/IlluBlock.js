@@ -28,7 +28,10 @@ IlluBlock.propTypes = {
   title:                PropTypes.string.isRequired,
   subtitle:             PropTypes.string.isRequired,
   timeSpan:             PropTypes.string.isRequired,
-  children:             PropTypes.array.isRequired,
+  children:             PropTypes.oneOfType([
+                          PropTypes.object,
+                          PropTypes.array,
+                        ]),
 };
 
 export default IlluBlock;

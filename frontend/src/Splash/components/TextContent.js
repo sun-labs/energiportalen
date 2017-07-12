@@ -14,7 +14,7 @@ const TextContent = ({ title, body }) => {
 
 TextContent.propTypes = {
   title:                  PropTypes.string.isRequired,
-  body:                  PropTypes.string.isRequired
+  body:                   PropTypes.string.isRequired
 };
 
 export default TextContent;

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import '../styles/Section.css';
 
 const Section = ({ className, children }) => {
@@ -11,5 +11,13 @@ const Section = ({ className, children }) => {
     </div>
   );
 }
+
+Section.propTypes = {
+  className:            PropTypes.string.isRequired,
+  children:             PropTypes.oneOfType([
+                          PropTypes.object,
+                          PropTypes.array,
+                        ]),
+};
 
 export default Section;
