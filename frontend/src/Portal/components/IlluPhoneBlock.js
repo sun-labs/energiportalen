@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import IlluBlock from './IlluBlock';
 
 class IlluPhoneBlock extends Component {
@@ -29,20 +29,14 @@ class IlluPhoneBlock extends Component {
 
   render() {
 
-    const { 
-      value = 100, 
-      title, 
-      subtitle, 
-      timeSpan 
-    } = this.props;
-
     const {
+      props,
       calcCharged
     } = this;
 
     return(
-    <IlluBlock className="block-phone" title={ title } subtitle={ subtitle } timeSpan={ timeSpan }>
-        <p className="value-illu">{ calcCharged(value) }</p>
+    <IlluBlock className="block-phone" title={ props.title } subtitle={ props.subtitle } timeSpan={ props.timeSpan }>
+        <p className="value-illu">{ calcCharged(props.value) }</p>
         <figure className="charge"></figure>
         <figure className="phone"></figure>
         <figure className="cable"></figure>
@@ -50,5 +44,12 @@ class IlluPhoneBlock extends Component {
     );
   }
 }
+
+IlluPhoneBlock.propTypes = {
+  value:                      PropTypes.number.isRequired,
+  title:                      PropTypes.string.isRequired,
+  subtitle:                   PropTypes.string.isRequired,
+  timeSpan:                   PropTypes.string.isRequired
+};
 
 export default IlluPhoneBlock;
