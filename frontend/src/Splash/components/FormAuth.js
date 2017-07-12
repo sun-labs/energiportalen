@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { API_FORGOT_PASSWORD } from '../assets/APIRoutes';
+import PropTypes from 'prop-types';
 
 class FormAuth extends Component {
 
@@ -46,7 +47,12 @@ class FormAuth extends Component {
       </form>
     );
   }
-
 }
+
+FormAuth.propTypes = {
+  className:          PropTypes.string.isRequired,
+  authSignIn:         PropTypes.func.isRequired,
+  history:            PropTypes.object.isRequired,
+};
 
 export default withRouter(FormAuth);
