@@ -312,17 +312,17 @@ Queries.TABLE_QUERIES = [
     INSERT INTO locations 
       (id, name, image, description, country, city)
     VALUES
-      (1, 'Akademiska Sjukhuset', NULL, 'The academic hospital of Uppsala has 50% of their roof covered with solar panels.', 'SWE', 'Uppsala'),
-      (3, 'Origo', NULL, 'Panels on the roof are tilted 45 degrees (under construction).', 'SWE', 'Uppsala'),
-      (2, 'Base10', NULL, 'Base is the place if youre among the top 1 per mille, the roof is covered in sunlight and happiness 24 hours a day.', 'SWE', 'Uppsala');
+      (1, 'Akademiska Sjukhuset', '/ph/fac/akademiska_sjukhuset.jpg', 'The academic hospital of Uppsala has 50% of their roof covered with solar panels.', 'SWE', 'Uppsala'),
+      (3, 'Origo', '/ph/fac/origo.jpg', 'Panels on the roof are tilted 45 degrees (under construction).', 'SWE', 'Uppsala'),
+      (2, 'Base10', '/ph/fac/base10.png', 'Base is the place if youre among the top 1 per mille, the roof is covered in sunlight and happiness 24 hours a day.', 'SWE', 'Uppsala');
     `,
       dev: `
     INSERT INTO locations 
       (id, name, image, description, country, city)
     VALUES
-      (1, 'Akademiska Sjukhuset', NULL, 'The academic hospital of Uppsala has 50% of their roof covered with solar panels.', 'SWE', 'Uppsala'),
-      (3, 'Origo', NULL, 'Panels on the roof are tilted 45 degrees (under construction).', 'SWE', 'Uppsala'),
-      (2, 'Base10', NULL, 'Base is the place if youre among the top 1 per mille, the roof is covered in sunlight and happiness 24 hours a day.', 'SWE', 'Uppsala');
+      (1, 'Akademiska Sjukhuset', '/ph/fac/akademiska_sjukhuset.jpg', 'The academic hospital of Uppsala has 50% of their roof covered with solar panels.', 'SWE', 'Uppsala'),
+      (3, 'Origo', '/ph/fac/origo.jpg', 'Panels on the roof are tilted 45 degrees (under construction).', 'SWE', 'Uppsala'),
+      (2, 'Base10', '/ph/fac/base10.png', 'Base is the place if youre among the top 1 per mille, the roof is covered in sunlight and happiness 24 hours a day.', 'SWE', 'Uppsala');
     `
     }
   }, {
