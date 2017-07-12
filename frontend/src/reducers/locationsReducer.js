@@ -133,6 +133,7 @@ const locationsReducer = (state = initialState, action = null) => {
     case c.GET_LOCATION:
       let added = false;
       const location = {
+        ...initialLocation,
         ...action.location,
         block: { 
           ...initialBlock,

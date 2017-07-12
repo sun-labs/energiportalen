@@ -4,6 +4,7 @@ import '../styles/Home.css';
 import '../styles/DetailedBlock.css'
 import FacBlock from './FacBlock';
 import LineBlock from './LineBlock';
+import PropTypes from 'prop-types';
 import * as routeConstants from '../../constants/routeConstants';
 
 const c = {
@@ -34,5 +35,14 @@ class DetailedBlock extends Component {
     );
   }
 }
+
+DetailedBlock.propTypes = {
+  name:                     PropTypes.string.isRequired,
+  city:                     PropTypes.string.isRequired,
+  image:                    PropTypes.string.isRequired,
+  totEffect:                PropTypes.number.isRequired,
+  solarPlants:              PropTypes.number.isRequired,
+  block:                    PropTypes.object.isRequired,
+};
 
 export default DetailedBlock;
