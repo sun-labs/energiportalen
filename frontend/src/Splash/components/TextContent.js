@@ -1,6 +1,6 @@
 import React from 'react';
 import { ph_title, ph_body } from './Sections';
-
+import PropTypes from 'prop-types';
 import '../styles/Section.css';
 
 const TextContent = ({ title, body }) => {
@@ -11,5 +11,10 @@ const TextContent = ({ title, body }) => {
     </div>
   );
 }
+
+TextContent.propTypes = {
+  title:                  PropTypes.string.isRequired,
+  body:                  PropTypes.string.isRequired
+};
 
 export default TextContent;
