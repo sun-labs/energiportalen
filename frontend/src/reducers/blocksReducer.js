@@ -7,10 +7,9 @@ const c = {
 export const tempRow = {
   unitId: 4,
   keyId: 95,
-  value: '',
+  value: -1,
   si: 'Wh',
   span: '1d',
-  interval: 'day',
   from: '2017-02-10',
   to: '2017-02-10 23:23:59',
   title: 'Energy Produced'
@@ -19,13 +18,14 @@ export const tempRow = {
 export const initialBlock = {
   title: 'Akademiska Sjukhuset',
   from: '2017-02-10',
-  to: '2017-02-10 23:59:59',  
+  to: '2017-02-10 23:59:59',
   unitId: '',
   keyId: '',
   refresh: true,
   blockId: '',
   blockType: '',
-  editing: false
+  editing: false,
+  interval: 'hour'
 }
 
 export const initialGraphBlock = {
@@ -33,7 +33,6 @@ export const initialGraphBlock = {
   data: [],
   dataKey: '',
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  interval: 'hour',
 }
 
 export const initialIlluBlock = {
@@ -41,38 +40,38 @@ export const initialIlluBlock = {
   value: -1,
   subtitle: 'Uppsala',
   timeSpan: '24h',
-  interval: 'hour',
 }
 
 const initialState = {
   addingBlock: false,
   blocks: [
-    { 
+    {
       ...initialIlluBlock,
-      blockType: c.PHONE, 
+      blockType: c.PHONE,
       id: 0,
       unitId: 4,
       keyId: 95,
       blockId: 0,
     },
-    { 
-      ...initialBlock, 
-      blockType: c.TABLE, 
+    {
+      ...initialBlock,
+      blockType: c.TABLE,
       blockId: 1,
       unitId: 4,
       keyId: 95,
       subtitle: 'Uppsala',
-      rows: []
+      rows: [],
+      interval: 'day'
     },
-    { 
-      ...initialIlluBlock, 
-      blockType: c.SCOOTER, 
+    {
+      ...initialIlluBlock,
+      blockType: c.SCOOTER,
       blockId: 2,
       unitId: 4,
       keyId: 95,
     },
-    { 
-      ...initialGraphBlock, 
+    {
+      ...initialGraphBlock,
       blockType: c.LINE,
       timeSpan: '24h',
       blockId: 3,
@@ -170,7 +169,7 @@ const blocksReducer = (state = initialState, action = null) => {
       return {
         ...state,
         blocks: [
-          { 
+          {
             ...newBlock,
             blockId: state.blocks.length,
             blockType: action.blockType,
