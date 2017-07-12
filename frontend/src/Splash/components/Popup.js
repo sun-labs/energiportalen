@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import '../styles/Popup.css';
 
 class Popup extends Component {
@@ -31,7 +31,15 @@ class Popup extends Component {
       </div>
     );
   }
-
 }
+
+Popup.propTypes = {
+  className:        PropTypes.string.isRequired,
+  onClose:          PropTypes.func.isRequired,
+  children:         PropTypes.oneOfType([
+                      PropTypes.object,
+                      PropTypes.array,
+                    ]),
+};
 
 export default Popup;
