@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import * as routeConstants from '../../constants/routeConstants';
 import FacBlock from '../components/FacBlock';
 import { bindActionCreators } from 'redux'
+import PropTypes from 'prop-types';
 
 const c = {
   ...routeConstants
@@ -20,7 +21,6 @@ class Locations extends Component {
   }
 
   render() {
-    const { locations } = this.props;
 
     return (
       <div className="content">
@@ -30,7 +30,7 @@ class Locations extends Component {
         </div>
           <div className="FacBlock-wrap">
             {
-              locations.map((location) => {
+              props.locations.map((location) => {
                 return (
                   <Link 
                     to={`${c.PORTAL_ROOT}/locations/` +  location.id} key={location.id}>
@@ -49,8 +49,11 @@ class Locations extends Component {
       </div>
     );
   }
-
 }
+
+Locations.propTypes = {
+  locations: PropTypes.array.isRequired
+};
 
 const mapStateToProps = (state) => {
   return {
