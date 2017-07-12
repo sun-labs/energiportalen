@@ -10,6 +10,7 @@ import DashboardLocations from '../components/DashboardLocations'
 import AddBlock from '../components/AddBlock';
 import '../styles/Home.css';
 import { bindActionCreators } from 'redux'
+import PropTypes from 'prop-types';
 import * as blockConstants from '../../constants/blockConstants';
 import * as routeConstants from '../components/Portal';
 
@@ -34,7 +35,7 @@ class Home extends Component {
           <h1>FAVORITE LOCATIONS<span className="inline-button"> add location + </span></h1>
           <h2> you may save or remove your own personally defined locations for easier access. </h2>
         </div>
-         <DashboardLocations {...props} /> 
+         <DashboardLocations {...props} />
         { props.addingBlock
           ? <AddBlock {...props} />
           : <div
@@ -83,8 +84,15 @@ class Home extends Component {
       </div>
     );
   }
-
 }
+
+Home.propTypes = {
+  blocks:           PropTypes.array.isRequired,
+  locations:        PropTypes.array.isRequired,
+  getLocations:     PropTypes.func.isRequired,
+  addingBlock:      PropTypes.bool.isRequired,
+  toggleAddBlock:   PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => {
   return {

@@ -21,6 +21,7 @@ class Locations extends Component {
   }
 
   render() {
+    const { props } = this;
 
     return (
       <div className="content">
