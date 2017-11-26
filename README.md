@@ -41,14 +41,14 @@ Run these queries in order (manually)
       'wasabi'@'%';
 ```
 
-*Before you run this, make sure that all the dependencies are installed (section beneath)*
+*Before you run this, make sure that all the dependencies are installed (section "How to run" and "Dependencies")*
 
 Run this in the root of the repo, will create tables and populate with dev data
 ```bash
 npm run bootstrap
 ```
 
-Next step is to mport the `unit_data` CSV file!
+Next step is to import the `unit_data` CSV file!
 
 Bravissimo, you're done!
 
@@ -66,7 +66,7 @@ Bravissimo, you're done!
 - `npm run test`, run frontend and backend tests
 - `npm run test_be`, run backend tests
 - `npm run test_fe`, run frontend tests
-- `npm run test_fe`, run integration tests
+- `npm run test_in`, run integration tests
 
 ### Trello
 https://trello.com/b/WsRPCMmn/mvp
@@ -81,3 +81,10 @@ https://www.overleaf.com/8813889qmfbzphnntbn
 * Slack
 * Google Calendar
 * Figma
+
+### Fix mocha not found
+`nano ~/.npmrc`
+Add the following
+`prefix = /usr/local`
+Run
+`npm install -g mocha`
