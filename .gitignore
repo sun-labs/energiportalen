@@ -52,3 +52,7 @@ yarn-debug.log*
 yarn-error.log*
 build/
 package-lock.json
+
+# Tools
+CONFIG.py
+*.pyc
