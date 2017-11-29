@@ -56,3 +56,4 @@ package-lock.json
 # Tools
 CONFIG.py
 *.pyc
+downloads
