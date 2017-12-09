@@ -1,5 +1,7 @@
 import MySQLdb as mysql
 import CONFIG as C
+import time
+import datetime
 
 con = None
 cur = None
@@ -80,6 +82,16 @@ def add_unit_key(unit_id = None, name = None, notes = None, si_unit_id = None):
   """
   cur = _query(query, [unit_id, name, notes, si_unit_id])
   return cur.lastrowid
+
+def add_unit_data(unit_id = None, unit_key = None, value = None, timestamp = None):
+  query = """
+    INSERT INTO unit_data
+      (unit_id, unit_key, value, timestamp)
+    VALUES
+      (%s, %s, %s, %s)
+  """
+  cur = _query(query, [unit_id, unit_key, value, timestamp])
+  return cur.lastrowid
   
 
 # def add_unit(unit_name = None, unit_location = None)
@@ -102,7 +114,18 @@ new_uk = add_unit_key(**{
     'si_unit_id': 14,
 })
 
-print new_uk
+
+ts = time.time()
+timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+new_ud = add_unit_data(**{
+  'unit_id': new_unit,
+  'unit_key': new_uk,
+  'value': 10.00102012,
+  'timestamp': timestamp,
+})
+
+# print new_uk
+print new_ud
 # print(new_loc, new_unit, bind_loc_unit)
 
 con.commit()
