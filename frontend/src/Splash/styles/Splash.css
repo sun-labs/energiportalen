@@ -50,7 +50,7 @@ button {
 input[type="email"], 
 input[type="password"] {
     background-color: white;
-    border-radius: 20px;
+    border-radius: 3px;
     border: none;
     padding: 10px 15px;
     width: 175px;
@@ -127,7 +127,7 @@ input[type="password"] {
     color: #333333;
     background-color: #F2C94C;
     font-size: 1.7em;
-    border-radius: 20px;
+    border-radius: 3px;
     padding: 10px 20px !important;
     box-shadow: 0px 5px 10px rgba(0,0,0,0.15);
   }

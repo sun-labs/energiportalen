@@ -58,7 +58,7 @@ class FormSignUp extends Component {
           <input onChange={ this.handleChange } value={ this.state.passwordVerify } type="password" name="passwordVerify" placeholder="verify password" tabIndex="6" required/>
         </div>
         <button tabIndex="7" >CREATE ACCOUNT</button>
-        <p className="terms" >By clicking “CREATE ACCOUNT” you agree to our <a href={ URL_TERMS }>terms and agreements</a>.</p>
+        <p className="terms" >By clicking “CREATE ACCOUNT” you agree to our <a href={ URL_TERMS }>terms and conditions</a>.</p>
       </form>
     );
   }

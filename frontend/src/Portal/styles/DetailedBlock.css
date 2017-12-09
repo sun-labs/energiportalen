@@ -8,7 +8,7 @@
 }
 
 .compare-wrap .blockk.fac-block {
-  border-radius: 10px;
+  border-radius: 3px;
 }
 
 .compare-wrap .picture-wrap {
@@ -76,7 +76,7 @@
   .content-detailedBlock .blockk.blockk-line button{
     font-size: 1em;
     margin: 0 0 1em 1em;
-    border-radius: 5px;
+    border-radius: 3px;
   }
 
   .content-detailedBlock .blockk.blockk-line{
