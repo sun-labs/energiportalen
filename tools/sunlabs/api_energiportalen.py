@@ -42,18 +42,36 @@ def add_location(name = None, image = None, description = None, country = None, 
   cur.execute(query, [name, image, description, country, city])
   return cur.lastrowid
 
+def add_unit(name = None):
+  query = """
+    INSERT INTO units (name)
+    VALUES (%s)
+  """
+  cur.execute(query [name])
+  return cur.lastrowid
+
+def bind_unit_location(unit_id, location_id):
+  query = """
+    INSERT INTO unit_locations 
+      (unit_id, location_id)
+    VALUES
+      (%s, %s)
+  """
+  cur.execute(query, [unit_id, location_id])
+  return cur.lastrowid
 
 # def add_unit(unit_name = None, unit_location = None)
 
-location = {
-  'name': 'test',
-  'image': None,
-  'description': None,
-  'country': 'SWE',
-  'city': 'Uppsala',
-}
-new_loc = add_location(**location)
-print new_loc
+# location = {
+#   'name': 'test',
+#   'image': None,
+#   'description': None,
+#   'country': 'SWE',
+#   'city': 'Uppsala',
+# }
+# new_loc = add_location(**location)
+# print new_loc
+
 con.commit()
 
 # print get_units()
