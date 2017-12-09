@@ -1,7 +1,7 @@
 .blockk {
   width: 97%;
   margin: 1%;
-  border-radius: 10px;
+  border-radius: 3px;
   border: 1px solid black;
   overflow: auto;
   min-width: 300px;
@@ -48,7 +48,7 @@
 .blockk .time-wrap > .value {
   background-color: #F2C94C;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 3px;
   font-size: 0.875em;
   color: #333333;
 }
