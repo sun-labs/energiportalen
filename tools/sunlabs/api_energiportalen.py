@@ -1,13 +1,15 @@
 import MySQLdb as mysql
 import CONFIG as C
 
+con = None
 cur = None
 try:
-  c =  mysql.connect(**C.database)
+  con =  mysql.connect(**C.database)
   cur = c.cursor()
 except mysql.OperationalError as err:
   print("Can't connect to database.")
   print("[RAW] {}".format(err))
+  exit()
 
 # get every unit 
 def get_units():
