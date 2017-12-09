@@ -27,12 +27,18 @@
 .blockk .tool-wrap {
   position: absolute;
   right: 1em;
+  top: 1em;
 }
 
 .blockk .tool-wrap > .button {
   line-height: 50px;
   text-transform: uppercase;
   color: #219653;
+}
+
+.blockk .tool-wrap .img-cross {
+  width: 20px;
+  cursor: pointer;
 }
 
 .blockk .time-wrap {
@@ -175,8 +181,7 @@
 }
 
 .blockk-illu .content {
-  /*height: 100% !important;*/
-  height: 240px;
+  height: 100% !important;
 }
 
 .blockk-illu .content-illu {
@@ -287,7 +292,7 @@
   0%, 100% {
     opacity: 0.1;
   }
-  50% { 
+  50% {
     opacity: 1.0;
   }
 }
@@ -296,7 +301,7 @@
   from {
     bottom: -30px;
   }
-  to { 
+  to {
     bottom: -2px;
   }
 }
@@ -305,7 +310,7 @@
   from {
       transform: rotate(0deg);
   }
-  to { 
+  to {
       transform: rotate(360deg);
   }
 }
@@ -313,7 +318,7 @@
   from {
       background-position: right 40px top 50px;
   }
-  to { 
+  to {
       background-position: right 40px top 50.5px;
   }
 }
@@ -337,7 +342,7 @@
 @media screen and (max-width: 500px) {
 
   .blockk {
-    margin-bottom: 1em; 
+    margin-bottom: 1em;
     min-width: 280px;
   }
 
@@ -353,7 +358,7 @@
   from {
     bottom: 0;
   }
-  to { 
+  to {
     bottom: 43px;
   }
 }

@@ -1,0 +1,17 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>cross</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(473 -3818)">
+<g id="cross">
+<g id="Rectangle 29">
+<use xlink:href="#path0_fill" transform="matrix(0.707107 -0.707107 0.707107 0.707107 -474.041 3958.38)"/>
+</g>
+<g id="Rectangle 29.1">
+<use xlink:href="#path0_fill" transform="matrix(-0.707107 -0.707107 0.707107 -0.707107 -332.619 5019.04)"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 0 3C 0 1.34315 1.34315 0 3 0L 197 0C 198.657 0 200 1.34315 200 3L 200 1497C 200 1498.66 198.657 1500 197 1500L 3 1500C 1.34315 1500 0 1498.66 0 1497L 0 3Z"/>
+</defs>
+</svg>

@@ -2,7 +2,7 @@ export const FETCH_SUM_VALUE_DATA_SUCCESS = 'FETCH_SUM_VALUE_DATA_SUCCESS';
 export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
 export const TOGGLE_ADD_BLOCK = 'TOGGLE_ADD_BLOCK';
 export const ADD_TABLE_BLOCK_ROW = 'ADD_TABLE_BLOCK_ROW';
-export const TOGGLE_EDIT_BLOCK = 'TOGGLE_EDIT_BLOCK';
+export const REMOVE_BLOCK = 'REMOVE_BLOCK';
 
 export const PHONE = 'PHONE';
 export const TABLE = 'TABLE';
@@ -24,7 +24,9 @@ export const RAW = 'RAW';
 export const HOUR = 'HOUR';
 export const DAY = 'DAY';
 export const MONTH = 'MONTH';
+export const WEEK = 'WEEK';
 export const YEAR = 'YEAR';
+export const ALL_TIME = 'ALL_TIME';
 
 export const HEADER = 'HEADER';
 export const FOOTER = 'FOOTER';
@@ -39,9 +41,9 @@ export const typeOptions = [
 ];
 
 export const intervalOptions = [
-  { value: RAW, label: '5 sec' },
-  { value: HOUR, label: '1h' },
   { value: DAY, label: '24h' },
-  { value: MONTH, label: '7d' },
-  { value: YEAR, label: '365d' }
+  { value: WEEK, label: '7d' },
+  { value: MONTH, label: '30d' },
+  { value: YEAR, label: '365d' },
+  { value: ALL_TIME, label: 'inf' }
 ];
