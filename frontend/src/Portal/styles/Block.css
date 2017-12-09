@@ -181,8 +181,7 @@
 }
 
 .blockk-illu .content {
-  /*height: 100% !important;*/
-  height: 240px;
+  height: 100% !important;
 }
 
 .blockk-illu .content-illu {
