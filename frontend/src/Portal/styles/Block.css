@@ -259,10 +259,10 @@
 
 .block-phone .cable {
   background-image: url('../imgs/cable.png');
-  height: 57px;
+  height: 88px;
   width: 100%;
   background-size: 8px auto;
-  background-position: center bottom;
+  background-position: center top;
   z-index: 5;
   bottom: 0;
   animation-name: PLUG_IN;
@@ -352,6 +352,11 @@
 
   .blockk-illu {
     height: 300px;
+  }
+
+  .block-phone .cable {
+    height: 57px;
+    background-position: center bottom;
   }
 
   @keyframes PLUG_IN {
