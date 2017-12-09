@@ -28,11 +28,9 @@ class DetailedView extends Component {
 
     return (
       <div className="content">
-        { 
-          location ?
+        {  location ?
           <DetailedBlock {...location} {...props} /> :
-          null
-        }
+          null }
       </div>
     );
   }

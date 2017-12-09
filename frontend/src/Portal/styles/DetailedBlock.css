@@ -8,7 +8,7 @@
 }
 
 .compare-wrap .blockk.fac-block {
-  border-radius: 3px;
+  border: none;
 }
 
 .compare-wrap .picture-wrap {
@@ -40,7 +40,7 @@
   .compare-wrap{
     margin: 1em 0 0 0;
   }
-  
+
   .compare-wrap .picture-wrap{
     float: left;
   }
@@ -50,13 +50,11 @@
     height: 75px;
     margin: 1em 0 0 1em;
     overflow: auto;
-  } 
+  }
 
   .compare-wrap .blockk.fac-block{
-    height: 180px;
+    height: auto;
     width: 45%;
-    border-width: 1px;
-    border-color: lightgray;
   }
 
   .compare-wrap .info-fac-wrap .wrap-info{
@@ -86,7 +84,7 @@
     border-radius: 0;
     border-width: 1px;
     border-color: gray;
-    margin: 0; 
+    margin: 0;
   }
 
   .content-detailedBlock .blockk > .content{
@@ -102,9 +100,6 @@
     float: left;
     background-color: white;
     color: #BDBDBD;
-    border-style: solid;
-    border-color: #BDBDBD;
-    border-width: 1px;
   }
 
    .content-detailedBlock .blockk.blockk-line footer button#export-data{
@@ -114,7 +109,7 @@
 
    #portal .content .compare-wrap .add-block{
      width: 45%;
-     height: 180px;
+     height: auto;
      line-height: 200px;
      padding: 0;
      display: inline-block;
@@ -125,12 +120,6 @@
 }
 
 @media screen and (max-width: 500px){
-
-  #portal .content .detailedBlock {
-  display: flex;
-  flex-direction: column-reverse;
-  }
-
   .compare-wrap .info-fac-wrap .info-fac-button button{
     font-size: 1em;
     margin: 0 0.5em 0.5em 0;
@@ -139,7 +128,7 @@
   }
 
   .compare-wrap .blockk.fac-block{
-    height: 95px;
+    height: auto;
     min-width: 0px;
     width: 95%;
     margin-bottom: 0;
@@ -170,10 +159,10 @@
   .compare-wrap .info-fac-wrap .wrap-info{
     display: none;
   }
-  
+
   #portal .content .detailedBlock header .compare-wrap .blockk.add-block{
     min-width: 0px;
-    padding: 0; 
+    padding: 0;
     line-height: 95px;
     text-align: center;
   }
