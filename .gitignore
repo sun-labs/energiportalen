@@ -57,3 +57,4 @@ package-lock.json
 CONFIG.py
 *.pyc
 downloads
+**/data/*.json
