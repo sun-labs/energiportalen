@@ -24,6 +24,19 @@ def _query(query, params = None):
     print(e)
     return None
 
+def _entity_exists(table, id = None, name = None):
+  query = "SELECT * FROM {}".format(table)
+  if id is not None:
+    query += " WHERE id = %s"
+    params = [id]
+  elif name is not None:
+    query += " WHERE name = %s"
+    params = [name]
+  else:
+    return False
+  cur = _query(query, params)
+  return cur.fetchone() is not None
+
 # get every unit 
 def get_units():
   query = "SELECT * FROM units"
@@ -40,10 +53,11 @@ def get_unit_keys(unit_id = None):
     cur.execute(query)
   return cur.fetchall()
 
-def unit_exists(unit_id):
-  query = "SELECT * FROM units WHERE id = %s"
-  cur.execute(query, [unit_id])
-  return cur.fetchone() is not None
+def unit_exists(**kwargs):
+  return _entity_exists('units', **kwargs)
+
+def location_exists(**kwargs):
+  return _entity_exists('locations', **kwargs)
 
 def add_location(name = None, image = None, description = None, country = None, city = None):
   query = """
@@ -124,11 +138,17 @@ new_ud = add_unit_data(**{
   'timestamp': timestamp,
 })
 
-# print new_uk
-print new_ud
-# print(new_loc, new_unit, bind_loc_unit)
-
 con.commit()
+
+lid_exists = location_exists(id = new_loc)
+lname_exists = location_exists(name = location['name'])
+
+print lid_exists
+print lname_exists
+
+# print new_uk
+# print new_ud
+# print(new_loc, new_unit, bind_loc_unit)
 
 # print get_units()
 # print get_unit_keys(5)
