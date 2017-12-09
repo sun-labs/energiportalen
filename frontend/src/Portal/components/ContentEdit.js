@@ -14,7 +14,7 @@ class ContentEdit extends Component {
     super();
     this.state = {
       location: {},
-      interval: {},
+      timeSpan: {},
       type: {},
     };
 
@@ -39,7 +39,7 @@ class ContentEdit extends Component {
             name: e.label,
             id: e.value
           },
-          interval: {},
+          timeSpan: {},
           type: {}
         }, () => {
           props.getUnitsFromLocation(this.state.location);
@@ -47,7 +47,7 @@ class ContentEdit extends Component {
         break;
       case c.INTERVAL:
         this.setState({
-          interval: {
+          timeSpan: {
             label: e.label,
             value: e.value
           },
@@ -63,9 +63,9 @@ class ContentEdit extends Component {
         })
         break;
       case c.SAVE_BLOCK:
-        const { interval, type } = this.state;
+        const { timeSpan, type } = this.state;
         props.addBlock({
-          interval: interval.value,
+          timeSpan: timeSpan,
           blockType: type.value
         });
         break;
@@ -88,7 +88,7 @@ class ContentEdit extends Component {
     const {
       location,
       type,
-      interval,
+      timeSpan,
     } = this.state;
 
 
@@ -105,14 +105,14 @@ class ContentEdit extends Component {
         <Select
           disabled={!location.id}
           name={c.INTERVAL}
-          value={interval.value}
+          value={timeSpan.value}
           options={c.intervalOptions}
-          placeholder="INTERVAL"
+          placeholder="TIME SPAN"
           clearable={true}
           className="choose-time-add"
           onChange={(e) => handleChange({ ...e, type: c.INTERVAL })} />
         <Select
-          disabled={!interval.value}
+          disabled={!timeSpan.value}
           name={c.BLOCK_TYPE}
           value={type}
           options={c.typeOptions}
