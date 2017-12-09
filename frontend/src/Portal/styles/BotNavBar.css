@@ -19,6 +19,7 @@
       background-repeat: no-repeat;
       background-size: 150px auto;
       font-size: 1.5em;
+      border-bottom: 1px solid lightgray;
 
       top: 0;
       color: black;
