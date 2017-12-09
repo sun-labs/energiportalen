@@ -81,11 +81,6 @@ const initialState = {
 
 const blockReducer = (state = {}, action = null) => {
   switch(action.type) {
-    case c.TOGGLE_EDIT_BLOCK:
-      return {
-        ...state,
-        editing: !state.editing
-      }
     case c.ADD_TABLE_BLOCK_ROW:
       return {
         ...state,
@@ -184,7 +179,13 @@ const blocksReducer = (state = initialState, action = null) => {
         ...state,
         addingBlock: !state.addingBlock
       }
-    case c.TOGGLE_EDIT_BLOCK:
+    case c.REMOVE_BLOCK:
+      return {
+        ...state,
+        blocks: state.blocks.filter((block) => {
+          return block.blockId !== action.blockId
+        })
+      }
     case c.ADD_TABLE_BLOCK_ROW:
     case c.FETCH_SUM_VALUE_DATA_SUCCESS:
     case c.FETCH_DATA_SUCCESS:

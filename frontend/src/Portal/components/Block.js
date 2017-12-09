@@ -3,6 +3,7 @@ import ContentEdit from './ContentEdit';
 import * as blockConstants from '../../constants/blockConstants';
 import PropTypes from 'prop-types';
 import '../styles/Block.css';
+import cross from '../../imgs/cross.svg';
 
 const c = {
   ...blockConstants
@@ -16,7 +17,7 @@ const Header = (props) => {
     subtitle = 'SUBTITLE',
     from,
     to,
-    editHandle
+    removeHandle
   } = props;
 
   switch(blockType) {
@@ -33,7 +34,7 @@ const Header = (props) => {
             <p className="subtitle">{ subtitle }</p>
           </div>
           <div className="tool-wrap">
-            <p onClick={ editHandle } className="button">edit</p>
+            <img className="img-cross" alt="" src={ cross } onClick={ removeHandle }/>
           </div>
         </header>
       );
@@ -134,7 +135,7 @@ class Block extends Component {
   }
 
   render() {
-    
+
     const {
       props,
       shouldRender,
@@ -145,13 +146,13 @@ class Block extends Component {
       children,
       blockType,
       editing,
-      blockId = null // TODO handle when null & "toggleEditBlock" --> locationBlock
+      blockId = null
     } = props;
 
 
     return (
       <div className={`blockk ${getCSSClass(blockType)}`}>
-        { shouldRender(blockType, c.HEADER) ? <Header {...props} editHandle={() => props.toggleEditBlock(blockId)} /> : '' }
+        { shouldRender(blockType, c.HEADER) ? <Header {...props} removeHandle={() => props.removeBlock(blockId)} /> : '' }
 
         <Content {...props} editing={ editing }>
           { children ? children : null }
@@ -175,8 +176,7 @@ Block.propTypes = {
   blockType:        PropTypes.string,
   subtitle:         PropTypes.string,
   blockId:          PropTypes.number,
-  toggleEditBlock:  PropTypes.func, // TODO maybe should be required?
-  editHandle:       PropTypes.func, // TODO maybe should be required?
+  removeHandle:       PropTypes.func, // TODO maybe should be required?
   to:               PropTypes.string,
   from:             PropTypes.string,
   timeSpan:         PropTypes.string,

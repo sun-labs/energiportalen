@@ -24,11 +24,11 @@ export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockTyp
       });
 
       const data = [
-        { 
-          data: values, 
-          label, 
+        {
+          data: values,
+          label,
         },
-        { 
+        {
           data: values.map((elem) => { return parseInt(elem, 10) + Math.random() * 50 }),
           label: `Random ${label}`
         }
@@ -60,9 +60,9 @@ export const addTableBlockRow = (blockId) => {
   }
 }
 
-export const toggleEditBlock = (blockId) => {
+export const removeBlock = (blockId) => {
   return (dispatch) => {
-    dispatch({ type: c.TOGGLE_EDIT_BLOCK, blockId })
+    dispatch({ type: c.REMOVE_BLOCK, blockId })
   }
 }
 
