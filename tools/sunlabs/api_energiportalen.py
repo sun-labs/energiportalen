@@ -71,6 +71,17 @@ def bind_unit_location(unit_id, location_id):
   cur = _query(query, [unit_id, location_id])
   return cur.lastrowid
 
+def add_unit_key(unit_id = None, name = None, notes = None, si_unit_id = None):
+  query = """
+    INSERT INTO unit_keys
+      (unit_id, name, notes, si_unit_id)
+    VALUES
+      (%s, %s, %s, %s)
+  """
+  cur = _query(query, [unit_id, name, notes, si_unit_id])
+  return cur.lastrowid
+  
+
 # def add_unit(unit_name = None, unit_location = None)
 
 location = {
@@ -84,8 +95,15 @@ unit = { 'name': 'SALAHEBY1' }
 new_loc = add_location(**location)
 new_unit = add_unit(**unit)
 bind_loc_unit = bind_unit_location(new_unit, new_loc)
+new_uk = add_unit_key(**{ 
+    'name': 'TESTKEY',
+    'unit_id': new_unit,
+    'notes': 'testing',
+    'si_unit_id': 14,
+})
 
-print(new_loc, new_unit, bind_loc_unit)
+print new_uk
+# print(new_loc, new_unit, bind_loc_unit)
 
 con.commit()
 
