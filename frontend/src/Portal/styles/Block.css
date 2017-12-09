@@ -224,7 +224,7 @@
   background-image: url('../imgs/scooter.png');
   background-size: 25% auto;
   background-repeat: no-repeat;
-  background-position: right 40px top 30px;
+  background-position: right 40px top 52px;
   z-index: 10;
   /*animation-name: BUMP;
   animation-duration: 0.25s;
@@ -357,6 +357,10 @@
   .block-phone .cable {
     height: 57px;
     background-position: center bottom;
+  }
+
+  .content-illu .scooter {
+    background-position: right 44px top 53px
   }
 
   @keyframes PLUG_IN {
