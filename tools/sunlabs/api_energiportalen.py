@@ -11,6 +11,17 @@ except mysql.OperationalError as err:
   print("[RAW] {}".format(err))
   exit()
 
+def _query(query, params = None):
+  try:
+    if params is None:
+      cur.execute(query)
+    else:
+      cur.execute(query, params)
+    return cur
+  except (mysql.Error, mysql.Warning) as e:
+    print(e)
+    return None
+
 # get every unit 
 def get_units():
   query = "SELECT * FROM units"
@@ -47,7 +58,7 @@ def add_unit(name = None):
     INSERT INTO units (name)
     VALUES (%s)
   """
-  cur.execute(query [name])
+  cur.execute(query, [name])
   return cur.lastrowid
 
 def bind_unit_location(unit_id, location_id):
@@ -57,20 +68,24 @@ def bind_unit_location(unit_id, location_id):
     VALUES
       (%s, %s)
   """
-  cur.execute(query, [unit_id, location_id])
+  cur = _query(query, [unit_id, location_id])
   return cur.lastrowid
 
 # def add_unit(unit_name = None, unit_location = None)
 
-# location = {
-#   'name': 'test',
-#   'image': None,
-#   'description': None,
-#   'country': 'SWE',
-#   'city': 'Uppsala',
-# }
-# new_loc = add_location(**location)
-# print new_loc
+location = {
+  'name': 'test',
+  'image': None,
+  'description': None,
+  'country': 'SWE',
+  'city': 'Uppsala',
+}
+unit = { 'name': 'SALAHEBY1' }
+new_loc = add_location(**location)
+new_unit = add_unit(**unit)
+bind_loc_unit = bind_unit_location(new_unit, new_loc)
+
+print(new_loc, new_unit, bind_loc_unit)
 
 con.commit()
 
