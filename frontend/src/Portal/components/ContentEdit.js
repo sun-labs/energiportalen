@@ -14,10 +14,6 @@ class ContentEdit extends Component {
     super();
     this.state = {
       location: {},
-      unit: {},
-      key: {},
-      from: '',
-      to: '',
       interval: {},
       type: {},
     };
@@ -42,29 +38,11 @@ class ContentEdit extends Component {
           location: {
             name: e.label,
             id: e.value
-          }
+          },
+          interval: {},
+          type: {}
         }, () => {
           props.getUnitsFromLocation(this.state.location);
-        })
-        break;
-      case c.UNIT:
-        this.setState({
-          unit: {
-            name: e.label,
-            id: e.value,
-            locationId: this.state.location.id
-          }
-        }, () => {
-          props.getKeysFromUnit(this.state.unit);
-        })
-        break;
-      case c.KEY:
-        this.setState({
-          key: {
-            name: e.label,
-            id: e.value,
-            unitId: this.state.unit.id
-          }
         })
         break;
       case c.INTERVAL:
@@ -72,25 +50,9 @@ class ContentEdit extends Component {
           interval: {
             label: e.label,
             value: e.value
-          }
+          },
+          type: {}
         })
-        break;
-      case c.DATE_FROM:
-        this.setState({
-          from: e.target.value
-        })
-        break;
-      case c.DATE_TO:
-        const _from = new Date(this.state.from);
-        const _to = new Date(e.target.value);
-        if (_to - _from > 0) {
-          this.setState({
-            to: e.target.value
-          })
-        } else {
-          // TODO
-          // display error
-        }
         break;
       case c.BLOCK_TYPE:
         this.setState({
@@ -101,13 +63,9 @@ class ContentEdit extends Component {
         })
         break;
       case c.SAVE_BLOCK:
-        const { from, to, interval, unit, key, type } = this.state;
+        const { interval, type } = this.state;
         props.addBlock({
-          from,
-          to,
           interval: interval.value,
-          unitId: unit.id,
-          keyId: key.id,
           blockType: type.value
         });
         break;
@@ -131,23 +89,8 @@ class ContentEdit extends Component {
       location,
       type,
       interval,
-      unit,
-      key,
-      from,
-      to,
     } = this.state;
 
-
-    const units = (location = {}) => {
-      const loc = props.locations.find((l) => l.id === location.id);
-      return loc ? ( loc.units ) : [];
-    }
-
-    const keys = (unit = {}) => {
-      const loc = props.locations.find((l) => l.id === unit.locationId);
-      const uni = loc ? loc.units.find((u) => u.id === unit.id) : {};
-      return uni.keys ? uni.keys : [];
-    }
 
     return (
       <div className="blockk-add">
@@ -155,53 +98,21 @@ class ContentEdit extends Component {
           name={c.LOCATION}
           value={location.id}
           options={mapNameAndIdToLabelAndValue(props.locations)}
-          placeholder="CHOOSE c.LOCATION"
+          placeholder="CHOOSE LOCATION"
           clearable={true}
           className="choose-loc-add"
           onChange={(e) => handleChange({ ...e, type: c.LOCATION })} />
         <Select
           disabled={!location.id}
-          name={c.UNIT}
-          value={unit.id}
-          options={mapNameAndIdToLabelAndValue(units(location))}
-          placeholder="CHOOSE c.UNIT"
-          clearable={true}
-          className="choose-loc-add"
-          onChange={(e) => handleChange({ ...e, type: c.UNIT })} />
-        <Select
-          disabled={!unit.id}
-          name={c.KEY}
-          value={key.id}
-          options={mapNameAndIdToLabelAndValue(keys(unit))}
-          placeholder="CHOOSE c.KEY"
-          clearable={true}
-          className="choose-loc-add"
-          onChange={(e) => handleChange({ ...e, type: c.KEY })} />
-        <Select
-          disabled={!key.id}
           name={c.INTERVAL}
           value={interval.value}
           options={c.intervalOptions}
-          placeholder="c.INTERVAL"
+          placeholder="INTERVAL"
           clearable={true}
           className="choose-time-add"
           onChange={(e) => handleChange({ ...e, type: c.INTERVAL })} />
-        <input
-          disabled={!interval.value}
-          name={c.DATE_FROM}
-          type="date"
-          value={from}
-          placeholder="DATE FROM"
-          onChange={(e) => handleChange({ ...e, type: c.DATE_FROM })} />
-        <input
-          disabled={!from}
-          name={c.DATE_TO}
-          type="date"
-          value={to}
-          placeholder="DATE TO"
-          onChange={(e) => handleChange({ ...e, type: c.DATE_TO })} />
         <Select
-          disabled={!to}
+          disabled={!interval.value}
           name={c.BLOCK_TYPE}
           value={type}
           options={c.typeOptions}
@@ -210,11 +121,6 @@ class ContentEdit extends Component {
           className="choose-block-add"
           onChange={(e) => handleChange({ ...e, type: c.BLOCK_TYPE })} />
         <div className="button-wrapper">
-          <button
-            onClick={() => props.toggleAddBlock()}
-            className="cancel-block-add"
-          >CANCEL
-        </button>
           <button
             disabled={!type.value}
             onClick={(e) => handleChange({ ...e, type: c.SAVE_BLOCK })}
@@ -230,7 +136,6 @@ class ContentEdit extends Component {
 ContentEdit.propTypes = {
   locations:              PropTypes.array.isRequired,
   getUnitsFromLocation:   PropTypes.func.isRequired,
-  getKeysFromUnit:        PropTypes.func.isRequired,
   addBlock:               PropTypes.func.isRequired,
 };
 

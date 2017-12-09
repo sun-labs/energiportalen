@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Block from './Block';
 import ContentEdit from './ContentEdit';
+import cross from '../../imgs/cross.svg';
 import '../styles/AddBlock.css';
 
 class AddBlock extends Component {
@@ -13,9 +14,16 @@ class AddBlock extends Component {
     }
 
     return(
-    <Block className="blockk-add" {...blockInfo}>
-      <ContentEdit {...blockInfo} />
-    </Block>
+      <div className="overlay">
+        <div className="overlay-outer-content-wrapper">
+          <div className="overlay-inner-content-wrapper">
+            <Block className="blockk-add" {...blockInfo}>
+              <img className="img-cross" alt="" src={ cross } onClick={() => this.props.toggleAddBlock()}/>
+              <ContentEdit {...blockInfo} />
+            </Block>
+          </div>
+        </div>
+      </div>
     );
   }
 }
