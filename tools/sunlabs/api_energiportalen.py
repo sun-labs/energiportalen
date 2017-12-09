@@ -1,5 +1,7 @@
 import MySQLdb as mysql
 import CONFIG as C
+import time
+import datetime
 
 con = None
 cur = None
@@ -17,10 +19,24 @@ def _query(query, params = None):
       cur.execute(query)
     else:
       cur.execute(query, params)
+    con.commit()
     return cur
-  except (mysql.Error, mysql.Warning) as e:
-    print(e)
+  except (mysql.Error, mysql.Warning) as err:
+    print("[RAW] {}".format(err))
     return None
+  
+def _entity_exists(table, id = None, name = None):
+  query = "SELECT * FROM {}".format(table)
+  if id is not None:
+    query += " WHERE id = %s"
+    params = [id]
+  elif name is not None:
+    query += " WHERE name = %s"
+    params = [name]
+  else:
+    return False
+  cur = _query(query, params)
+  return cur.fetchone() is not None
 
 # get every unit 
 def get_units():
@@ -38,10 +54,11 @@ def get_unit_keys(unit_id = None):
     cur.execute(query)
   return cur.fetchall()
 
-def unit_exists(unit_id):
-  query = "SELECT * FROM units WHERE id = %s"
-  cur.execute(query, [unit_id])
-  return cur.fetchone() is not None
+def unit_exists(**kwargs):
+  return _entity_exists('units', **kwargs)
+
+def location_exists(**kwargs):
+  return _entity_exists('locations', **kwargs)
 
 def add_location(name = None, image = None, description = None, country = None, city = None):
   query = """
@@ -80,35 +97,13 @@ def add_unit_key(unit_id = None, name = None, notes = None, si_unit_id = None):
   """
   cur = _query(query, [unit_id, name, notes, si_unit_id])
   return cur.lastrowid
-  
 
-# def add_unit(unit_name = None, unit_location = None)
-
-location = {
-  'name': 'test',
-  'image': None,
-  'description': None,
-  'country': 'SWE',
-  'city': 'Uppsala',
-}
-unit = { 'name': 'SALAHEBY1' }
-new_loc = add_location(**location)
-new_unit = add_unit(**unit)
-bind_loc_unit = bind_unit_location(new_unit, new_loc)
-new_uk = add_unit_key(**{ 
-    'name': 'TESTKEY',
-    'unit_id': new_unit,
-    'notes': 'testing',
-    'si_unit_id': 14,
-})
-
-print new_uk
-# print(new_loc, new_unit, bind_loc_unit)
-
-con.commit()
-
-# print get_units()
-# print get_unit_keys(5)
-# print get_unit_keys()
-# print unit_exists(6)
-# print unit_exists(-53)
+def add_unit_data(unit_id = None, unit_key = None, value = None, timestamp = None):
+  query = """
+    INSERT INTO unit_data
+      (unit_id, unit_key, value, timestamp)
+    VALUES
+      (%s, %s, %s, %s)
+  """
+  cur = _query(query, [unit_id, unit_key, value, timestamp])
+  return cur.lastrowid
