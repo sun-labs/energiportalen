@@ -63,10 +63,11 @@ class ContentEdit extends Component {
         })
         break;
       case c.SAVE_BLOCK:
-        const { timeSpan, type } = this.state;
+        const { timeSpan, type, location } = this.state;
         props.addBlock({
-          timeSpan: timeSpan,
-          blockType: type.value
+          timeSpan,
+          blockType: type.value,
+          location
         });
         break;
       default:

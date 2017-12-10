@@ -43,40 +43,41 @@ export const initialIlluBlock = {
 
 const initialState = {
   addingBlock: false,
-  blocks: [
-    {
-      ...initialIlluBlock,
-      blockType: c.PHONE,
-      id: 0,
-      unitId: 4,
-      keyId: 95,
-      blockId: 0,
-    },
-    {
-      ...initialBlock,
-      blockType: c.TABLE,
-      blockId: 1,
-      unitId: 4,
-      keyId: 95,
-      rows: [],
-      interval: 'day'
-    },
-    {
-      ...initialIlluBlock,
-      blockType: c.SCOOTER,
-      blockId: 2,
-      unitId: 4,
-      keyId: 95,
-    },
-    {
-      ...initialGraphBlock,
-      blockType: c.LINE,
-      timeSpan: '24h',
-      blockId: 3,
-      unitId: 4,
-      keyId: 95
-    },
-    ],
+  blocks: [],
+  // blocks: [
+  //   {
+  //     ...initialIlluBlock,
+  //     blockType: c.PHONE,
+  //     id: 0,
+  //     unitId: 4,
+  //     keyId: 95,
+  //     blockId: 0,
+  //   },
+  //   {
+  //     ...initialBlock,
+  //     blockType: c.TABLE,
+  //     blockId: 1,
+  //     unitId: 4,
+  //     keyId: 95,
+  //     rows: [],
+  //     interval: 'day'
+  //   },
+  //   {
+  //     ...initialIlluBlock,
+  //     blockType: c.SCOOTER,
+  //     blockId: 2,
+  //     unitId: 4,
+  //     keyId: 95,
+  //   },
+  //   {
+  //     ...initialGraphBlock,
+  //     blockType: c.LINE,
+  //     timeSpan: '24h',
+  //     blockId: 3,
+  //     unitId: 4,
+  //     keyId: 95
+  //   },
+  //   ],
 };
 
 const blockReducer = (state = {}, action = null) => {
@@ -150,6 +151,7 @@ const blocksReducer = (state = initialState, action = null) => {
         case c.LINE:
           newBlock = {
             ...initialGraphBlock,
+            interval: action.interval,
             data: [],
             dataKey: '',
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],

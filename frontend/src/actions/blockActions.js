@@ -29,10 +29,6 @@ export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockTyp
           data: values,
           label,
         },
-        {
-          data: values.map((elem) => { return parseInt(elem, 10) + Math.random() * 50 }),
-          label: `Random ${label}`
-        }
       ];
       const value = res.data.data[0].sum_val.toFixed(0);
 
@@ -67,17 +63,48 @@ export const removeBlock = (blockId) => {
   }
 }
 
-export const addBlock = ({ timeSpan, unitId = 4, keyId = 95, blockType }) => {
+export const addBlock = ({ timeSpan, blockType, location }) => {
 
   const date = t.getDatesFromInterval(timeSpan.value);
 
-  return (dispatch) => {
+  let interval;
+
+  switch (timeSpan.value) {
+    default:
+    case c.DAY:
+    interval = c.HOUR
+    break;
+    case c.WEEK:
+    interval = c.HOUR
+    break;
+    case c.MONTH:
+    interval = c.DAY
+    break;
+    case c.YEAR:
+    interval = c.DAY
+    break;
+  }
+  return (dispatch, getState) => {
+
+    let locations = getState().locationsReducer.locations;
+
+    const unit = locations.find(loc => {
+      return loc.id === location.id;
+    }).units[0];
+
+
+    const keyId = unit.keys.find(key => {
+      return key.id === 6;
+    }).keyId;
+
+
     dispatch({
       type: c.SAVE_NEW_BLOCK,
       from: date.from,
       to: date.to,
       timeSpan: timeSpan.label,
-      unitId,
+      interval,
+      unitId: unit.id,
       keyId,
       blockType
     })

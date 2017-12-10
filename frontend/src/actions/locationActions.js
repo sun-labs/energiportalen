@@ -11,7 +11,35 @@ const c = {
   ...blockConstants
 };
 
-export const fetchLocationData = ({ timeSpan, interval, unitId, keyId, title, blockType, locationId }) => {
+export const getUnitsFromLocation = (location) => {
+
+    return (dispatch) => {
+       API.getUnitsFromLocation(location.id, (res) => {
+        const units = res.data.map((unit) => ({ ...unit, location_id: location.id }))
+        dispatch({
+          type: c.GET_UNITS_FROM_LOCATION,
+          units: res.data.map((unit) => ({ ...unit, location_id: location.id })),
+          location
+        })
+
+        units.map((unit) => {
+
+          API.getKeysFromUnit(unit.id, (res) => {
+
+              dispatch({
+                type: c.GET_KEYS_FROM_UNIT,
+                keys: res.data.map((key) => ({ ...key, unitId: unit.id })),
+                unit
+              })
+          });
+
+        })
+
+      });
+    }
+  }
+
+export const fetchLocationData = ({ timeSpan, interval, unitId, keyId, title, blockType, location_id }) => {
 
   const date = t.getDatesFromInterval(timeSpan.value);
 
@@ -31,32 +59,47 @@ export const fetchLocationData = ({ timeSpan, interval, unitId, keyId, title, bl
     break;
   }
 
-  return (dispatch, getState) => {
-    API.getDataFromKey({ from: date.from, to: date.to, interval, unitId, keyId }, (res) => {
+  keyId = 126;
+  let units;
 
-      const values = res.data.data.map((elem) => {
-        return elem.sum_val.toFixed();
+  return (dispatch) => {
+
+    API.getUnitsFromLocation(location_id, (res) => {
+      units = res.data.map((unit) => ({ ...unit }))
+      unitId = units[0].id
+
+      API.getKeysFromUnit(unitId, (res) => {
+
+        let keys = res.data.map((key) => ({ ...key, unitId }));
+        keyId = keyId = keys.find(x => x.id === 6).keyId;
+
+          API.getDataFromKey({ from: date.from, to: date.to, interval, unitId, keyId }, (res) => {
+
+            const values = res.data.data.map((elem) => {
+              return elem.avg_val.toFixed(3);
+            });
+
+            const labels = res.data.data.map((elem) => {
+              return elem.new_timestamp;
+            });
+
+            const data = [
+              {
+                data: values,
+                label: title,
+              }
+            ];
+            const value = res.data.data[0].sum_val;
+
+            dispatch({ type: c.FETCH_LOCATION_DATA_SUCCESS, labels, data, value, location_id });
+          });
       });
 
-      const labels = res.data.data.map((elem) => {
-        return elem.new_timestamp;
-      });
 
-      const data = [
-        {
-          data: values,
-          label: title,
-        },
-        {
-          data: values.map((elem) => { return parseInt(elem, 10) + Math.random() * 50 }),
-          label: `Random ${title}`
-        }
-      ];
-      const value = res.data.data[0].sum_val.toFixed(0);
-
-      dispatch({ type: c.FETCH_LOCATION_DATA_SUCCESS, labels, data, value, locationId });
+      // }
     });
   }
+
 }
 
 export const getLocation = (id) => {
@@ -83,30 +126,22 @@ export const getLocation = (id) => {
 }
 
 export const getLocations = () => {
+
   return (dispatch) => {
     API.getLocations({}, (res) => {
 
       dispatch({
         type: c.GET_LOCATIONS,
         locations: res.data
-      })
-    });
-  }
-}
-
-export const getUnitsFromLocation = (location) => {
-  return (dispatch) => {
-     API.getUnitsFromLocation(location.id, (res) => {
-      dispatch({
-        type: c.GET_UNITS_FROM_LOCATION,
-        units: res.data.map((unit) => ({ ...unit, locationId: location.id })),
-        location
+          .map(x => ({ ...x, id: x.location_id }) )
+          .filter(x => x.id !== 1 && x.id !== 2 && x.id !== 3 && x.id !== 4 && x.id !== 5 && x.id !== 6) // FUL FIX
       })
     });
   }
 }
 
 export const getKeysFromUnit = (unit) => {
+
   return (dispatch, getState) => {
     API.getKeysFromUnit(unit.id, (res) => {
 

@@ -10,7 +10,7 @@ class LineBlock extends Component {
     const { props } = this;
 
     // TODO new way of doing this
-    if (typeof props.locationId === 'number') {
+    if (typeof props.location_id === 'number') {
       props.fetchLocationData(props);
     } else if (props.refresh === true) {
       props.fetchData(props);
