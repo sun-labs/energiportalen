@@ -77,7 +77,8 @@ const locationReducer = (state = initialLocation, action = null) => {
           ...state.block,
           data: action.data,
           labels: action.labels,
-          value: action.value
+          value: action.value,
+          interval: action.interval
         }
       }
     case c.GET_KEYS_FROM_UNIT:

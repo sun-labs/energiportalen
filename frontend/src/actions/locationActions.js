@@ -51,7 +51,7 @@ export const fetchLocationData = ({ timeSpan, interval, unitId, keyId, title, bl
     interval = c.HOUR
     break;
     case c.WEEK:
-    interval = c.HOUR
+    interval = c.DAY
     break;
     case c.MONTH:
     interval = c.DAY
@@ -87,13 +87,13 @@ export const fetchLocationData = ({ timeSpan, interval, unitId, keyId, title, bl
 
             const data = [
               {
-                data: values,
+                data: values.slice(0, -1),
                 label: title,
               }
             ];
             const value = res.data.data[0].sum_val;
 
-            dispatch({ type: c.FETCH_LOCATION_DATA_SUCCESS, labels, data, value, location_id });
+            dispatch({ type: c.FETCH_LOCATION_DATA_SUCCESS, labels, data, value, location_id, interval });
           });
       });
 

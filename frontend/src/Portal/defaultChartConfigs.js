@@ -23,9 +23,9 @@ export const defaultOptions = {
   legend: {
     display: false,
   },
-  scales: {
-    xAxes: [{
-      display: false
-    }]
-  },
+  // scales: {
+  //   xAxes: [{
+  //     display: false
+  //   }]
+  // },
 }
