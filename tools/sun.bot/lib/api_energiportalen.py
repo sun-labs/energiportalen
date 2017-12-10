@@ -1,4 +1,5 @@
 import MySQLdb as mysql
+import MySQLdb.cursors as cursors
 import CONFIG as C
 import time
 import datetime
@@ -6,7 +7,7 @@ import datetime
 con = None
 cur = None
 try:
-  con =  mysql.connect(**C.database)
+  con =  mysql.connect(cursorclass=cursors.DictCursor, **C.database)
   cur = con.cursor()
 except mysql.OperationalError as err:
   print("Can't connect to database.")
@@ -56,6 +57,9 @@ def get_unit_keys(unit_id = None):
 
 def unit_exists(**kwargs):
   return _entity_exists('units', **kwargs)
+
+def unit_key_exists(**kwargs):
+  return _entity_exists('unit_keys', **kwargs)
 
 def location_exists(**kwargs):
   return _entity_exists('locations', **kwargs)
