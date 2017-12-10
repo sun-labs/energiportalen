@@ -33,6 +33,8 @@ export const getUnitsFromLocation = (location) => {
               })
           });
 
+          return null;
+
         })
 
       });
