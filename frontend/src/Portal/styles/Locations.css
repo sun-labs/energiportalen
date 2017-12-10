@@ -1,4 +1,4 @@
-.FacBlock-wrap{
+.FacBlock-wrap-loc{
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -7,7 +7,7 @@
   align-content: flex-start;
 }
 
-.FacBlock-wrap .blockk.fac-block {
+.FacBlock-wrap-loc .blockk.fac-block {
   padding: 10px;
   box-sizing: border-box;
   border-width: 1px;
@@ -15,28 +15,28 @@
   height: auto;
 }
 
-.FacBlock-wrap .img-circle {
+.FacBlock-wrap-loc .img-circle {
   width: 124px;
   height: 124px;
 }
 
-.FacBlock-wrap .title {
+.FacBlock-wrap-loc .title {
   font-size: 24px;
   text-transform: capitalize;
   font-weight: lighter;
 }
 
-.FacBlock-wrap .subtitle {
+.FacBlock-wrap-loc .subtitle {
   font-size: 14px;
   margin-top: 10px;
   font-weight: lighter;
 }
 
-.FacBlock-wrap .info-fac-wrap {
+.FacBlock-wrap-loc .info-fac-wrap {
   position: relative;
 }
 
-.FacBlock-wrap .info-fac-wrap .wrap-info {
+.FacBlock-wrap-loc .info-fac-wrap .wrap-info {
   margin-bottom: 0;
   margin-top: 15px;
 }

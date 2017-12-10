@@ -328,7 +328,14 @@
       display: inline-block;
       margin: 0 0.5% 15px 0.5%;
       height: 270px;
-  }
+      max-width: 400px;
+      width: 31%;
+    }
+
+    .FacBlock-wrap-loc .blockk.fac-block.loc {
+      max-width: auto;
+      width: auto;
+    }
 
   .blockk > .content {
     height: 210px;

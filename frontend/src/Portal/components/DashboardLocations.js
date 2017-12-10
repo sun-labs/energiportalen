@@ -37,7 +37,7 @@ class DashboardLocations extends Component {
       </Link>);
 
     return (
-      <div className="facblock-wrapper">
+      <div className="FacBlock-wrap-dash">
         { blocks }
       </div>
     );

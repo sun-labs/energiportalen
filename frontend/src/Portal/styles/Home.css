@@ -5,26 +5,26 @@
     margin-bottom: 15px;
 }
 
-  .facblock-wrapper .blockk.fac-block{
+  .FacBlock-wrap-dash .blockk.fac-block{
     display: inline-block;
     border-width: 1px;
     border-color: lightgray;
     height: 70px;
   }
 
-  .facblock-wrapper .blockk .description-fac-wrap .title{
+  .FacBlock-wrap-dash .blockk .description-fac-wrap .title{
       font-size: 18px;
       text-transform: capitalize;
       font-weight: lighter;
   }
 
-  .facblock-wrapper .blockk .description-fac-wrap .subtitle {
+  .FacBlock-wrap-dash .blockk .description-fac-wrap .subtitle {
       font-size: 14px;
       font-weight: lighter;
       margin-top: 5px;
   }
 
-  .facblock-wrapper .picture-wrap {
+  .FacBlock-wrap-dash .picture-wrap {
     margin-top: 10px;
   }
 
@@ -61,11 +61,11 @@
     display: none;
   }
 
-  .facblock-wrapper .blockk.fac-block{
+  .FacBlock-wrap-dash .blockk.fac-block{
     width: 31%;
   }
 
-  .facblock-wrapper .blockk.fac-block .img-circle{
+  .FacBlock-wrap-dash .blockk.fac-block .img-circle{
     vertical-align: middle;
     width: 48px;
     height: 48px;
@@ -73,13 +73,13 @@
     margin: 0 10px 0 10px;
   }
 
-  .facblock-wrapper .blockk .description-fac-wrap{
+  .FacBlock-wrap-dash .blockk .description-fac-wrap{
     vertical-align: middle;
     text-align: left;
     margin: 0 0 0 4.25em;
   }
 
-  .facblock-wrapper .blockk.fac-block .info-fac-wrap{
+  .FacBlock-wrap-dash .blockk.fac-block .info-fac-wrap{
     display: none;
   }
 
@@ -98,30 +98,30 @@
     display: none;
   }
 
-  .facblock-wrapper .blockk.fac-block{
+  .FacBlock-wrap-dash .blockk.fac-block{
     height: 95px;
     width: 22%;
     min-width: 0px;
     margin-bottom: 0;
   }
 
-  .facblock-wrapper .blockk.fac-block .img-circle{
+  .FacBlock-wrap-dash .blockk.fac-block .img-circle{
     width: 42px;
     height: 42px;
   }
 
-  .facblock-wrapper .blockk .description-fac-wrap .title{
+  .FacBlock-wrap-dash .blockk .description-fac-wrap .title{
     font-size: 3.0vw;
   }
 
- #portal .content .facblock-wrapper .blockk.fac-block{
+ #portal .content .FacBlock-wrap-dash .blockk.fac-block{
    display: inline-block;
    margin-bottom: 0;
    padding: 0;
  }
 
- .facblock-wrapper .blockk.fac-block .info-fac-wrap,
- .facblock-wrapper .blockk.fac-block .subtitle,
+ .FacBlock-wrap-dash .blockk.fac-block .info-fac-wrap,
+ .FacBlock-wrap-dash .blockk.fac-block .subtitle,
  #portal .content .blockk.add-block#AddlocationDash{
     display: none;
   }
