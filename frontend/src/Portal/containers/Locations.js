@@ -42,7 +42,8 @@ class Locations extends Component {
                       subtitle={location.description} 
                       key={location.id}
                       solarPlants={location.solarPlants}
-                      totEffect={location.totEffect} />
+                      totEffect={location.totEffect}
+                      className={"loc"}/>
                   </Link>
                   </div>
                 );
