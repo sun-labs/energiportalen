@@ -39,8 +39,20 @@ export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockTyp
 
 export const fetchSumValueData = ({ from, to, interval, unitId, keyId, blockId, blockType, rowId = null }) => {
   return (dispatch) => {
+
     API.getDataFromKey({ from, to, interval, unitId, keyId }, (res) => {
-      dispatch({ type: c.FETCH_SUM_VALUE_DATA_SUCCESS, value: parseInt(res.data.data[0].sum_val, 10), blockId, blockType, rowId })
+
+      const sum_val = res.data.data.reduce((tot, data) => {
+        return tot + data.sum_val;
+      }, 0)
+
+      dispatch({
+        type: c.FETCH_SUM_VALUE_DATA_SUCCESS,
+        value: sum_val, //parseInt(res.data.data[0].sum_val, 10),
+        blockId,
+        blockType,
+        rowId
+      })
     });
   }
 }
