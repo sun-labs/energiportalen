@@ -22,8 +22,8 @@ class DashboardLocations extends Component {
     const { locations } = this.props;
 
     const blocks = locations.map((loc) =>
-    <div className="FacBlock-dash">
-      <Link to={`${c.PORTAL_ROOT}/locations/` + loc.id } key={loc.id}>
+    <div className="FacBlock-dash" key={loc.id}>
+      <Link to={`${c.PORTAL_ROOT}/locations/` + loc.id }>
         <FacBlock fac={loc.image} title={loc.name} subtitle={loc.city} solarPlants={loc.solarPlants} totEffect={loc.totEffect}/>
       </Link>
     </div>
