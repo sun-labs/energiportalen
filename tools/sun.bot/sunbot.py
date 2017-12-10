@@ -9,6 +9,8 @@ PARSERS = ['***REMOVED***']
 _parser = argparse.ArgumentParser()
 _parser.add_argument('input', metavar='input', help="", type=str)
 _parser.add_argument('--parser', help="Which parser to use for the input data", choices=PARSERS)
+_parser.add_argument('--unit-key', help="Select the unit key to associate the data with")
+_parser.add_argument('--unit-id', help="The unit which the data is associated with")
 args = _parser.parse_args()
 
 # load correct parser
@@ -27,5 +29,6 @@ normalized_data = []
 for point in data:
   norm = mappings.parse_data(point)
   normalized_data.append(norm)
+
 
 print normalized_data
