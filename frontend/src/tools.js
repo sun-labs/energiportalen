@@ -12,6 +12,29 @@ export const daysOfYear = (year) => {
   return isLeapYear(year) ? 366 : 365;
 }
 
+// EXAMPLE
+// const arr = ["asdf", "asdf", "qwer"]
+// const grouped = groupBy(arr, (elem) => {
+//   return {
+//     key: elem,
+//     val: 1,
+//   }
+// });
+// console.log(grouped) // { asdf: [1,1], qwer: [1]}
+export const groupBy = (arr, extractor) => {
+  // extractor is in the following form
+  // (elem) => { return { key: "", val: "" }}
+  let grouped = {};
+  for(let elem of arr) {
+    const { key, val } = extractor(elem);
+    if(!grouped[key]) {
+      grouped[key] = [];
+    }
+    grouped[key].push(val);
+  }
+  return grouped;
+}
+
 export const daysInMonth = (date) => {
   return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
 }
