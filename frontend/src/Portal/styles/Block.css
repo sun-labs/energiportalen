@@ -4,7 +4,6 @@
   border-radius: 3px;
   border: 1px solid black;
   overflow: auto;
-  min-width: 300px;
 }
 
 .blockk header {
@@ -327,10 +326,8 @@
 
    .blockk {
       display: inline-block;
-      width: 31%;
       margin: 0 0.5% 15px 0.5%;
       height: 270px;
-      max-width: 400px;
   }
 
   .blockk > .content {
