@@ -21,10 +21,12 @@ const funcs = {
     const {
       from,
       to,
-      interval
+      interval,
+      unitId,
+      keyId
     } = params;
     const PARAMETERS = `${PARAM_FROM}=${from}&${PARAM_TO}=${to}&${PARAM_INT}=${interval}`;
-    funcs.apiCall().get(`/units/${params.unitId}/${params.keyId}?${PARAMETERS}`)
+    funcs.apiCall().get(`/units/${unitId}/${keyId}?${PARAMETERS}`)
       .then((res) => {
         cb(res);
       });

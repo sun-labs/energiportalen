@@ -67,7 +67,7 @@ export const removeBlock = (blockId) => {
   }
 }
 
-export const addBlock = ({ from = '', to = '', timeSpan, unitId = 4, keyId = 95, blockType }) => {
+export const addBlock = ({ timeSpan, unitId = 4, keyId = 95, blockType }) => {
 
   const date = t.getDatesFromInterval(timeSpan.value);
 

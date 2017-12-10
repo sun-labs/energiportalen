@@ -44,7 +44,7 @@ const Header = (props) => {
 }
 
 const Footer = (props) => {
-  const { blockType } = props;
+  const { blockType, fetchLocationData } = props;
 
   switch(blockType) {
     case c.ADD:
@@ -58,10 +58,10 @@ const Footer = (props) => {
       return (
         <footer>
           <ul>
-            <li><button>DAILY</button></li>
-            <li><button>WEEKLY</button></li>
-            <li><button>MONTHLY</button></li>
-            <li><button>YEARLY</button></li>
+            <li><button onClick={() => { fetchLocationData({ ...props, timeSpan: c.intervalOptions.find(x => x.value === c.DAY) }) }}>DAILY</button></li>
+            <li><button onClick={() => { fetchLocationData({ ...props, timeSpan: c.intervalOptions.find(x => x.value === c.WEEK) }) }}>WEEKLY</button></li>
+            <li><button onClick={() => { fetchLocationData({ ...props, timeSpan: c.intervalOptions.find(x => x.value === c.MONTH) }) }}>MONTHLY</button></li>
+            <li><button onClick={() => { fetchLocationData({ ...props, timeSpan: c.intervalOptions.find(x => x.value === c.YEAR) }) }}>YEARLY</button></li>
             <li><button id="export-data">export data</button></li>
           </ul>
         </footer>
