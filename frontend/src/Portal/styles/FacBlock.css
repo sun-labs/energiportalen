@@ -52,8 +52,13 @@
 
   .blockk.fac-block{
     height: 500px;
-    min-width: 250px;
-    width: 22%;
+    margin-right: 20px;
+  }
+
+  .FacBlock-fac{
+    max-width: 300px;
+    flex-basis: 250px;
+    flex-grow: 1;
   }
 
 

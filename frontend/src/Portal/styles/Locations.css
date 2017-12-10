@@ -1,7 +1,10 @@
 .FacBlock-wrap{
-  width: 100%;
-  text-align:center;
-  display:inline-block;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
 }
 
 .FacBlock-wrap .blockk.fac-block {

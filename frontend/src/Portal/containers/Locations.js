@@ -33,6 +33,7 @@ class Locations extends Component {
             {
               props.locations.map((location) => {
                 return (
+                  <div className="FacBlock-fac">
                   <Link 
                     to={`${c.PORTAL_ROOT}/locations/` +  location.id} key={location.id}>
                     <FacBlock 
@@ -43,6 +44,7 @@ class Locations extends Component {
                       solarPlants={location.solarPlants}
                       totEffect={location.totEffect} />
                   </Link>
+                  </div>
                 );
               })
             }
