@@ -45,6 +45,12 @@ def get_units():
   cur.execute(query)
   return cur.fetchall()
 
+# get unit key info
+def get_unit_key(id):
+  query = "SELECT * FROM unit_keys WHERE id = %s"
+  cur = _query(query, [id])
+  return cur.fetchone()
+
 # get every unit_key or filter by unit_id
 def get_unit_keys(unit_id = None):
   query = "SELECT * FROM unit_keys as uk"

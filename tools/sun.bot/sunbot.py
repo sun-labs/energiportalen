@@ -29,12 +29,10 @@ data = json.loads(content)['values']
 data_len = len(data)
 
 # facility specific values
-uk = sunbot.get_unit_keys(args.unit_key)
+uk = sunbot.get_unit_key(args.unit_key)
 
-if len(uk) == 0:
+if uk is None:
   exit("No such unit key")
-else:
-  uk = uk[0]
 
 added_points = 0
 for point in data:
