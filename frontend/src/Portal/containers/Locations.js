@@ -29,7 +29,7 @@ class Locations extends Component {
           <h1>LOCATIONS</h1>
           <h2> Search for solar facilities in sweden to compare and see how much energy that is produced. </h2>
         </div>
-          <div className="FacBlock-wrap">
+          <div className="FacBlock-wrap-loc">
             {
               props.locations.map((location) => {
                 return (
