@@ -5,6 +5,16 @@
     margin-bottom: 15px;
 }
 
+  .FacBlock-wrap-dash{
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    width: 100%;
+  }
+
   .FacBlock-wrap-dash .blockk.fac-block{
     display: inline-block;
     border-width: 1px;
@@ -62,7 +72,8 @@
   }
 
   .FacBlock-wrap-dash .blockk.fac-block{
-    width: 31%;
+    width: 100%;
+    margin-right: 0;
   }
 
   .FacBlock-wrap-dash .blockk.fac-block .img-circle{
@@ -100,7 +111,6 @@
 
   .FacBlock-wrap-dash .blockk.fac-block{
     height: 95px;
-    width: 22%;
     min-width: 0px;
     margin-bottom: 0;
   }
