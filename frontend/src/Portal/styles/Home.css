@@ -4,6 +4,22 @@
     box-sizing: border-box;
     margin-bottom: 15px;
 }
+  .block-wrap{
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    width: 100%;
+  }
+
+  .block-wrap .blockk{
+    width: auto;
+    max-width: 290px;
+    flex-basis: 290px;
+    flex-grow: 1;
+  }
 
   .FacBlock-wrap-dash{
     display: inline-flex;
@@ -107,6 +123,10 @@
 
   #portal .text-block{
     display: none;
+  }
+
+  .block-wrap{
+    justify-content: center;
   }
 
   .FacBlock-wrap-dash .blockk.fac-block{
