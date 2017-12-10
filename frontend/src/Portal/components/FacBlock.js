@@ -24,10 +24,6 @@ const FacBlock = (props) => {
             <p className="fac-info-text">Effect (MWh)</p>
             <p className="totEffect">{ props.totEffect }</p>
           </div>
-
-          <div className="info-fac-button">
-           <button>Change location</button>
-          </div>
         </div>
     </div>
   );

@@ -5,8 +5,6 @@
   .bot-navbar-portal {
     background: #FFFFFF;
     opacity: 1.00;
-    /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); */
-    border-bottom: 1px solid lightgray;
     z-index: 100;
     position: fixed;
     left: 0;
@@ -21,11 +19,12 @@
       background-repeat: no-repeat;
       background-size: 150px auto;
       font-size: 1.5em;
+      border-bottom: 1px solid lightgray;
 
       top: 0;
       color: black;
       display: inline-block;
-      padding: 1em 0;  
+      padding: 1em 0;
   }
 
   .bot-navbar-portal ul{
@@ -57,6 +56,7 @@
   .bot-navbar-portal {
     text-align: center;
     bottom: 0;
+    border-top: 1px solid lightgray;
   }
 
   .bot-navbar-portal .icon {

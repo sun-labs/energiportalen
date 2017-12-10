@@ -132,7 +132,7 @@ const blocksReducer = (state = initialState, action = null) => {
         case c.PHONE:
           newBlock = {
             ...initialIlluBlock,
-            interval: action.interval,
+            timeSpan: action.timeSpan,
           }
           break;
         case c.TABLE:
@@ -153,7 +153,7 @@ const blocksReducer = (state = initialState, action = null) => {
             data: [],
             dataKey: '',
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            interval: action.interval
+            timeSpan: action.timeSpan
           }
           break;
         default:

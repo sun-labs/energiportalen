@@ -1,5 +1,6 @@
 import API from '../API';
 import * as blockConstants from '../constants/blockConstants';
+import * as t from '../tools';
 
 const c = {
   ...blockConstants
@@ -66,13 +67,16 @@ export const removeBlock = (blockId) => {
   }
 }
 
-export const addBlock = ({ from, to, interval, unitId, keyId, blockType }) => {
+export const addBlock = ({ from = '', to = '', timeSpan, unitId = 4, keyId = 95, blockType }) => {
+
+  const date = t.getDatesFromInterval(timeSpan.value);
+
   return (dispatch) => {
     dispatch({
       type: c.SAVE_NEW_BLOCK,
-      from,
-      to,
-      interval,
+      from: date.from,
+      to: date.to,
+      timeSpan: timeSpan.label,
       unitId,
       keyId,
       blockType
