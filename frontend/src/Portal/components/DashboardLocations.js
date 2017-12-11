@@ -22,19 +22,19 @@ class DashboardLocations extends Component {
     const { locations } = this.props;
 
     const blocks = locations.map((loc) =>
-    <div className="FacBlock-dash" key={loc.id}>
+    <div className="fac-block-dash" key={loc.id}>
       <Link to={`${c.PORTAL_ROOT}/locations/` + loc.id }>
         <FacBlock fac={loc.image} title={loc.name} subtitle={loc.city} solarPlants={loc.solarPlants} totEffect={loc.totEffect}/>
       </Link>
     </div>
     ).concat(
-      <Link 
-        to={`${c.PORTAL_ROOT}/locations/addlocation`} 
+      <Link
+        to={`${c.PORTAL_ROOT}/locations/addlocation`}
         key={'addlocation'}
       >
-        <FacBlock 
-          className="add-block" 
-          title={'Add location'} 
+        <FacBlock
+          className="add-block"
+          title={'Add location'}
           fac={ addimg }/>
       </Link>);
 
