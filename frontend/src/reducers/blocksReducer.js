@@ -25,7 +25,6 @@ export const initialBlock = {
   blockType: '',
   editing: false,
   interval: 'hour',
-  locationId: 1
 }
 
 export const initialGraphBlock = {

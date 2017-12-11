@@ -9,7 +9,6 @@ class MessageBox extends Component {
   }
 
   handleClick(e) {
-    console.log('close messagebox');
   }
 
   render() {

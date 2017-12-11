@@ -11,46 +11,71 @@ class TableBlock extends Component {
   }
 
   fetchRowData(rowId) {
-    const { props } = this;
+    const {
+      fetchSumValueData,
+      from,
+      to,
+      interval,
+      unitId,
+      keyId,
+      blockId,
+      blockType,
+    } = this.props;
 
-    props.fetchSumValueData({
-      from: props.from,
-      to: props.to,
-      interval: props.interval,
-      unitId: props.unitId,
-      keyId: props.keyId,
-      blockId: props.blockId,
-      blockType: props.blockType,
-      rowId: rowId
+    fetchSumValueData({
+      from,
+      to,
+      interval,
+      unitId,
+      keyId,
+      blockId,
+      blockType,
+      rowId
     })
   }
 
   componentWillMount() {
-    const { props } = this;
-    if (props.rows.length < 1) props.addTableBlockRow(props.blockId);
+    const {
+      rows,
+      addTableBlockRow,
+      blockId
+    } = this.props;
+    if (rows.length < 1) addTableBlockRow(blockId);
   }
 
   render() {
     const {
-      props,
-      fetchRowData
-    } = this;
+      rows,
+      addTableBlockRow,
+      blockId,
+      removeBlock,
+      blockType,
+      editing,
+      fetchLocationData
+    } = this.props;
 
     return (
-      <Block className="blockk-table" { ...props }>
+      <Block
+        className="blockk-table"
+        removeBlock={removeBlock}
+        blockType={blockType}
+        editing={editing}
+        blockId={blockId}
+        fetchLocationData={fetchLocationData}
+      >
         <table className="content-table">
           <tbody>
             {
-              props.rows.map((elem, index) => {
+              rows.map((elem, index) => {
                 const rowProps = {
                   ...elem,
-                  fetchRowData,
+                  fetchRowData: this.fetchRowData,
                 }
                 return (<TableBlockRow key={ elem.id } { ...rowProps } />);
               })
             }
             <tr>
-              <td onClick={ () => props.addTableBlockRow(props.blockId) } className="add-information">+ add information</td>
+              <td onClick={ () => addTableBlockRow(blockId) } className="add-information">+ add information</td>
             </tr>
           </tbody>
         </table>

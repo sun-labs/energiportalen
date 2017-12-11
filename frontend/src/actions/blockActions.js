@@ -7,6 +7,7 @@ const c = {
 };
 
 export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockType }) => {
+
   return (dispatch, getState) => {
     API.getDataFromKey({ from, to, interval, unitId, keyId }, (res) => {
 
@@ -103,7 +104,6 @@ export const addBlock = ({ timeSpan, blockType, location }) => {
     const unit = locations.find(loc => {
       return loc.id === location.id;
     }).units[0];
-
 
     const keyId = unit.keys.find(key => {
       return key.id === 6;

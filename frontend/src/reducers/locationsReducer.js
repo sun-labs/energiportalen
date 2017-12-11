@@ -1,38 +1,27 @@
 import * as locationConstants from '../constants/locationConstants';
 import * as blockConstants from '../constants/blockConstants';
 import { initialGraphBlock } from './blocksReducer';
+import * as t from '../tools';
 
 const c = {
   ...locationConstants,
   ...blockConstants
 };
 
-
-// const initialKey = {
-//   unitId: null,
-//   id: null,
-//   name: ''
-// };
-
-// const initialKeys = [];
-
-// const initialUnit = {
-//   locationId: null,
-//   id: null,
-//   name: '',
-//   keys: initialKeys
-// };
-
 const initialUnits = [];
+const lastWeek = t.getDatesFromInterval(c.WEEK);
 
 const initialBlock = {
   ...initialGraphBlock,
   blockType: c.LINE,
-  timeSpan: '24h',
+  timeSpan: '7d',
   unitId: 4,
   keyId: 95,
   locationId: null,
-  blockId: -1
+  blockId: -1,
+  from: lastWeek.from,
+  to: lastWeek.to,
+  interval: c.DAY
 }
 
 const initialLocation = {
@@ -42,7 +31,9 @@ const initialLocation = {
   solarPlants: 158,
   totEffect: 340,
   block: {
-    ...initialBlock
+    ...initialBlock,
+    from: lastWeek.from,
+    to: lastWeek.to
   }
 };
 
@@ -102,7 +93,7 @@ const locationsReducer = (state = initialState, action = null) => {
       return {
         ...state,
         locations: state.locations.map((loc) => {
-          if (loc.location_id === action.location_id) {
+          if (loc.id === action.id) {
             return locationReducer(loc, action)
           } else {
             return loc;
@@ -113,7 +104,7 @@ const locationsReducer = (state = initialState, action = null) => {
       return {
         ...state,
         locations: state.locations.map((loc) => {
-          if (loc.id === action.unit.location_id) {
+          if (loc.id === action.unit.locationId) {
             return locationReducer(loc, action)
           } else {
             return loc;

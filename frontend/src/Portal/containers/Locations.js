@@ -15,13 +15,19 @@ const c = {
 
 class Locations extends Component {
   componentWillMount() {
-    if (this.props.locations.length < 1) {
-      this.props.getLocations();
+    const {
+      locations,
+      getLocations
+    } = this.props;
+    if (locations.length < 1) {
+      getLocations();
     }
   }
 
   render() {
-    const { props } = this;
+    const {
+      locations
+    } = this.props;
 
     return (
       <div className="content">
@@ -30,8 +36,7 @@ class Locations extends Component {
           <h2> Search for solar facilities in sweden to compare and see how much energy that is produced. </h2>
         </div>
           <div className="FacBlock-wrap-loc">
-            {
-              props.locations.map((location) => {
+            { locations.map((location) => {
                 return (
                   <div className="fac-block-fac" key={location.id}>
                   <Link

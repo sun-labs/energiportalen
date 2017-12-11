@@ -1,32 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import img from '../../imgs/akademiska.png';
 import '../styles/FacBlock.css';
 
-const FacBlock = (props) => {
+class FacBlock extends Component {
+  render() {
+    const {
+      className,
+      fac,
+      title,
+      subtitle,
+      solarPlants,
+      totEffect
+    } = this.props;
 
-  return (
-    <div className={`blockk fac-block ${props.className ? props.className : ''}`}>
-        <div className="picture-wrap">
-          <img className="img-circle" alt="" src={ props.fac ? props.fac : img }/>
-        </div>
-        <div className="description-fac-wrap">
-          <p className="title">{ props.title }</p>
-          <p className="subtitle">{ props.subtitle }</p>
-        </div>
+    return (
+      <div className={`blockk fac-block ${className ? className : ''}`}>
+          <div className="picture-wrap">
+            <img className="img-circle" alt="" src={fac ? fac : img}/>
+          </div>
+          <div className="description-fac-wrap">
+            <p className="title">{title}</p>
+            <p className="subtitle">{subtitle}</p>
+          </div>
 
-        <div className="info-fac-wrap">
-          <div className="wrap-info solar-info">
-            <p className="fac-info-text">Solar cells</p>
-            <p className="solarPlants">{ props.solarPlants }</p>
+          <div className="info-fac-wrap">
+            <div className="wrap-info solar-info">
+              <p className="fac-info-text">Solar cells</p>
+              <p className="solarPlants">{solarPlants}</p>
+            </div>
+            <div className="wrap-info effect-info">
+              <p className="fac-info-text">Effect (MWh)</p>
+              <p className="totEffect">{totEffect}</p>
+            </div>
           </div>
-          <div className="wrap-info effect-info">
-            <p className="fac-info-text">Effect (MWh)</p>
-            <p className="totEffect">{ props.totEffect }</p>
-          </div>
-        </div>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 FacBlock.propTypes = {

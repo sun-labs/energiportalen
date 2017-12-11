@@ -16,11 +16,15 @@ class NavBar extends Component {
   }
 
   renderPopup() {
+    const {
+      authSignIn,
+    } = this.props;
+
     if(this.state.popupVisible) {
       return (
         <Popup className="popup-auth" onClose={ this.togglePopup }>
           <h1>Sign in</h1>
-          <FormAuth className="wrap-auth" {...this.props} />
+          <FormAuth className="wrap-auth" authSignIn={authSignIn} />
         </Popup>
       );
     } else {
@@ -35,6 +39,9 @@ class NavBar extends Component {
   }
 
   render() {
+    const {
+      authSignIn,
+    } = this.props;
 
     return (
       <div className="navbar-splash">
@@ -44,7 +51,7 @@ class NavBar extends Component {
           <h2>solar energy beautifully visualized</h2>
         </div>
         <button id="mobile-btn-sign" onClick={ this.togglePopup }>SIGN IN</button>
-        <FormAuth className="sign-wrap" {...this.props} />
+        <FormAuth className="sign-wrap" authSignIn={authSignIn} />
       </div>
     );
   }

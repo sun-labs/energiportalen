@@ -20,7 +20,6 @@ export const daysOfYear = (year) => {
 //     val: 1,
 //   }
 // });
-// console.log(grouped) // { asdf: [1,1], qwer: [1]}
 export const groupBy = (arr, extractor) => {
   // extractor is in the following form
   // (elem) => { return { key: "", val: "" }}
@@ -55,7 +54,7 @@ export const dateToString = (date) => {
   return yyyy + '-' + mm + '-' + dd;
 }
 
-export const getDatesFromInterval = (interval = '24h') => {
+export const getDatesFromInterval = (interval = c.DAY) => {
 
   let today = new Date();
   let prevDate = new Date();

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_URL } from './Splash/assets/APIRoutes';
 
-const CACHE_LIFE = 24 * 60 * 60 // 24 hours
+const CACHE_LIFE = 1;//24 * 60 * 60 // 24 hours
 const token = getToken()
 
 let api = axios.create({
@@ -27,7 +27,6 @@ function get(key) {
     const val = JSON.parse(localStorage.getItem(key))
     if(val) {
       const age = (Date.now() - val.stored) / 1000;
-      console.log(age, CACHE_LIFE)
       if(age < CACHE_LIFE) {
         return val.val
       }
@@ -39,9 +38,7 @@ function get(key) {
 function call(method, url, data, cb) {
   method = method.toUpperCase()
   const key = `${method}-${url}-${data}`;
-  console.log(key);
   const cached = get(key);
-  console.log(cached);
   if(cached) {
     cb(cached)
   } else {

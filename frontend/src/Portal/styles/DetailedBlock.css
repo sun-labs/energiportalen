@@ -3,7 +3,11 @@
     border-radius: 50%;
 }
 
-.content-detailedBlock header{
+.detailed-block .content-detailed-block > .blockk.blockk-line {
+  border-radius: 3px;
+}
+
+.content-detailed-block header{
    display: none;
 }
 
@@ -21,7 +25,7 @@
 }
 
 .compare-wrap .info-fac-button button,
-.content-detailedBlock .blockk.blockk-line button{
+.content-detailed-block .blockk.blockk-line button{
   display: block;
   text-transform: uppercase;
   background-color: #219653;
@@ -71,13 +75,13 @@
   }
 
   .compare-wrap .info-fac-button button,
-  .content-detailedBlock .blockk.blockk-line button{
+  .content-detailed-block .blockk.blockk-line button{
     font-size: 1em;
     margin: 0 0 1em 1em;
     border-radius: 3px;
   }
 
-  .content-detailedBlock .blockk.blockk-line{
+  .content-detailed-block .blockk.blockk-line{
     width: 775px;
     height: 475px;
     max-width: none;
@@ -87,22 +91,22 @@
     margin: 0;
   }
 
-  .content-detailedBlock .blockk > .content{
+  .content-detailed-block .blockk > .content{
     height: 400px;
   }
 
-  .content-detailedBlock .blockk footer{
+  .content-detailed-block .blockk footer{
     display: block;
   }
 
-  .content-detailedBlock .blockk.blockk-line footer button{
+  .content-detailed-block .blockk.blockk-line footer button{
     margin: 0 0 0 1em;
     float: left;
     background-color: white;
     color: #BDBDBD;
   }
 
-   .content-detailedBlock .blockk.blockk-line footer button#export-data{
+   .content-detailed-block .blockk.blockk-line footer button#export-data{
      float: right;
      margin: 0 1em 0 0;
    }
@@ -160,7 +164,7 @@
     display: none;
   }
 
-  #portal .content .detailedBlock header .compare-wrap .blockk.add-block{
+  #portal .content .detailed-block header .compare-wrap .blockk.add-block{
     min-width: 0px;
     padding: 0;
     line-height: 95px;

@@ -8,7 +8,7 @@ class Location {
   */
   static getLocations(cb) {
     const QUERY = `
-      SELECT * FROM locations as l
+      SELECT l.*, u.id as unit_id FROM locations as l
       INNER JOIN unit_locations ul
       ON l.id = ul.location_id
       INNER JOIN units as u

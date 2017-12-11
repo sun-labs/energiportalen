@@ -63,7 +63,6 @@ export const authSignIn = ( email = '', password = '', history ) => {
     axios.post(c.API_AUTH, { email, password })
       .then((res) => {
 
-        console.log('success, setting token');
         localStorage.setItem('token', res.data.token);
         history.push('/portal');
 

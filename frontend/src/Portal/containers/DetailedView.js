@@ -9,27 +9,46 @@ import PropTypes from 'prop-types';
 
 class DetailedView extends Component {
   componentWillMount(){
-    const { props } = this;
+    const {
+      match,
+      locations,
+      getLocation
+    } = this.props;
 
-    const id = props.match.params.locationID;
+    const id = match.params.locationID;
 
-    if (props.locations.length < 1) {
-      props.getLocation(id);
+    if (locations.length < 1) {
+      getLocation(id);
     }
   }
 
   render() {
-    const { props } = this;
-    const id = props.match.params.locationID;
+    const {
+      match,
+      locations,
+      fetchData,
+      fetchLocationData,
+    } = this.props;
+    const id = match.params.locationID;
 
-    const location = props.locations.find((loc) => {
+    const location = locations.find((loc) => {
       return Number(loc.id) === Number(id);
     });
 
     return (
       <div className="content">
         { location ?
-          <DetailedBlock {...location} {...props} /> :
+          <DetailedBlock
+            id={location.id}
+            name={location.name}
+            city={location.city}
+            image={location.image}
+            block={location.block}
+            totEffect={location.totEffect}
+            solarPlants={location.solarPlants}
+            fetchData={fetchData}
+            fetchLocationData={fetchLocationData}
+          /> :
           null }
       </div>
     );
