@@ -58,3 +58,4 @@ CONFIG.py
 *.pyc
 downloads
 **/data/*.json
+**/temp
