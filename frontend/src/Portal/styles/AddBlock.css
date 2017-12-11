@@ -87,10 +87,9 @@
 .blockk-add .save-block-add {
   font-weight: normal;
   font-size: 1.1em;
-  color: white;
   display: table-cell;
   box-shadow: none;
-  background-color: #219653;
+  background-color: #ffd70d;
   width: 100%;
 }
 
