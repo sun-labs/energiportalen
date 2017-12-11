@@ -52,13 +52,14 @@
   .compare-wrap .img-circle {
     width: 75px;
     height: 75px;
-    margin: 1em 0 0 1em;
+    margin: 1em 0 1em 1em;
     overflow: auto;
   }
 
   .compare-wrap .blockk.fac-block{
     height: auto;
     width: 45%;
+    border: 1px solid lightgray;
   }
 
   .compare-wrap .info-fac-wrap .wrap-info{
@@ -87,7 +88,7 @@
     max-width: none;
     border-radius: 0;
     border-width: 1px;
-    border-color: gray;
+    border-color: lightgray;
     margin: 0;
   }
 

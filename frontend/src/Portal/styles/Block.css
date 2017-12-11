@@ -2,7 +2,7 @@
   width: 97%;
   margin: 1%;
   border-radius: 3px;
-  border: 1px solid black;
+  border: 1px solid lightgray;
   overflow: auto;
   background-color: white;
 }
@@ -15,7 +15,7 @@
   height: 60px;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: gray;
+  border-bottom-color: lightgray;
 }
 
 .blockk .description-wrap {
@@ -81,11 +81,11 @@
 * LINE CHART BLOCKS
 */
 .blockk-line {
-  border-color: green;
+  /* border-color: green; */
 }
 
 .blockk-line header {
-  border-bottom-color: green;
+  /* border-bottom-color: green; */
 }
 
 .blockk-line > .content {
@@ -104,7 +104,7 @@
 * TABLE INFORMATION BLOCK
 */
 .blockk-table {
-  border-color: black;
+  /* border-color: black; */
 }
 
 .blockk-table header > .time-wrap {
@@ -163,7 +163,7 @@
 
 .content-table .add-information {
   padding: 10px;
-  color: #219653;
+  /* color: #219653; */
   cursor: pointer;
 }
 

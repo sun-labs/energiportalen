@@ -83,7 +83,8 @@
 
   #portal > .content .inline-button{
     font-size: 10px;
-    color: #6FCF97;
+    /* color: #6FCF97; */
+    color: gray;
     cursor: pointer;
   }
 
