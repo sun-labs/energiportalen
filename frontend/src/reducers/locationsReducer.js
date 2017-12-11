@@ -1,7 +1,6 @@
 import * as locationConstants from '../constants/locationConstants';
 import * as blockConstants from '../constants/blockConstants';
 import { initialGraphBlock } from './blocksReducer';
-import * as t from '../tools';
 
 const c = {
   ...locationConstants,
@@ -9,7 +8,6 @@ const c = {
 };
 
 const initialUnits = [];
-const lastWeek = t.getDatesFromInterval(c.WEEK);
 
 const initialBlock = {
   ...initialGraphBlock,
@@ -19,8 +17,6 @@ const initialBlock = {
   keyId: 95,
   locationId: null,
   blockId: -1,
-  from: lastWeek.from,
-  to: lastWeek.to,
   interval: c.DAY,
   detailedView: true
 }

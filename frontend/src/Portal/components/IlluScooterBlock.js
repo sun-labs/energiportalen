@@ -13,8 +13,7 @@ class IlluScooterBlock extends Component {
   componentWillMount() {
     const {
       fetchSumValueData,
-      from,
-      to,
+      timeSpan,
       interval,
       unitId,
       keyId,
@@ -22,7 +21,7 @@ class IlluScooterBlock extends Component {
       blockType,
       rowId
     } = this.props;
-    fetchSumValueData({ from, to, interval, unitId, keyId, blockId, blockType, rowId });
+    fetchSumValueData({ timeSpan, interval, unitId, keyId, blockId, blockType, rowId });
   }
 
   /**

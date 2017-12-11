@@ -22,8 +22,6 @@ class LineBlock extends Component {
       name,
       blockType,
       refresh,
-      from,
-      to,
       unitId,
       blockId,
       detailedView = false
@@ -33,7 +31,7 @@ class LineBlock extends Component {
     if (detailedView) {
       fetchLocationData({ timeSpan, interval, keyId, name, blockType, locationId });
     } else if (refresh === true) {
-      fetchData({ from, to, interval, unitId, keyId, blockId, blockType });
+      fetchData({ timeSpan, interval, unitId, keyId, blockId, blockType });
     }
   }
 
@@ -87,7 +85,6 @@ setDataColors(dataList, config) {
   });
 }
 
-
   render() {
 
     const {
@@ -98,7 +95,6 @@ setDataColors(dataList, config) {
       timeSpan,
       name,
       city,
-      dataKey,
       editing,
       blockId = null,
       interval,

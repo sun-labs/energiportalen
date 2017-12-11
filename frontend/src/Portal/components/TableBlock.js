@@ -13,8 +13,7 @@ class TableBlock extends Component {
   fetchRowData(rowId) {
     const {
       fetchSumValueData,
-      from,
-      to,
+      timeSpan,
       interval,
       unitId,
       keyId,
@@ -23,8 +22,7 @@ class TableBlock extends Component {
     } = this.props;
 
     fetchSumValueData({
-      from,
-      to,
+      timeSpan,
       interval,
       unitId,
       keyId,
@@ -95,8 +93,6 @@ TableBlock.propTypes = {
   city:               PropTypes.string.isRequired,
   rows:                   PropTypes.array.isRequired,
   editing:                PropTypes.bool.isRequired,
-  from:                   PropTypes.string.isRequired,
-  to:                     PropTypes.string.isRequired,
   unitId:                 PropTypes.number.isRequired,
   keyId:                  PropTypes.number.isRequired,
   blockId:                PropTypes.number.isRequired,

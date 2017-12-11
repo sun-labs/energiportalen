@@ -45,5 +45,4 @@ export const intervalOptions = [
   { value: WEEK, label: '7d' },
   { value: MONTH, label: '30d' },
   { value: YEAR, label: '365d' },
-  // { value: ALL_TIME, label: 'inf' }
 ];

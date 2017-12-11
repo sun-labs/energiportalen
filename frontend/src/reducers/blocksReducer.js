@@ -10,14 +10,10 @@ export const tempRow = {
   value: -1,
   si: 'kWh',
   span: '1d',
-  from: '2017-02-10',
-  to: '2017-02-10 23:23:59',
   name: 'Energy Produced'
 }
 
 export const initialBlock = {
-  from: '2017-02-10',
-  to: '2017-02-10 23:59:59',
   unitId: '',
   keyId: '',
   refresh: true,
@@ -167,8 +163,7 @@ const blocksReducer = (state = initialState, action = null) => {
             ...newBlock,
             blockId: state.blocks.length,
             blockType: action.blockType,
-            from: action.from,
-            to: action.to,
+            timeSpan: action.timeSpan,
             unitId: action.unitId,
             keyId: action.keyId,
             locationId: action.locationId

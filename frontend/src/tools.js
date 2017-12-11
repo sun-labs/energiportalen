@@ -54,7 +54,7 @@ export const dateToString = (date) => {
   return yyyy + '-' + mm + '-' + dd;
 }
 
-export const getDatesFromInterval = (interval = c.DAY) => {
+export const getDatesFromTimeSpan = (interval = c.DAY) => {
 
   let today = new Date();
   let prevDate = new Date();

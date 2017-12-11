@@ -12,11 +12,9 @@ const c = {
 const Header = (props) => {
   const {
     blockType = c.DEFAULT,
-    timeSpan = -1,
+    timeSpan = c.DAY,
     name = 'NAME',
     city = 'CITY',
-    from,
-    to,
     removeHandle
   } = props;
 
@@ -29,7 +27,7 @@ const Header = (props) => {
       return (
         <header>
           <div className="time-wrap">
-            <p className="value" alt={`${from} - ${to}`}>{ timeSpan }</p>
+            <p className="value">{ timeSpan }</p>
           </div>
           <div className="description-wrap">
             <p className="name">{ name }, { city }</p>
@@ -211,8 +209,6 @@ class Block extends Component {
       timeSpan,
       name,
       city,
-      from,
-      to,
       fetchLocationData,
       interval,
       keyId,
@@ -228,8 +224,6 @@ class Block extends Component {
             timeSpan={timeSpan}
             name={name}
             city={city}
-            from={from}
-            to={to}
             /> : '' }
 
         <Content editing={ editing }>
@@ -264,8 +258,6 @@ Block.propTypes = {
   city:         PropTypes.string,
   blockId:          PropTypes.number,
   removeHandle:       PropTypes.func, // TODO maybe should be required?
-  to:               PropTypes.string,
-  from:             PropTypes.string,
   timeSpan:         PropTypes.string,
 };
 

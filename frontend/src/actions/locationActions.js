@@ -45,7 +45,11 @@ export const getUnitsFromLocation = (location) => {
 
 export const fetchLocationData = ({ timeSpan, interval, keyId, name, blockType, locationId }) => {
 
-  const date = t.getDatesFromInterval(c.intervalOptions.find(el => el.label === timeSpan).value);
+  timeSpan = c.intervalOptions.find(el => el.label === timeSpan).value
+
+  const {
+    from, to
+  } = t.getDatesFromTimeSpan(timeSpan);
 
   return (dispatch, getState) => {
     const unitId = getState().locationsReducer.locations.find(loc => loc.id === locationId).unitId;
@@ -55,8 +59,7 @@ export const fetchLocationData = ({ timeSpan, interval, keyId, name, blockType, 
         let keys = res.data.map((key) => ({ ...key, unitId }));
         keyId = keyId = keys.find(x => x.id === 6).keyId;
 
-          API.getDataFromKey({ from: date.from, to: date.to, interval, unitId, keyId }, (res) => {
-
+          API.getDataFromKey({ from, to, interval, unitId, keyId }, (res) => {
             const values = res.data.data.map((elem) => {
               return elem.avg_val.toFixed(3);
             });

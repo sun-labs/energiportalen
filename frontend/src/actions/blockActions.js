@@ -6,7 +6,11 @@ const c = {
   ...blockConstants
 };
 
-export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockType }) => {
+export const fetchData = ({ timeSpan, interval, unitId, keyId, blockId, blockType }) => {
+
+  const {
+    from, to
+  } = t.getDatesFromTimeSpan(c.intervalOptions.find(el => el.label === timeSpan).value);
 
   return (dispatch, getState) => {
     API.getDataFromKey({ from, to, interval, unitId, keyId }, (res) => {
@@ -38,8 +42,12 @@ export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockTyp
   }
 }
 
-export const fetchSumValueData = ({ from, to, interval, unitId, keyId, blockId, blockType, rowId = null }) => {
+export const fetchSumValueData = ({ timeSpan, interval, unitId, keyId, blockId, blockType, rowId = null }) => {
   return (dispatch) => {
+
+    const {
+      from, to
+    } = t.getDatesFromTimeSpan(c.intervalOptions.find(el => el.label === timeSpan).value);
 
     API.getDataFromKey({ from, to, interval, unitId, keyId }, (res) => {
 
@@ -78,8 +86,6 @@ export const removeBlock = (blockId) => {
 
 export const addBlock = ({ timeSpan, blockType, location }) => {
 
-  const date = t.getDatesFromInterval(timeSpan.value);
-
   let interval;
 
   switch (timeSpan.value) {
@@ -112,8 +118,6 @@ export const addBlock = ({ timeSpan, blockType, location }) => {
 
     dispatch({
       type: c.SAVE_NEW_BLOCK,
-      from: date.from,
-      to: date.to,
       timeSpan: timeSpan.label,
       interval,
       unitId: unit.id,
