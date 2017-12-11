@@ -27,7 +27,7 @@ function get(key) {
     const val = JSON.parse(localStorage.getItem(key))
     if(val) {
       const age = (Date.now() - val.stored) / 1000;
-      console.log(age, CACHE_LIFE)
+      // console.log(age, CACHE_LIFE)
       if(age < CACHE_LIFE) {
         return val.val
       }
@@ -39,9 +39,9 @@ function get(key) {
 function call(method, url, data, cb) {
   method = method.toUpperCase()
   const key = `${method}-${url}-${data}`;
-  console.log(key);
+  // console.log(key);
   const cached = get(key);
-  console.log(cached);
+  // console.log(cached);
   if(cached) {
     cb(cached)
   } else {
