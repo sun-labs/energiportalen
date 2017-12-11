@@ -7,6 +7,7 @@ const c = {
 };
 
 export const fetchData = ({ from, to, interval, unitId, keyId, blockId, blockType }) => {
+
   return (dispatch, getState) => {
     API.getDataFromKey({ from, to, interval, unitId, keyId }, (res) => {
 

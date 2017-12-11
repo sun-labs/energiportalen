@@ -12,9 +12,9 @@ const c = {
 
 class DashboardLocations extends Component {
   componentWillMount() {
-    const { props } = this;
-    if (props.locations.length < 1) {
-      props.getLocations();
+    const { locations, getLocations } = this.props;
+    if (locations.length < 1) {
+      getLocations();
     }
   }
 

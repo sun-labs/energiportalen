@@ -45,28 +45,10 @@ export const getUnitsFromLocation = (location) => {
 
 export const fetchLocationData = ({ timeSpan, interval, keyId, title, blockType, locationId }) => {
 
-  const date = t.getDatesFromInterval(timeSpan.value);
-
-  switch (timeSpan.value) {
-    default:
-    case c.DAY:
-    interval = c.HOUR
-    break;
-    case c.WEEK:
-    interval = c.DAY
-    break;
-    case c.MONTH:
-    interval = c.DAY
-    break;
-    case c.YEAR:
-    interval = c.DAY
-    break;
-  }
+  const date = t.getDatesFromInterval(c.intervalOptions.find(el => el.label === timeSpan).value);
 
   return (dispatch, getState) => {
     const unitId = getState().locationsReducer.locations.find(loc => loc.id === locationId).unitId;
-
-
 
       API.getKeysFromUnit(unitId, (res) => {
 

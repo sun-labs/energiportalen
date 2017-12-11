@@ -7,19 +7,40 @@ import PropTypes from 'prop-types';
 
 class DetailedBlock extends Component {
   render() {
-    const { props } = this;
+    const {
+      name,
+      city,
+      image,
+      block,
+      totEffect,
+      solarPlants,
+      fetchData,
+      fetchLocationData,
+      id
+    } = this.props;
 
     return (
       <div className="detailed-block">
 
         <header>
           <div className="compare-wrap">
-            <FacBlock title={ props.name } subtitle={ props.city } fac={ props.image } totEffect={ props.totEffect } solarPlants={ props.solarPlants }/>
+            <FacBlock
+              title={name}
+              subtitle={city}
+              fac={image}
+              totEffect={totEffect}
+              solarPlants={solarPlants}/>
           </div>
         </header>
 
         <div className="content-detailed-block">
-            <LineBlock {...props.block} {...props} title={props.name} />
+          <LineBlock
+            {...block}
+            title={name} 
+            fetchData={fetchData}
+            fetchLocationData={fetchLocationData}
+            locationId={id}
+          />
         </div>
 
         <footer>

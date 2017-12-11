@@ -44,7 +44,14 @@ const Header = (props) => {
 }
 
 const Footer = (props) => {
-  const { blockType, fetchLocationData } = props;
+  const {
+    blockType,
+    fetchLocationData,
+    interval,
+    keyId,
+    title,
+    locationId,
+  } = props;
 
   switch(blockType) {
     case c.ADD:
@@ -58,10 +65,50 @@ const Footer = (props) => {
       return (
         <footer>
           <ul>
-            <li><button onClick={() => { fetchLocationData({ ...props, timeSpan: c.intervalOptions.find(x => x.value === c.DAY) }) }}>DAILY</button></li>
-            <li><button onClick={() => { fetchLocationData({ ...props, timeSpan: c.intervalOptions.find(x => x.value === c.WEEK) }) }}>WEEKLY</button></li>
-            <li><button onClick={() => { fetchLocationData({ ...props, timeSpan: c.intervalOptions.find(x => x.value === c.MONTH) }) }}>MONTHLY</button></li>
-            <li><button onClick={() => { fetchLocationData({ ...props, timeSpan: c.intervalOptions.find(x => x.value === c.YEAR) }) }}>YEARLY</button></li>
+            <li><button
+              onClick={() => {
+                fetchLocationData({
+                  interval,
+                  keyId,
+                  title,
+                  blockType,
+                  locationId,
+                  timeSpan: c.intervalOptions.find(x => x.value === c.DAY).label
+              })
+                }}>DAILY</button></li>
+            <li><button
+              onClick={() => {
+                fetchLocationData({
+                  interval,
+                  keyId,
+                  title,
+                  blockType,
+                  locationId,
+                  timeSpan: c.intervalOptions.find(x => x.value === c.WEEK).label
+              })
+                }}>WEEKLY</button></li>
+            <li><button
+              onClick={() => {
+                fetchLocationData({
+                  interval,
+                  keyId,
+                  title,
+                  blockType,
+                  locationId,
+                  timeSpan: c.intervalOptions.find(x => x.value === c.MONTH).label
+              })
+                }}>MONTHLY</button></li>
+            <li><button
+              onClick={() => {
+                fetchLocationData({
+                  interval,
+                  keyId,
+                  title,
+                  blockType,
+                  locationId,
+                  timeSpan: c.intervalOptions.find(x => x.value === c.YEAR).label
+              })
+                }}>YEARLY</button></li>
             <li><button id="export-data">export data</button></li>
           </ul>
         </footer>
@@ -75,7 +122,14 @@ class Content extends Component {
 
   render() {
 
-    const { blockType, children, editing } = this.props;
+    const {
+      blockType,
+      children,
+      editing,
+      locations,
+      getUnitsFromLocation,
+      addBlock
+    } = this.props;
     let content = children;
 
     if(editing) {
@@ -83,7 +137,13 @@ class Content extends Component {
         case c.ILLUSTRATION:
         case c.LINE:
         case c.TABLE:
-          content = <ContentEdit {...this.props} />;
+          content = (
+            <ContentEdit
+              locations={locations}
+              getUnitsFromLocation={getUnitsFromLocation}
+              addBlock={addBlock}
+            />
+          );
         break;
         default:
           break;
@@ -124,40 +184,66 @@ class Block extends Component {
   }
 
   getCSSClass(blockType) {
+    const {
+      className
+    } = this.props;
+
     switch(blockType) {
       case c.LINE:
         return "blockk-line";
       case c.TABLE:
         return "blockk-table";
       default: // illustration blocks
-        return this.props.className;
+        return className;
     }
   }
 
   render() {
 
     const {
-      props,
-      shouldRender,
-      getCSSClass
-    } = this;
-
-    const {
+      removeBlock,
       children,
       blockType,
       editing,
-      blockId = null
-    } = props;
+      blockId = null,
+      timeSpan,
+      title,
+      subtitle,
+      from,
+      to,
+      fetchLocationData,
+      interval,
+      keyId,
+      locationId
+    } = this.props;
 
     return (
-      <div className={`blockk ${getCSSClass(blockType)}`}>
-        { shouldRender(blockType, c.HEADER) ? <Header {...props} removeHandle={() => props.removeBlock(blockId)} /> : '' }
+      <div className={`blockk ${this.getCSSClass(blockType)}`}>
+        { this.shouldRender(blockType, c.HEADER) ?
+          <Header
+            removeHandle={() => removeBlock(blockId)}
+            blockType={blockType}
+            timeSpan={timeSpan}
+            title={title}
+            subtitle={subtitle}
+            from={from}
+            to={to}
+            /> : '' }
 
-        <Content {...props} editing={ editing }>
+        <Content editing={ editing }>
           { children ? children : null }
         </Content>
 
-        { shouldRender(blockType, c.FOOTER) ? <Footer {...props} /> : '' }
+        { this.shouldRender(blockType, c.FOOTER) ?
+          <Footer
+            blockType={blockType}
+            fetchLocationData={fetchLocationData}
+            interval={interval}
+            keyId={keyId}
+            title={title}
+            locationId={locationId}
+          /> :
+          '' }
       </div>
     );
   }

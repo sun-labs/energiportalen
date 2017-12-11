@@ -11,8 +11,18 @@ class IlluScooterBlock extends Component {
   }
 
   componentWillMount() {
-    const { props } = this;
-    props.fetchSumValueData(props);
+    const {
+      fetchSumValueData,
+      from,
+      to,
+      interval,
+      unitId,
+      keyId,
+      blockId,
+      blockType,
+      rowId
+    } = this.props;
+    fetchSumValueData({ from, to, interval, unitId, keyId, blockId, blockType, rowId });
   }
 
   /**
@@ -31,11 +41,27 @@ class IlluScooterBlock extends Component {
 
   render() {
 
-    const { props, calcTurnsAroundEarth } = this;
+    const {
+      value,
+      title,
+      subtitle,
+      timeSpan,
+      blockType,
+      editing,
+      blockId,
+    } = this.props;
 
     return(
-    <IlluBlock className="block-scooter" {...props}>
-        <p className="value-illu">{ calcTurnsAroundEarth(props.value).toFixed(2) }</p>
+    <IlluBlock
+      className="block-scooter"
+      title={title}
+      subtitle={subtitle}
+      timeSpan={timeSpan}
+      blockType={blockType}
+      editing={editing}
+      blockId={blockId}
+    >
+        <p className="value-illu">{ this.calcTurnsAroundEarth(value).toFixed(2) }</p>
         <figure className="scooter"></figure>
         <figure className="earth"></figure>
     </IlluBlock>

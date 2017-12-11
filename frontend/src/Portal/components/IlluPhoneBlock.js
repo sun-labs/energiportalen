@@ -10,8 +10,18 @@ class IlluPhoneBlock extends Component {
   }
 
   componentWillMount() {
-    const { props } = this;
-    props.fetchSumValueData(props);
+    const {
+      fetchSumValueData,
+      from,
+      to,
+      interval,
+      unitId,
+      keyId,
+      blockId,
+      blockType,
+      rowId
+    } = this.props;
+    fetchSumValueData({ from, to, interval, unitId, keyId, blockId, blockType, rowId });
   }
 
   /**
@@ -30,13 +40,26 @@ class IlluPhoneBlock extends Component {
   render() {
 
     const {
-      props,
-      calcCharged
-    } = this;
+      value,
+      title,
+      subtitle,
+      timeSpan,
+      blockType,
+      editing,
+      blockId,
+    } = this.props;
 
     return(
-    <IlluBlock className="block-phone" {...props}>
-        <p className="value-illu">{ calcCharged(props.value) }</p>
+    <IlluBlock
+      className="block-phone"
+      title={title}
+      subtitle={subtitle}
+      timeSpan={timeSpan}
+      blockType={blockType}
+      editing={editing}
+      blockId={blockId}
+    >
+        <p className="value-illu">{ this.calcCharged(value) }</p>
         <figure className="charge"></figure>
         <figure className="phone"></figure>
         <figure className="cable"></figure>

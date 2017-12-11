@@ -1,38 +1,27 @@
 import * as locationConstants from '../constants/locationConstants';
 import * as blockConstants from '../constants/blockConstants';
 import { initialGraphBlock } from './blocksReducer';
+import * as t from '../tools';
 
 const c = {
   ...locationConstants,
   ...blockConstants
 };
 
-
-// const initialKey = {
-//   unitId: null,
-//   id: null,
-//   name: ''
-// };
-
-// const initialKeys = [];
-
-// const initialUnit = {
-//   locationId: null,
-//   id: null,
-//   name: '',
-//   keys: initialKeys
-// };
-
 const initialUnits = [];
+const lastWeek = t.getDatesFromInterval(c.WEEK);
 
 const initialBlock = {
   ...initialGraphBlock,
   blockType: c.LINE,
-  timeSpan: '24h',
+  timeSpan: '7d',
   unitId: 4,
   keyId: 95,
   locationId: null,
-  blockId: -1
+  blockId: -1,
+  from: lastWeek.from,
+  to: lastWeek.to,
+  interval: c.DAY
 }
 
 const initialLocation = {
@@ -42,7 +31,9 @@ const initialLocation = {
   solarPlants: 158,
   totEffect: 340,
   block: {
-    ...initialBlock
+    ...initialBlock,
+    from: lastWeek.from,
+    to: lastWeek.to
   }
 };
 

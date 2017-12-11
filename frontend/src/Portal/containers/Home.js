@@ -22,11 +22,26 @@ const c = {
 class Home extends Component {
 
   componentDidMount() {
-    this.props.getLocations();
+    const {
+      getLocations
+    } = this.props;
+    getLocations();
   }
 
   render() {
-    const { props } = this;
+    const {
+      locations,
+      getLocations,
+      addingBlock,
+      toggleAddBlock,
+      blocks,
+      getUnitsFromLocation,
+      addBlock,
+      fetchData,
+      fetchLocationData,
+      addTableBlockRow,
+      fetchSumValueData,
+    } = this.props;
 
     return (
       <div className="content">
@@ -35,12 +50,20 @@ class Home extends Component {
           <h1>FAVORITE LOCATIONS<span className="inline-button"> add location + </span></h1>
           <h2> you may save or remove your own personally defined locations for easier access. </h2>
         </div>
-         <DashboardLocations {...props} />
-        { props.addingBlock
-          ? <AddBlock {...props} />
+        <DashboardLocations
+          locations={locations}
+          getLocations={getLocations}
+        />
+        { addingBlock
+          ? <AddBlock
+              toggleAddBlock={toggleAddBlock}
+              locations={locations}
+              getUnitsFromLocation={getUnitsFromLocation}
+              addBlock={addBlock}
+            />
           : <div
               className="blockk add-block"
-              onClick={() => props.toggleAddBlock()}
+              onClick={() => toggleAddBlock()}
             >+ ADD BLOCK</div>
         }
         <div className="text-block">
@@ -48,7 +71,7 @@ class Home extends Component {
               blocks
               <span
                 className="inline-button"
-                onClick={() => props.toggleAddBlock()}>
+                onClick={() => toggleAddBlock()}>
                 add block +
               </span>
             </h1>
@@ -56,26 +79,52 @@ class Home extends Component {
         </div>
         <div className="block-wrap">
 
-          {props.blocks.map((block) => {
+          {blocks.map((block) => {
 
-            const loc = props.locations.find((loc) => loc.id === block.locationId);
+            const loc = locations.find((loc) => loc.id === block.locationId);
 
             const blockProps = {
               ...block,
-              ...props,
               title: loc ? loc.name : '',
               subtitle: loc ? loc.city : ''
             };
 
             switch(block.blockType) {
               case c.PHONE:
-                return <IlluPhoneBlock key={block.blockId} { ...blockProps }/>
+                return (
+                  <IlluPhoneBlock
+                    key={block.blockId}
+                    { ...blockProps }
+                    fetchSumValueData={fetchSumValueData}
+                  />
+                );
               case c.TABLE:
-                return <TableBlock key={block.blockId} { ...blockProps } />
+                return (
+                  <TableBlock
+                    key={block.blockId}
+                    { ...blockProps }
+                    addTableBlockRow={addTableBlockRow}
+                    fetchSumValueData={fetchSumValueData}
+                  />
+              );
               case c.SCOOTER:
-                return <IlluScooterBlock key={block.blockId} { ...blockProps }/>
+                return (
+                  <IlluScooterBlock
+                    key={block.blockId}
+                    { ...blockProps }
+                    fetchSumValueData={fetchSumValueData}
+                  />
+                );
               case c.LINE:
-                return <LineBlock key={block.blockId} { ...blockProps }/>
+                return (
+                  <LineBlock
+                    key={block.blockId}
+                    { ...blockProps }
+                    fetchData={fetchData}
+                    fetchLocationData={fetchLocationData}
+                    locationId={loc ? loc.id : null}
+                  />
+                );
               default:
                 return null;
             }

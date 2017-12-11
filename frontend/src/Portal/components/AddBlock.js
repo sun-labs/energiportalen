@@ -6,8 +6,15 @@ import '../styles/AddBlock.css';
 
 class AddBlock extends Component {
   render() {
+
+    const {
+      toggleAddBlock,
+      locations,
+      getUnitsFromLocation,
+      addBlock
+    } = this.props;
+
     const blockInfo = {
-      ...this.props,
       blockType: 'ADD',
       title: 'ADD BLOCK',
       editing: true
@@ -18,8 +25,13 @@ class AddBlock extends Component {
         <div className="overlay-outer-content-wrapper">
           <div className="overlay-inner-content-wrapper">
             <Block className="blockk-add" {...blockInfo}>
-              <img className="img-cross" alt="" src={ cross } onClick={() => this.props.toggleAddBlock()}/>
-              <ContentEdit {...blockInfo} />
+              <img className="img-cross" alt="" src={ cross } onClick={() => toggleAddBlock()}/>
+              <ContentEdit
+                {...blockInfo}
+                locations={locations}
+                getUnitsFromLocation={getUnitsFromLocation}
+                addBlock={addBlock}
+              />
             </Block>
           </div>
         </div>

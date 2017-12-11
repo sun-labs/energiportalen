@@ -23,14 +23,20 @@ class ContentEdit extends Component {
   }
 
   componentWillMount() {
-    const { props } = this;
-    if (props.locations.length < 1) {
-      props.getLocations();
+    const {
+      locations,
+      getLocations
+    } = this.props;
+    if (locations.length < 1) {
+      getLocations();
     }
   }
 
   handleChange(e = {}) {
-    const { props } = this;
+    const {
+      getUnitsFromLocation,
+      addBlock
+    } = this.props;
 
     switch(e.type) {
       case c.LOCATION:
@@ -42,7 +48,7 @@ class ContentEdit extends Component {
           timeSpan: {},
           type: {}
         }, () => {
-          props.getUnitsFromLocation(this.state.location);
+          getUnitsFromLocation(this.state.location);
         })
         break;
       case c.INTERVAL:
@@ -64,7 +70,7 @@ class ContentEdit extends Component {
         break;
       case c.SAVE_BLOCK:
         const { timeSpan, type, location } = this.state;
-        props.addBlock({
+        addBlock({
           timeSpan,
           blockType: type.value,
           location
@@ -81,10 +87,8 @@ class ContentEdit extends Component {
 
   render() {
     const {
-      props,
-      mapNameAndIdToLabelAndValue,
-      handleChange
-    } = this;
+      locations
+    } = this.props;
 
     const {
       location,
@@ -98,11 +102,11 @@ class ContentEdit extends Component {
         <Select
           name={c.LOCATION}
           value={location.id}
-          options={mapNameAndIdToLabelAndValue(props.locations)}
+          options={this.mapNameAndIdToLabelAndValue(locations)}
           placeholder="CHOOSE LOCATION"
           clearable={true}
           className="choose-loc-add"
-          onChange={(e) => handleChange({ ...e, type: c.LOCATION })} />
+          onChange={(e) => this.handleChange({ ...e, type: c.LOCATION })} />
         <Select
           disabled={!location.id}
           name={c.INTERVAL}
@@ -111,7 +115,7 @@ class ContentEdit extends Component {
           placeholder="TIME SPAN"
           clearable={true}
           className={`choose-time-add ${location.id ? null : 'disabled'}`}
-          onChange={(e) => handleChange({ ...e, type: c.INTERVAL })} />
+          onChange={(e) => this.handleChange({ ...e, type: c.INTERVAL })} />
         <Select
           disabled={!timeSpan.value}
           name={c.BLOCK_TYPE}
@@ -120,11 +124,11 @@ class ContentEdit extends Component {
           placeholder="CHOOSE BLOCK TYPE"
           clearable={true}
           className={`choose-block-add ${timeSpan.value ? null : 'disabled'}`}
-          onChange={(e) => handleChange({ ...e, type: c.BLOCK_TYPE })} />
+          onChange={(e) => this.handleChange({ ...e, type: c.BLOCK_TYPE })} />
         <div className="button-wrapper">
           <button
             disabled={!type.value}
-            onClick={(e) => handleChange({ ...e, type: c.SAVE_BLOCK })}
+            onClick={(e) => this.handleChange({ ...e, type: c.SAVE_BLOCK })}
             className={`save-block-add ${type.value ? null : 'disabled'}`}>
           SAVE BLOCK
         </button>

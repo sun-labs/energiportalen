@@ -12,13 +12,27 @@ const c = {
 class LineBlock extends Component {
 
   componentWillMount() {
-    const { props } = this;
+    const {
+      locationId,
+      fetchLocationData,
+      fetchData,
+      timeSpan,
+      interval,
+      keyId,
+      title,
+      blockType,
+      refresh,
+      from,
+      to,
+      unitId,
+      blockId,
+    } = this.props;
 
     // TODO new way of doing this
-    if (typeof props.locationId === 'number') {
-      props.fetchLocationData(props);
-    } else if (props.refresh === true) {
-      props.fetchData(props);
+    if (typeof locationId === 'number') {
+      fetchLocationData({ timeSpan, interval, keyId, title, blockType, locationId });
+    } else if (refresh === true) {
+      fetchData({ from, to, interval, unitId, keyId, blockId, blockType });
     }
   }
 
@@ -74,8 +88,6 @@ setDataColors(dataList, config) {
 
   render() {
 
-    const { props } = this;
-
     const {
       options = defaultOptions,
       config = defaultConfig,
@@ -86,8 +98,12 @@ setDataColors(dataList, config) {
       dataKey,
       editing,
       blockId = null,
-      interval
-    } = props;
+      interval,
+      blockType,
+      fetchLocationData,
+      keyId,
+      locationId
+    } = this.props;
 
     const datasets = this.setArrayLengths(
       this.setDataColors(data, config),
@@ -118,11 +134,21 @@ setDataColors(dataList, config) {
       type: 'LINE',
       editing,
       blockId,
-      ...props
+      blockType
+      // ...props
     }
 
     return (
-      <Block className="blockk-line" { ...blockInfo }>
+      <Block
+        className="blockk-line" { ...blockInfo }
+        fetchLocationData={fetchLocationData}
+        interval={interval}
+        keyId={keyId}
+        title={title}
+        blockType={blockType}
+        locationId={locationId}
+        timeSpan={timeSpan}
+      >
         <Line className="line-chart" data={datasets} options={options} />
       </Block>
     );
