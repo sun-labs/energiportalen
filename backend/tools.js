@@ -1,7 +1,14 @@
 
-export const camelCase = (str) => {
-  return str.replace(/^([A-Z])|\s(\w)/g, function(match, p1, p2, offset) {
-    if (p2) return p2.toUpperCase();
-    return p1.toLowerCase();        
-  });
+export const toCamelCase = (str) => {
+  // Lower cases the string
+  return str.toLowerCase()
+  // Replaces any - or _ characters with a space 
+  .replace( /[-_]+/g, ' ')
+  // Removes any non alphanumeric characters 
+  .replace( /[^\w\s]/g, '')
+  // Uppercases the first character in each group immediately following a space 
+  // (delimited by spaces) 
+  .replace( / (.)/g, function($1) { return $1.toUpperCase(); })
+  // Removes spaces 
+  .replace( / /g, '' );
 }
