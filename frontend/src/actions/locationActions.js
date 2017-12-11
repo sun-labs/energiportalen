@@ -67,14 +67,28 @@ export const fetchLocationData = ({ timeSpan, interval, keyId, name, blockType, 
             const labels = res.data.data.map((elem) => {
               return elem.new_timestamp;
             });
-
-            const data = [
-              {
-                data: values.slice(0, -1),
-                label: name,
-              }
-            ];
             const value = res.data.data[0].sum_val;
+
+            let data;
+
+            switch (timeSpan) {
+              case c.YEAR:
+                data = [
+                  {
+                    data: t.reduceData(values.slice(0, -1), 52),
+                    label: name,
+                  }
+                ];
+                break;
+              default:
+                data = [
+                  {
+                    data: values.slice(0, -1),
+                    label: name,
+                  }
+                ];
+                break;
+            }
 
             dispatch({ type: c.FETCH_LOCATION_DATA_SUCCESS, labels, data, value, id: locationId, interval });
           });

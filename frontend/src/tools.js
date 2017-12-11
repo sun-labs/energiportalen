@@ -82,3 +82,14 @@ export const getDatesFromTimeSpan = (interval = c.DAY) => {
   return { from: dateToString(prevDate), to: dateToString(today)};
 
 }
+
+export const reduceData = (data, requiredPoints) => {
+  const x = Math.ceil(data.length / requiredPoints);
+
+  let ret = [];
+
+  for (let i = 0; i < data.length; i += x) {
+    ret = [ ...ret, data[i] ]
+  }
+  return ret;
+}

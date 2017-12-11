@@ -29,12 +29,26 @@ export const fetchData = ({ timeSpan, interval, unitId, keyId, blockId, blockTyp
         return elem.new_timestamp;
       });
 
-      const data = [
-        {
-          data: values,
-          label,
-        },
-      ];
+      let data;
+
+      switch (c.intervalOptions.find(el => el.label === timeSpan).value) {
+        case c.YEAR:
+          data = [
+            {
+              data: t.reduceData(values.slice(0, -1), 52),
+              label: name,
+            }
+          ];
+          break;
+        default:
+          data = [
+            {
+              data: values.slice(0, -1),
+              label: name,
+            }
+          ];
+          break;
+      }
       const value = res.data.data[0].sum_val.toFixed(0);
 
       dispatch({ type: c.FETCH_DATA_SUCCESS, labels, data, value, blockId });
