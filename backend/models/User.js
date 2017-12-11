@@ -109,6 +109,35 @@ class User {
     });
   }
 
+  /**
+   * TODO: Add logic, stored for query
+   * @param {object} data
+   * @param {number} data.id
+   * @param {str} data.email 
+   * @param {function} cb 
+   * @callback {function} (err, res)
+   * @returns {undefined}
+   * 
+   * @memberOf User
+   */
+  static getUserMetaData({ email, id }, cb) {
+
+    const query = `
+      SELECT md.*
+      FROM meta_data as md
+      INNER JOIN (
+        SELECT 
+          meta_key_id, MAX(created_at) as created_at
+        FROM 
+          meta_data
+        GROUP BY meta_key_id
+      ) as mdg
+      ON 
+        md.meta_key_id = mdg.meta_key_id AND 
+        md.created_at = mdg.created_at
+    `
+  }
+
   
   /**
    * @static
