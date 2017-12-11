@@ -56,7 +56,7 @@ class Section1 extends Component {
         </div>
         <button id="mobile-btn-create-account" onClick={ this.togglePopup }>CREATE ACCOUNT</button>
         <TextContent title="What is Sun Labs?" body="Sun Labs dramatically improves the most important aspects of the Sun Energy experience. It introduces advanced visualisation and cloud first experience. Immersive statistics. The brightest, most colorful way to visualize energy data. And it looks every bit as powerful as it is. This is Sun Labs." />
-        <img className="downButton" src={downButton} alt="Down Button" />
+        {/* <img className="downButton" src={downButton} alt="Down Button" /> */}
         <div className="hill"></div>
       </Section>
     );
@@ -94,9 +94,9 @@ const Sections = (props) => {
   return (
     <div className="sections">
       <Section1 {...props} />
-      <Section2 />
+      {/* <Section2 />
       <Section3 />
-      <Section4 />
+      <Section4 /> */}
     </div>
   );
 }
