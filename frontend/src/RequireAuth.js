@@ -12,14 +12,17 @@ export default function(ComposedComponent, auth = false) {
     }
 
     authenticate() {
+      const {
+        history,
+        dispatch
+      } = this.props;
       const token = localStorage.getItem('token');
 
       if (!token) {
-        this.props.history.push('/');
+        history.push('/');
         return;
       }
 
-      const { dispatch, history } = this.props;
       dispatch(authToken(token, history));
     }
 
@@ -28,7 +31,10 @@ export default function(ComposedComponent, auth = false) {
 		}
 
 		componentWillUpdate() {
-      if (!this.props.authenticated) {
+      const {
+        authenticated
+      } = this.props;
+      if (!authenticated) {
         this.authenticate();
       }
 		}

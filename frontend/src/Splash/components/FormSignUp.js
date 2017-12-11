@@ -25,13 +25,22 @@ class FormSignUp extends Component {
   }
 
   handleSubmit(e) {
-    const { props, state } = this;
+    const {
+      history,
+      authSignUp,
+      passwordMismatch
+    } = this.props;
+
+    const {
+      email,
+      password
+    } = this.state;
 
     e.preventDefault();
     if(this.passwordsMatch()) {
-      props.authSignUp(state.email, state.password, props.history);
+      authSignUp(email, password, history);
     } else {
-      props.passwordMismatch();
+      passwordMismatch();
     }
   }
 

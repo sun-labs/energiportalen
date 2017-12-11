@@ -18,10 +18,16 @@ class FormAuth extends Component {
     e.preventDefault();
 
     const {
-      props, state
-    } = this;
+      history,
+      authSignIn
+    } = this.props;
 
-    props.authSignIn(state.email, state.password, props.history);
+    const {
+      email,
+      password
+    } = this.state;
+
+    authSignIn(email, password, history);
   }
 
   handleChange = (e) => {
@@ -31,17 +37,19 @@ class FormAuth extends Component {
   }
 
   render() {
-    const { handleSubmit, handleChange, props } = this;
+    const {
+      className
+    } = this.props;
 
     return (
-      <form className={ props.className ? props.className : '' } onSubmit={ handleSubmit }>
+      <form className={ className ? className : '' } onSubmit={ this.handleSubmit }>
         <div className="placeholder-wrap">
           <p>e-mail</p>
-          <input type="email" placeholder="e-mail" name="email" tabIndex="1" onChange={ handleChange } />
+          <input type="email" placeholder="e-mail" name="email" tabIndex="1" onChange={ this.handleChange } />
         </div>
         <div className="placeholder-wrap">
           <p>password <a href={ API_FORGOT_PASSWORD }>forgot?</a></p>
-          <input type="password" placeholder="password" name="password" tabIndex="2" onChange={ handleChange } />
+          <input type="password" placeholder="password" name="password" tabIndex="2" onChange={ this.handleChange } />
         </div>
         <button tabIndex="3">SIGN IN</button>
       </form>

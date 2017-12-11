@@ -10,16 +10,22 @@ import PropTypes from 'prop-types';
 
 class Splash extends Component {
   render() {
-    const { props } = this;
+    const {
+      signInError,
+      closeAuthError,
+      error,
+      authSignIn
+    } = this.props;
 
     return (
       <div id="Splash">
-        <NavBar {...props}/>      
-        { 
-          props.signInError &&
-          <MessageBox className="error" onClick={ () => props.closeAuthError()} { ...props.error } />
-        }
-        <Sections {...props} />
+        <NavBar authSignIn={authSignIn} />
+        { signInError ?
+          <MessageBox
+            className="error"
+            onClick={ () => closeAuthError()} { ...error } />
+        : null }
+        <Sections />
       </div>
     );
   }
