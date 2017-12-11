@@ -13,35 +13,37 @@ const c = {
 
 export const getUnitsFromLocation = (location) => {
 
-    return (dispatch) => {
-       API.getUnitsFromLocation(location.id, (res) => {
-        const units = res.data.map((unit) => ({ ...unit, location_id: location.id }))
-        dispatch({
-          type: c.GET_UNITS_FROM_LOCATION,
-          units: res.data.map((unit) => ({ ...unit, location_id: location.id })),
-          location
-        })
+  location.locationId = location.locationId ? location.locationId : location.id;
 
-        units.map((unit) => {
+  return (dispatch) => {
+      API.getUnitsFromLocation(location.locationId, (res) => {
+      const units = res.data.map((unit) => ({ ...unit, locationId: location.locationId }))
+      dispatch({
+        type: c.GET_UNITS_FROM_LOCATION,
+        units: res.data.map((unit) => ({ ...unit, locationId: location.locationId })),
+        location
+      })
 
-          API.getKeysFromUnit(unit.id, (res) => {
+      units.map((unit) => {
 
-              dispatch({
-                type: c.GET_KEYS_FROM_UNIT,
-                keys: res.data.map((key) => ({ ...key, unitId: unit.id })),
-                unit
-              })
-          });
+        API.getKeysFromUnit(unit.id, (res) => {
 
-          return null;
+            dispatch({
+              type: c.GET_KEYS_FROM_UNIT,
+              keys: res.data.map((key) => ({ ...key, unitId: unit.id })),
+              unit
+            })
+        });
 
-        })
+        return null;
 
-      });
-    }
+      })
+
+    });
   }
+}
 
-export const fetchLocationData = ({ timeSpan, interval, unitId, keyId, title, blockType, location_id }) => {
+export const fetchLocationData = ({ timeSpan, interval, keyId, title, blockType, locationId }) => {
 
   const date = t.getDatesFromInterval(timeSpan.value);
 
@@ -61,14 +63,10 @@ export const fetchLocationData = ({ timeSpan, interval, unitId, keyId, title, bl
     break;
   }
 
-  keyId = 126;
-  let units;
+  return (dispatch, getState) => {
+    const unitId = getState().locationsReducer.locations.find(loc => loc.id === locationId).unitId;
 
-  return (dispatch) => {
 
-    API.getUnitsFromLocation(location_id, (res) => {
-      units = res.data.map((unit) => ({ ...unit }))
-      unitId = units[0].id
 
       API.getKeysFromUnit(unitId, (res) => {
 
@@ -93,13 +91,11 @@ export const fetchLocationData = ({ timeSpan, interval, unitId, keyId, title, bl
             ];
             const value = res.data.data[0].sum_val;
 
-            dispatch({ type: c.FETCH_LOCATION_DATA_SUCCESS, labels, data, value, location_id, interval });
+            dispatch({ type: c.FETCH_LOCATION_DATA_SUCCESS, labels, data, value, id: locationId, interval });
           });
       });
 
 
-      // }
-    });
   }
 
 }
@@ -116,7 +112,8 @@ export const getLocation = (id) => {
         description: res.data.description,
         id: res.data.id,
         image: res.data.image,
-        name: res.data.name
+        name: res.data.name,
+        unitId: res.data.unit_id
       };
 
       dispatch({
@@ -135,8 +132,16 @@ export const getLocations = () => {
       dispatch({
         type: c.GET_LOCATIONS,
         locations: res.data
-          .map(x => ({ ...x, id: x.location_id }) )
-          .filter(x => x.id !== 1 && x.id !== 2 && x.id !== 3 && x.id !== 4 && x.id !== 5 && x.id !== 6) // FUL FIX
+          .map(loc => ({
+            city: loc.city,
+            country: loc.country,
+            description: loc.description,
+            id: loc.id,
+            image: loc.image,
+            name: loc.name,
+            unitId: loc.unit_id
+          }))
+          .filter(loc => Number(loc.id) > 100) // FUL FIX
       })
     });
   }

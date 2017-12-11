@@ -10,7 +10,7 @@ class DetailedBlock extends Component {
     const { props } = this;
 
     return (
-      <div className="detailedBlock">
+      <div className="detailed-block">
 
         <header>
           <div className="compare-wrap">
@@ -18,7 +18,7 @@ class DetailedBlock extends Component {
           </div>
         </header>
 
-        <div className="content-detailedBlock">
+        <div className="content-detailed-block">
             <LineBlock {...props.block} {...props} title={props.name} />
         </div>
 

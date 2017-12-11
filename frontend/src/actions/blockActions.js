@@ -104,7 +104,6 @@ export const addBlock = ({ timeSpan, blockType, location }) => {
       return loc.id === location.id;
     }).units[0];
 
-
     const keyId = unit.keys.find(key => {
       return key.id === 6;
     }).keyId;

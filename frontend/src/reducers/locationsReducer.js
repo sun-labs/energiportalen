@@ -102,7 +102,7 @@ const locationsReducer = (state = initialState, action = null) => {
       return {
         ...state,
         locations: state.locations.map((loc) => {
-          if (loc.location_id === action.location_id) {
+          if (loc.id === action.id) {
             return locationReducer(loc, action)
           } else {
             return loc;
@@ -113,7 +113,7 @@ const locationsReducer = (state = initialState, action = null) => {
       return {
         ...state,
         locations: state.locations.map((loc) => {
-          if (loc.id === action.unit.location_id) {
+          if (loc.id === action.unit.locationId) {
             return locationReducer(loc, action)
           } else {
             return loc;

@@ -15,7 +15,7 @@ class LineBlock extends Component {
     const { props } = this;
 
     // TODO new way of doing this
-    if (typeof props.location_id === 'number') {
+    if (typeof props.locationId === 'number') {
       props.fetchLocationData(props);
     } else if (props.refresh === true) {
       props.fetchData(props);
@@ -92,7 +92,6 @@ setDataColors(dataList, config) {
     const datasets = this.setArrayLengths(
       this.setDataColors(data, config),
       labels.map((label, i) => {
-        let date;
 
         switch (interval.toUpperCase()) {
           default:

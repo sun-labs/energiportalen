@@ -149,7 +149,6 @@ class Block extends Component {
       blockId = null
     } = props;
 
-
     return (
       <div className={`blockk ${getCSSClass(blockType)}`}>
         { shouldRender(blockType, c.HEADER) ? <Header {...props} removeHandle={() => props.removeBlock(blockId)} /> : '' }
