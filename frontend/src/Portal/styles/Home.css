@@ -1,3 +1,7 @@
+#portal > .content {
+  background-color: #FAF9F4;
+}
+
 #portal .content .add-block {
     border: 2px dashed #BFBFBF;
     padding: 1em;
@@ -16,8 +20,8 @@
 
   .block-wrap .blockk{
     width: auto;
-    max-width: 290px;
-    flex-basis: 290px;
+    max-width: 580px;
+    flex-basis: 580px;
     flex-grow: 1;
   }
 
@@ -67,7 +71,7 @@
     padding: 1em 0;
     box-sizing: border-box;
   }
-  
+
   #portal > .content > .text-block h1 {
     text-transform: uppercase;
   }
@@ -82,7 +86,7 @@
     color: #6FCF97;
     cursor: pointer;
   }
-  
+
   #portal .content .add-block {
     display: none;
   }

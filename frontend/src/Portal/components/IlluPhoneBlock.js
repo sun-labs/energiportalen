@@ -15,15 +15,15 @@ class IlluPhoneBlock extends Component {
   }
 
   /**
-   * @param {Int} energy in Wh
+   * @param {Int} energy in kWh
    */
   calcCharged(energy) {
     const {
       BAT_SIZE_MAH = 3000,
       CHARGER_CUR_V = 5
     } = {};
-    const Wh = BAT_SIZE_MAH * CHARGER_CUR_V / 1000;
-    const charges = energy / Wh;
+    const kWh = BAT_SIZE_MAH * CHARGER_CUR_V / 1000000;
+    const charges = energy / kWh;
     return Math.floor(charges);
   }
 

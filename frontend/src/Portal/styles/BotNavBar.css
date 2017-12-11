@@ -1,15 +1,11 @@
 .bot-navbar-portal {
-  color: #219653;
+  background: #ffd70d;
+  opacity: 1.00;
+  z-index: 100;
+  position: fixed;
+  left: 0;
+  width: 100%;
 }
-
-  .bot-navbar-portal {
-    background: #FFFFFF;
-    opacity: 1.00;
-    z-index: 100;
-    position: fixed;
-    left: 0;
-    width: 100%;
-  }
 
 @media screen and (min-width: 501px){
 
@@ -20,6 +16,7 @@
       background-size: 150px auto;
       font-size: 1.5em;
       border-bottom: 1px solid lightgray;
+      background-color: #ffd70d;
 
       top: 0;
       color: black;
@@ -47,7 +44,7 @@
   }
 
   li:hover {
-  color: #219653;
+  color: white;
   }
 
 }

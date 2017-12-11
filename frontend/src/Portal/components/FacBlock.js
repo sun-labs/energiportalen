@@ -8,7 +8,7 @@ const FacBlock = (props) => {
   return (
     <div className={`blockk fac-block ${props.className ? props.className : ''}`}>
         <div className="picture-wrap">
-          <img className="img-circle" alt="" src={ props.fac }/>
+          <img className="img-circle" alt="" src={ props.fac ? props.fac : img }/>
         </div>
         <div className="description-fac-wrap">
           <p className="title">{ props.title }</p>

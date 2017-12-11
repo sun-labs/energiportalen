@@ -4,38 +4,38 @@
     border-radius: 50%;
 }
 
-.blockk.fac-block{
+.blockk.fac-block {
   position: relative;
 }
 
-.description-fac-wrap{
+.description-fac-wrap {
   width: 100%;
   text-align: center;
   margin-left: 0;
 }
 
-.info-fac-wrap{
+.info-fac-wrap {
   width: 100%;
   position: absolute;
   bottom: 0;
   left: 0;
 }
 
-.info-fac-wrap .wrap-info{
+.info-fac-wrap .wrap-info {
   text-align: center;
   display: inline-block;
   font-weight: lighter;
 }
 
-.solar-info{
+.solar-info {
   float: left;
 }
 
-.effect-info{
+.effect-info {
   float: right;
 }
 
-.info-fac-wrap p.fac-info-text{
+.info-fac-wrap p.fac-info-text {
   color: #219653;
 }
 
@@ -43,54 +43,67 @@
   display: none;
 }
 
-
-@media screen and (min-width: 501px){
+@media screen and (min-width: 501px) {
 
   .img-circle {
     width: 50%;
-  } 
+  }
 
   .blockk.fac-block{
     height: 500px;
     margin-right: 20px;
   }
 
-  .FacBlock-fac{
+  .fac-block-fac {
     max-width: 300px;
+    width: 300px;
+    height: 340px;
     flex-basis: 250px;
     flex-grow: 1;
+    margin-bottom: 20px;
   }
 
-  .FacBlock-dash{
+  .fac-block-fac > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .blockk.fac-block.loc {
+    height: 100% !important;
+    width: 280px !important;
+  }
+
+  .fac-block-dash {
     max-width: 300px;
     flex-basis: 300px;
     flex-grow: 1;
     margin-right: 10px;
   }
 
-  .description-fac-wrap{
+  .description-fac-wrap {
     margin-top: 1em;
     flex-wrap: wrap;
   }
 
-  .picture-wrap{
+  .picture-wrap {
     margin-top: 1em;
   }
 
-  .info-fac-wrap .wrap-info{
+  .info-fac-wrap .wrap-info {
     font-size: 2em;
     margin-bottom: 1em;
   }
 
-  .info-fac-wrap .wrap-info.solar-info{
+  .info-fac-wrap .wrap-info.solar-info {
     margin-left: 0.5em;
   }
 
-  .info-fac-wrap .wrap-info.effect-info{
+  .info-fac-wrap .wrap-info.effect-info {
     margin-right: 0.5em;
   }
 
-  .info-fac-wrap p.fac-info-text{
+  .info-fac-wrap p.fac-info-text {
     font-size: 0.5em;
   }
 
@@ -101,13 +114,13 @@
 
   .img-circle {
     width: 30%;
-  } 
+  }
 
   .blockk.fac-block{
     height: 300px;
   }
 
-  .FacBlock-dash{
+  .fac-block-dash{
     max-width: 70px;
     flex-basis: 70px;
     flex-grow: 1;
