@@ -118,7 +118,8 @@ export const addBlock = ({ timeSpan, blockType, location }) => {
       interval,
       unitId: unit.id,
       keyId,
-      blockType
+      blockType,
+      locationId: location.id
     })
     dispatch(toggleAddBlock())
   }

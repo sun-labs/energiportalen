@@ -13,12 +13,14 @@ const Header = (props) => {
   const {
     blockType = c.DEFAULT,
     timeSpan = -1,
-    title = 'TITLE',
-    subtitle = 'SUBTITLE',
+    name = 'NAME',
+    city = 'CITY',
     from,
     to,
     removeHandle
   } = props;
+
+  const placeHolderSubTitle = 'ENERGY PRODUCED';
 
   switch(blockType) {
     case c.ILLUSTRATION:
@@ -30,8 +32,8 @@ const Header = (props) => {
             <p className="value" alt={`${from} - ${to}`}>{ timeSpan }</p>
           </div>
           <div className="description-wrap">
-            <p className="title">{ title }</p>
-            <p className="subtitle">{ subtitle }</p>
+            <p className="name">{ name }, { city }</p>
+            <p className="city">{ placeHolderSubTitle }</p>
           </div>
           <div className="tool-wrap">
             <img className="img-cross" alt="" src={ cross } onClick={ removeHandle }/>
@@ -49,7 +51,7 @@ const Footer = (props) => {
     fetchLocationData,
     interval,
     keyId,
-    title,
+    name,
     locationId,
   } = props;
 
@@ -70,7 +72,7 @@ const Footer = (props) => {
                 fetchLocationData({
                   interval,
                   keyId,
-                  title,
+                  name,
                   blockType,
                   locationId,
                   timeSpan: c.intervalOptions.find(x => x.value === c.DAY).label
@@ -81,7 +83,7 @@ const Footer = (props) => {
                 fetchLocationData({
                   interval,
                   keyId,
-                  title,
+                  name,
                   blockType,
                   locationId,
                   timeSpan: c.intervalOptions.find(x => x.value === c.WEEK).label
@@ -92,7 +94,7 @@ const Footer = (props) => {
                 fetchLocationData({
                   interval,
                   keyId,
-                  title,
+                  name,
                   blockType,
                   locationId,
                   timeSpan: c.intervalOptions.find(x => x.value === c.MONTH).label
@@ -103,7 +105,7 @@ const Footer = (props) => {
                 fetchLocationData({
                   interval,
                   keyId,
-                  title,
+                  name,
                   blockType,
                   locationId,
                   timeSpan: c.intervalOptions.find(x => x.value === c.YEAR).label
@@ -207,8 +209,8 @@ class Block extends Component {
       editing,
       blockId = null,
       timeSpan,
-      title,
-      subtitle,
+      name,
+      city,
       from,
       to,
       fetchLocationData,
@@ -224,8 +226,8 @@ class Block extends Component {
             removeHandle={() => removeBlock(blockId)}
             blockType={blockType}
             timeSpan={timeSpan}
-            title={title}
-            subtitle={subtitle}
+            name={name}
+            city={city}
             from={from}
             to={to}
             /> : '' }
@@ -240,7 +242,7 @@ class Block extends Component {
             fetchLocationData={fetchLocationData}
             interval={interval}
             keyId={keyId}
-            title={title}
+            name={name}
             locationId={locationId}
           /> :
           '' }
@@ -250,7 +252,7 @@ class Block extends Component {
 }
 
 Block.propTypes = {
-  title:            PropTypes.string.isRequired,
+  name:            PropTypes.string.isRequired,
   children:         PropTypes.oneOfType([
                       PropTypes.object,
                       PropTypes.array,
@@ -259,7 +261,7 @@ Block.propTypes = {
   className:        PropTypes.string.isRequired,
 
   blockType:        PropTypes.string,
-  subtitle:         PropTypes.string,
+  city:         PropTypes.string,
   blockId:          PropTypes.number,
   removeHandle:       PropTypes.func, // TODO maybe should be required?
   to:               PropTypes.string,

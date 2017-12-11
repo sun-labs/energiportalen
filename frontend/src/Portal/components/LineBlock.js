@@ -19,18 +19,19 @@ class LineBlock extends Component {
       timeSpan,
       interval,
       keyId,
-      title,
+      name,
       blockType,
       refresh,
       from,
       to,
       unitId,
       blockId,
+      detailedView = false
     } = this.props;
 
     // TODO new way of doing this
-    if (typeof locationId === 'number') {
-      fetchLocationData({ timeSpan, interval, keyId, title, blockType, locationId });
+    if (detailedView) {
+      fetchLocationData({ timeSpan, interval, keyId, name, blockType, locationId });
     } else if (refresh === true) {
       fetchData({ from, to, interval, unitId, keyId, blockId, blockType });
     }
@@ -94,7 +95,8 @@ setDataColors(dataList, config) {
       data = [],
       labels = [],
       timeSpan,
-      title,
+      name,
+      city,
       dataKey,
       editing,
       blockId = null,
@@ -128,8 +130,8 @@ setDataColors(dataList, config) {
     );
 
     const blockInfo = {
-      title,
-      subtitle: dataKey,
+      name,
+      city,
       timeSpan,
       type: 'LINE',
       editing,
@@ -144,7 +146,7 @@ setDataColors(dataList, config) {
         fetchLocationData={fetchLocationData}
         interval={interval}
         keyId={keyId}
-        title={title}
+        name={name}
         blockType={blockType}
         locationId={locationId}
         timeSpan={timeSpan}
@@ -164,7 +166,7 @@ LineBlock.propTypes = {
   data:                 PropTypes.array.isRequired,
   labels:               PropTypes.array.isRequired,
   timeSpan:             PropTypes.string.isRequired,
-  title:                PropTypes.string.isRequired,
+  name:                PropTypes.string.isRequired,
   dataKey:              PropTypes.string.isRequired,
   editing:              PropTypes.bool.isRequired,
   blockId:              PropTypes.number.isRequired,

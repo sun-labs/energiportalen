@@ -25,8 +25,8 @@ class DetailedBlock extends Component {
         <header>
           <div className="compare-wrap">
             <FacBlock
-              title={name}
-              subtitle={city}
+              name={name}
+              city={city}
               fac={image}
               totEffect={totEffect}
               solarPlants={solarPlants}/>
@@ -36,7 +36,7 @@ class DetailedBlock extends Component {
         <div className="content-detailed-block">
           <LineBlock
             {...block}
-            title={name} 
+            name={name}
             fetchData={fetchData}
             fetchLocationData={fetchLocationData}
             locationId={id}

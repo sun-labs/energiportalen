@@ -11,7 +11,7 @@ class TableBlockRow extends Component {
 
     const {
       span,
-      title,
+      name,
       value,
       si
     } = this.props;
@@ -23,7 +23,7 @@ class TableBlockRow extends Component {
             <p className="value">{ span }</p>
           </div>
           <div className="description-wrap">
-            <p className="title">{ title }</p>
+            <p className="name">{ name }</p>
           </div>
           <div className="data-wrap">
             <p className="value">{ value > 0 ? value : 'loading..' }</p>
@@ -39,7 +39,7 @@ TableBlockRow.propTypes = {
   fetchRowData:             PropTypes.func.isRequired,
   id:                       PropTypes.number.isRequired,
   span:                     PropTypes.string.isRequired,
-  title:                    PropTypes.string.isRequired,
+  name:                    PropTypes.string.isRequired,
   value:                    PropTypes.number.isRequired,
   si:                       PropTypes.string.isRequired,
 };

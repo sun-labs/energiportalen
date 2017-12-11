@@ -43,8 +43,8 @@ class Locations extends Component {
                     to={`${c.PORTAL_ROOT}/locations/` +  location.id}>
                     <FacBlock
                       fac={location.image}
-                      title={location.name}
-                      subtitle={location.description}
+                      name={location.name}
+                      city={location.description}
                       key={location.id}
                       solarPlants={location.solarPlants}
                       totEffect={location.totEffect}

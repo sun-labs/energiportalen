@@ -8,8 +8,8 @@ class FacBlock extends Component {
     const {
       className,
       fac,
-      title,
-      subtitle,
+      name,
+      city,
       solarPlants,
       totEffect
     } = this.props;
@@ -20,8 +20,8 @@ class FacBlock extends Component {
             <img className="img-circle" alt="" src={fac ? fac : img}/>
           </div>
           <div className="description-fac-wrap">
-            <p className="title">{title}</p>
-            <p className="subtitle">{subtitle}</p>
+            <p className="name">{name}</p>
+            <p className="city">{city}</p>
           </div>
 
           <div className="info-fac-wrap">
@@ -40,10 +40,10 @@ class FacBlock extends Component {
 }
 
 FacBlock.propTypes = {
-  title:                PropTypes.string.isRequired,
+  name:                PropTypes.string.isRequired,
   fac:                  PropTypes.string.isRequired,
 
-  subtitle:             PropTypes.string,
+  city:             PropTypes.string,
   solarPlants:          PropTypes.number,
   totEffect:            PropTypes.number,
   className:            PropTypes.string,

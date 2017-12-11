@@ -51,7 +51,9 @@ class TableBlock extends Component {
       removeBlock,
       blockType,
       editing,
-      fetchLocationData
+      fetchLocationData,
+      name,
+      city
     } = this.props;
 
     return (
@@ -62,6 +64,8 @@ class TableBlock extends Component {
         editing={editing}
         blockId={blockId}
         fetchLocationData={fetchLocationData}
+        name={name}
+        city={city}
       >
         <table className="content-table">
           <tbody>
@@ -87,8 +91,8 @@ class TableBlock extends Component {
 TableBlock.propTypes = {
   fetchSumValueData:      PropTypes.func.isRequired,
   addTableBlockRow:       PropTypes.func.isRequired,
-  title:                  PropTypes.string.isRequired,
-  subtitle:               PropTypes.string.isRequired,
+  name:                  PropTypes.string.isRequired,
+  city:               PropTypes.string.isRequired,
   rows:                   PropTypes.array.isRequired,
   editing:                PropTypes.bool.isRequired,
   from:                   PropTypes.string.isRequired,

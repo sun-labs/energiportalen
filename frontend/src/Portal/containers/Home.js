@@ -85,8 +85,8 @@ class Home extends Component {
 
             const blockProps = {
               ...block,
-              title: loc ? loc.name : '',
-              subtitle: loc ? loc.city : ''
+              name: loc && loc.name ? loc.name : 'TITLE',
+              city: loc && loc.city ? loc.city : 'ENERGY PRODUCED'
             };
 
             switch(block.blockType) {

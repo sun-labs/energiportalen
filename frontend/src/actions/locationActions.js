@@ -43,7 +43,7 @@ export const getUnitsFromLocation = (location) => {
   }
 }
 
-export const fetchLocationData = ({ timeSpan, interval, keyId, title, blockType, locationId }) => {
+export const fetchLocationData = ({ timeSpan, interval, keyId, name, blockType, locationId }) => {
 
   const date = t.getDatesFromInterval(c.intervalOptions.find(el => el.label === timeSpan).value);
 
@@ -68,7 +68,7 @@ export const fetchLocationData = ({ timeSpan, interval, keyId, title, blockType,
             const data = [
               {
                 data: values.slice(0, -1),
-                label: title,
+                label: name,
               }
             ];
             const value = res.data.data[0].sum_val;

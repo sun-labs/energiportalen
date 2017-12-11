@@ -59,12 +59,12 @@
   color: #333333;
 }
 
-.blockk .title {
+.blockk .name {
   color: black;
   text-transform: uppercase;
 }
 
-.blockk .subtitle {
+.blockk .city {
   color: #828282;
 }
 
@@ -136,7 +136,7 @@
   margin-top: 0;
 }
 
-.content-table .description-wrap .title {
+.content-table .description-wrap .name {
   line-height: 50px;
 }
 

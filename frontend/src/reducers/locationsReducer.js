@@ -21,7 +21,8 @@ const initialBlock = {
   blockId: -1,
   from: lastWeek.from,
   to: lastWeek.to,
-  interval: c.DAY
+  interval: c.DAY,
+  detailedView: true
 }
 
 const initialLocation = {
@@ -30,11 +31,7 @@ const initialLocation = {
   units: initialUnits,
   solarPlants: 158,
   totEffect: 340,
-  block: {
-    ...initialBlock,
-    from: lastWeek.from,
-    to: lastWeek.to
-  }
+  block: initialBlock
 };
 
 const initialState = {

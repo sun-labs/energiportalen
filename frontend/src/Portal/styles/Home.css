@@ -42,13 +42,13 @@
     height: 70px;
   }
 
-  .FacBlock-wrap-dash .blockk .description-fac-wrap .title{
+  .FacBlock-wrap-dash .blockk .description-fac-wrap .name{
       font-size: 18px;
       text-transform: capitalize;
       font-weight: lighter;
   }
 
-  .FacBlock-wrap-dash .blockk .description-fac-wrap .subtitle {
+  .FacBlock-wrap-dash .blockk .description-fac-wrap .city {
       font-size: 14px;
       font-weight: lighter;
       margin-top: 5px;
@@ -144,7 +144,7 @@
     height: 42px;
   }
 
-  .FacBlock-wrap-dash .blockk .description-fac-wrap .title{
+  .FacBlock-wrap-dash .blockk .description-fac-wrap .name{
     font-size: 3.0vw;
   }
 
@@ -155,7 +155,7 @@
  }
 
  .FacBlock-wrap-dash .blockk.fac-block .info-fac-wrap,
- .FacBlock-wrap-dash .blockk.fac-block .subtitle,
+ .FacBlock-wrap-dash .blockk.fac-block .city,
  #portal .content .blockk.add-block#AddlocationDash{
     display: none;
   }

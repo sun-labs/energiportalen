@@ -12,7 +12,7 @@ export const tempRow = {
   span: '1d',
   from: '2017-02-10',
   to: '2017-02-10 23:23:59',
-  title: 'Energy Produced'
+  name: 'Energy Produced'
 }
 
 export const initialBlock = {
@@ -138,7 +138,7 @@ const blocksReducer = (state = initialState, action = null) => {
         case c.TABLE:
           newBlock = {
             ...initialBlock,
-            subtitle: 'TEMP_SUBTITLE',
+            city: 'CITY',
             rows: [],
           }
           break;
@@ -170,7 +170,8 @@ const blocksReducer = (state = initialState, action = null) => {
             from: action.from,
             to: action.to,
             unitId: action.unitId,
-            keyId: action.keyId
+            keyId: action.keyId,
+            locationId: action.locationId
           },
           ...state.blocks,
         ]

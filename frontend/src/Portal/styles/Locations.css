@@ -20,13 +20,13 @@
   height: 124px;
 }
 
-.FacBlock-wrap-loc .title {
+.FacBlock-wrap-loc .name {
   font-size: 24px;
   text-transform: capitalize;
   font-weight: lighter;
 }
 
-.FacBlock-wrap-loc .subtitle {
+.FacBlock-wrap-loc .city {
   font-size: 14px;
   margin-top: 10px;
   font-weight: lighter;

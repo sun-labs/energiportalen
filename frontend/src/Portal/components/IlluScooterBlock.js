@@ -43,8 +43,8 @@ class IlluScooterBlock extends Component {
 
     const {
       value,
-      title,
-      subtitle,
+      name,
+      city,
       timeSpan,
       blockType,
       editing,
@@ -54,8 +54,8 @@ class IlluScooterBlock extends Component {
     return(
     <IlluBlock
       className="block-scooter"
-      title={title}
-      subtitle={subtitle}
+      name={name}
+      city={city}
       timeSpan={timeSpan}
       blockType={blockType}
       editing={editing}
@@ -71,8 +71,8 @@ class IlluScooterBlock extends Component {
 
 IlluScooterBlock.propTypes = {
   value:                PropTypes.number.isRequired,
-  title:                PropTypes.string.isRequired,
-  subtitle:             PropTypes.string.isRequired,
+  name:                PropTypes.string.isRequired,
+  city:             PropTypes.string.isRequired,
   timeSpan:             PropTypes.string.isRequired,
 };
 

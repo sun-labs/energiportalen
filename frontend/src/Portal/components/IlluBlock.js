@@ -4,9 +4,9 @@ import Block from './Block';
 
 class IlluBlock extends Component {
   render() {
-    const { 
-      title,
-      subtitle,
+    const {
+      name,
+      city,
       timeSpan,
       blockType,
       editing,
@@ -16,12 +16,12 @@ class IlluBlock extends Component {
      } = this.props;
     const blockInfo = {
       type: 'ILLUSTRATION',
-      title: title,
-      subtitle: subtitle,
-      timeSpan: timeSpan,
-      blockType: blockType,
-      editing: editing,
-      blockId: blockId
+      name,
+      city,
+      timeSpan,
+      blockType,
+      editing,
+      blockId
     }
     return (
       <Block className={`blockk-illu ${className}`} { ...blockInfo }>
@@ -34,8 +34,8 @@ class IlluBlock extends Component {
 }
 
 IlluBlock.propTypes = {
-  title:                PropTypes.string.isRequired,
-  subtitle:             PropTypes.string.isRequired,
+  name:                PropTypes.string.isRequired,
+  city:             PropTypes.string.isRequired,
   timeSpan:             PropTypes.string.isRequired,
   children:             PropTypes.oneOfType([
                           PropTypes.object,

@@ -16,7 +16,7 @@ class AddBlock extends Component {
 
     const blockInfo = {
       blockType: 'ADD',
-      title: 'ADD BLOCK',
+      name: 'ADD BLOCK',
       editing: true
     }
 
