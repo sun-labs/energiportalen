@@ -1,54 +1,98 @@
 import axios from 'axios';
 import { API_URL } from './Splash/assets/APIRoutes';
 
-const funcs = {
-  getToken: () => {
-    return localStorage.getItem('token');
-  },
-  apiCall: () => {
-    return axios.create({
-      baseURL: API_URL,
-      timeout: 15000,
-      headers: {
-        Authorization: funcs.getToken()
-      }
-    });
-  },
-  getDataFromKey: (params, cb) => {
-    const PARAM_FROM = 'date[from]'; // this will send a javascript object to backend like: date { from: data }
-    const PARAM_TO = 'date[to]';
-    const PARAM_INT = 'interval';
-    const {
-      from,
-      to,
-      interval,
-      unitId,
-      keyId
-    } = params;
-    const PARAMETERS = `${PARAM_FROM}=${from}&${PARAM_TO}=${to}&${PARAM_INT}=${interval}`;
-    funcs.apiCall().get(`/units/${unitId}/${keyId}?${PARAMETERS}`)
-      .then((res) => {
-        cb(res);
-      });
-  },
-  getLocations: (params, cb) => {
-    funcs.apiCall().get('/locations/')
-      .then((res) => {
-        cb(res);
-      });
-  },
-  getUnitsFromLocation: (locationId, cb) => {
-    funcs.apiCall().get(`locations/${locationId}/units`)
-      .then((res) => {
-        cb(res);
-      });
-  },
-  getKeysFromUnit: (unitId, cb) => {
-    funcs.apiCall().get(`units/${unitId}/`)
-      .then((res) => {
-        cb(res);
-      });
+const CACHE_LIFE = 24 * 60 * 60 // 24 hours
+const token = getToken()
+
+let api = axios.create({
+  baseURL: API_URL,
+  timeout: 15000,
+  headers: {
+    Authorization: token
   }
+})
+
+
+function store(key, val) {
+  if(localStorage) {
+    const obj = { stored: Date.now(), val }
+    localStorage.setItem(key, JSON.stringify(obj))
+    return true;
+  }
+  return false;
+}
+
+function get(key) {
+  if(localStorage) {
+    const val = JSON.parse(localStorage.getItem(key))
+    if(val) {
+      const age = (Date.now() - val.stored) / 1000;
+      console.log(age, CACHE_LIFE)
+      if(age < CACHE_LIFE) {
+        return val.val
+      }
+    }
+  }
+  return undefined;
+}
+
+function call(method, url, data, cb) {
+  method = method.toUpperCase()
+  const key = `${method}-${url}-${data}`;
+  console.log(key);
+  const cached = get(key);
+  console.log(cached);
+  if(cached) {
+    cb(cached)
+  } else {
+    api.request({
+      method,
+      url,
+      data,
+    })
+    .then((res) => { // TODO do not store complete request object, store data.
+      store(key, res);
+      cb(res);
+    });
+  }
+
+}
+
+function getToken() {
+  return localStorage.getItem('token');
+}
+
+function getLocations(params, cb) {
+  call('GET', '/locations/', undefined, cb)
+}
+
+const getDataFromKey = (params, cb) => {
+  const {
+    from,
+    to,
+    interval,
+    unitId,
+    keyId
+  } = params;
+  const PARAMETERS = `date[from]=${from}&date[to]=${to}&interval=${interval}`;
+  call('GET', `/units/${unitId}/${keyId}?${PARAMETERS}`, undefined, cb)
+}
+
+function getUnitsFromLocation(locationId, cb) {
+  call('GET', `locations/${locationId}/units`, undefined, cb)
+}
+
+function getKeysFromUnit(unitId, cb) {
+  call('GET', `units/${unitId}/`, undefined, cb);
+}
+
+const funcs = {
+  apiCall: () => api,
+  getToken,
+  getDataFromKey,
+  getLocations,
+  getUnitsFromLocation,
+  getKeysFromUnit,
 };
 
 export default funcs;
