@@ -358,5 +358,19 @@ describe('[BE] Authentication tests', () => {
     });
   });
 
+  it('should get meta data from a user', (done) => {
+    const userId = 1;
+    User.getUserMetaData({ id: userId }, (err, res) => {
+      // console.log('userMetaData', res);
+      should.not.exist(err);
+      should.exist(res);
+      res.userBirthday.should.exist;
+      res.userName.should.exist;
+      res.userBirthday.value.should.equal('20060606');
+      Object.keys(res).length.should.equal(2);
+      done();
+    })
+  })
+
 });
 
