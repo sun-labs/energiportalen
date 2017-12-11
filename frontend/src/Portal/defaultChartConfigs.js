@@ -1,6 +1,6 @@
 export const defaultConfig = {
   type: 'line',
-  fill: false,
+  fill: true,
   lineTension: 0.1,
   backgroundColor: '#4bc0c0',
   borderColor: '#4bc0c0',
@@ -23,6 +23,18 @@ export const defaultOptions = {
   legend: {
     display: false,
   },
+  scales: {
+    xAxes: [{
+      gridLines: {
+          display:false
+      }
+    }],
+    yAxes: [{
+      gridLines: {
+          display:false
+      }
+    }]
+  }
   // scales: {
   //   xAxes: [{
   //     display: false

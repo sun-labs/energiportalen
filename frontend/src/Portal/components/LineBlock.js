@@ -72,13 +72,14 @@ class LineBlock extends Component {
 setDataColors(dataList, config) {
 
   // NOTE, make sure we have more colors than datasets
-  const colors = ['#4bc0c0', '#F2C94C', '#EB5757'];
+  const colors = ['#FFD70D', '#4bc0c0', '#F2C94C', '#EB5757'];
+  const bg_colors = ['rgba(255, 215, 13, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(242, 201, 76, 0.2)', 'rgba(235, 87, 87, 0.2)'];
 
   return dataList.map((item, index) => {
     return {
       ...item,
       ...config,
-      backgroundColor: colors[index],
+      backgroundColor: bg_colors[index],
       borderColor: colors[index],
       pointBorderColor: colors[index],
       pointHoverBackgroundColor: colors[index]
