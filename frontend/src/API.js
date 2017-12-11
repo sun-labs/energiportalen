@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_URL } from './Splash/assets/APIRoutes';
 
-const CACHE_LIFE = 24 * 60 * 60 // 24 hours
+const CACHE_LIFE = 1;//24 * 60 * 60 // 24 hours
 const token = getToken()
 
 let api = axios.create({
