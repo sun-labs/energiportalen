@@ -16,10 +16,9 @@ class IlluScooterBlock extends Component {
   }
 
   /**
-   * @param {Int} energy in Wh
+   * @param {Int} energy in kWh
    */
   calcTurnsAroundEarth(energy) {
-    energy /= 1000; // to kWh
     const {
       SC_DISTANCE_KM = 40,
       SC_BATTERY_KWH = 1.1,
