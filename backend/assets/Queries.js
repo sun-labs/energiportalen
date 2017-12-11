@@ -529,7 +529,55 @@ Queries.TABLE_QUERIES = [
           (1, 4, 1, 1);
       `
     }
-  }
+  }, {
+    name: 'meta_keys',
+    create: `
+      CREATE TABLE IF NOT EXISTS meta_keys (
+        id int(11) unsigned NOT NULL AUTO_INCREMENT,
+        name varchar(255) DEFAULT NULL,
+        description varchar(255) DEFAULT NULL,
+        PRIMARY KEY (id)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    `,
+    index: [],
+    populate: {
+      test: `
+      INSERT INTO meta_keys 
+        (id, name, description)
+      VALUES
+        (1, 'USER_NAME', NULL),
+        (2, 'USER_BIRTHDAY', NULL);
+      `,
+      dev: undefined,
+    }
+  }, {
+    name: 'meta_data',
+    create: `
+      CREATE TABLE IF NOT EXISTS meta_data (
+        id int(11) unsigned NOT NULL AUTO_INCREMENT,
+        meta_key_id int(11) unsigned DEFAULT NULL,
+        value varchar(255) DEFAULT NULL,
+        location_id int(11) unsigned DEFAULT NULL COMMENT 'The location of which the meta data belongs to',
+        user_id int(11) unsigned DEFAULT NULL COMMENT 'The user of which the meta data belongs to',
+        created_at timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation date of the meta data',
+        PRIMARY KEY (id),
+        KEY meta_key_id (meta_key_id),
+        CONSTRAINT meta_data_ibfk_1 FOREIGN KEY (meta_key_id) REFERENCES meta_keys (id)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    `,
+    index: [],
+    populate: {
+      test: `
+        INSERT INTO meta_data 
+          (id, meta_key_id, value, location_id, user_id, created_at)
+        VALUES
+          (1, 1, 'Sun Destroyer', NULL, 1, '2017-12-11 06:06:06'),
+          (2, 2, '19930606', NULL, 1, '2017-12-11 06:06:06'),
+          (3, 2, '20060606', NULL, 1, '2017-12-11 12:00:00');
+      `,
+      dev: undefined,
+    }
+  },
 ];
 
 Queries.TABLES = Queries.TABLE_QUERIES.map((tableQuery) => {
