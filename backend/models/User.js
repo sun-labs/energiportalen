@@ -1,5 +1,6 @@
 import mysql from 'mysql';
 import { isEmail } from 'validator';
+import * as t from '../tools';
 
 import { con } from './Connection';
 
@@ -110,20 +111,18 @@ class User {
   }
 
   /**
-   * TODO: Add logic, stored for query
    * @param {object} data
    * @param {number} data.id
-   * @param {str} data.email 
    * @param {function} cb 
    * @callback {function} (err, res)
    * @returns {undefined}
    * 
    * @memberOf User
    */
-  static getUserMetaData({ email, id }, cb) {
-
+  static getUserMetaData({ id }, cb) {
+    if(!id) { return cb(); }
     const query = `
-      SELECT md.*
+      SELECT md.*, mk.*
       FROM meta_data as md
       INNER JOIN (
         SELECT 
@@ -135,7 +134,28 @@ class User {
       ON 
         md.meta_key_id = mdg.meta_key_id AND 
         md.created_at = mdg.created_at
+      INNER JOIN meta_keys as mk
+      ON mk.id = md.meta_key_id
+      WHERE md.user_id = ?
     `
+    const p_query = mysql.format(query, id);
+    con.query({
+      sql: p_query
+    }, (err, results) => {
+      if(results.length > 0) {
+        let grouped = {};
+        for(let res of results) {
+          const key = t.toCamelCase(res.name);
+          grouped[key] = {
+            value: res.value,
+            keyId: res.meta_key_id,
+          }
+        }
+        cb(err, grouped)
+      } else {
+        cb(err);
+      }
+    });
   }
 
   
