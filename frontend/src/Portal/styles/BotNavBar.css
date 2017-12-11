@@ -1,15 +1,11 @@
 .bot-navbar-portal {
-  color: #219653;
+  background: #ffd70d;
+  opacity: 1.00;
+  z-index: 100;
+  position: fixed;
+  left: 0;
+  width: 100%;
 }
-
-  .bot-navbar-portal {
-    background: #FFFFFF;
-    opacity: 1.00;
-    z-index: 100;
-    position: fixed;
-    left: 0;
-    width: 100%;
-  }
 
 @media screen and (min-width: 501px){
 
