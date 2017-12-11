@@ -61,9 +61,16 @@
     flex-grow: 1;
   }
 
+  .FacBlock-dash{
+    max-width: 300px;
+    flex-basis: 300px;
+    flex-grow: 1;
+    margin-right: 10px;
+  }
 
   .description-fac-wrap{
     margin-top: 1em;
+    flex-wrap: wrap;
   }
 
   .picture-wrap{
@@ -100,6 +107,12 @@
     height: 300px;
   }
 
+  .FacBlock-dash{
+    max-width: 70px;
+    flex-basis: 70px;
+    flex-grow: 1;
+    margin-right: 5px;
+  }
 
   .description-fac-wrap{
     margin-top: 0.5em;

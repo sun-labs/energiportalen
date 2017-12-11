@@ -77,7 +77,8 @@ const locationReducer = (state = initialLocation, action = null) => {
           ...state.block,
           data: action.data,
           labels: action.labels,
-          value: action.value
+          value: action.value,
+          interval: action.interval
         }
       }
     case c.GET_KEYS_FROM_UNIT:
@@ -101,7 +102,7 @@ const locationsReducer = (state = initialState, action = null) => {
       return {
         ...state,
         locations: state.locations.map((loc) => {
-          if (loc.id === action.locationId) {
+          if (loc.location_id === action.location_id) {
             return locationReducer(loc, action)
           } else {
             return loc;
@@ -112,7 +113,7 @@ const locationsReducer = (state = initialState, action = null) => {
       return {
         ...state,
         locations: state.locations.map((loc) => {
-          if (loc.id === action.unit.locationId) {
+          if (loc.id === action.unit.location_id) {
             return locationReducer(loc, action)
           } else {
             return loc;
@@ -135,7 +136,7 @@ const locationsReducer = (state = initialState, action = null) => {
       const location = {
         ...initialLocation,
         ...action.location,
-        block: { 
+        block: {
           ...initialBlock,
           locationId: action.location.id
         }
@@ -149,12 +150,12 @@ const locationsReducer = (state = initialState, action = null) => {
         } else {
           return loc;
         }
-      })      
+      })
 
       return {
         ...state,
-        locations: added ? 
-          locations : 
+        locations: added ?
+          locations :
           [
             ...state.locations,
             { ...location }

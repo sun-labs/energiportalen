@@ -3,6 +3,11 @@ import { Line } from 'react-chartjs-2';
 import { defaultConfig, defaultOptions } from '../defaultChartConfigs.js';
 import PropTypes from 'prop-types';
 import Block from './Block';
+import * as blockConstants from '../../constants/blockConstants';
+
+const c = {
+  ...blockConstants,
+};
 
 class LineBlock extends Component {
 
@@ -10,7 +15,7 @@ class LineBlock extends Component {
     const { props } = this;
 
     // TODO new way of doing this
-    if (typeof props.locationId === 'number') {
+    if (typeof props.location_id === 'number') {
       props.fetchLocationData(props);
     } else if (props.refresh === true) {
       props.fetchData(props);
@@ -80,12 +85,31 @@ setDataColors(dataList, config) {
       title,
       dataKey,
       editing,
-      blockId = null
+      blockId = null,
+      interval
     } = props;
 
     const datasets = this.setArrayLengths(
       this.setDataColors(data, config),
-      labels
+      labels.map((label, i) => {
+        let date;
+
+        switch (interval.toUpperCase()) {
+          default:
+            return label;
+          case c.HOUR:
+            if (i % 2 !== 0) return '';
+            return new Date(label).getHours();
+          case c.DAY:
+            return i+1;
+          case c.WEEK:
+            return label;
+          case c.MONTH:
+            return label;
+          case c.YEAR:
+            return label;
+        }
+      })
     );
 
     const blockInfo = {
