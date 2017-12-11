@@ -38,6 +38,23 @@ const initialState = {
   locations: [],
 };
 
+const tempCleanLocationName = (location = '') => {
+  switch (Number(location.id)) {
+    case 4513:
+      return 'KVV';
+    case 4514:
+      return 'Västerlövsta Prästgård';
+    case 4515:
+      return 'Ösby Lantbruksskola';
+    case 4516:
+      return 'Arnebo';
+    case 4517:
+      return 'Tjusarvägen';
+    default:
+      return 'NAME';
+  }
+}
+
 const unitsReducer = (state = initialUnits, action = null) => {
   switch(action.type) {
     case c.GET_KEYS_FROM_UNIT:
@@ -124,6 +141,7 @@ const locationsReducer = (state = initialState, action = null) => {
       const location = {
         ...initialLocation,
         ...action.location,
+        name: tempCleanLocationName(action.location),
         block: {
           ...initialBlock,
           locationId: action.location.id
@@ -156,6 +174,7 @@ const locationsReducer = (state = initialState, action = null) => {
           return {
             ...initialLocation,
             ...loc,
+            name: tempCleanLocationName(loc),
             block: {
               ...initialBlock,
               locationId: loc.id
