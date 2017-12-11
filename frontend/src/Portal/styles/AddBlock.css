@@ -84,16 +84,24 @@
 }
 
 /* fix style when save-block text doesnt fit on one row */
-.blockk-add button {
+.blockk-add .save-block-add {
   font-weight: normal;
   font-size: 1.1em;
   color: white;
   display: table-cell;
   box-shadow: none;
-  background-color: #EB5757;
+  background-color: #219653;
   width: 100%;
 }
 
-.blockk-add .content .button-wrapper .save-block-add {
-  background-color: #219653;
+.blockk-add .save-block-add.disabled {
+
+  background: grey;
+}
+
+.blockk-add .save-block-add.disabled,
+.blockk-add .choose-block-add.disabled > div,
+.blockk-add .choose-time-add.disabled > div
+{
+  cursor: not-allowed;
 }

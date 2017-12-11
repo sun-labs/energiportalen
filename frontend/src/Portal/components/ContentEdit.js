@@ -110,7 +110,7 @@ class ContentEdit extends Component {
           options={c.intervalOptions}
           placeholder="TIME SPAN"
           clearable={true}
-          className="choose-time-add"
+          className={`choose-time-add ${location.id ? null : 'disabled'}`}
           onChange={(e) => handleChange({ ...e, type: c.INTERVAL })} />
         <Select
           disabled={!timeSpan.value}
@@ -119,13 +119,13 @@ class ContentEdit extends Component {
           options={c.typeOptions}
           placeholder="CHOOSE BLOCK TYPE"
           clearable={true}
-          className="choose-block-add"
+          className={`choose-block-add ${timeSpan.value ? null : 'disabled'}`}
           onChange={(e) => handleChange({ ...e, type: c.BLOCK_TYPE })} />
         <div className="button-wrapper">
           <button
             disabled={!type.value}
             onClick={(e) => handleChange({ ...e, type: c.SAVE_BLOCK })}
-            className="save-block-add">
+            className={`save-block-add ${type.value ? null : 'disabled'}`}>
           SAVE BLOCK
         </button>
         </div>
