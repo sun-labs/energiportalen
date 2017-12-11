@@ -8,7 +8,7 @@ export const tempRow = {
   unitId: 4,
   keyId: 95,
   value: -1,
-  si: 'Wh',
+  si: 'kWh',
   span: '1d',
   from: '2017-02-10',
   to: '2017-02-10 23:23:59',
