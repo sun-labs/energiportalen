@@ -191,7 +191,6 @@ Queries.TABLE_QUERIES = [
         email varchar(255) NOT NULL,
         password binary(60) NOT NULL,
         name varchar(255) DEFAULT NULL,
-        birthday date DEFAULT NULL,
         PRIMARY KEY (id),
         UNIQUE KEY email (email)
       ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
