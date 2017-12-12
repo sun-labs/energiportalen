@@ -13,13 +13,15 @@ class TableBlock extends Component {
   fetchRowData(rowId) {
     const {
       fetchSumValueData,
-      timeSpan,
       interval,
       unitId,
       keyId,
       blockId,
       blockType,
+      rows
     } = this.props;
+
+    const timeSpan = rows.find(row => row.id === rowId).timeSpan;
 
     fetchSumValueData({
       timeSpan,
@@ -39,16 +41,15 @@ class TableBlock extends Component {
       blockId
     } = this.props;
     if (rows.length < 1) {
-      addTableBlockRow(blockId);
-      addTableBlockRow(blockId);
-      addTableBlockRow(blockId);
+      addTableBlockRow(blockId, '7d');
+      addTableBlockRow(blockId, '30d');
+      addTableBlockRow(blockId, '365d');
     }
   }
 
   render() {
     const {
       rows,
-      addTableBlockRow,
       blockId,
       removeBlock,
       blockType,
@@ -80,9 +81,9 @@ class TableBlock extends Component {
                 return (<TableBlockRow key={ elem.id } { ...rowProps } />);
               })
             }
-            <tr>
+            {/* <tr>
               <td onClick={ () => addTableBlockRow(blockId) } className="add-information">+ add information</td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
       </Block>

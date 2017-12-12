@@ -5,8 +5,8 @@ const c = {
 };
 
 export const tempRow = {
-  unitId: 4,
-  keyId: 95,
+  unitId: -1,
+  keyId: -1,
   value: -1,
   si: 'kWh',
   name: 'Energy Produced'
@@ -92,14 +92,11 @@ const initialState = {
 const blockReducer = (state = {}, action = null) => {
   switch(action.type) {
     case c.ADD_TABLE_BLOCK_ROW:
-      console.log('')
-      console.log('')
-      console.log('state', state)
       return {
         ...state,
         rows: [
           ...state.rows,
-          { ...tempRow, id: state.rows.length, timeSpan: state.timeSpan }
+          { ...tempRow, id: state.rows.length, timeSpan: action.timeSpan }
         ]
       }
     case c.FETCH_DATA_SUCCESS:

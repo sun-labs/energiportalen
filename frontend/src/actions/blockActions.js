@@ -80,9 +80,9 @@ export const toggleAddBlock = () => {
   }
 }
 
-export const addTableBlockRow = (blockId) => {
+export const addTableBlockRow = (blockId, timeSpan) => {
   return (dispatch) => {
-    dispatch({ type: c.ADD_TABLE_BLOCK_ROW, blockId })
+    dispatch({ type: c.ADD_TABLE_BLOCK_ROW, blockId, timeSpan })
   }
 }
 
