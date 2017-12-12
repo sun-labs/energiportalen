@@ -13,14 +13,14 @@ let api = axios.create({
 })
 
 
-function store(key, val) {
-  if(localStorage) {
-    const obj = { stored: Date.now(), val }
-    localStorage.setItem(key, JSON.stringify(obj))
-    return true;
-  }
-  return false;
-}
+// function store(key, val) {
+//   if(localStorage) {
+//     const obj = { stored: Date.now(), val }
+//     localStorage.setItem(key, JSON.stringify(obj))
+//     return true;
+//   }
+//   return false;
+// }
 
 function get(key) {
   if(localStorage) {
@@ -39,7 +39,7 @@ function call(method, url, data, cb) {
   method = method.toUpperCase()
   const key = `${method}-${url}-${data}`;
   const cached = get(key);
-  if(cached) {
+  if(/*cached*/false) {
     cb(cached)
   } else {
     api.request({
@@ -48,7 +48,7 @@ function call(method, url, data, cb) {
       data,
     })
     .then((res) => { // TODO do not store complete request object, store data.
-      store(key, res);
+      // store(key, res);
       cb(res);
     });
   }

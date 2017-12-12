@@ -84,12 +84,20 @@ export const getDatesFromTimeSpan = (interval = c.DAY) => {
 }
 
 export const reduceData = (data, requiredPoints) => {
-  const x = Math.ceil(data.length / requiredPoints);
+  const len = data.length;
+  const chunkSize = Math.ceil(len / requiredPoints);
+  let tmpArray = [];
 
-  let ret = [];
-
-  for (let i = 0; i < data.length; i += x) {
-    ret = [ ...ret, data[i] ]
+  for (let i = 0; i < len; i += chunkSize) {
+    tmpArray = [
+      ...tmpArray,
+      data.slice(i, i+chunkSize)
+    ];
   }
-  return ret;
+
+  return tmpArray.map(el => {
+    return el.reduce((prev, curr) => {
+      return parseFloat(prev, 10) + parseFloat(curr, 10) / el.length;
+    })
+  })
 }

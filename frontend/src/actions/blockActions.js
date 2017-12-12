@@ -15,12 +15,6 @@ export const fetchData = ({ timeSpan, interval, unitId, keyId, blockId, blockTyp
   return (dispatch, getState) => {
     API.getDataFromKey({ from, to, interval, unitId, keyId }, (res) => {
 
-      let label = getState().blocksReducer.blocks.find((block) => {
-        return blockId === block.blockId;
-      });
-
-      label = label ? label.title : ''
-
       const values = res.data.data.map((elem) => {
         return elem.sum_val.toFixed();
       });
@@ -67,7 +61,7 @@ export const fetchSumValueData = ({ timeSpan, interval, unitId, keyId, blockId, 
 
       const sum_val = res.data.data.reduce((tot, data) => {
         return tot + data.sum_val;
-      }, 0)
+      }, 0);
 
       dispatch({
         type: c.FETCH_SUM_VALUE_DATA_SUCCESS,
