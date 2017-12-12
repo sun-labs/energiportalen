@@ -38,7 +38,11 @@ class TableBlock extends Component {
       addTableBlockRow,
       blockId
     } = this.props;
-    if (rows.length < 1) addTableBlockRow(blockId);
+    if (rows.length < 1) {
+      addTableBlockRow(blockId);
+      addTableBlockRow(blockId);
+      addTableBlockRow(blockId);
+    }
   }
 
   render() {
