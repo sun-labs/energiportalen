@@ -3,6 +3,7 @@
   border: none;
   width: 500px;
   max-width: 500px;
+  margin: 0 auto;
 }
 
 .blockk.blockk-add,
@@ -51,6 +52,10 @@
 
 .overlay-inner-content-wrapper {
   text-align: center;
+}
+
+.overlay-inner-content-wrapper > div {
+  display: inline-block;
 }
 
 .blockk.blockk-add .img-cross {
