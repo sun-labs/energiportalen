@@ -27,16 +27,7 @@ class DashboardLocations extends Component {
         <FacBlock fac={loc.image} name={loc.name} city={loc.city} solarPlants={loc.solarPlants} totEffect={loc.totEffect}/>
       </Link>
     </div>
-    ).concat(
-      <Link
-        to={`${c.PORTAL_ROOT}/locations/addlocation`}
-        key={'addlocation'}
-      >
-        <FacBlock
-          className="add-block"
-          name={'Add location'}
-          fac={ addimg }/>
-      </Link>);
+    );
 
     return (
       <div className="FacBlock-wrap-dash">
