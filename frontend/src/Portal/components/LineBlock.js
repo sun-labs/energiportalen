@@ -101,7 +101,8 @@ setDataColors(dataList, config) {
       blockType,
       fetchLocationData,
       keyId,
-      locationId
+      locationId,
+      removeBlock
     } = this.props;
 
     const datasets = this.setArrayLengths(
@@ -134,7 +135,6 @@ setDataColors(dataList, config) {
       editing,
       blockId,
       blockType
-      // ...props
     }
 
     return (
@@ -147,6 +147,7 @@ setDataColors(dataList, config) {
         blockType={blockType}
         locationId={locationId}
         timeSpan={timeSpan}
+        removeBlock={removeBlock}
       >
         <Line className="line-chart" data={datasets} options={options} />
       </Block>
