@@ -51,18 +51,18 @@ class ContentEdit extends Component {
           getUnitsFromLocation(this.state.location);
         })
         break;
-      case c.INTERVAL:
-        this.setState({
-          timeSpan: {
-            label: e.label,
-            value: e.value
-          },
-          type: {}
-        })
-        break;
       case c.BLOCK_TYPE:
         this.setState({
           type: {
+            label: e.label,
+            value: e.value
+          },
+          timeSpan: {}
+        })
+        break;
+      case c.INTERVAL:
+        this.setState({
+          timeSpan: {
             label: e.label,
             value: e.value
           }
@@ -96,7 +96,6 @@ class ContentEdit extends Component {
       timeSpan,
     } = this.state;
 
-
     return (
       <div className="blockk-add">
         <Select
@@ -109,27 +108,27 @@ class ContentEdit extends Component {
           onChange={(e) => this.handleChange({ ...e, type: c.LOCATION })} />
         <Select
           disabled={!location.id}
-          name={c.INTERVAL}
-          value={timeSpan.value}
-          options={c.intervalOptions}
-          placeholder="TIME SPAN"
-          clearable={true}
-          className={`choose-time-add ${location.id ? null : 'disabled'}`}
-          onChange={(e) => this.handleChange({ ...e, type: c.INTERVAL })} />
-        <Select
-          disabled={!timeSpan.value}
           name={c.BLOCK_TYPE}
           value={type}
           options={c.typeOptions}
           placeholder="CHOOSE BLOCK TYPE"
           clearable={true}
-          className={`choose-block-add ${timeSpan.value ? null : 'disabled'}`}
+          className={`choose-block-add ${!location.id ? 'disabled' : null }`}
           onChange={(e) => this.handleChange({ ...e, type: c.BLOCK_TYPE })} />
+        <Select
+          disabled={!type.value || type.value === c.TABLE}
+          name={c.INTERVAL}
+          value={timeSpan.value}
+          options={c.intervalOptions}
+          placeholder="TIME SPAN"
+          clearable={true}
+          className={`choose-time-add ${!type.value || type.value === c.TABLE ? 'disabled' : null }`}
+          onChange={(e) => this.handleChange({ ...e, type: c.INTERVAL })} />
         <div className="button-wrapper">
           <button
-            disabled={!type.value}
+            disabled={!timeSpan.value && type.value !== c.TABLE}
             onClick={(e) => this.handleChange({ ...e, type: c.SAVE_BLOCK })}
-            className={`save-block-add ${type.value ? null : 'disabled'}`}>
+            className={`save-block-add ${!timeSpan.value && type.value !== c.TABLE ? 'disabled' : null }`}>
           SAVE BLOCK
         </button>
         </div>
