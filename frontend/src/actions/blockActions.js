@@ -16,7 +16,7 @@ export const fetchData = ({ timeSpan, interval, unitId, keyId, blockId, blockTyp
     API.getDataFromKey({ from, to, interval, unitId, keyId }, (res) => {
 
       const values = res.data.data.map((elem) => {
-        return elem.sum_val.toFixed();
+        return elem.avg_val.toFixed(3);
       });
 
       const labels = res.data.data.map((elem) => {
