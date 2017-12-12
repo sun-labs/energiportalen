@@ -21,7 +21,7 @@ class AddBlock extends Component {
     }
 
     return(
-      <div className="overlay">
+      <div className="overlay" onClick={() => toggleAddBlock()}>
         <div className="overlay-outer-content-wrapper">
           <div className="overlay-inner-content-wrapper">
             <Block className="blockk-add" {...blockInfo}>
