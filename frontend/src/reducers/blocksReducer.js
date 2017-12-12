@@ -37,41 +37,56 @@ export const initialIlluBlock = {
 
 const initialState = {
   addingBlock: false,
-  blocks: [],
-  // blocks: [
-  //   {
-  //     ...initialIlluBlock,
-  //     blockType: c.PHONE,
-  //     id: 0,
-  //     unitId: 4,
-  //     keyId: 95,
-  //     blockId: 0,
-  //   },
-  //   {
-  //     ...initialBlock,
-  //     blockType: c.TABLE,
-  //     blockId: 1,
-  //     unitId: 4,
-  //     keyId: 95,
-  //     rows: [],
-  //     interval: 'day'
-  //   },
-  //   {
-  //     ...initialIlluBlock,
-  //     blockType: c.SCOOTER,
-  //     blockId: 2,
-  //     unitId: 4,
-  //     keyId: 95,
-  //   },
-  //   {
-  //     ...initialGraphBlock,
-  //     blockType: c.LINE,
-  //     timeSpan: '24h',
-  //     blockId: 3,
-  //     unitId: 4,
-  //     keyId: 95
-  //   },
-  //   ],
+  blocks: [
+    {
+      // ...initialIlluBlock,
+      blockId: 0,
+      blockType: c.PHONE,
+      editing: false,
+      interval: c.HOUR,
+      keyId: 134,
+      locationId: 4516,
+      refresh: true,
+      timeSpan: '30d',
+      unitId: 10,
+    },
+    {
+      // ...initialBlock,
+      blockId: 1,
+      blockType: c.TABLE,
+      city: 'CITY',
+      editing: false,
+      interval: c.HOUR,
+      keyId: 130,
+      locationId: 4514,
+      refresh: true,
+      timeSpan: '7d',
+      unitId: 8,
+      rows: [],
+    },
+    {
+      // ...initialIlluBlock,
+      blockId: 2,
+      blockType: c.SCOOTER,
+      editing: false,
+      interval: c.HOUR,
+      keyId: 133,
+      timeSpan: '30d',
+      unitId: 9,
+    },
+    {
+      // ...initialGraphBlock,
+      blockId: 3,
+      blockType: c.LINE,
+      editing: false,
+      interval: c.DAY,
+      keyId: 126,
+      locationId: 4513,
+      refresh: true,
+      timeSpan: '365d',
+      unitId: 7,
+    },
+    ],
 };
 
 const blockReducer = (state = {}, action = null) => {
