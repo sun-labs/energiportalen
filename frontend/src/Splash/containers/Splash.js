@@ -14,7 +14,8 @@ class Splash extends Component {
       signInError,
       closeAuthError,
       error,
-      authSignIn
+      authSignIn,
+      authSignUp,
     } = this.props;
 
     return (
@@ -25,7 +26,7 @@ class Splash extends Component {
             className="error"
             onClick={ () => closeAuthError()} { ...error } />
         : null }
-        <Sections />
+        <Sections authSignUp={authSignUp} />
       </div>
     );
   }
