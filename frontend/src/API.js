@@ -13,14 +13,14 @@ let api = axios.create({
 })
 
 
-function store(key, val) {
-  if(localStorage) {
-    const obj = { stored: Date.now(), val }
-    localStorage.setItem(key, JSON.stringify(obj))
-    return true;
-  }
-  return false;
-}
+// function store(key, val) {
+//   if(localStorage) {
+//     const obj = { stored: Date.now(), val }
+//     localStorage.setItem(key, JSON.stringify(obj))
+//     return true;
+//   }
+//   return false;
+// }
 
 function get(key) {
   if(localStorage) {
