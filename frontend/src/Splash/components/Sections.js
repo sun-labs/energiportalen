@@ -51,7 +51,7 @@ class Section1 extends Component {
         <img className="logo" src={ logo } alt="Sun Labs Logo" />
         <div className="creat-wrap">
           <h1>SIGN UP WITH SUN LABS</h1>
-          <h2>It's free and will always be for Sun Labs</h2>
+          <h2>It's free and will always be</h2>
           <FormSignUp {...this.props} />
         </div>
         <button id="mobile-btn-create-account" onClick={ this.togglePopup }>CREATE ACCOUNT</button>
