@@ -61,7 +61,7 @@ export const fetchLocationData = ({ timeSpan, interval, keyId, name, blockType, 
 
           API.getDataFromKey({ from, to, interval, unitId, keyId }, (res) => {
             const values = res.data.data.map((elem) => {
-              return elem.avg_val.toFixed(3);
+              return elem.sum_val.toFixed(3);
             });
 
             const labels = res.data.data.map((elem) => {
@@ -71,24 +71,35 @@ export const fetchLocationData = ({ timeSpan, interval, keyId, name, blockType, 
 
             let data;
 
-            switch (timeSpan) {
-              case c.YEAR:
-                data = [
-                  {
-                    data: t.reduceData(values.slice(0, -1), 52),
-                    label: name,
-                  }
-                ];
-                break;
-              default:
-                data = [
-                  {
-                    data: values.slice(0, -1),
-                    label: name,
-                  }
-                ];
-                break;
-            }
+            // switch (timeSpan) {
+            //   case c.YEAR:
+            //     data = [
+            //       {
+            //         data: t.reduceData(values.slice(0, -1), 52),
+            //         label: name,
+            //       }
+            //     ];
+
+            //     console.log('')
+            //     console.log('')
+            //     console.log(values.reduce((tot, el) => parseFloat(tot)+parseFloat(el)))
+
+            //     break;
+            //   default:
+            //     data = [
+            //       {
+            //         data: values.slice(0, -1),
+            //         label: name,
+            //       }
+            //     ];
+            //     break;
+            //   }
+              data = [
+                {
+                  data: values.slice(0, -1),
+                  label: name,
+                }
+              ];
 
             dispatch({ type: c.FETCH_LOCATION_DATA_SUCCESS, labels, data, value, id: locationId, interval });
           });

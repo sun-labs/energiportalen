@@ -16,7 +16,7 @@ export const fetchData = ({ timeSpan, interval, unitId, keyId, blockId, blockTyp
     API.getDataFromKey({ from, to, interval, unitId, keyId }, (res) => {
 
       const values = res.data.data.map((elem) => {
-        return elem.avg_val.toFixed(3);
+        return elem.sum_val.toFixed(3);
       });
 
       const labels = res.data.data.map((elem) => {
@@ -25,24 +25,30 @@ export const fetchData = ({ timeSpan, interval, unitId, keyId, blockId, blockTyp
 
       let data;
 
-      switch (c.intervalOptions.find(el => el.label === timeSpan).value) {
-        case c.YEAR:
-          data = [
-            {
-              data: t.reduceData(values.slice(0, -1), 52),
-              label: name,
-            }
-          ];
-          break;
-        default:
-          data = [
-            {
-              data: values.slice(0, -1),
-              label: name,
-            }
-          ];
-          break;
-      }
+      // switch (c.intervalOptions.find(el => el.label === timeSpan).value) {
+      //   case c.YEAR:
+      //     data = [
+      //       {
+      //         data: t.reduceData(values.slice(0, -1), 52),
+      //         label: name,
+      //       }
+      //     ];
+      //     break;
+      //   default:
+      //     data = [
+      //       {
+      //         data: values.slice(0, -1),
+      //         label: name,
+      //       }
+      //     ];
+      //     break;
+      //   }
+        data = [
+          {
+            data: values.slice(0, -1),
+            label: name,
+          }
+        ];
       const value = res.data.data[0].sum_val.toFixed(0);
 
       dispatch({ type: c.FETCH_DATA_SUCCESS, labels, data, value, blockId });
