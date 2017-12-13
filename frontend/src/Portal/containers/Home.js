@@ -41,6 +41,7 @@ class Home extends Component {
       fetchLocationData,
       addTableBlockRow,
       fetchSumValueData,
+      removeBlock
     } = this.props;
 
     return (
@@ -96,6 +97,7 @@ class Home extends Component {
                     key={block.blockId}
                     { ...blockProps }
                     fetchSumValueData={fetchSumValueData}
+                    removeBlock={removeBlock}
                   />
                 );
               case c.TABLE:
@@ -105,6 +107,7 @@ class Home extends Component {
                     { ...blockProps }
                     addTableBlockRow={addTableBlockRow}
                     fetchSumValueData={fetchSumValueData}
+                    removeBlock={removeBlock}
                   />
               );
               case c.SCOOTER:
@@ -113,6 +116,7 @@ class Home extends Component {
                     key={block.blockId}
                     { ...blockProps }
                     fetchSumValueData={fetchSumValueData}
+                    removeBlock={removeBlock}
                   />
                 );
               case c.LINE:
@@ -123,6 +127,7 @@ class Home extends Component {
                     fetchData={fetchData}
                     fetchLocationData={fetchLocationData}
                     locationId={loc ? loc.id : null}
+                    removeBlock={removeBlock}
                   />
                 );
               default:

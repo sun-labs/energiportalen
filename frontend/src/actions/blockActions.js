@@ -14,9 +14,8 @@ export const fetchData = ({ timeSpan, interval, unitId, keyId, blockId, blockTyp
 
   return (dispatch, getState) => {
     API.getDataFromKey({ from, to, interval, unitId, keyId }, (res) => {
-
       const values = res.data.data.map((elem) => {
-        return elem.sum_val.toFixed();
+        return parseFloat(elem.sum_val, 3);
       });
 
       const labels = res.data.data.map((elem) => {
@@ -42,7 +41,7 @@ export const fetchData = ({ timeSpan, interval, unitId, keyId, blockId, blockTyp
             }
           ];
           break;
-      }
+        }
       const value = res.data.data[0].sum_val.toFixed(0);
 
       dispatch({ type: c.FETCH_DATA_SUCCESS, labels, data, value, blockId });
@@ -80,9 +79,9 @@ export const toggleAddBlock = () => {
   }
 }
 
-export const addTableBlockRow = (blockId) => {
+export const addTableBlockRow = (blockId, timeSpan) => {
   return (dispatch) => {
-    dispatch({ type: c.ADD_TABLE_BLOCK_ROW, blockId })
+    dispatch({ type: c.ADD_TABLE_BLOCK_ROW, blockId, timeSpan })
   }
 }
 

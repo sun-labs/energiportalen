@@ -12,7 +12,8 @@ class IlluBlock extends Component {
       editing,
       blockId,
       className,
-      children
+      children,
+      removeBlock
      } = this.props;
     const blockInfo = {
       type: 'ILLUSTRATION',
@@ -22,9 +23,9 @@ class IlluBlock extends Component {
       blockType,
       editing,
       blockId
-    }
+    };
     return (
-      <Block className={`blockk-illu ${className}`} { ...blockInfo }>
+      <Block className={`blockk-illu ${className}`} { ...blockInfo } removeBlock={removeBlock}>
         <div className="content-illu">
           {children}
         </div>

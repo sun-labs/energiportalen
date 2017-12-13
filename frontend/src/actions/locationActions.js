@@ -61,16 +61,15 @@ export const fetchLocationData = ({ timeSpan, interval, keyId, name, blockType, 
 
           API.getDataFromKey({ from, to, interval, unitId, keyId }, (res) => {
             const values = res.data.data.map((elem) => {
-              return elem.avg_val.toFixed(3);
+              return parseFloat(elem.sum_val, 3);
             });
-
+      
             const labels = res.data.data.map((elem) => {
               return elem.new_timestamp;
             });
-            const value = res.data.data[0].sum_val;
-
+      
             let data;
-
+      
             switch (timeSpan) {
               case c.YEAR:
                 data = [
@@ -88,7 +87,8 @@ export const fetchLocationData = ({ timeSpan, interval, keyId, name, blockType, 
                   }
                 ];
                 break;
-            }
+              }
+            const value = res.data.data[0].sum_val.toFixed(0);
 
             dispatch({ type: c.FETCH_LOCATION_DATA_SUCCESS, labels, data, value, id: locationId, interval });
           });

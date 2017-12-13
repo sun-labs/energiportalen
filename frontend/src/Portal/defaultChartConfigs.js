@@ -25,9 +25,10 @@ export const defaultOptions = {
   },
   scales: {
     xAxes: [{
+      display: false,
       gridLines: {
           display:false
-      }
+      },
     }],
     yAxes: [{
       gridLines: {

@@ -10,7 +10,7 @@ class TableBlockRow extends Component {
   render() {
 
     const {
-      span,
+      timeSpan,
       name,
       value,
       si
@@ -20,7 +20,7 @@ class TableBlockRow extends Component {
       <tr>
         <td>
           <div className="time-wrap">
-            <p className="value">{ span }</p>
+            <p className="value">{ timeSpan }</p>
           </div>
           <div className="description-wrap">
             <p className="name">{ name }</p>
@@ -38,7 +38,7 @@ class TableBlockRow extends Component {
 TableBlockRow.propTypes = {
   fetchRowData:             PropTypes.func.isRequired,
   id:                       PropTypes.number.isRequired,
-  span:                     PropTypes.string.isRequired,
+  timeSpan:                     PropTypes.string.isRequired,
   name:                    PropTypes.string.isRequired,
   value:                    PropTypes.number.isRequired,
   si:                       PropTypes.string.isRequired,

@@ -96,8 +96,6 @@ export const reduceData = (data, requiredPoints) => {
   }
 
   return tmpArray.map(el => {
-    return el.reduce((prev, curr) => {
-      return parseFloat(prev, 10) + parseFloat(curr, 10) / el.length;
-    })
+    return el.reduce((prev, curr) => prev + curr) / el.length;
   })
 }
