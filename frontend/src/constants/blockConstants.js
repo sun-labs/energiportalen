@@ -41,7 +41,7 @@ export const typeOptions = [
 ];
 
 export const intervalOptions = [
-  { value: DAY, label: '24h' },
+  // { value: DAY, label: '24h' },
   { value: WEEK, label: '7d' },
   { value: MONTH, label: '30d' },
   { value: YEAR, label: '365d' },

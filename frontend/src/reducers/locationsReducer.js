@@ -12,7 +12,7 @@ const initialUnits = [];
 const initialBlock = {
   ...initialGraphBlock,
   blockType: c.LINE,
-  timeSpan: '7d',
+  timeSpan: c.WEEK,
   unitId: 4,
   keyId: 95,
   locationId: null,
@@ -79,7 +79,8 @@ const locationReducer = (state = initialLocation, action = null) => {
           data: action.data,
           labels: action.labels,
           value: action.value,
-          interval: action.interval
+          interval: action.interval,
+          timeSpan: action.timeSpan
         }
       }
     case c.GET_KEYS_FROM_UNIT:
