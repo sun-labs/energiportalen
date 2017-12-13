@@ -3,10 +3,9 @@ body {
 }
 
 #portal .content .add-block {
-    border: 2px dashed #BFBFBF;
     padding: 1em;
     box-sizing: border-box;
-    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
   .block-wrap {
@@ -38,7 +37,6 @@ body {
   .FacBlock-wrap-dash .blockk.fac-block{
     display: inline-block;
     border-width: 1px;
-    border-color: lightgray;
     height: 70px;
   }
 

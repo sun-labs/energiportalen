@@ -15,7 +15,6 @@
       background-repeat: no-repeat;
       background-size: 150px auto;
       font-size: 1.5em;
-      border-bottom: 1px solid lightgray;
       background-color: #ffd70d;
 
       top: 0;
@@ -53,7 +52,6 @@
   .bot-navbar-portal {
     text-align: center;
     bottom: 0;
-    border-top: 1px solid lightgray;
   }
 
   .bot-navbar-portal .icon {
