@@ -22,10 +22,10 @@ class TopNavBar extends Component {
               onClick={() => {
                 fileDownload("test,hello,world", 'filename.csv');
             }}/>
-          : 'EDIT' }
+          : '' }
         </p>
 
-        <p className="profile-btn">PROFILE</p>
+        {/* <p className="profile-btn">PROFILE</p> */}
       </div>
     );
   }
