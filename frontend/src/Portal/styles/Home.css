@@ -8,20 +8,20 @@ body {
     box-sizing: border-box;
     margin-bottom: 15px;
 }
+
   .block-wrap {
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
     width: 100%;
   }
 
   .block-wrap .blockk{
-    width: auto;
     max-width: 580px;
-    flex-basis: 580px;
+    flex-basis: 400px;
     flex-grow: 1;
   }
 
