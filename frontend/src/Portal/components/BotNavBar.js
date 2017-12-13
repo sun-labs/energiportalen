@@ -14,7 +14,7 @@ const c = {
 const BotNavBar = ({ history }) => {
   return (
     <nav className="bot-navbar-portal">
-      <ul>
+      <ul style={{ display: 'flex' }}>
         <li className="dashboard icon">
           <Link to={`${c.PORTAL_ROOT}/`}>DASHBOARD</Link>
         </li>
