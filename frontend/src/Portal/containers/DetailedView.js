@@ -27,6 +27,7 @@ class DetailedView extends Component {
       match,
       locations,
       fetchData,
+      getLocations,
       fetchLocationData,
     } = this.props;
     const id = match.params.locationID;
@@ -47,6 +48,7 @@ class DetailedView extends Component {
             totEffect={location.totEffect}
             solarPlants={location.solarPlants}
             fetchData={fetchData}
+            getLocations={getLocations}
             fetchLocationData={fetchLocationData}
           /> :
           null }
