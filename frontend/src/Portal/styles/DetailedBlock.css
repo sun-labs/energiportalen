@@ -100,17 +100,24 @@
     display: block;
   }
 
-  .content-detailed-block .blockk.blockk-line footer button{
+  .content-detailed-block .blockk.blockk-line footer button,
+  .content-detailed-block .blockk.blockk-line footer .sum-production{
     margin: 0 0 0 1em;
     float: left;
     background-color: white;
     color: #BDBDBD;
   }
 
-   .content-detailed-block .blockk.blockk-line footer button#export-data{
-     float: right;
-     margin: 0 1em 0 0;
-   }
+  .content-detailed-block .blockk.blockk-line footer .activeButton {
+    background-color: rgba(255, 215, 13, 0.2);
+    color: black;
+  }
+
+  .content-detailed-block .blockk.blockk-line footer .sum-production {
+    padding: 10px;
+    float: right;
+    margin: 0 1em 0 0;
+  }
 
    #portal .content .compare-wrap .add-block{
      width: 45%;

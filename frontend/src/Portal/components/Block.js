@@ -51,6 +51,8 @@ const Footer = (props) => {
     keyId,
     name,
     locationId,
+    timeSpan,
+    value
   } = props;
 
   switch(blockType) {
@@ -77,6 +79,7 @@ const Footer = (props) => {
               })
                 }}>DAILY</button></li> */}
             <li><button
+              className={timeSpan === c.WEEK ? 'active-button' : ''}
               onClick={() => {
                 fetchLocationData({
                   interval,
@@ -84,10 +87,11 @@ const Footer = (props) => {
                   name,
                   blockType,
                   locationId,
-                  timeSpan: c.intervalOptions.find(x => x.value === c.WEEK).label
+                  timeSpan: c.WEEK
               })
                 }}>WEEKLY</button></li>
             <li><button
+              className={timeSpan === c.MONTH ? 'active-button' : ''}
               onClick={() => {
                 fetchLocationData({
                   interval,
@@ -95,10 +99,11 @@ const Footer = (props) => {
                   name,
                   blockType,
                   locationId,
-                  timeSpan: c.intervalOptions.find(x => x.value === c.MONTH).label
+                  timeSpan: c.MONTH
               })
                 }}>MONTHLY</button></li>
             <li><button
+              className={timeSpan === c.YEAR ? 'active-button' : ''}
               onClick={() => {
                 fetchLocationData({
                   interval,
@@ -106,10 +111,15 @@ const Footer = (props) => {
                   name,
                   blockType,
                   locationId,
-                  timeSpan: c.intervalOptions.find(x => x.value === c.YEAR).label
+                  timeSpan: c.YEAR
               })
                 }}>YEARLY</button></li>
-            <li><button id="export-data">export data</button></li>
+           { value && typeof value === 'number' ?
+              <li>
+                <div className="sum-production">
+                  ENERGY PRODUCED: { value ? value.toFixed(0) : null } kWh
+                </div>
+              </li> : null }
           </ul>
         </footer>
       );
@@ -164,7 +174,6 @@ class Block extends Component {
     super();
     this.state = {
       editing: false,
-
     }
     this.shouldRender = this.shouldRender.bind(this);
     this.getCSSClass = this.getCSSClass.bind(this);
@@ -212,7 +221,8 @@ class Block extends Component {
       fetchLocationData,
       interval,
       keyId,
-      locationId
+      locationId,
+      value
     } = this.props;
 
     return (
@@ -235,9 +245,11 @@ class Block extends Component {
             blockType={blockType}
             fetchLocationData={fetchLocationData}
             interval={interval}
+            timeSpan={timeSpan}
             keyId={keyId}
             name={name}
             locationId={locationId}
+            value={value}
           /> :
           '' }
       </div>

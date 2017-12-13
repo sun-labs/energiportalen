@@ -45,8 +45,6 @@ export const getUnitsFromLocation = (location) => {
 
 export const fetchLocationData = ({ timeSpan, interval, keyId, name, blockType, locationId }) => {
 
-  timeSpan = c.intervalOptions.find(el => el.label === timeSpan).value
-
   const {
     from, to
   } = t.getDatesFromTimeSpan(timeSpan);
@@ -63,13 +61,13 @@ export const fetchLocationData = ({ timeSpan, interval, keyId, name, blockType, 
             const values = res.data.data.map((elem) => {
               return parseFloat(elem.sum_val, 3);
             });
-      
+
             const labels = res.data.data.map((elem) => {
               return elem.new_timestamp;
             });
-      
+
             let data;
-      
+
             switch (timeSpan) {
               case c.YEAR:
                 data = [
@@ -88,9 +86,9 @@ export const fetchLocationData = ({ timeSpan, interval, keyId, name, blockType, 
                 ];
                 break;
               }
-            const value = res.data.data[0].sum_val.toFixed(0);
+            const value = values.reduce((tot, curr) => tot + curr);
 
-            dispatch({ type: c.FETCH_LOCATION_DATA_SUCCESS, labels, data, value, id: locationId, interval });
+            dispatch({ type: c.FETCH_LOCATION_DATA_SUCCESS, labels, data, value, id: locationId, interval, timeSpan });
           });
       });
 
