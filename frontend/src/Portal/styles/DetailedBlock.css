@@ -59,7 +59,7 @@
   .compare-wrap .blockk.fac-block{
     height: auto;
     width: 45%;
-    border: 1px solid lightgray;
+    border: 1px solid #EDECE6;
   }
 
   .compare-wrap .info-fac-wrap .wrap-info{
@@ -88,7 +88,7 @@
     max-width: none;
     border-radius: 0;
     border-width: 1px;
-    border-color: lightgray;
+    border-color: #EDECE6;
     margin: 0;
   }
 
