@@ -38,7 +38,7 @@
   }
 
   .bot-navbar-portal .sign-out.icon{
-    float: right;
+    margin-left: auto;
     cursor: pointer;
   }
 
