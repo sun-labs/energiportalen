@@ -66,6 +66,7 @@ function _isOld(obj) {
   return age < CACHE_LIFE;
 }
 
+// loop though all the cached items and remove old ones
 function cleanCache() {
   const cached = Object.keys(localStorage).filter((key) => (key.indexOf(CACHE_PREFIX) > -1));
   cached.forEach((item) => {
