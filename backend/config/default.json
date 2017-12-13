@@ -1,0 +1,8 @@
+{
+  "bcrypt": {
+    "rounds": 10
+  },
+  "jwt": { // Javascript Web Token
+    "***REMOVED***": "***REMOVED***"
+  }
+}

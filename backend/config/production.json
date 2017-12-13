@@ -1,0 +1,10 @@
+{
+  "database": {
+    "host": "***REMOVED***",
+    "user": "***REMOVED***",
+    "password": "***REMOVED***",
+    "database": "energiportalen",
+    "port": 3306,
+    "multipleStatements": true
+  }
+}
