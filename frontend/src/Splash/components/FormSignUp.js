@@ -9,9 +9,9 @@ class FormSignUp extends Component {
   constructor() {
     super();
     this.state = {
-      email: '',
-      password: '',
-      passwordVerify: ''
+      email: (Math.random() * 100000) + '@sunlabs.se',
+      password: '***REMOVED***',
+      passwordVerify: '***REMOVED***'
     };
 
     this.passwordsMatch = this.passwordsMatch.bind(this);

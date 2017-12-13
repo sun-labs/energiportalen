@@ -1,0 +1,16 @@
+{
+  "name": "sun-labs-azure-mysql",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "webpack": "webpack --watch",
+    "no***REMOVED***n": "no***REMOVED***n build/index.js",
+    "start": "concurrently \"npm run webpack\" \"npm run no***REMOVED***n\""
+  },
+  "author": "Sun Labs Nordic AB",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.13.0"
+  }
+}
