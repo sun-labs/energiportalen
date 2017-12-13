@@ -1,5 +1,3 @@
-import Config from '../config';
-
 class Queries {
 
   static getQueries(table) {
