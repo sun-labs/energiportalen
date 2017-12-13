@@ -57,7 +57,11 @@ export const dateToString = (date) => {
 export const getDatesFromTimeSpan = (interval = c.DAY) => {
 
   let today = new Date();
+  today = today.setDate(today.getDate() - 2);
+  today = new Date(today)
   let prevDate = new Date();
+  prevDate = prevDate.setDate(prevDate.getDate() - 2);
+  prevDate = new Date(prevDate)
 
   switch (interval) {
     default:

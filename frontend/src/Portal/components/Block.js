@@ -65,7 +65,7 @@ const Footer = (props) => {
       return (
         <footer>
           <ul>
-            <li><button
+            {/* <li><button
               onClick={() => {
                 fetchLocationData({
                   interval,
@@ -75,7 +75,7 @@ const Footer = (props) => {
                   locationId,
                   timeSpan: c.intervalOptions.find(x => x.value === c.DAY).label
               })
-                }}>DAILY</button></li>
+                }}>DAILY</button></li> */}
             <li><button
               onClick={() => {
                 fetchLocationData({
