@@ -1,6 +1,6 @@
 import mysql from 'mysql';
-import Config from '../config';
 import Queries from '../assets/Queries';
+import config from '../config';
 
 class Connection {
 
@@ -224,19 +224,8 @@ class Connection {
   * STATIC FUNCTIONS
   */
 
-  static connect(ENV = 'TEST', cb) {
-    let dbConfig;
-    switch (ENV) {
-      case 'TEST':
-        dbConfig = Config.database_test;
-        break;
-      case 'DEV':
-        dbConfig = Config.database.dev;
-        break;
-      default:
-        dbConfig = Config.mysql;
-        break;
-    }
+  static connect(ENV, cb) {
+    const dbConfig = config.database;
     const connection = mysql.createConnection(dbConfig);
     connection.connect((err) => {
       console.log(`[${ENV}] Database Connected`);

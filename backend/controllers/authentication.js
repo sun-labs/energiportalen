@@ -2,9 +2,7 @@ import jwt from 'jwt-simple';
 import User from '../models/user';
 import bcrypt from 'bcrypt-nodejs';
 import mysql from'mysql';
-import { con } from '../models/Connection';
-import Config, { jwtSecret } from '../config.js';
-
+import config from '../config';
 
 class Authentication {
 
@@ -16,14 +14,14 @@ class Authentication {
     return jwt.encode({ 
       sub: user.id, 
       iat: timestamp 
-    }, jwtSecret);
+    }, config.jwt.***REMOVED***);
   }
 
   /*
   * RETURNS: String
   */
   static hashPassword(password) {
-    const rounds = Config.bcrypt.rounds;
+    const rounds = config.bcrypt.rounds;
     const salt = bcrypt.genSaltSync(rounds);
     return bcrypt.hashSync(password, salt);
   }

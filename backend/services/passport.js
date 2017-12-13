@@ -4,10 +4,9 @@ import {
     Strategy as JwtStrategy, 
     ExtractJwt 
   } from 'passport-jwt';
-
-import { jwtSecret } from '../config.js';
-import User from '../models/user';
-import Authentication from '../controllers/Authentication';
+  import User from '../models/user';
+  import Authentication from '../controllers/Authentication';
+  import config from '../config';
 
 /*
 * Sign in with email and password
@@ -37,7 +36,7 @@ const localAuth = new LocalStrategy({
 */
 const jwtAuth = new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-	***REMOVED***OrKey: jwtSecret
+	***REMOVED***OrKey: config.jwt.***REMOVED***
 }, (payload, done) => {
 
   User.getUser({ 

@@ -1,22 +1,14 @@
-const config = {
+const STANDARD = {
+  bcrypt: {
+    rounds: 10,
+  },
+  jwt: {
+    ***REMOVED***: '***REMOVED***',
+  },
+}
+
+const TEST = {
   database: {
-    dev: {
-      host: '127.0.0.1',
-      user: 'wasabi',
-      password: '***REMOVED***',
-      database: 'energiportalen_dev',
-      port: 8889,
-      multipleStatements: true
-    }
-  },
-  mysql: {
-    host: '127.0.0.1',
-    user: 'energiportalen',
-    password: '***REMOVED***',
-    database: 'energiportalen',
-    port: 8889
-  },
-  database_test: {
     host: '127.0.0.1',
     user: 'wasabi',
     password: '***REMOVED***',
@@ -24,11 +16,32 @@ const config = {
     port: 8889,
     multipleStatements: true
   },
-  bcrypt: {
-    rounds: 10
-  }
-};
+}
 
-export const jwtSecret = '***REMOVED***';
+const DEV = {
+  database: {
+    host: '127.0.0.1',
+    user: 'wasabi',
+    password: '***REMOVED***',
+    database: 'energiportalen_dev',
+    port: 8889,
+    multipleStatements: true
+  },
+}
+
+const PROD = {
+  datebase: {
+    host: "***REMOVED***", 
+    user: "***REMOVED***", 
+    password: '***REMOVED***', 
+    database: 'energiportalen', 
+    port: 3306,
+  },
+}
+
+const configs = { TEST, DEV, PROD, };
+
+const ENV = process.env.NODE_ENV ? process.env.NODE_ENV.toUpperCase() : undefined;
+const config = Object.assign({}, STANDARD, configs[ENV]);
 
 export default config;
