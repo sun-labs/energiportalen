@@ -14,6 +14,7 @@ class LineBlock extends Component {
   componentWillMount() {
     const {
       locationId,
+      getLocations,
       fetchLocationData,
       fetchData,
       timeSpan,
@@ -29,7 +30,7 @@ class LineBlock extends Component {
 
     // TODO new way of doing this
     if (detailedView) {
-      fetchLocationData({ timeSpan, interval, keyId, name, blockType, locationId });
+      getLocations();
     } else if (refresh === true) {
       fetchData({ timeSpan, interval, unitId, keyId, blockId, blockType });
     }
@@ -99,12 +100,18 @@ setDataColors(dataList, config) {
       blockId = null,
       interval,
       blockType,
+      getLocations,
       fetchLocationData,
       keyId,
       locationId,
       removeBlock,
-      value
+      value,
+      detailedView
     } = this.props;
+
+    if (detailedView && data.length === 0) {
+      fetchLocationData({ timeSpan, interval, keyId, name, blockType, locationId });
+    }
 
     const datasets = this.setArrayLengths(
       this.setDataColors(data, config),
@@ -141,6 +148,7 @@ setDataColors(dataList, config) {
     return (
       <Block
         className="blockk-line" { ...blockInfo }
+        getLocations={getLocations}
         fetchLocationData={fetchLocationData}
         interval={interval}
         keyId={keyId}
@@ -160,7 +168,7 @@ setDataColors(dataList, config) {
 
 LineBlock.propTypes = {
   fetchData:            PropTypes.func.isRequired,
-  fetchLocationData:    PropTypes.func.isRequired,
+  getLocations:    PropTypes.func.isRequired,
   locationId:           PropTypes.number.isRequired,
   refresh:              PropTypes.bool.isRequired,
   data:                 PropTypes.array.isRequired,

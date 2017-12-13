@@ -15,6 +15,7 @@ class DetailedBlock extends Component {
       totEffect,
       solarPlants,
       fetchData,
+      getLocations,
       fetchLocationData,
       id
     } = this.props;
@@ -38,6 +39,7 @@ class DetailedBlock extends Component {
             {...block}
             name={name}
             fetchData={fetchData}
+            getLocations={getLocations}
             fetchLocationData={fetchLocationData}
             locationId={id}
           />
