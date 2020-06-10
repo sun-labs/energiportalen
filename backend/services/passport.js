@@ -36,7 +36,7 @@ const localAuth = new LocalStrategy({
 */
 const jwtAuth = new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-	***REMOVED***OrKey: config.jwt.***REMOVED***
+	secretOrKey: config.jwt.secret
 }, (payload, done) => {
 
   User.getUser({ 

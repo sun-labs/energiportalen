@@ -14,7 +14,7 @@ class Authentication {
     return jwt.encode({ 
       sub: user.id, 
       iat: timestamp 
-    }, config.jwt.***REMOVED***);
+    }, config.jwt.secret);
   }
 
   /*

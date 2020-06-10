@@ -3,7 +3,7 @@ const STANDARD = {
     rounds: 10
   },
   jwt: {
-    ***REMOVED***: '' // TODO: Set jwt ***REMOVED***
+    secret: '' // TODO: Set jwt secret
   }
 }
 

@@ -6,7 +6,7 @@ import os
 import lib.api_energiportalen as sunbot
 
 # constants
-PARSERS = ['***REMOVED***']
+PARSERS = ['']
 ENTITY_TYPES = ['facilities', 'unitdata', 'unitkeys']
 INPUT_TYPES = ['json']
 

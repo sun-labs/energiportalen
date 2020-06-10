@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "webpack": "webpack --watch",
-    "no***REMOVED***n": "no***REMOVED***n build/index.js",
-    "start": "concurrently \"npm run webpack\" \"npm run no***REMOVED***n\""
+    "nodemon": "nodemon build/index.js",
+    "start": "concurrently \"npm run webpack\" \"npm run nodemon\""
   },
   "author": "Sun Labs Nordic Handelsbolag",
   "license": "ISC",

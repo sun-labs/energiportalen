@@ -57,7 +57,7 @@ Bravissimo, you're done!
 - `npm run start`
 
 ## Dependencies
-- `npm install -g no***REMOVED***n` to run and rerun javascript codes
+- `npm install -g nodemon` to run and rerun javascript codes
 - `npm install -g webpack` to compile es6 syntax
 - `npm install -g mocha` to run frontend and backend tests
 - `npm install -g create-react-app` to run and compile the frontend
