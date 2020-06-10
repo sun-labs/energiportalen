@@ -14,8 +14,8 @@ Run these queries in order (manually)
 ```
 
 ```sql
-    CREATE USER 'energiportalen'@'%' IDENTIFIED BY '***REMOVED***';
-    CREATE USER 'wasabi'@'%' IDENTIFIED BY '***REMOVED***';
+    CREATE USER 'energiportalen'@'%' IDENTIFIED BY ''; -- TODO: Set password
+    CREATE USER 'wasabi'@'%' IDENTIFIED BY ''; -- TODO: Set password and username
 ```
 
 ```sql

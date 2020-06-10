@@ -8,8 +8,8 @@ class FormAuth extends Component {
   constructor() {
     super();
     this.state = {
-      email: 'user@sunlabs.se',
-      password: '***REMOVED***'
+      email: '',
+      password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }

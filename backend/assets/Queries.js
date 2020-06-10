@@ -1,33 +1,31 @@
 class Queries {
-
-  static getQueries(table) {
-    table = table.toLowerCase();
+  static getQueries (table) {
+    table = table.toLowerCase()
     return Queries.TABLE_QUERIES.find((obj) => {
       return obj.name === table
-    });
+    })
   }
 
-  static getCreateQuery(table) {
-    return Queries.getQueries(table).create;
+  static getCreateQuery (table) {
+    return Queries.getQueries(table).create
   }
 
-  static getPopulateQuery(table, env) {
-    env = env.toLowerCase();
-    return Queries.getQueries(table).populate[env];
+  static getPopulateQuery (table, env) {
+    env = env.toLowerCase()
+    return Queries.getQueries(table).populate[env]
   }
 
-  static getIndexQueries(table) {
-    return Queries.getQueries(table).index;
+  static getIndexQueries (table) {
+    return Queries.getQueries(table).index
   }
 
   /**
   * Get DATE_FORMAT mask for interval
   */
-  static getIntervalFormat(interval) {
-    interval = interval.toLowerCase();
-    return Queries.INTERVAL_FORMATS[interval];
+  static getIntervalFormat (interval) {
+    interval = interval.toLowerCase()
+    return Queries.INTERVAL_FORMATS[interval]
   }
-
 }
 
 Queries.INTERVAL_FORMATS = {
@@ -199,22 +197,22 @@ Queries.TABLE_QUERIES = [
     INSERT INTO users
       (id, email, password)
     VALUES
-      -- password: ***REMOVED***
+      -- password: TODO: Generate password and set.
       -- TODO remove this user from tests and remove the line below.
-      (1, 'asdf@asdf.com', '***REMOVED***'),
-      -- password: ***REMOVED***
-      (2, 'one@user.com', '***REMOVED***'),
-      (3, 'two@user.com', '***REMOVED***');
+      (1, 'asdf@asdf.com', ''),
+      -- password: TODO: Generate password and set.
+      (2, 'one@user.com', ''),
+      (3, 'two@user.com', '');
     `,
       dev: `
     INSERT INTO users
       (id, email, password, name)
     VALUES
-      -- password: ***REMOVED***
-      (1, 'admin@sunlabs.se', '***REMOVED***','Admin Sunlabs'),
-      (2, 'user@sunlabs.se', '***REMOVED***', 'User Sunlabs'),
-      (3, 'user@company.se', '***REMOVED***', 'User Company'),
-      (4, 'admin@company.se', '***REMOVED***', 'Admin Company');
+      -- password: TODO: Generate password and set.
+      (1, 'admin@sunlabs.se', '','Admin Sunlabs'),
+      (2, 'user@sunlabs.se', '', 'User Sunlabs'),
+      (3, 'user@company.se', '', 'User Company'),
+      (4, 'admin@company.se', '', 'Admin Company');
     `
     }
   }, {
@@ -545,7 +543,7 @@ Queries.TABLE_QUERIES = [
         (1, 'USER_NAME', NULL),
         (2, 'USER_BIRTHDAY', NULL);
       `,
-      dev: undefined,
+      dev: undefined
     }
   }, {
     name: 'meta_data',
@@ -572,13 +570,13 @@ Queries.TABLE_QUERIES = [
           (2, 2, '19930606', NULL, 1, '2017-12-11 06:06:06'),
           (3, 2, '20060606', NULL, 1, '2017-12-11 12:00:00');
       `,
-      dev: undefined,
+      dev: undefined
     }
-  },
-];
+  }
+]
 
 Queries.TABLES = Queries.TABLE_QUERIES.map((tableQuery) => {
-  return tableQuery.name;
-});
+  return tableQuery.name
+})
 
-export default Queries;
+export default Queries

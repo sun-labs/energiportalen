@@ -7,8 +7,8 @@ N=2000
 # Timeout for each request
 TIMEOUT=4500
 
-# DO NOT TOUCH
-TOKEN='***REMOVED***'
+# TODO: Set own valid token
+TOKEN=''
 
 
 
