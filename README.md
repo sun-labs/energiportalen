@@ -1,4 +1,17 @@
+![Preview of Energiportalen](docs/preview.gif)
+
 # Energiportalen
+
+Created 2017 as part of Bachelor Thesis in IT. Data collection, analytics and visualization for solar cell facilities.
+
+Frontend and backend included.
+
+## Getting Started
+
+- Find every `TODO:` in the project and add passwords / usernames / database configuration.
+- Follow `Setup Queries` in this README.
+- Follow `How to run` in this README.
+- Cash 
 
 ## Requirements
 - MySQL installed
